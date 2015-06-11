@@ -1,0 +1,20 @@
+{
+  "name": "IOC",
+  "version": "0.0.1",
+  "homepage": "https://github.com/IOC-X/IOC",
+  "authors": [
+    "Rajika <inbox.rajika@gmail.com>"
+  ],
+  "description": "Fuel station management",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-material-design": "~0.3.0"
+  }
+}
