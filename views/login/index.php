@@ -14,17 +14,29 @@
 <body>
 	<form class="form-horizontal" method="post" action="login/checkin">
 	<div class="login-container">
-		<h2>IOC</h2>
-		<div class="form-group">
-            <label for="inputUsername" class="col-lg-2 control-label">Username</label>
-            <div class="col-lg-2">
-                <input type="text" class="form-control" id="inputUsername" placeholder="Username" name="username">
+		<div class="row">
+            <div class="col-lg-12">
+            <h2>IOC</h2>
             </div>
         </div>
-        <div class="form-group">
-            <label for="inputPassword" class="col-lg-2 control-label">Password</label>
-            <div class="col-lg-2">
-                <input type="text" class="form-control" id="inputPassword" placeholder="Password" name="password">
+        <div class="row">
+            <div class="col-lg-12">
+        		<div class="form-group">
+                    <label for="inputUsername" class="col-lg-2 control-label">Username</label>
+                    <div class="col-lg-2">
+                        <input type="text" class="form-control" id="inputUsername" placeholder="Username" name="username">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="form-group">
+                    <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+                    <div class="col-lg-2">
+                        <input type="text" class="form-control" id="inputPassword" placeholder="Password" name="password">
+                    </div>
+                </div>
             </div>
         </div>
         <div class="form-group">
