@@ -22,7 +22,7 @@
     </div>
     <div class="navbar-collapse collapse navbar-responsive-collapse">
         <ul class="nav navbar-nav">
-            <li><a href="<?php echo URL ?>stock">Stock management</a></li>
+            <li><a href="<?php echo URL ?>stocks">Stock management</a></li>
             <li><a href="<?php echo URL ?>clients">Clients</a></li>
             <li><a href="<?php echo URL ?>suppliers">Suppliers</a></li>
             <li><a href="<?php echo URL ?>employees">Employees</a></li>
