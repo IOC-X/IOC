@@ -9,6 +9,7 @@
     <link href="<?php echo CSS ?>dist/css/ripples.min.css" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="<?php echo CSS1 ?>login.css">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo CSS ?>header/favicon/favicon-16x16.png">
 </head>
 <body>
 <div class="navbar navbar-default">
@@ -18,7 +19,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="javascript:void(0)">IOC<sup>ALPHA</sup></a>
+        <a class="navbar-brand" href="/IOC/">IOC<sup>ALPHA</sup></a>
     </div>
     <div class="navbar-collapse collapse navbar-responsive-collapse">
         <ul class="nav navbar-nav">
