@@ -27,7 +27,7 @@
             <li><a href="<?php echo URL ?>suppliers">Suppliers</a></li>
             <li><a href="<?php echo URL ?>employees">Employees</a></li>
             <li><a href="<?php echo URL ?>managers">Mangers' Hub</a></li>
-            <li><a href="<?php echo URL ?>transport">Transport</a></li>
+            <li><a href="<?php echo URL ?>transport">Transportation</a></li>
             <li><a href="<?php echo URL ?>otherstocks">Oil stocks</a></li>
             <li><a href="<?php echo URL ?>revenue">Revenue</a></li>
         </ul>
