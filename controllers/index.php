@@ -4,7 +4,7 @@
 			parent::__construct();
 		}
 		public function index(){
-			$this->view->render('index/index',false);
+			$this->view->render('index/index',true);
 		}
 		public function logout(){
 			Session::init();

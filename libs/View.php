@@ -10,6 +10,7 @@
 			else{
 				require 'views/header/header.php';
 				require 'views/'. $name. '.php';
+				require 'views/footer/footer.php';
 			}
 		}
 	}
