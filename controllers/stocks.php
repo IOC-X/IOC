@@ -6,5 +6,11 @@
 		public function index(){
 			$this->view->render('stocks/index',true);
 		}
+		public function morning_stocks(){
+			require('models/Stocks_model.php');
+			$model = new Stocks_model();
+			$data = $model->getMorningStocks();
+			$this->view->render('stocks/morning_stocks',true);
+		}
 	}
 ?>
