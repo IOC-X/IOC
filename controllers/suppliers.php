@@ -5,7 +5,7 @@ class suppliers extends Controller{
 			parent::__construct();
 		}
 		public function index(){
-			$this->view->render('suppliers/index',true);
+			$this->view->render('suppliers/index',false);
 		}
 	}
 ?>
