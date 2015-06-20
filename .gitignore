@@ -1,1 +1,3 @@
 /bower_components/Chart.js
+/node_modules
+/package.json
