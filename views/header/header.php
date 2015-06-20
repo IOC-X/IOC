@@ -7,18 +7,10 @@
     <link href="<?php echo CSS ?>dist/css/roboto.min.css" rel="stylesheet">
     <link href="<?php echo CSS ?>dist/css/material.min.css" rel="stylesheet">
     <link href="<?php echo CSS ?>dist/css/ripples.min.css" rel="stylesheet">
-
     <link rel="stylesheet" type="text/css" href="<?php echo CSS1 ?>login.css">
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo CSS ?>header/favicon/favicon-16x16.png">
-    <script type="text/javascript">
-        var url = window.location.toString();
-        url = url.split('/');
-        url = url[4];
-        if(url == "stocks"){
-            document.write('<link rel="stylesheet" type="text/css" href="<?php echo CSS1 ?>stocks/stocks.css">');
-        }
-    </script>
-
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS1 ?>stocks/stocks.css">
+    <script type="text/javascript" src="<?php echo JQuery ?>"></script>
 </head>
 <body>
 <div class="navbar navbar-default">
@@ -32,14 +24,14 @@
     </div>
     <div class="navbar-collapse collapse navbar-responsive-collapse">
         <ul class="nav navbar-nav">
-            <li><a href="<?php echo URL ?>stocks">Stock management</a></li>
-            <li><a href="<?php echo URL ?>clients">Clients</a></li>
-            <li><a href="<?php echo URL ?>suppliers">Suppliers</a></li>
-            <li><a href="<?php echo URL ?>employees">Employees</a></li>
-            <li><a href="<?php echo URL ?>managers">Managers' Hub</a></li>
-            <li><a href="<?php echo URL ?>transport">Transportation</a></li>
-            <li><a href="<?php echo URL ?>otherstocks">Oil stocks</a></li>
-            <li><a href="<?php echo URL ?>revenue">Revenue</a></li>
+            <li><a href="<?php echo URL ?>stocks" class="nav-stock">Stock management</a></li>
+            <li><a href="<?php echo URL ?>clients" class="nav-stock">Clients</a></li>
+            <li><a href="<?php echo URL ?>suppliers" class="nav-stock">Suppliers</a></li>
+            <li><a href="<?php echo URL ?>employees" class="nav-stock">Employees</a></li>
+            <li><a href="<?php echo URL ?>managers" class="nav-stock">Managers' Hub</a></li>
+            <li><a href="<?php echo URL ?>transport" class="nav-stock">Transportation</a></li>
+            <li><a href="<?php echo URL ?>otherstocks" class="nav-stock">Oil stocks</a></li>
+            <li><a href="<?php echo URL ?>revenue" class="nav-stock">Revenue</a></li>
         </ul>
 
  
@@ -57,4 +49,69 @@
             </li> -->
         </ul>
     </div>
+    <script>
+        $('.nav-stock').click(function(e){
+            var url = $(this).attr("href");
+            url = url.split('/');
+            url = url[4];
+            if(url == 'stocks'){ 
+                $('#loader').load('/IOC/stocks',function(){
+                    
+                    console.log('Success !');
+                });   
+            }
+            else if(url == "clients"){
+                $('#loader').load('/IOC/clients',function(){
+                    
+                    console.log('Success !');
+                }); 
+            }
+            else if(url == "suppliers"){
+                $('#loader').load('/IOC/suppliers',function(){
+                    
+                    console.log('Success !');
+                }); 
+            }
+            else if(url == "employees"){
+                $('#loader').load('/IOC/employees',function(){
+                    
+                    console.log('Success !');
+                }); 
+            }
+            else if(url == "managers"){
+                $('#loader').load('/IOC/managers',function(){
+                    
+                    console.log('Success !');
+                }); 
+            }
+            else if(url == "transport"){
+                $('#loader').load('/IOC/transport',function(){
+                    
+                    console.log('Success !');
+                }); 
+            }
+            else if(url == "otherstocks"){
+                $('#loader').load('/IOC/otherstocks',function(){
+                    
+                    console.log('Success !');
+                }); 
+            }
+            else if(url == "revenue"){
+                $('#loader').load('/IOC/revenue',function(){
+                    
+                    console.log('Success !');
+                }); 
+            }
+            else{
+                $('#loader').load('/IOC/err',function(){
+                    
+                    console.log('Error !');
+                });    
+            }
+            e.preventDefault();
+        });
+    </script>
 </div>
+    <div id="loader">
+        ssss
+    </div>
