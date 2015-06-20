@@ -20,7 +20,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/IOC/">IOC<sup>ALPHA</sup></a>
+        <a class="navbar-brand" href="/IOC/" id="brand">IOC<sup>ALPHA</sup></a>
     </div>
     <div class="navbar-collapse collapse navbar-responsive-collapse">
         <ul class="nav navbar-nav">
@@ -51,6 +51,7 @@
     </div>
     <script>
         $('.nav-stock').click(function(e){
+
             var url = $(this).attr("href");
             url = url.split('/');
             url = url[4];
@@ -110,8 +111,14 @@
             }
             e.preventDefault();
         });
+        // $('#brand').click(function(e){
+        //     $('#loader').load('/IOC/',function(){      
+        //         console.log('Success !');
+        //     }); 
+        //    e.preventDefault(); 
+        // });
     </script>
 </div>
     <div id="loader">
-        ssss
+
     </div>
