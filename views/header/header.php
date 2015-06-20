@@ -24,14 +24,14 @@
     </div>
     <div class="navbar-collapse collapse navbar-responsive-collapse">
         <ul class="nav navbar-nav">
-            <li><a href="<?php echo URL ?>stocks" class="nav-stock">Stock management</a></li>
-            <li><a href="<?php echo URL ?>clients" class="nav-stock">Clients</a></li>
-            <li><a href="<?php echo URL ?>suppliers" class="nav-stock">Suppliers</a></li>
-            <li><a href="<?php echo URL ?>employees" class="nav-stock">Employees</a></li>
-            <li><a href="<?php echo URL ?>managers" class="nav-stock">Managers' Hub</a></li>
-            <li><a href="<?php echo URL ?>transport" class="nav-stock">Transportation</a></li>
-            <li><a href="<?php echo URL ?>otherstocks" class="nav-stock">Oil stocks</a></li>
-            <li><a href="<?php echo URL ?>revenue" class="nav-stock">Revenue</a></li>
+            <li><a href="<?php echo URL ?>stocks" class="nav-bar">Stock management</a></li>
+            <li><a href="<?php echo URL ?>clients" class="nav-bar">Clients</a></li>
+            <li><a href="<?php echo URL ?>suppliers" class="nav-bar">Suppliers</a></li>
+            <li><a href="<?php echo URL ?>employees" class="nav-bar">Employees</a></li>
+            <li><a href="<?php echo URL ?>managers" class="nav-bar">Managers' Hub</a></li>
+            <li><a href="<?php echo URL ?>transport" class="nav-bar">Transportation</a></li>
+            <li><a href="<?php echo URL ?>otherstocks" class="nav-bar">Oil stocks</a></li>
+            <li><a href="<?php echo URL ?>revenue" class="nav-bar">Revenue</a></li>
         </ul>
 
  
@@ -50,7 +50,7 @@
         </ul>
     </div>
     <script>
-        $('.nav-stock').click(function(e){
+        $('.nav-bar').click(function(e){
 
             var url = $(this).attr("href");
             url = url.split('/');
@@ -119,6 +119,13 @@
         // });
     </script>
 </div>
-    <div id="loader">
+    <div class="col-lg-12">
+        <div class="row">
+        <div id="loader" class="col-md-3"> 
 
+        </div>
+        <div id="subloader" class="col-md-4">
+            
+        </div>
+        </div>
     </div>
