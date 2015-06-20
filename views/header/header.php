@@ -10,6 +10,15 @@
 
     <link rel="stylesheet" type="text/css" href="<?php echo CSS1 ?>login.css">
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo CSS ?>header/favicon/favicon-16x16.png">
+    <script type="text/javascript">
+        var url = window.location.toString();
+        url = url.split('/');
+        url = url[4];
+        if(url == "stocks"){
+            document.write('<link rel="stylesheet" type="text/css" href="<?php echo CSS1 ?>stocks/stocks.css">');
+        }
+    </script>
+
 </head>
 <body>
 <div class="navbar navbar-default">

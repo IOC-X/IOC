@@ -4,4 +4,7 @@
 			$stocks = new Stocks();
 			echo $data = $stocks->morning_stocks();
 		?>
+
 	</div>
+
+	
