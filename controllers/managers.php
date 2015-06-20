@@ -5,21 +5,21 @@ class managers extends Controller{
 			parent::__construct();
 		}
 		public function index(){
-			$this->view->render('managers/index',true);
+			$this->view->render('managers/index',false);
 		}
                 public function add_managers(){
                 
-            $this->view->render('managers/add_managers',true);
+            $this->view->render('managers/add_managers',false);
                 
                 }  
                 public function database_managers(){
                 
-            $this->view->render('managers/database_managers',true);
+            $this->view->render('managers/database_managers',false);
                 
                 }
             public function list_managers(){
                 
-            $this->view->render('managers/list_managers',true);
+            $this->view->render('managers/list_managers',false);
                 
                 }
     }
