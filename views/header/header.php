@@ -109,6 +109,7 @@
                     console.log('Error !');
                 });    
             }
+            $('#subloader').empty();
             e.preventDefault();
         });
         // $('#brand').click(function(e){
