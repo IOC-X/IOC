@@ -57,7 +57,7 @@
             url = url[4];
             if(url == 'stocks'){ 
                 $('#loader').load('/IOC/stocks',function(){
-                    
+                    fadeIN();
                     console.log('Success !');
                 });   
             }
@@ -118,6 +118,10 @@
         //     }); 
         //    e.preventDefault(); 
         // });
+        function fadeIN(){
+            $('#loader').hide();
+            $('#loader').fadeIn('slow');
+        }
     </script>
 </div>
     <div class="col-lg-12">
