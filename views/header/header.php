@@ -67,8 +67,8 @@
                     console.log('Success !');
                 }); 
             }
-            else if(url == "suppliers"){
-                $('#loader').load('/IOC/suppliers',function(){
+            else if(url == "assets"){
+                $('#loader').load('/IOC/assets',function(){
                     
                     console.log('Success !');
                 }); 
@@ -79,20 +79,20 @@
                     console.log('Success !');
                 }); 
             }
-            else if(url == "managers"){
-                $('#loader').load('/IOC/managers',function(){
-                    
-                    console.log('Success !');
-                }); 
-            }
             else if(url == "transport"){
                 $('#loader').load('/IOC/transport',function(){
                     
                     console.log('Success !');
                 }); 
             }
-            else if(url == "otherstocks"){
-                $('#loader').load('/IOC/otherstocks',function(){
+            else if(url == "carwash"){
+                $('#loader').load('/IOC/carwash',function(){
+                    
+                    console.log('Success !');
+                }); 
+            }
+            else if(url == "lube_service"){
+                $('#loader').load('/IOC/lube_service',function(){
                     
                     console.log('Success !');
                 }); 
