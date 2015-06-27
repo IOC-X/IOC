@@ -7,6 +7,7 @@
     <link href="<?php echo CSS ?>dist/css/roboto.min.css" rel="stylesheet">
     <link href="<?php echo CSS ?>dist/css/material.min.css" rel="stylesheet">
     <link href="<?php echo CSS ?>dist/css/ripples.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS1 ?>header/spinkit.css">
     <link rel="stylesheet" type="text/css" href="<?php echo CSS1 ?>login.css">
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo CSS ?>header/favicon/favicon-16x16.png">
     <link rel="stylesheet" type="text/css" href="<?php echo CSS1 ?>stocks/stocks.css">
@@ -26,11 +27,11 @@
         <ul class="nav navbar-nav">
             <li><a href="<?php echo URL ?>stocks" class="nav-bar">Stocks</a></li>
             <li><a href="<?php echo URL ?>clients" class="nav-bar">Clients</a></li>
-            <li><a href="<?php echo URL ?>assets" class="nav-bar">Assets maintenance</a></li>
             <li><a href="<?php echo URL ?>employees" class="nav-bar">Employees</a></li>
             <li><a href="<?php echo URL ?>transport" class="nav-bar">Transportation</a></li>
             <li><a href="<?php echo URL ?>carwash" class="nav-bar">Car wash</a></li>
             <li><a href="<?php echo URL ?>lube_service" class="nav-bar">Lube service</a></li>
+            <li><a href="<?php echo URL ?>assets" class="nav-bar">Assets maintenance</a></li>
             <li><a href="<?php echo URL ?>revenue" class="nav-bar">Revenue</a></li>
         </ul>
 
@@ -51,10 +52,12 @@
     </div>
     <script>
         $('.nav-bar').click(function(e){
-
+            $('#loader').empty();
+            $('#spinner').load('/IOC/views/css/header/spinkit.html');
             var url = $(this).attr("href");
             url = url.split('/');
             url = url[4];
+<<<<<<< HEAD
             if(url == 'stocks'){ 
                 $('#loader').load('/IOC/stocks',function(){
                     
@@ -109,6 +112,69 @@
                     console.log('Error !');
                 });    
             }
+=======
+            setTimeout(function(){
+                console.log('timeout');
+                
+                $('#spinner').empty();
+                
+                if(url == 'stocks'){ 
+                    $('#loader').load('/IOC/stocks',function(){
+                        fadeIN();
+                        console.log('Success !');
+                    });   
+                }
+                else if(url == "clients"){
+                    $('#loader').load('/IOC/clients',function(){
+                        
+                        console.log('Success !');
+                    }); 
+                }
+                else if(url == "assets"){
+                    $('#loader').load('/IOC/assets',function(){
+                        
+                        console.log('Success !');
+                    }); 
+                }
+                else if(url == "employees"){
+                    $('#loader').load('/IOC/employees',function(){
+                        
+                        console.log('Success !');
+                    }); 
+                }
+                else if(url == "transport"){
+                    $('#loader').load('/IOC/transport',function(){
+                        
+                        console.log('Success !');
+                    }); 
+                }
+                else if(url == "carwash"){
+                    $('#loader').load('/IOC/carwash',function(){
+                        
+                        console.log('Success !');
+                    }); 
+                }
+                else if(url == "lube_service"){
+                    $('#loader').load('/IOC/lube_service',function(){
+                        
+                        console.log('Success !');
+                    }); 
+                }
+                else if(url == "revenue"){
+                    $('#loader').load('/IOC/revenue',function(){
+                        
+                        console.log('Success !');
+                    }); 
+                }
+                else{
+                    $('#loader').load('/IOC/err',function(){
+                        
+                        console.log('Error !');
+                    });    
+                }
+            },1000);
+            
+>>>>>>> IOC-X/master
             $('#subloader').empty();
             e.preventDefault();
         });
@@ -118,6 +184,10 @@
         //     }); 
         //    e.preventDefault(); 
         // });
+        function fadeIN(){
+            $('#loader').hide();
+            $('#loader').fadeIn('slow');
+        }
     </script>
 </div>
     <div class="col-lg-12">
@@ -125,8 +195,12 @@
         <div id="loader" class="col-md-3"> 
 
         </div>
-        <div id="subloader" class="col-md-4">
+        <div id="subloader" class="col-md-9">
             
+        </div>
+            <div style="padding-top:100px"></div>
+            <div class="spinner" id="spinner">
+            </div>
         </div>
         </div>
     </div>
