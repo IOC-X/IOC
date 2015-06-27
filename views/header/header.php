@@ -125,7 +125,7 @@
         <div id="loader" class="col-md-3"> 
 
         </div>
-        <div id="subloader" class="col-md-4">
+        <div id="subloader" class="col-md-9">
             
         </div>
         </div>
