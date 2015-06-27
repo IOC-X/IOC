@@ -61,7 +61,7 @@
                 console.log('timeout');
                 
                 $('#spinner').empty();
-                
+
                 if(url == 'stocks'){ 
                     $('#loader').load('/IOC/stocks',function(){
                         fadeIN();
