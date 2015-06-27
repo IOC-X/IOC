@@ -12,5 +12,23 @@
 			//$data = $model->getMorningStocks();
 			$this->view->render('carwash/packages',false);
 		}
+                public function transactions(){
+			//require('models/Stocks_model.php');
+			//$model = new Stocks_model();
+			//$data = $model->getMorningStocks();
+			$this->view->render('carwash/transactions',false);
+		}
+                public function regular_customers(){
+			//require('models/Stocks_model.php');
+			//$model = new Stocks_model();
+			//$data = $model->getMorningStocks();
+			$this->view->render('carwash/regular_customers',false);
+		}
+                public function report(){
+			//require('models/Stocks_model.php');
+			//$model = new Stocks_model();
+			//$data = $model->getMorningStocks();
+			$this->view->render('carwash/report',false);
+		}
 	}
 ?>
