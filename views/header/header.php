@@ -57,60 +57,7 @@
             var url = $(this).attr("href");
             url = url.split('/');
             url = url[4];
-            if(url == 'stocks'){ 
-                $('#loader').load('/IOC/stocks',function(){
-                    
-                    console.log('Success !');
-                });   
-            }
-            else if(url == "clients"){
-                $('#loader').load('/IOC/clients',function(){
-                    
-                    console.log('Success !');
-                }); 
-            }
-            else if(url == "assets"){
-                $('#loader').load('/IOC/assets',function(){
-                    
-                    console.log('Success !');
-                }); 
-            }
-            else if(url == "employees"){
-                $('#loader').load('/IOC/employees',function(){
-                    
-                    console.log('Success !');
-                }); 
-            }
-            else if(url == "transport"){
-                $('#loader').load('/IOC/transport',function(){
-                    
-                    console.log('Success !');
-                }); 
-            }
-            else if(url == "carwash"){
-                $('#loader').load('/IOC/carwash',function(){
-                    
-                    console.log('Success !');
-                }); 
-            }
-            else if(url == "lube_service"){
-                $('#loader').load('/IOC/lube_service',function(){
-                    
-                    console.log('Success !');
-                }); 
-            }
-            else if(url == "revenue"){
-                $('#loader').load('/IOC/revenue',function(){
-                    
-                    console.log('Success !');
-                }); 
-            }
-            else{
-                $('#loader').load('/IOC/err',function(){
-                    
-                    console.log('Error !');
-                });    
-            }
+        
             setTimeout(function(){
                 console.log('timeout');
                 
