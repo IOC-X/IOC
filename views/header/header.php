@@ -7,6 +7,7 @@
     <link href="<?php echo CSS ?>dist/css/roboto.min.css" rel="stylesheet">
     <link href="<?php echo CSS ?>dist/css/material.min.css" rel="stylesheet">
     <link href="<?php echo CSS ?>dist/css/ripples.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS1 ?>header/spinkit.css">
     <link rel="stylesheet" type="text/css" href="<?php echo CSS1 ?>login.css">
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo CSS ?>header/favicon/favicon-16x16.png">
     <link rel="stylesheet" type="text/css" href="<?php echo CSS1 ?>stocks/stocks.css">
@@ -51,64 +52,72 @@
     </div>
     <script>
         $('.nav-bar').click(function(e){
-
+            $('#loader').empty();
+            $('#spinner').load('/IOC/views/css/header/spinkit.html');
             var url = $(this).attr("href");
             url = url.split('/');
             url = url[4];
-            if(url == 'stocks'){ 
-                $('#loader').load('/IOC/stocks',function(){
-                    fadeIN();
-                    console.log('Success !');
-                });   
-            }
-            else if(url == "clients"){
-                $('#loader').load('/IOC/clients',function(){
-                    
-                    console.log('Success !');
-                }); 
-            }
-            else if(url == "suppliers"){
-                $('#loader').load('/IOC/suppliers',function(){
-                    
-                    console.log('Success !');
-                }); 
-            }
-            else if(url == "employees"){
-                $('#loader').load('/IOC/employees',function(){
-                    
-                    console.log('Success !');
-                }); 
-            }
-            else if(url == "managers"){
-                $('#loader').load('/IOC/managers',function(){
-                    
-                    console.log('Success !');
-                }); 
-            }
-            else if(url == "transport"){
-                $('#loader').load('/IOC/transport',function(){
-                    
-                    console.log('Success !');
-                }); 
-            }
-            else if(url == "otherstocks"){
-                $('#loader').load('/IOC/otherstocks',function(){
-                    
-                    console.log('Success !');
-                }); 
-            }
-            else if(url == "revenue"){
-                $('#loader').load('/IOC/revenue',function(){
-                    
-                    console.log('Success !');
-                }); 
-            }
-            else{
-                $('#loader').load('/IOC/err',function(){
-                    
-                    console.log('Error !');
-                });    
-            }
+            setTimeout(function(){
+                console.log('timeout');
+                
+                $('#spinner').empty();
+                
+                if(url == 'stocks'){ 
+                    $('#loader').load('/IOC/stocks',function(){
+                        fadeIN();
+                        console.log('Success !');
+                    });   
+                }
+                else if(url == "clients"){
+                    $('#loader').load('/IOC/clients',function(){
+                        
+                        console.log('Success !');
+                    }); 
+                }
+                else if(url == "suppliers"){
+                    $('#loader').load('/IOC/suppliers',function(){
+                        
+                        console.log('Success !');
+                    }); 
+                }
+                else if(url == "employees"){
+                    $('#loader').load('/IOC/employees',function(){
+                        
+                        console.log('Success !');
+                    }); 
+                }
+                else if(url == "managers"){
+                    $('#loader').load('/IOC/managers',function(){
+                        
+                        console.log('Success !');
+                    }); 
+                }
+                else if(url == "transport"){
+                    $('#loader').load('/IOC/transport',function(){
+                        
+                        console.log('Success !');
+                    }); 
+                }
+                else if(url == "otherstocks"){
+                    $('#loader').load('/IOC/otherstocks',function(){
+                        
+                        console.log('Success !');
+                    }); 
+                }
+                else if(url == "revenue"){
+                    $('#loader').load('/IOC/revenue',function(){
+                        
+                        console.log('Success !');
+                    }); 
+                }
+                else{
+                    $('#loader').load('/IOC/err',function(){
+                        
+                        console.log('Error !');
+                    });    
+                }
+            },1000);
+            
             $('#subloader').empty();
             e.preventDefault();
         });
@@ -131,6 +140,10 @@
         </div>
         <div id="subloader" class="col-md-9">
             
+        </div>
+            <div style="padding-top:100px"></div>
+            <div class="spinner" id="spinner">
+            </div>
         </div>
         </div>
     </div>
