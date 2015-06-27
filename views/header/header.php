@@ -24,13 +24,13 @@
     </div>
     <div class="navbar-collapse collapse navbar-responsive-collapse">
         <ul class="nav navbar-nav">
-            <li><a href="<?php echo URL ?>stocks" class="nav-bar">Inventory</a></li>
+            <li><a href="<?php echo URL ?>stocks" class="nav-bar">Stocks</a></li>
             <li><a href="<?php echo URL ?>clients" class="nav-bar">Clients</a></li>
-            <li><a href="<?php echo URL ?>suppliers" class="nav-bar">Suppliers</a></li>
+            <li><a href="<?php echo URL ?>assets" class="nav-bar">Assets maintenance</a></li>
             <li><a href="<?php echo URL ?>employees" class="nav-bar">Employees</a></li>
             <li><a href="<?php echo URL ?>transport" class="nav-bar">Transportation</a></li>
-            <li><a href="<?php echo URL ?>otherstocks" class="nav-bar">Lubricant store</a></li>
-            <li><a href="<?php echo URL ?>service_station" class="nav-bar">Service station</a></li>
+            <li><a href="<?php echo URL ?>carwash" class="nav-bar">Car wash</a></li>
+            <li><a href="<?php echo URL ?>lube_service" class="nav-bar">Lube service</a></li>
             <li><a href="<?php echo URL ?>revenue" class="nav-bar">Revenue</a></li>
         </ul>
 
