@@ -57,7 +57,6 @@
             var url = $(this).attr("href");
             url = url.split('/');
             url = url[4];
-<<<<<<< HEAD
             if(url == 'stocks'){ 
                 $('#loader').load('/IOC/stocks',function(){
                     
@@ -112,7 +111,6 @@
                     console.log('Error !');
                 });    
             }
-=======
             setTimeout(function(){
                 console.log('timeout');
                 
@@ -173,8 +171,6 @@
                     });    
                 }
             },1000);
-            
->>>>>>> IOC-X/master
             $('#subloader').empty();
             e.preventDefault();
         });
