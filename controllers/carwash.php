@@ -1,16 +1,19 @@
 <?php 
+include_once '/models/Carwash_model.php';
 	class Carwash extends Controller{
-		function __construct(){
+            public function __construct(){
 			parent::__construct();
+                        
 		}
 		public function index(){
 			$this->view->render('carwash/index',false);
 		}
 		public function packages(){
-                    require_once('models/Carwash_model.php');
-			$data = Carwash_model::getPackages();
-                        print_r($data);
+                        $model = new Carwash_model();
+                        $packages= $model->getPackages();
+                    
 			$this->view->render('carwash/packages',false);
+                        include '/views/carwash/packages.php';
 		}
                 public function transactions(){
 			//require('models/Stocks_model.php');
