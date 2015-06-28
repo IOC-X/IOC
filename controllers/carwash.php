@@ -7,9 +7,9 @@
 			$this->view->render('carwash/index',false);
 		}
 		public function packages(){
-			//require('models/Stocks_model.php');
-			//$model = new Stocks_model();
-			//$data = $model->getMorningStocks();
+                    require_once('models/Carwash_model.php');
+			$data = Carwash_model::getPackages();
+                        print_r($data);
 			$this->view->render('carwash/packages',false);
 		}
                 public function transactions(){
