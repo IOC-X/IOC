@@ -4,27 +4,38 @@ include_once 'C:\wamp\www\IOC\libs\Database.php';
 		function __construct(){
 			parent::__construct();
 		}
-		public static function getPackages(){
-			
-			$st = $this->db->prepare("SELECT * FROM packages");
-			$st->execute();
-			$data = $st->fetchAll();
-			
+                 public function selectAll()
+	{
+		//if (!isset($order))
+		//{
+		//	$order = 'name';
+		//}
+		
+		$sql = $this->db->prepare("SELECT * FROM packages");
+		$sql->execute();
+		// $result = $sql->fetchAll(PDO::FETCH_ASSOC);
 
-                       if ($data->num_rows > 0) {
-                            
-                            while($row = $result->fetch_assoc()) 
-                            {
-                                echo $row["name"];
-                                echo $row["description"];
-                                echo $row["time"];
-                                echo $row["price"];
-                            }
-                        } else {
-                            echo "0 results";
-                        }
-
-        db::close();
+		$contacts = array();
+		while ($obj = $sql->fetch(PDO::FETCH_OBJ))
+		{
+			$packages[] = $obj;
+		}
+		return $packages;
+	}
+		public function getPackages(){
+			
+			try
+		{
+			
+                        parent::__construct();    
+			$result = $this->selectAll();
+			
+			return $result;
+		}
+		catch(Exception $e)
+		{	
+			
+		}
   
                 }
 	}
