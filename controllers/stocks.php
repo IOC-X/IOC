@@ -1,4 +1,4 @@
-<?php 
+<?php
 	class Stocks extends Controller{
 		function __construct(){
 			parent::__construct();
@@ -18,5 +18,29 @@
 		public function evening_reading(){
 			$this->view->render('stocks/evening_reading',false);
 		}
+		//calculating stocks values
+		public function calculateStocks(){
+			//assigning form data
+			$petrol = $_POST['petrol'];
+			$spetrol = $_POST['spetrol'];
+			$diesel = $_POST['diesel'];
+			$sdiesel = $_POST['sdiesel'];
+			//returning calculated value to ajax call
+			echo self::petrolReading($petrol);
+		}
+		//calculates the quantity for each fuel type
+		private function petrolReading($petrol){
+			return $petrol*2;
+		}
+		private function spetrolReading($spetrol){
+			return $petrol*2;
+		}
+		private function dieselReading($diesel){
+			return $petrol*2;
+		}
+		private function sdieselReading($sdiesel){
+			return $petrol*2;
+		}
+		//end for fuel calculation functions
 	}
 ?>
