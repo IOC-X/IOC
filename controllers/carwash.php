@@ -48,8 +48,8 @@ include_once '/models/Carwash_model.php';
                 if (isset($_POST['form-submitted'])) 
 		{
 			$name   = isset($_POST['name'])   ? trim($_POST['name']) 	   : null;
-			$email  = isset($_POST['description'])  ? trim($_POST['description']) 	   : null;
-			$mobile = isset($_POST['price']) ? trim($_POST['price'])     : null;
+			$description  = isset($_POST['description'])  ? trim($_POST['description']) 	   : null;
+			$price = isset($_POST['price']) ? trim($_POST['price'])     : null;
 			{
                     $packages= $model->edit($name, $description, $price,$id);
                  
