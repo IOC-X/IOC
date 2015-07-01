@@ -71,13 +71,13 @@
                 }
                 else if(url == "clients"){
                     $('#loader').load('/IOC/clients',function(){
-                        
+                        fadeIN();
                         console.log('Success !');
                     }); 
                 }
                 else if(url == "assets"){
                     $('#loader').load('/IOC/assets',function(){
-                        
+                        fadeIN();
                         console.log('Success !');
                     }); 
                 }
@@ -95,7 +95,7 @@
                 }
                 else if(url == "carwash"){
                     $('#loader').load('/IOC/carwash',function(){
-                        
+                        fadeIN();
                         console.log('Success !');
                     }); 
                 }
