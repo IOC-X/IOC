@@ -17,7 +17,7 @@
         });
         $('#cancel_reading').click(function(){
             $('#subloader2').hide();
-        });  
+        });
     </script>
 <br/>
 <div id="subloader2">

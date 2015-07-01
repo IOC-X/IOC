@@ -2,33 +2,41 @@
     <fieldset>
         <legend>Evening</legend>
             <div class="form-group">
-            <label for="petrol" class="col-lg-2 control-label">Petrol</label> 
+            <label for="petrol" class="col-lg-2 control-label">Petrol</label>
                 <div class="col-lg-4">
-                <input type="text" class="form-control" id="petrol" placeholder="petrol">            
+                  <select id="petrol" placeholder="petrol" class="form-control">
+                    <option>169</option>
+                  </select>
                 </div>
             </div>
-            <div class="form-group">    
+            <div class="form-group">
             <label for="spetrol" class="col-lg-2 control-label">Super petrol</label>
                 <div class="col-lg-4">
-                <input type="text" class="form-control" id="spetrol" placeholder="super petrol">                     
+                  <select id="petrol" placeholder="petrol" class="form-control">
+                    <option>169</option>
+                  </select>
                 </div>
             </div>
             <div class="form-group">
             <label for="diesel" class="col-lg-2 control-label">Diesel</label>
                 <div class="col-lg-4">
-                <input type="text" class="form-control" id="diesel" placeholder="diesel">             
+                  <select id="petrol" placeholder="petrol" class="form-control">
+                    <option>169</option>
+                  </select>
                 </div>
             </div>
             <div class="form-group">
-            <label for="sdiesel" class="col-lg-2 control-label">Super diesel</label>                       
+            <label for="sdiesel" class="col-lg-2 control-label">Super diesel</label>
                 <div class="col-lg-4">
-                <input type="text" class="form-control" id="sdiesel" placeholder="super diesel">            
+                  <select id="petrol" placeholder="petrol" class="form-control">
+                    <option>169</option>
+                  </select>
                 </div>
-            </div>  
+            </div>
         <div class="form-group">
             <div class="col-lg-10 col-lg-offset-2">
                 <button class="btn btn-default" id="cancel_reading">Cancel</button>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Calculate</button>
             </div>
         </div>
     </fieldset>
