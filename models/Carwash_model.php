@@ -37,7 +37,28 @@ include_once 'C:\wamp\www\IOC\libs\Database.php';
 		$sql = $this->db->prepare("UPDATE packages SET name = ?, description = ?, price = ? WHERE id = ? LIMIT 1");
 		$result = $sql->execute(array($name, $description, $price, $id));
 	}	
-  
+        
+        public function delete($id) {
+        
+        $sql =$this->db->prepare("DELETE FROM packages WHERE id=$id");
+        $sql->execute();
+    }
+    public function createNewPackage($name, $description, $time,$price)
+	{
+		try 
+		{
+			
+			//$this->validateContactParams($name, $email, $mobile);
+			$sql = $this->db->prepare("INSERT INTO contacts(name, description, time, price) VALUES(?, ?, ?, ?)");		
+                        $result = $sql->execute(array($name, $description, $time,$price));
+			
+			//return $result;
+		}
+		catch(Exception $e)
+		{
+			
+		}
+	}
                 
 	}
 	
