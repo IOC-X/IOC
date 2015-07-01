@@ -18,28 +18,33 @@
 	        	e2.preventDefault();
 	        	var id = $(this).attr('id');
                 $('#subloader').load('/IOC/carwash/' + id,function(){
-                    //console.log('morning_stock !');
+                   
+                    $('#subloader').hide();
+                	$('#subloader').fadeIn('fast');
                 });
 	        });
+                
+               
+                
                 $('#transactions').click(function(e2){
 	        	e2.preventDefault();
 	        	var id = $(this).attr('id');
                 $('#subloader').load('/IOC/carwash/' + id,function(){
-                    //console.log('morning_stock !');
+                    
                 });
 	        });
                 $('#regular_customers').click(function(e2){
 	        	e2.preventDefault();
 	        	var id = $(this).attr('id');
                 $('#subloader').load('/IOC/carwash/' + id,function(){
-                    //console.log('morning_stock !');
+                    
                 });
 	        });
                 $('#report').click(function(e2){
 	        	e2.preventDefault();
 	        	var id = $(this).attr('id');
                 $('#subloader').load('/IOC/carwash/' + id,function(){
-                    //console.log('morning_stock !');
+                    
                 });
 	        });
 	        </script>
