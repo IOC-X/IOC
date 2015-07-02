@@ -8,6 +8,9 @@ include_once '/models/Carwash_model.php';
 		public function index(){
 			$this->view->render('carwash/index',false);
 		}
+                public function redirect($location) {
+        header('Location: ' . $location);
+    }
 		public function packages(){
                         $model = new Carwash_model();
                         $packages= $model->selectAllpackages();
@@ -38,12 +41,12 @@ include_once '/models/Carwash_model.php';
               //  $this->view->render('carwash/edit',false);
                     $model = new Carwash_model();
                     $name   = '';
-		$description  = '';
-		$price = '';
+                    $description  = '';
+                    $price = '';
 		//$id     = $_GET['id'];
                    $package=$model->selectById($id);
                     $title = 'Edit package';
-                    echo $id;
+                   // echo $id;
 		
                 if (isset($_POST['form-submitted'])) 
 		{
@@ -57,6 +60,30 @@ include_once '/models/Carwash_model.php';
                 }
                 include '/views/carwash/edit.php';
                 }
-        }           
+                
+                public function view($id=false)
+	{
+				
+                $model = new Carwash_model();
+		$package=$model->selectById($id);
+
+		include '/views/carwash/view.php';
+	}
+        
+                public function delete($id) {
+                    $model = new Carwash_model();
+                    $package=$model->delete($id);
+                    $this->redirect('../');
+        }
+        public function create(){
+                    $name   = '';
+                    $description  = '';
+                    $time= '';
+                    $price = '';
+            $model = new Carwash_model();
+            $packages=$model->createNewPackage($name, $description, $time, $price);
+            include '/views/carwash/create.php';
+        }
+   }           
 	
 ?>
