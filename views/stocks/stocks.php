@@ -1,6 +1,6 @@
 <div class="btn-group btn-group-justified">
-    <a href="javascript:void(0)" class="btn btn-primary" id="morning_reading">Morning reading</a>
-    <a href="javascript:void(0)" class="btn btn-primary" id="evening_reading">Evening reading</a>
+    <a href="javascript:void(0)" class="btn btn-primary" id="morning_reading">Morning readings</a>
+    <a href="javascript:void(0)" class="btn btn-primary" id="evening_reading">Evening readings</a>
 </div>
     <script>
         $('#morning_reading').click(function(){
