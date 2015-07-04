@@ -47,6 +47,21 @@
 		public function stockgraph(){
 			$this->view->render('stocks/stockgraph',false);
 		} 
-
+		//pumpreadings index page
+		public function pump_readings(){
+			$this->view->render('stocks/pump_readings',false);
+		}
+		//daily reading of pumps
+		public function daily_readings(){
+			$this->view->render('stocks/daily_readings',false);
+		}
+		//inserting pump readings
+		public function insertPumpReadings(){
+			echo 'Success reponse';
+		}
+		//editing previous pump readings
+		public function previousEntries(){
+			$this->view->render('stocks/pump/previousEntries',false);	
+		}
 	}
 ?>
