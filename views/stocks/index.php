@@ -6,7 +6,7 @@
 		    <div class="panel-body">
 		        <a href="stocks/stocks" class="btn btn-flat btn-primary" id="stocks">
 		        <i class="mdi-action-perm-media"></i>Stocks</a>
-		        <a href="stocks/evening_stocks" class="btn btn-flat btn-primary" id="">
+		        <a href="stocks/evening_stocks" class="btn btn-flat btn-primary" id="pump_readings">
 		        <i class="mdi-maps-local-cafe"></i>Pump readings</a>
 		        <a href="stocks/history" class="btn btn-flat btn-primary" id="history">
 		        <i class="mdi-action-assessment"></i>Lubricant Store</a>
