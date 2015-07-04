@@ -42,5 +42,11 @@
 			return $petrol*2;
 		}
 		//end for fuel calculation functions
+
+		//returns the stockgraph 
+		public function stockgraph(){
+			$this->view->render('stocks/stockgraph',false);
+		} 
+
 	}
 ?>

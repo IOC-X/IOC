@@ -1,6 +1,9 @@
 <form class="form-horizontal" method="post" id="calculate_mrng" action="stocks/calculateStocks">
     <fieldset>
-        <legend>Morning</legend>
+        <legend>Morning stock readings</legend>
+            
+            <label id="qnty-label"></label>
+            <label id="suggestion-label"></label>
             <div class="form-group">
             <label for="petrol" class="col-lg-2 control-label">Petrol</label>
                 <div class="col-lg-4">
@@ -10,6 +13,13 @@
                 </div>
                 <div class="col-lg-4">
                     <label class="qnty"></label>
+                </div>
+                <div class="ajax-content">
+                <div class="col-lg-1">
+                <select placeholder="petrol" class="form-control">
+                  <option>169</option>
+                </select>
+                </div>
                 </div>
             </div>
             <div class="form-group">
@@ -22,6 +32,11 @@
                 <div class="col-lg-4">
                     <label class="qnty"></label>
                 </div>
+                <div class="col-lg-1">
+                <select placeholder="petrol" class="form-control">
+                  <option>169</option>
+                </select>
+                </div>
             </div>
             <div class="form-group">
             <label for="diesel" class="col-lg-2 control-label">Diesel</label>
@@ -32,6 +47,11 @@
                 </div>
                 <div class="col-lg-4">
                     <label class="qnty"></label>
+                </div>
+                <div class="col-lg-1">
+                <select placeholder="petrol" class="form-control">
+                  <option>169</option>
+                </select>
                 </div>
             </div>
             <div class="form-group">
@@ -44,15 +64,22 @@
                 <div class="col-lg-4">
                     <label class="qnty"></label>
                 </div>
+                <div class="col-lg-1">
+                <select placeholder="petrol" class="form-control">
+                  <option>169</option>
+                </select>
+                </div>
             </div>
         <div class="form-group">
             <div class="col-lg-10 col-lg-offset-2">
                 <button class="btn btn-default" id="cancel_reading">Cancel</button>
                 <button type="submit" class="btn btn-primary" id="calculate">Calculate</button>
+                <span class="order"></span>
             </div>
         </div>
     </fieldset>
 </form>
+
 
 
     <script type="text/javascript">
@@ -74,18 +101,20 @@
           data : form.serialize(),
           success: function(data){
             console.log(data);
-            $('.qnty').append('<label>' + data + '</label>').hide();
-            $('.qnty').fadeIn('slow');
-            $('#stock-graph').append('<label>  </label>');
+            $('#calculate').attr('disabled','disabled');
+            $('#qnty-label').append('Quantity available').hide().fadeIn('slow');
+            var input = '<input type="button" class="btn btn-primary" id="confirm_orders" value="Confirm Orders">';
+            $('.order').append(input).hide().fadeIn('slow');
+            $('#suggestion-label').append('Order suggestions').hide().fadeIn('slow');
+            $('.qnty').append('<label style="padding-left:50px">' + data + '</label>').hide().fadeIn('slow');
+            $('#stock-graph').load('/IOC/stocks/stockgraph').hide().fadeIn('slow');
           }
         });
       });
     </script>
-<div id="stock-graph">
-
+<div id="stock-graph" >
+   
 </div>
-<script type="text/javascript" src="<?php echo ChartJS ?>">
-</script>
-<script type="text/javascript">
 
-</script>
+
+
