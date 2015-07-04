@@ -63,5 +63,9 @@
 		public function previousEntries(){
 			$this->view->render('stocks/pump/previousEntries',false);	
 		}
+		//returns statuses of pumps
+		public function statuses(){
+			$this->view->render('stocks/pump/statuses',false);	
+		}
 	}
 ?>
