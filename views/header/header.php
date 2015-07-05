@@ -2,8 +2,10 @@
 <html>
 <head>
 	<title>IOC | Fuel Station management</title>
-	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Include roboto.css to use the Roboto web font, material.css to include the theme and ripples.css to style the ripple effect -->
+	<!-- Bootstrap -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Include roboto.css to use the Roboto web font, material.css to include the theme and ripples.css to style the ripple effect -->
+    <!-- CSS loading animation -->
     <link href="<?php echo CSS ?>dist/css/roboto.min.css" rel="stylesheet">
     <link href="<?php echo CSS ?>dist/css/material.min.css" rel="stylesheet">
     <link href="<?php echo CSS ?>dist/css/ripples.min.css" rel="stylesheet">
@@ -11,6 +13,13 @@
     <link rel="stylesheet" type="text/css" href="<?php echo CSS1 ?>login.css">
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo CSS ?>header/favicon/favicon-16x16.png">
     <link rel="stylesheet" type="text/css" href="<?php echo CSS1 ?>stocks/stocks.css">
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    
+    <!-- CSS for morning stock for stocks module -->
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS1 ?>stocks/morning_reading.css">
+    <!-- Jquery  -->
     <script type="text/javascript" src="<?php echo JQuery ?>"></script>
 </head>
 <body>
@@ -60,9 +69,8 @@
         
             setTimeout(function(){
                 console.log('timeout');
-                
-                $('#spinner').empty();
 
+                $('#spinner').empty();  
                 if(url == 'stocks'){ 
                     $('#loader').load('/IOC/stocks',function(){
                         fadeIN();
@@ -71,13 +79,13 @@
                 }
                 else if(url == "clients"){
                     $('#loader').load('/IOC/clients',function(){
-                        
+                        fadeIN();
                         console.log('Success !');
                     }); 
                 }
                 else if(url == "assets"){
                     $('#loader').load('/IOC/assets',function(){
-                        
+                        fadeIN();
                         console.log('Success !');
                     }); 
                 }
