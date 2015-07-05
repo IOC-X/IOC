@@ -67,5 +67,24 @@
 		public function statuses(){
 			$this->view->render('stocks/pump/statuses',false);	
 		}
+		//Lubricant store
+		public function lubricant(){
+			$this->view->render('stocks/lubricant/index',false);
+			// self::search_lube();
+		}
+		//Lube search
+		public function search_lube(){
+			$this->view->render('stocks/lubricant/search_lube',false);
+		}
+		//renders add lubes page
+		public function add_lube(){
+			$this->view->render('stocks/lubricant/add_lube',false);	
+		}
+		//handles data from add lubePage
+		public function addLube(){
+			echo $_POST['prd-name'];
+			echo $_POST['prd-price'];
+			echo $_POST['prd-qnty'];
+		}
 	}
 ?>

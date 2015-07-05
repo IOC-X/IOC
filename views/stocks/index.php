@@ -8,7 +8,7 @@
 		        <i class="mdi-action-perm-media"></i>Stocks</a>
 		        <a href="stocks/pump_readings" class="btn btn-flat btn-primary" id="pump_readings">
 		        <i class="mdi-maps-local-cafe"></i>Pump readings</a>
-		        <a href="stocks/history" class="btn btn-flat btn-primary" id="history">
+		        <a href="stocks/lubricant" class="btn btn-flat btn-primary" id="lubricant">
 		        <i class="mdi-action-assessment"></i>Lubricant Store</a>
 		        <a href="stocks/evening_stocks" class="btn btn-flat btn-primary" id="evening_stocks">
 		        <i class="mdi-maps-local-cafe"></i>Suppliers</a>
@@ -27,6 +27,16 @@
                 });
 	        });
 	        $('#pump_readings').click(function(e2){
+	        	e2.preventDefault();
+	        	var id = $(this).attr('id');
+
+                $('#subloader').load('/IOC/stocks/' + id,function(){
+                    //console.log('morning_stock !');
+ 					$('#subloader').hide();
+                	$('#subloader').fadeIn('fast');
+                });
+	        });
+	        $('#lubricant').click(function(e2){
 	        	e2.preventDefault();
 	        	var id = $(this).attr('id');
 
