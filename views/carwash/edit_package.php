@@ -3,22 +3,22 @@
 	<head>
 		<title>Package Update Form</title>
 		<meta charset="utf-8">
-                <link href="<?php echo CSS ?>dist/css/roboto.min.css" rel="stylesheet">
+<!--                <link href="<?php echo CSS ?>dist/css/roboto.min.css" rel="stylesheet">
     <link href="<?php echo CSS ?>dist/css/material.min.css" rel="stylesheet">
     <link href="<?php echo CSS ?>dist/css/ripples.min.css" rel="stylesheet">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">-->
    
 	</head>
 	
 	<body>
-		<div class="container">
+		<div class="container col-lg-10">
 			<div class="span 10 offset1">
 				<div class="row">
 					<h3><strong>Update package</strong></h3>
 					
 				</div>
 
-				<form class="form-horizontal col-lg-6" action="" method="post">
+				<form class="form-horizontal col-lg-5" action="" method="post">
 					<div class="control-group">
 						<label class="control-label">Name</label>
 							<div class="controls panel panel-default">

@@ -95,7 +95,7 @@
                 }
                 else if(url == "carwash"){
                     $('#loader').load('/IOC/carwash',function(){
-                        
+                        fadeIN();
                         console.log('Success !');
                     }); 
                 }
