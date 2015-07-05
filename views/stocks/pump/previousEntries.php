@@ -1,3 +1,4 @@
+<legend>Last 7 days</legend>
 <ul class="breadcrumb">
     <li><a href="javascript:void(0)" id="pump_1">Pump 1</a></li>
     <li><a href="javascript:void(0)" id="pump_2">Pump 2</a></li>
