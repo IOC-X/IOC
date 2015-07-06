@@ -86,5 +86,9 @@
 			echo $_POST['prd-price'];
 			echo $_POST['prd-qnty'];
 		}
+		//renders editing in lubricants 
+		public function edit_lube(){
+			$this->view->render('stocks/lubricant/edit_lube',false);	
+		}
 	}
 ?>
