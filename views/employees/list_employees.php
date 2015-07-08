@@ -1,7 +1,7 @@
  <style>
 #circle
 {
-border-radius:50% 50% 50% 50%;  
+border-radius:50% 50% 50% 50%;
 width:70px;
 height:70px;
 }
@@ -26,22 +26,22 @@ height:70px;
         </tr>
     </thead>
     <tbody>
-        
+
 	            <?php $controller = new Employees();
                     $data = $controller->loadListEmployees();
-                    
+
                         while($row=$data->fetch(PDO::FETCH_ASSOC)){ ?>
-                            
-        <tr class="info" onmouseover="colvalue(this);">			
-		
+
+        <tr class="info" onmouseover="colvalue(this);">
+
             <td> <?php echo ($row["managerCode"]); ?>  </td>
-     
+
             <td>
             <div class="list-group">
                 <div class="list-group-item">
                     <div class="row-picture">
                         <img src="<?php echo ($row["file"]); ?>" id="circle">
-                       
+
                     </div>
                 </div>
 
@@ -49,15 +49,15 @@ height:70px;
 
             <td> <?php echo ($row["firstName"]);echo " "; echo ($row["lastName"]); ?>  </td>
 
-            <td> 
-                       
-                <div class="icon-preview">  
-                    <a href="javascript:void(0)" class="btn btn-info btn-raised btn-sm btn" 
+            <td>
+
+                <div class="icon-preview">
+                    <a href="javascript:void(0)" class="btn btn-info btn-raised btn-sm btn"
                        id="update_employees" onclick="loadedit()">
-                     
+
 		<i class="mdi-editor-mode-edit"></i></a>
             </div>
-                  
+
             </td>
 
             <td>
@@ -67,16 +67,16 @@ height:70px;
             </td>
 
             </tr>
-                   
-           
-                      
 
- <?php                    
+
+
+
+ <?php
                         }?>
-        
+
     </tbody>
 </table>
-    
+
 
 
 <br/>
@@ -87,17 +87,17 @@ height:70px;
 <script>
     var idValue;
     function colvalue(row){
-        
-        var x=row.cells;
-        
-        idValue = x[0].innerHTML;
 
+        var x=row.cells;
+
+        idValue = x[0].innerHTML;
+        idValue = idValue.toString();
     }
-    
+
 function loadedit()
 {
-    
- 
+
+
 var xmlhttp;
 if (window.XMLHttpRequest)
   {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -115,6 +115,3 @@ xmlhttp.open("GET","employees/searchEmployees?id="+idValue  ,true);
 xmlhttp.send();
 }
 </script>
-
-                
-		
