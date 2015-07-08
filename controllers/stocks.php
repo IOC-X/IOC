@@ -18,7 +18,10 @@
 		public function evening_reading(){
 			$this->view->render('stocks/evening_reading',false);
 		}
-		//calculating stocks values
+		/*
+		* calculating stocks values
+		* @return reading in litres after calculation
+		*/
 		public function calculateStocks(){
 			//assigning form data
 			$petrol = $_POST['petrol'];
@@ -41,8 +44,9 @@
 		private function sdieselReading($sdiesel){
 			return $petrol*2;
 		}
-		//end for fuel calculation functions
-
+		/* 
+		*end for fuel calculation functions
+		*/
 		//returns the stockgraph 
 		public function stockgraph(){
 			$this->view->render('stocks/stockgraph',false);
@@ -90,5 +94,25 @@
 		public function edit_lube(){
 			$this->view->render('stocks/lubricant/edit_lube',false);	
 		}
+		//renders suppliers
+		public function suppliers(){
+			$this->view->render('stocks/suppliers/index',false);
+		}
+		/*
+		* Supplier handling functions start here
+		*/
+		//renders suppliers
+		public function search_suppliers(){
+			$this->view->render('stocks/suppliers/search',false);
+		}
+		/*
+		* Adding suppliers 
+		* renders adding page
+		* @returns the status of processing
+		*/
+		public function add_supplier(){
+			$this->view->render('stocks/suppliers/add',false);
+		}
+
 	}
 ?>

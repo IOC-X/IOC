@@ -46,6 +46,16 @@
                 	$('#subloader').fadeIn('fast');
                 });
 	        });
+	        $('#suppliers').click(function(e2){
+	        	e2.preventDefault();
+	        	var id = $(this).attr('id');
+
+                $('#subloader').load('/IOC/stocks/' + id,function(){
+                    //console.log('morning_stock !');
+ 					$('#subloader').hide();
+                	$('#subloader').fadeIn('fast');
+                });
+	        });	        
 	        </script>
 		</div>
 	</div>
