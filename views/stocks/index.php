@@ -10,7 +10,7 @@
 		        <i class="mdi-maps-local-cafe"></i>Pump readings</a>
 		        <a href="stocks/lubricant" class="btn btn-flat btn-primary" id="lubricant">
 		        <i class="mdi-action-assessment"></i>Lubricant Store</a>
-		        <a href="stocks/evening_stocks" class="btn btn-flat btn-primary" id="evening_stocks">
+		        <a href="stocks/suppliers" class="btn btn-flat btn-primary" id="suppliers">
 		        <i class="mdi-maps-local-cafe"></i>Suppliers</a>
 		        <a href="stocks/history" class="btn btn-flat btn-primary" id="history">
 		        <i class="mdi-action-assessment"></i>History</a>
