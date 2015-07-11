@@ -16,6 +16,12 @@
 		        <i class="mdi-action-assessment"></i>History</a>
 		    </div>
 		    <script type="text/javascript">
+		    function hashCheck(url){
+		    	var hashURL = url.split('-');
+		    	//if(typeof hashURL[1] == 'string'){
+		    		return hashURL[1];
+		    	//}
+		    }
 		    $('#stocks').click(function(e2){
 	        	e2.preventDefault();
 	        	var id = $(this).attr('id');
@@ -24,6 +30,8 @@
                     //console.log('morning_stock !');
  					$('#subloader').hide();
                 	$('#subloader').fadeIn('fast');
+                	window.location.hash = "";
+                	window.location.hash = "/stocks/" + id;
                 });
 	        });
 	        $('#pump_readings').click(function(e2){
@@ -34,6 +42,8 @@
                     //console.log('morning_stock !');
  					$('#subloader').hide();
                 	$('#subloader').fadeIn('fast');
+                	window.location.hash = "";
+                	window.location.hash = "/stocks/" + id;
                 });
 	        });
 	        $('#lubricant').click(function(e2){
@@ -44,6 +54,8 @@
                     //console.log('morning_stock !');
  					$('#subloader').hide();
                 	$('#subloader').fadeIn('fast');
+                	window.location.hash = "";
+                	window.location.hash = "/stocks/" + id;
                 });
 	        });
 	        $('#suppliers').click(function(e2){
@@ -54,6 +66,20 @@
                     //console.log('morning_stock !');
  					$('#subloader').hide();
                 	$('#subloader').fadeIn('fast');
+                	window.location.hash = "";
+                	window.location.hash = "/stocks/" + id;
+                });
+	        });
+	       	$('#history').click(function(e2){
+	        	e2.preventDefault();
+	        	var id = $(this).attr('id');
+
+                $('#subloader').load('/IOC/stocks/' + id,function(){
+                    //console.log('morning_stock !');
+ 					$('#subloader').hide();
+                	$('#subloader').fadeIn('fast');
+                	window.location.hash = "";
+                	window.location.hash = "/stocks/" + id;
                 });
 	        });	        
 	        </script>

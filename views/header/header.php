@@ -21,8 +21,11 @@
     <link rel="stylesheet" type="text/css" href="<?php echo CSS1 ?>stocks/morning_reading.css">
     <!-- Jquery  -->
     <script type="text/javascript" src="<?php echo JQuery ?>"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS1?>stocks/graph.css">
+
+
 </head>
-<body>
+<body onbeforeunload="return myFunction()">
 <div class="navbar navbar-default">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -60,22 +63,110 @@
         </ul>
     </div>
     <script>
+    
+        $(window).ready(function(){
+            var hash = window.location.hash;
+            $('#loader').empty();
+            $('#spinner').load('/IOC/views/css/header/spinkit.html');
+            var len = hash.length;
+            hash = hash.substring(2,len);
+            console.log('Hash value' + hash);
+            if(hash == ""){
+                // setTimeout(function(){
+                //     console.log('timeout');
+
+                //     $('#spinner').empty();  
+                    
+                //         $('#loader').load('/IOC/',function(){
+                //             fadeIN();
+                //             window.location.hash = "/";
+                //             console.log('Success !');
+                //         });   
+                    
+                // },1000);
+                return false;
+            }
+            console.log(hash);
+                setTimeout(function(){
+                    console.log('timeout');
+
+                    $('#spinner').empty();  
+                    $('#subloader').empty();
+                    console.log('YUP ! ' + hashCheck(hash)[0]);
+                    if(hashCheck(hash)[1]){
+                        $('#loader').load('/IOC/' + hashCheck(hash)[0],function(){
+                                fadeIN();
+                        //        window.location.hash = "/" + hash;
+                                console.log('Success !');
+                        });
+                        $('#subloader').load('/IOC/stocks/' + hashCheck(hash)[1],function(){
+                            //console.log('morning_stock !');
+
+                            $('#subloader').hide();
+                            $('#subloader').fadeIn('slow');
+                        });
+                    }
+                    else{
+                        $('#loader').load('/IOC/' + hash,function(){
+                            fadeIN();
+                            window.location.hash = "/" + hash;
+                            console.log('Success !');
+                        }); 
+                    } 
+                    
+                },1000);
+                
+            return false;
+        });
+        function hashCheck(url){
+            var hashURL = url.split('/');
+            //if(typeof hashURL[1] == 'string'){
+                return hashURL;
+            //}
+        }
+        // $(window).on('hashchange', function() {
+        //     console.log(window.location.hash);   
+        //     var hash = window.location.hash;
+        //     if(hash == "#stocks"){
+        //         alert('Stocks');
+        //         setTimeout(function(){
+        //             console.log('timeout');
+
+        //             $('#spinner').empty();  
+                    
+        //                 $('#loader').load('/IOC/stocks',function(){
+        //                     fadeIN();
+        //                     window.location.hash = "stocks";
+        //                     console.log('Success !');
+        //                 });   
+                    
+        //         },1000);
+        //         $('#subloader').empty();
+        //     }
+        // });
         $('.nav-bar').click(function(e){
             $('#loader').empty();
             $('#spinner').load('/IOC/views/css/header/spinkit.html');
             var url = $(this).attr("href");
             url = url.split('/');
             url = url[4];
-        
+            
             setTimeout(function(){
                 console.log('timeout');
 
-                $('#spinner').empty();  
+                $('#spinner').empty();
+                window.location.hash = "/"+url;  
                 if(url == 'stocks'){ 
                     $('#loader').load('/IOC/stocks',function(){
                         fadeIN();
                         console.log('Success !');
                     });   
+                }
+                else if(url == ''){
+                    $('#loader').load('/IOC/',function(){
+                        fadeIN();
+                        console.log('Success !');
+                    });
                 }
                 else if(url == "clients"){
                     $('#loader').load('/IOC/clients',function(){
@@ -91,13 +182,13 @@
                 }
                 else if(url == "employees"){
                     $('#loader').load('/IOC/employees',function(){
-                        
+                        fadeIN();
                         console.log('Success !');
                     }); 
                 }
                 else if(url == "transport"){
                     $('#loader').load('/IOC/transport',function(){
-                        
+                        fadeIN();
                         console.log('Success !');
                     }); 
                 }
@@ -109,19 +200,19 @@
                 }
                 else if(url == "lube_service"){
                     $('#loader').load('/IOC/lube_service',function(){
-                        
+                        fadeIN();
                         console.log('Success !');
                     }); 
                 }
                 else if(url == "revenue"){
                     $('#loader').load('/IOC/revenue',function(){
-                        
+                        fadeIN();
                         console.log('Success !');
                     }); 
                 }
                 else{
                     $('#loader').load('/IOC/err',function(){
-                        
+                        fadeIN();
                         console.log('Error !');
                     });    
                 }
