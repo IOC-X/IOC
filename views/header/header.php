@@ -39,7 +39,7 @@
             <li><a href="<?php echo URL ?>employees" class="nav-bar">Employees</a></li>
             <li><a href="<?php echo URL ?>transport" class="nav-bar">Transportation</a></li>
             <li><a href="<?php echo URL ?>carwash" class="nav-bar">Car wash</a></li>
-            <li><a href="<?php echo URL ?>lube_service" class="nav-bar">Lube service</a></li>
+            <li><a href="<?php echo URL ?>lube_service" class="nav-bar">Lubricant service</a></li>
             <li><a href="<?php echo URL ?>assets" class="nav-bar">Assets maintenance</a></li>
             <li><a href="<?php echo URL ?>revenue" class="nav-bar">Revenue</a></li>
         </ul>
