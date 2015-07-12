@@ -4,13 +4,26 @@
 			parent::__construct();
 		}
 		public function index(){
-			$this->view->render('stocks/index',false);
+			// if($_SERVER['HTTP_X_REQUESTED_WITH'] == "XMLHttpRequest"){
+			// 	$this->view->render('stocks/index',false);				
+			// }
+			// else{
+			// 	$this->view->render('header/header',false);		
+			// 	$this->view->render('stocks/index',false);				
+			// }
+			$this->view->render('stocks/index',false);				
 		}
 		public function stocks(){
 			//require('models/Stocks_model.php');
 			//$model = new Stocks_model();
 			//$data = $model->getMorningStocks();
-			$this->view->render('stocks/stocks',false);
+			if($_SERVER['HTTP_X_REQUESTED_WITH'] == "XMLHttpRequest"){
+				$this->view->render('stocks/stocks',false);			
+			}
+			else{
+				$this->view->render('stocks/stocks',true);
+			}
+
 		}
 		public function morning_reading(){
 			$this->view->render('stocks/morning_reading',false);
@@ -29,7 +42,22 @@
 			$diesel = $_POST['diesel'];
 			$sdiesel = $_POST['sdiesel'];
 			//returning calculated value to ajax call
-			echo self::petrolReading($petrol);
+			$Apetrol =  self::petrolReading($petrol);
+			$Aspetrol = self::spetrolReading($spetrol);
+			$Adiesel = self::dieselReading($diesel);
+			$Asdiesel = self::sdieselReading($sdiesel);
+
+			$petrol = self::suggestionPetrol($Apetrol);
+			$spetrol = self::suggestionSPetrol($Aspetrol);
+			$diesel = self::suggestionDiesel($Adiesel);
+			$sdiesel = self::suggestionSDiesel($sdiesel);		
+
+
+			$suggestions = array("petrol" => $petrol , "spetrol" => $spetrol, "diesel"=> $diesel, "sdiesel" => $sdiesel);
+			
+			$values = array("petrol" => $Apetrol , "spetrol" => $Aspetrol,"diesel"=> $Adiesel, "sdiesel" => $Asdiesel);
+			$json_array = array($values,$suggestions);
+			echo json_encode($json_array);
 		}
 		//calculates the quantity for each fuel type
 		private function petrolReading($petrol){
@@ -44,6 +72,59 @@
 		private function sdieselReading($sdiesel){
 			return $petrol*2;
 		}
+
+		/* 
+		* calculates order suggestions for each fuel type
+		*/
+		private function suggestionPetrol($Apetrol){
+			if($Apetrol > 100){
+				return 1600;
+			}
+		}
+		private function suggestionSPetrol($Aspetrol){
+			if($Aspetrol > 400){
+				return 1600;
+			}
+		}
+		private function suggestionDiesel($Adiesel){
+			if($Adiesel > 400){
+				return 1600;
+			}
+		}
+		private function suggestionSDiesel($Asdiesel){
+			if($Asdiesel > 400){
+				return 1600;
+			}
+		}	
+
+		/*
+		*  saves order details
+		*/
+		public function insertMrngOrder(){
+
+			require 'models/Stocks_model.php';
+
+			$readingPetrol = $_POST['petrol'];
+			$readingSPetrol = $_POST['spetrol'];
+			$readingDiesel = $_POST['diesel'];
+			$readingSDiesel = $_POST['sdiesel'];
+
+			$qntyPetrol = $_POST['qntyPetrol'];
+			$qntySPetrol = $_POST['qntySPetrol'];
+			$qntyDiesel = $_POST['qntyDiesel'];
+			$qntySDiesel = $_POST['qntySDiesel'];
+			
+			$orderpetrol = $_POST['orderPetrol'];
+			$orderspetrol = $_POST['orderSPetrol'];
+			$orderdiesel = $_POST['orderDiesel'];
+			$ordersdiesel = $_POST['orderSDiesel'];
+			
+			$model = new Stocks_model();
+			$model->insertMrngOrder($readingPetrol,$qntyPetrol,$orderpetrol);
+		}
+
+
+
 		/* 
 		*end for fuel calculation functions
 		*/
@@ -112,6 +193,9 @@
 		*/
 		public function add_supplier(){
 			$this->view->render('stocks/suppliers/add',false);
+		}
+		public function history(){
+			$this->view->render('stocks/stockgraph',false);
 		}
 
 	}
