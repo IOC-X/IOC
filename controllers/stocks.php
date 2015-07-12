@@ -167,9 +167,19 @@
 		}
 		//handles data from add lubePage
 		public function addLube(){
-			echo $_POST['prd-name'];
-			echo $_POST['prd-price'];
-			echo $_POST['prd-qnty'];
+			require 'models/Stocks_model.php';
+
+			$prdName =  $_POST['prd-name'];
+			$prdPrice = $_POST['prd-price'];
+			$prdQnty = $_POST['prd-qnty'];
+
+			$model = new Stocks_model();
+			if($model->addLubricant($prdName,$prdPrice,$prdQnty)){
+				echo "Success";
+			}
+			else{
+				echo "Nah";
+			}
 		}
 		//renders editing in lubricants 
 		public function edit_lube(){

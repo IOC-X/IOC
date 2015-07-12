@@ -12,5 +12,14 @@
 				':amnt' => $orderpetrol
 			));
 		}
+		public function addLubricant($prdName,$prdPrice,$prdQnty){
+			$st = $this->db->prepare("INSERT INTO Lubricants (Name,Price,Quantity) VALUES (:name,:price,:qnty)");
+			$st->execute(array(
+				':name' => $prdName,
+				':price' => $prdPrice,
+				':qnty' => $prdQnty
+			));
+			return true;
+		}
 	}
 ?>

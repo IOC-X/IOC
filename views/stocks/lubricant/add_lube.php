@@ -16,7 +16,7 @@
         <div class="form-group">
         <label for="qnty" class="col-lg-2 control-label">Quantity</label>
         <div class="col-lg-7">
-            <input type="text" class="form-control" id="qnty" placeholder="quantity" name="prd-qnty">
+            <input type="number" class="form-control" id="qnty" placeholder="quantity" name="prd-qnty">
         </div>
     	</div> 
     	<div class="form-group">
@@ -37,6 +37,12 @@
           data : form.serialize(),
           success: function(data){
             console.log(data);
+            if(data){
+                alert('Successfully added');
+                $('#prd-name').val("");
+                $('#price').val("");
+                $('#qnty').val("");
+            }
           }
         });
     });
