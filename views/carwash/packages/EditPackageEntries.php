@@ -1,11 +1,7 @@
-
-    <div class="btn-group btn-group-justified">
-    <a href="carwash/create_package/" class="btn btn-primary" id="create_package">Add Package</a>
-    <a href="carwash/EditPackageEntries/" class="btn btn-primary" id="EditPackageEntries">Edit Entries</a>
-    </div>
 <div data-role="page">
+    
     <h1 class="text-center text-success">Carwash Packages</h1>
-            <table class="table table-striped table-bordered table-hover">
+            <table class="table table-striped table-bordered">
 		
                     <thead>
 						<tr>
@@ -14,17 +10,25 @@
                             <th>Description</th>
                             <th>Time</th>
                             <th>Price</th>
-                            
+                            <th>Edit</th>
+                            <th>Delete</th>
 						</tr>
                     </thead>
                     <tbody>
 						<?php  foreach ($packages as $package) : ?>						
-                        <tr onmouseover="colvalue(this);">
+							<tr>
                                     <td><?php echo ($package->id); ?></td>
                                     <td><?php echo ($package->name); ?></td>
                                     <td><?php echo ($package->description); ?></td>
                                     <td><?php echo ($package->time) . " Hours"; ?></td>
                                     <td><?php echo "Rs." . ($package->price); ?></td>
+								<td>
+                                    <a id="edit_package" href="carwash/edit_package/<?php echo ($package->id); ?>"> <i class="mdi-content-create"></i> </a>                                                                      
+								</td>
+                                <td>
+                                     <a id="delete_package" href="carwash/delete_package/<?php echo $package->id; ?>"> <i class="mdi-content-remove-circle"></i></a>
+                                </td>
+
 							</tr>
 						<?php endforeach; ?>
 					</tbody>
@@ -34,10 +38,10 @@
 <script type="text/javascript">
 
                 
-                $('#EditPackageEntries').click(function(e2){
+                $('#edit_package').click(function(e2){
 	        	e2.preventDefault();
 	        	var id = $(this).attr('id');
-                $('#subloader').load('/IOC/carwash/' + id,function(){
+                $('#subloader').load('/IOC/carwash/' + id+'/'+<?php echo ($package->id); ?>,function(){
                     
                     $('#subloader').hide();
                 	$('#subloader').fadeIn('fast');
@@ -56,21 +60,21 @@
                 });
 	        });
             
-  var idValue;
-  function colvalue(row){
-           var x=row.cells;
-           idValue = x[0].innerHTML;
-           idValue = idValue.toString();
-       }
-       
-$.post("carwash/view_package/",
-{id:idValue},
-function(data, textStatus, jqXHR)
-{
-	//data : Data from server
-});
- 
-//function LoadView()
+//  var id;
+//  function colvalue(row){
+//           var x=row.cells;
+//           id = x[0].innerHTML;
+//           id = id.toString();
+//                 
+//$.post("carwash/editPackage",{ id:id},
+//                        function(data) {
+//                        //alert(data);
+//                        
+//                    }   );
+// console.log(id);
+//       }
+// 
+//function LoadEdit()
 //{
 //var xmlhttp;
 //if (window.XMLHttpRequest)
@@ -85,17 +89,10 @@ function(data, textStatus, jqXHR)
 //    document.getElementById("subloader").innerHTML=xmlhttp.responseText;
 //    }
 //  }
-//xmlhttp.open("GET","carwash/view_package/"+idValue  ,true);
+//xmlhttp.open("GET","carwash/edit_package/"+id  ,true);
 //xmlhttp.send();
+//console.log("edit");
 //}
- $('#view_package').click(function(e2){
-	        	e2.preventDefault();
-	        	//var id = $(this).attr('id');
-                $('#subloader').load('carwash/view_package/' + idValue,function(){
-                    
-                    $('#subloader').hide();
-                	$('#subloader').fadeIn('fast');
-                       console.log('Success !');
-                });
-	        });
+
+ 
           </script>

@@ -20,6 +20,11 @@ include_once '/models/Carwash_model.php';
         //$this->view->render('carwash/packages',false);
         include '/views/carwash/packages.php';
     }
+    public function EditPackageEntries(){
+        $model = new Carwash_model();
+        $packages = $model->selectAllpackages();
+        include '/views/carwash/packages/EditPackageEntries.php';
+    }
 
     public function transactions() {
         //require('models/Stocks_model.php');
@@ -33,83 +38,89 @@ include_once '/models/Carwash_model.php';
         $customers=$model->selectAllcustomers();
         include '/views/carwash/regular_customers.php';
     }
-
+    public function EditCustomerEntries(){
+        $model = new Carwash_model();
+        $customers=$model->selectAllcustomers();
+        include '/views/carwash/regular_customers/EditCustomerEntries.php';
+    }
     public function report() {
-        //require('models/Stocks_model.php');
-        //$model = new Stocks_model();
-        //$data = $model->getMorningStocks();
+        
         $this->view->render('carwash/report', false);
     }
-
-    public function edit_package($id = false) {
-        //  $this->view->render('carwash/edit',false);
+    public function editPackage(){
         $model = new Carwash_model();
-        $name = '';
-        $description = '';
-        $price = '';
-        //$id     = $_GET['id'];
+        $id=$_POST['id'];
+        echo $id;
         $package = $model->selectPackgeById($id);
-        $title = 'Edit package';
-        // echo $id;
-
-        if (isset($_POST['form-submitted'])) {
             $name = isset($_POST['name']) ? trim($_POST['name']) : null;
             $description = isset($_POST['description']) ? trim($_POST['description']) : null;
             $price = isset($_POST['price']) ? trim($_POST['price']) : null; 
             {
                 $packages = $model->editPackage($name, $description, $price, $id);
             }
-        }
-        include '/views/carwash/edit_package.php';
+        
     }
 
-    public function view_package($id = false) {
-
+    public function edit_package($id = false) {
+        //$this->view->render('carwash/edit',false);
+        //$id=$_POST['id'];
+        $name = '';
+        $description = '';
+        $price = '';
+        $title = 'Edit package';
         $model = new Carwash_model();
         $package = $model->selectPackgeById($id);
-       // $this->view->render('carwash/view_package', false);
-        include '/views/carwash/view_package.php';
+        
+        include '/views/carwash/packages/edit_package.php';
+    }
+
+    public function view_package($id) {
+        //$id     = $_POST['id'];
+        $model = new Carwash_model();
+        $package = $model->selectPackgeById($id);
+        //$this->view->render('carwash/view_package', false);
+        include '/views/carwash/packages/view_package.php';
     }
 
     public function delete_package($id) {
         $model = new Carwash_model();
         $package = $model->deletePackage($id);
-        $this->redirect('');
+        $this->redirect('/IOC/#/carwash');
     }
-
-    public function create_package() {
+    
+    public function  createPackage(){
         $model = new Carwash_model();
-
-        $name = '';
-        $description = '';
-        $time = '';
-        $price = '';
-        if (isset($_POST['form-submitted'])) {
+        
+//        if (isset($_POST['form-submitted'])) {
             $name = isset($_POST['name']) ? trim($_POST['name']) : null;
             $description = isset($_POST['description']) ? trim($_POST['description']) : null;
             $time = isset($_POST['time']) ? trim($_POST['time']) : null;
             $price = isset($_POST['price']) ? trim($_POST['price']) : null; {
                 $packages = $model->createPackage($name, $description, $time, $price);
+                
             }
-        }
-        include '/views/carwash/create_package.php';
+        
+        
+    }
+
+    public function create_package() {
+        $name = '';
+        $description = '';
+        $time = '';
+        $price = '';
+        //$this->view->render('carwash/create_package', false);
+       include '/views/carwash/packages/create_package.php';
     }
     public function view_customer($id = false) {
 
         $model = new Carwash_model();
         $customer = $model->selectCustomerById($id);
 
-        include '/views/carwash/view_customer.php';
+        include '/views/carwash/regular_customers/view_customer.php';
     }
-    public function add_customer() {
+    public function  addCustomer(){
         $model = new Carwash_model();
-
-        $cust_id='';
-        $name='';
-        $nic='';
-        $address='';
-        $contact='';
-        if (isset($_POST['form-submitted'])) {
+        //if (isset($_POST['form-submitted'])) {
             $cust_id = isset($_POST['cust_id']) ? trim($_POST['cust_id']) : null;
             $name = isset($_POST['name']) ? trim($_POST['name']) : null;
             $nic = isset($_POST['nic']) ? trim($_POST['nic']) : null;
@@ -117,14 +128,31 @@ include_once '/models/Carwash_model.php';
             $contact = isset($_POST['contact']) ? trim($_POST['contact']) : null;{
                 $customers = $model->addCustomer($cust_id, $name, $nic, $address, $contact);
             }
-        }
-        include '/views/carwash/add_customer.php';
+        
+    }
+    
+
+    public function add_customer() {
+        $cust_id='';
+        $name='';
+        $nic='';
+        $address='';
+        $contact='';
+        
+        include '/views/carwash/regular_customers/add_customer.php';
     }
     public function delete_customer($id) {
         $model = new Carwash_model();
         $package = $model->deleteCustomer($id);
-        $this->redirect('');
-        //include '/views/carwash/regular_customers.php';
+        $this->redirect('/IOC/#/carwash');
+    }
+    
+    public function Reg_transactions(){
+        include '/views/carwash/transactions/Reg_transactions.php';
+    }
+    
+    public function NonReg_transactions(){
+        include '/views/carwash/transactions/NonReg_transactions.php';
     }
 
 }

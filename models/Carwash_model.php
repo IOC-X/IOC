@@ -9,11 +9,7 @@ class Carwash_model extends Model {
     }
 
     public function selectAllpackages() {
-        //if (!isset($order))
-        //{
-        //	$order = 'name';
-        //}
-
+        
         $sql = $this->db->prepare("SELECT * FROM packages");
         $sql->execute();
         //$result = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -58,11 +54,7 @@ class Carwash_model extends Model {
         }
     }
     public function selectAllcustomers() {
-        //if (!isset($order))
-        //{
-        //	$order = 'name';
-        //}
-
+       
         $sql = $this->db->prepare("SELECT * FROM regular_customers");
         $sql->execute();
         //$result = $sql->fetchAll(PDO::FETCH_ASSOC);
