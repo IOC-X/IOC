@@ -18,13 +18,37 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>1</td>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td><div class="icon-preview"><a href=""><i class="mdi-content-create"></i></a></div></td>
-            <td><div class="icon-preview"><a href=""><i class="mdi-content-remove-circle"></i></a></div></td>
-        </tr>
-
     </tbody>
 </table>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $.getJSON('stocks/loadLubricants',function(data){
+            console.log(data[0].Id);
+
+            var len = data.length;
+            for(x=0;x<len;x++){
+                $("tbody").append('<tr class="' + x +'">');
+                $("." + x + "").append('<td>' + data[x].Name + '</td>');
+                $("." + x + "").append('<td>' + data[x].Price + '</td>');
+                $("." + x + "").append('<td>' + data[x].Quantity + '</td>');
+                $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].Id + '" class="edit"><i class="mdi-content-create"></i></a></div></td>');
+                $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].Id + '" class="remove"><i class="mdi-content-remove-circle"></i></a></div></td>');
+                $("." + x + "").append('</tr>');
+            }
+
+            $('.remove').click(function(e){
+                var id = $(this).attr('href');
+                $.post('stocks/removeLubricant', { ID : id }, function(data){
+                    console.log(data);
+                    alert('Done !');
+                    $('#subloader2').empty();
+                    $('#subloader2').load('/IOC/stocks/edit_lube',function(){
+                        $('#subloader2').hide();
+                        $('#subloader2').fadeIn('slow');
+                    });
+                });
+                return false;
+            });
+        });
+    });
+</script>

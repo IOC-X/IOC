@@ -186,9 +186,10 @@
 			$prdName =  $_POST['prd-name'];
 			$prdPrice = $_POST['prd-price'];
 			$prdQnty = $_POST['prd-qnty'];
+			$supplier = $_POST['supplier'];
 
 			$model = new Stocks_model();
-			if($model->addLubricant($prdName,$prdPrice,$prdQnty)){
+			if($model->addLubricant($prdName,$prdPrice,$prdQnty,$supplier)){
 				echo "Success";
 			}
 			else{
@@ -198,6 +199,19 @@
 		//renders editing in lubricants 
 		public function edit_lube(){
 			$this->view->render('stocks/lubricant/edit_lube',false);	
+		}
+		public function loadLubricants(){
+			require 'models/Stocks_model.php';
+
+			$model = new Stocks_model();
+			echo json_encode($model->loadLubricants());
+		}
+		public function removeLubricant(){
+			require 'models/Stocks_model.php';
+			$id = $_POST['ID'];
+			$model = new Stocks_model();
+			$model->removeLubricant($id);
+			echo "Done";
 		}
 		//renders suppliers
 		public function suppliers(){
