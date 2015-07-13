@@ -120,7 +120,7 @@
 			$ordersdiesel = $_POST['orderSDiesel'];
 			
 			$model = new Stocks_model();
-			$model->insertMrngOrder($readingPetrol,$qntyPetrol,$orderpetrol);
+			$model->insertMrngOrder($readingPetrol,$qntyPetrol,$orderpetrol,$readingSPetrol,$qntySPetrol,$orderspetrol,$readingDiesel,$qntyDiesel,$orderdiesel,$readingSDiesel,$qntySDiesel,$ordersdiesel);
 		}
 
 
@@ -160,6 +160,20 @@
 		//Lube search
 		public function search_lube(){
 			$this->view->render('stocks/lubricant/search_lube',false);
+		}
+		/*
+		* search function for lubricant search 
+		* @returns String 
+		* search results 
+		*/
+		public function searchLube(){
+			//$name = $_POST['name'];
+			$name = $_GET['nm'];
+			require 'models/Stocks_model.php';
+
+			$model = new Stocks_model();
+			$result = $model->searchLube($name);
+			echo json_encode($result);
 		}
 		//renders add lubes page
 		public function add_lube(){
@@ -207,6 +221,5 @@
 		public function history(){
 			$this->view->render('stocks/stockgraph',false);
 		}
-
 	}
 ?>
