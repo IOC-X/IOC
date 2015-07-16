@@ -100,8 +100,21 @@ class Carwash_model extends Model {
 //CUSTOMER DATA RETREIVING ENDS HERE
     
 //REGULAR TRANSACTIONS DATA RETREIVING STARTS HERE    
+    public function addTransaction($cust_id, $package, $vehicleNo, $amount, $date){
     
+        $sql = $this->db->prepare("INSERT INTO regular_transactions(cust_id, package, vehicleNo, amount, date) VALUES(?, ?, ?, ?, ?)");
+        $result = $sql->execute(array($cust_id, $package, $vehicleNo, $amount, $date));
+    }
     
+    public function selectAllRegulartransactions() {
+        
+        $sql = $this->db->prepare("SELECT * FROM regular_transactions");
+        $sql->execute();
+        while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+            $regularTransactions[] = $obj;
+        }
+        return $regularTransactions;
+    }
 }
 
 ?>

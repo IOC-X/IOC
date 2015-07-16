@@ -182,9 +182,26 @@ include_once '/models/Carwash_model.php';
         $model = new Carwash_model();
         $customers=$model->selectAllcustomers();
         $packages = $model->selectAllpackages();
+        $regularTransactions = $model->selectAllRegulartransactions();
         include '/views/carwash/transactions/Reg_transactions.php';
     }
     
+    public function  addTransaction(){
+        $model = new Carwash_model();
+        
+//        if (isset($_POST['form-submitted'])) {
+            $cust_id = isset($_POST['cust_id']) ? trim($_POST['cust_id']) : null;
+            $package = isset($_POST['package']) ? trim($_POST['package']) : null;
+            $vehicleNo = isset($_POST['vehicleNo']) ? trim($_POST['vehicleNo']) : null;
+            $amount = isset($_POST['amount']) ? trim($_POST['amount']) : null;
+            $date = isset($_POST['date']) ? trim($_POST['date']) : null;{
+                $transactions = $model->addTransaction($cust_id, $package, $vehicleNo, $amount, $date);
+                
+            }
+           //  $this->redirect('/IOC/#/carwash/packages');     
+    }
+    
+
     public function NonReg_transactions(){
         include '/views/carwash/transactions/NonReg_transactions.php';
     }
