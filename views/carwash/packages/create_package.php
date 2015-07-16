@@ -33,7 +33,7 @@
                                         <div class="control-group">
 						<label class="control-label col-lg-4">Time</label>
 							<div class="controls col-lg-6 panel">
-								<input type="text" class="form-control floating-label" name="time" id="time" placeholder="Time in Hours" value="<?php echo ($time); ?>">
+								<input type="number" class="form-control floating-label" name="time" id="time" placeholder="Time in Hours" value="<?php echo ($time); ?>">
 								<span class="help-inline"></span>
 							</div>
 					</div>
@@ -41,7 +41,7 @@
 					<div class="control-group">
 						<label class="control-label col-lg-4">Price</label>
 							<div class="controls col-lg-6 panel">
-								<input type="text" class="form-control floating-label" name="price" id="price" placeholder="Package Price" value="<?php echo ($price); ?>">
+								<input type="number" class="form-control floating-label" name="price" id="price" placeholder="Package Price" value="<?php echo ($price); ?>">
 								<span class="help-inline"></span>
 							</div>
 					</div>

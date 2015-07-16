@@ -1,55 +1,6 @@
 
-	<head>
 		<title>Package Update Form</title>
-		<meta charset="utf-8">
-
-<script type="text/javascript">
-    alert("hy");
-    console.log('hy');
-    
-$(document).ready(function(){  alert("hy");
-    console.log('package creation');
-$("#form-submitted").click(function(){
-//assigning values
-var id =$("#id").text();
-alert(id);
-var name = $("#name").val();
-var description = $("#description").val();
-//var time = $("#time").val();
-var price = $("#price").val();
-
-//expression for validation
-var numbers= /^[0-9]+$/;
-
-//validation
-        if(name ==''|| description==''|| price==''){
-            alert("Edit Failed Some Fields are Blank!!!");   	
-        }
-        else if( (name.match(numbers)) ){
-        alert("Sorry.. Invalid Package Name!!!");}
-        else if( (description.match(numbers)) ){
-        alert("Sorry.. Invalid Package Description!!!");}
-        
-        else if( !(price.match(numbers)) ){
-        alert("Sorry.. Invalid Price!!!");}
-        else{
-            // Returns successful data submission message when the entered information is stored in database.
-            $.post("carwash/editPackage",{ id:id, name: name, description: description, price:price},
-                        function(data) {
-                       // alert(data);
-                        $('#form')[0].reset(); //To reset form fields
-                    }   );
-                        console.log('data sent');
-
-            }
-        });
-        });
-        
-
-    </script>
-   
-	</head>
-	
+		<meta charset="utf-8">	
 	<body>
 		<div class="container col-lg-10">
 			<div class="span 10 offset1">
@@ -58,12 +9,12 @@ var numbers= /^[0-9]+$/;
 					
 				</div>
 
-                <form id="form" class="form-horizontal col-lg-5" action="" method="post">
+                <form id="form" class="form-horizontal col-lg-5" action="carwash/editPackage" method="post">
 					
                     <div class="control-group">
 						<label class="control-label">ID</label>
 							<div class="controls panel panel-default">
-                                <label class="controls text-center" id="id"> <?php echo ($package->id); ?> </label>
+                                <input type="text" class="form-control floating-label" name="ID" id="ID" placeholder="ID" readonly="readonly" value="<?php echo ($package->id); ?>">
 								<span class="help-inline"></span>
 							</div>
 					</div>
@@ -83,11 +34,19 @@ var numbers= /^[0-9]+$/;
 								<span class="help-inline"></span>
 							</div>
 					</div>
+                    
+                    <div class="control-group">
+						<label class="control-label">Time</label>
+							<div class="controls panel panel-default">
+                                <input type="number" class="form-control floating-label" name="time" id="time" placeholder="Time" value="<?php echo ($package->time); ?>">
+								<span class="help-inline"></span>
+							</div>
+					</div>
 
 					<div class="control-group">
 						<label class="control-label">Price</label>
 							<div class="controls panel panel-default">
-                                <input type="text" class="form-control floating-label" name="price" id="price" placeholder="Price" value="<?php echo ($package->price); ?>">
+                                <input type="number" class="form-control floating-label" name="price" id="price" placeholder="Price" value="<?php echo ($package->price); ?>">
 								<span class="help-inline"></span>
 							</div>
 					</div>

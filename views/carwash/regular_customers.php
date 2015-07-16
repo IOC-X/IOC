@@ -7,12 +7,12 @@
             <table class="table table-striped table-bordered">
 		
                     <thead>
-						<tr>
-							<th>Customer ID</th>
-							<th>Name</th>
-							<th>NIC</th>
-							<th>Address</th>
-                            <th>Contact</th>
+                        <tr>
+                            <th class="text-center">Customer ID</th>
+							<th class="text-center">Name</th>
+							<th class="text-center">NIC</th>
+							<th class="text-center">Address</th>
+                            <th class="text-center">Contact</th>
 <!--                            <th>Action</th>-->
 						</tr>
                     </thead>

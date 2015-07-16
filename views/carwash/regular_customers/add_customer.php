@@ -17,7 +17,7 @@
 					<div class="control-group panel panel-info">
 						<label class="control-label col-lg-4">Customer ID</label>
 							<div class="controls col-lg-6 panel">
-                                                            <input type="text" class="form-control" name="cust_id" id="cust_id" placeholder="Customer ID" value="<?php echo ($cust_id); ?>">
+                                <input type="number" class="form-control" name="cust_id" id="cust_id" placeholder="Customer ID" value="<?php echo ($cust_id); ?>">
 								<span class="help-inline"></span>
 							</div>
 					</div>
@@ -47,7 +47,7 @@
                                         <div class="control-group">
 						<label class="control-label col-lg-4">Contact</label>
 							<div class="controls col-lg-6 panel">
-								<input type="text" class="form-control floating-label" name="contact" id="contact" placeholder="Contact Number" value="<?php echo ($contact); ?>">
+                                <input type="number" class="form-control floating-label" name="contact" id="contact" placeholder="Contact Number" value="<?php echo ($contact); ?>">
 								<span class="help-inline"></span>
 							</div>
 					</div>

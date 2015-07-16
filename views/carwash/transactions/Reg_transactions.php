@@ -12,18 +12,17 @@
         <tr>
             <td>
                 <select class="btn active">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="vw">VW</option>
-                <option value="audi" selected>Audi</option>
+                    <?php  foreach ($customers as $customer) : ?>
+                <option value="<?php echo ($customer->cust_id); ?>"><?php echo ($customer->cust_id); ?></option>
+                
+                    <?php endforeach; ?>
                 </select>
             </td>
             <td>
                 <select class="btn active">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="vw">VW</option>
-                <option value="audi" selected>Audi</option>
+                    <?php  foreach ($packages as $package) : ?>	
+                <option value="<?php echo ($package->id); ?>"><?php echo ($package->name); ?></option>
+                    <?php endforeach; ?>
                 </select>
             </td>
             <td>
@@ -34,8 +33,8 @@
             </td>
             <td>
                 <select class="btn active">
-                <option value="done">Service Completed</option>
-                <option value="processing">Processing</option>
+                <option value="done">Not Returned</option>
+                <option value="processing">Returned</option>
                 </select>
             </td>
         </tr>

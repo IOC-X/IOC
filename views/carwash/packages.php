@@ -29,11 +29,10 @@
 						<?php endforeach; ?>
 					</tbody>
             </table>
-     
+   
 	</div>
 <script type="text/javascript">
-
-                
+               
                 $('#EditPackageEntries').click(function(e2){
 	        	e2.preventDefault();
 	        	var id = $(this).attr('id');
@@ -56,38 +55,21 @@
                 });
 	        });
             
-  var idValue;
-  function colvalue(row){
-           var x=row.cells;
-           idValue = x[0].innerHTML;
-           idValue = idValue.toString();
-       }
+            var idValue;
+            function colvalue(row){
+                     var x=row.cells;
+                     idValue = x[0].innerHTML;
+                     idValue = idValue.toString();
+
+                 }
        
-$.post("carwash/view_package/",
-{id:idValue},
-function(data, textStatus, jqXHR)
-{
-	//data : Data from server
-});
+            $.post("carwash/view_package/",
+            {id:idValue},
+            function(data, textStatus, jqXHR)
+            {
+                //data : Data from server
+            });
  
-//function LoadView()
-//{
-//var xmlhttp;
-//if (window.XMLHttpRequest)
-//  {// code for IE7+, Firefox, Chrome, Opera, Safari
-//  xmlhttp=new XMLHttpRequest();
-//  }
-//
-//xmlhttp.onreadystatechange=function()
-//  {
-//  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-//    {
-//    document.getElementById("subloader").innerHTML=xmlhttp.responseText;
-//    }
-//  }
-//xmlhttp.open("GET","carwash/view_package/"+idValue  ,true);
-//xmlhttp.send();
-//}
  $('#view_package').click(function(e2){
 	        	e2.preventDefault();
 	        	//var id = $(this).attr('id');
