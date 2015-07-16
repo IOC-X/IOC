@@ -56,7 +56,6 @@
         <label for="supplier" class="col-lg-2 control-label">Supplier</label>
         <div class="col-lg-4">
                 <select id="supplier" placeholder="supplier" class="form-control" name="supplier">
-                  <option></option>
                   <option value="IOC">IOC</option>
                   <option value="T2 dude">T2 dude</option>
                   <option value="Le Dude">Le Dude</option>
@@ -88,11 +87,11 @@
 
             var len = data.length;
             for(x=0;x<len;x++){
-                $("tbody").append('<tr class="' + x +'">');
-                $("." + x + "").append('<td>' + data[x].Name + '</td>');
-                $("." + x + "").append('<td>' + data[x].Price + '</td>');
-                $("." + x + "").append('<td>' + data[x].Quantity + '</td>');
-                $("." + x + "").append('<td>' + data[x].Supplier + '</td>');
+                $("tbody").append('<tr class="' + x +'" id="' + data[x].Id + '">');
+                $("." + x + "").append('<td id="' + data[x].Id + "-name" + '">' + data[x].Name + '</td>');
+                $("." + x + "").append('<td id="' + data[x].Id + "-price" + '">' + data[x].Price + '</td>');
+                $("." + x + "").append('<td id="' + data[x].Id + "-quantity" + '">' + data[x].Quantity + '</td>');
+                $("." + x + "").append('<td id="' + data[x].Id + "-supplier" + '">' + data[x].Supplier + '</td>');
                 $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].Id + '" class="edit"><i class="mdi-content-create"></i></a></div></td>');
                 $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].Id + '" class="remove"><i class="mdi-content-remove-circle"></i></a></div></td>');
                 $("." + x + "").append('</tr>');
@@ -111,19 +110,31 @@
                 });
                 return false;
             });
+
             $('.edit').click(function(e){
                 var id = $(this).attr('href');
-                $.getJSON('stocks/loadLubricantEditData',function(data1){
-                    console.log(data1);
-                });
+
                 $('#myModal').modal('show');
                 setTimeout(function(){
-                    $('#prd-name').val('Test');
-                    
+                    var name = $()
+                    //$('#prd-name').val('Test');
+                    var name = $('#'+ id +'-name').text();
+                    var price = $('#'+ id +'-price').text();
+                    var quantity = $('#'+ id +'-quantity').text();
+                    var supplier = $('#'+ id +'-supplier').text();
+                    //console.log(name + price + quantity + supplier);
+                    $('#prd-name').val(name);
+                    $('#price').val(price);
+                    $('#qnty').val(quantity);
+                    $('#supplier').val(supplier);
                 },250);
                 e.preventDefault();
             });
+
         });
+            $('#edit_lube_form').submit(function(){
+                console.log('Dtataa');
+            });
     });
 
 </script>
