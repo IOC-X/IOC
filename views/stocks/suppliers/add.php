@@ -20,7 +20,7 @@
         <div class="form-group">
         <label for="tel-number" class="col-lg-2 control-label">Quantity</label>
         <div class="col-lg-7">
-            <input type="text" class="form-control" id="tel-number" placeholder="contact number" name="prd-tel-number">
+            <input type="text" class="form-control" id="tel-number" placeholder="contact number" name="sup-tel-number">
         </div>
       </div>
         <div class="form-group">
