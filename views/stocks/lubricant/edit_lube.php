@@ -20,6 +20,9 @@
     <tbody>
     </tbody>
 </table>
+
+
+
 <script type="text/javascript">
     $(document).ready(function(){
         $.getJSON('stocks/loadLubricants',function(data){
@@ -35,7 +38,7 @@
                 $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].Id + '" class="remove"><i class="mdi-content-remove-circle"></i></a></div></td>');
                 $("." + x + "").append('</tr>');
             }
-
+            
             $('.remove').click(function(e){
                 var id = $(this).attr('href');
                 $.post('stocks/removeLubricant', { ID : id }, function(data){
@@ -49,6 +52,13 @@
                 });
                 return false;
             });
+
+            $('.edit').click(function(e){
+                var id = $(this).attr('href');
+                alert(id);
+                return false;
+            })
         });
+
     });
 </script>

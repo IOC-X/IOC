@@ -1,4 +1,4 @@
-<form class="form-horizontal">
+<form class="form-horizontal" id="searchForm">
     <fieldset>
         <legend>Search</legend>
         <div class="form-group">
@@ -6,6 +6,7 @@
                 <input type="text" class="form-control" id="search_lb" placeholder="filter">
             </div>
         </div>
+        <input type="submit" value="Submit">
     </fieldset>
 </form>
 
@@ -23,3 +24,31 @@
         </div>
     </div>
 </div>
+<div id="test"></div>
+
+<script type="text/javascript">
+
+    // function instantSearch(){
+    //     xmlhttp = new XMLHttpRequest();
+    //     xmlhttp.open("GET","stocks/searchLube?nm="+ $('#search_lb').val(),false);
+    //     xmlhttp.send(null);
+    //     document.getElementById("test").innerHTML = xmlhttp.responseText;
+    // }
+
+    $('#searchForm').submit(function(e){
+        e.preventDefault();
+        console.log('succ');
+        $.ajax({
+          type : 'post',
+          url : 'stocks/searchLube',
+          data : { name : $('#search_lb').val() },
+          success: function(data){
+            console.log(data);
+            if(data){
+                $('.row-content').append(data);
+            }
+          }
+        });
+    });
+
+</script>
