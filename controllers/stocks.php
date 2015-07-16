@@ -227,10 +227,44 @@
 		/*
 		* Adding suppliers 
 		* renders adding page
-		* @returns the status of processing
+		* @returns the status of processing | static page |
 		*/
+		public function addSupplier(){
+			$name = $_POST['sup-name'];
+			$products = $_POST['products'];
+			$contact = $_POST['sup-tel-number'];
+
+			require 'models/Stocks_model.php';
+			$model = new Stocks_model();
+			if($model->addSupplier($name,$products,$contact)){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
 		public function add_supplier(){
 			$this->view->render('stocks/suppliers/add',false);
+		}
+		/*
+		* Adding suppliers interacting with the model
+		* @return status of process | boolean |
+		*/
+		public function edit_suppliers(){
+			$this->view->render('stocks/suppliers/edit',false);	
+		}
+		public function loadLubricantsSuppliers(){
+			require 'models/Stocks_model.php';
+
+			$model = new Stocks_model();
+			echo json_encode($model->loadLubricantsSuppliers());
+		}
+		public function removeLubricantSupplier(){
+			require 'models/Stocks_model.php';
+			$id = $_POST['ID'];
+			$model = new Stocks_model();
+			$model->removeLubricantSupplier($id);
+			echo "Done";
 		}
 		public function history(){
 			$this->view->render('stocks/stockgraph',false);
