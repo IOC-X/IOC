@@ -253,6 +253,10 @@
 		public function edit_suppliers(){
 			$this->view->render('stocks/suppliers/edit',false);	
 		}
+		public function loadLubricantEditData(){
+			$va = "he";
+			return json_encode($va);
+		}
 		public function loadLubricantsSuppliers(){
 			require 'models/Stocks_model.php';
 
