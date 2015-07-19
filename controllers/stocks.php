@@ -168,11 +168,14 @@
 		*/
 		public function searchLube(){
 			//$name = $_POST['name'];
-			$name = $_GET['nm'];
+//			$name = $_GET['nm'];
+			$value = $_POST['key'];
+			
 			require 'models/Stocks_model.php';
 
 			$model = new Stocks_model();
-			$result = $model->searchLube($name);
+			$result = $model->searchLube($value);
+
 			echo json_encode($result);
 		}
 		//renders add lubes page

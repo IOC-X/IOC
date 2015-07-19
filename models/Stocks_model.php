@@ -59,11 +59,9 @@
 			));
 		}
 		public function searchLube($name){
-			$st = $this->db->prepare("SELECT FROM Lubricants WHERE Name = :name");
-			$st->execute(array(
-				':name' => $name
-			));
-			return $st->fetch();
+			$st = $this->db->prepare("SELECT * FROM Lubricants WHERE Name LIKE '{$name}%'");
+			$st->execute();
+			return $st->fetchAll();
 		}
 		public function addSupplier($name,$products,$contact){
 			$st = $this->db->prepare("INSERT INTO Lubricant_suppliers (name,product,quantity) VALUES (:name,:product,:contact)");
