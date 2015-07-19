@@ -13,4 +13,14 @@ $('#Reg_transactions').click(function(e2){
                 	$('#subloader').fadeIn('fast');
                 });
 	        });
+            
+$('#NonReg_transactions').click(function(e2){
+	        	e2.preventDefault();
+	        	var id = $(this).attr('id');
+                $('#subloader').load('/IOC/carwash/' + id,function(){
+                    
+                    $('#subloader').hide();
+                	$('#subloader').fadeIn('fast');
+                });
+	        });
           </script>

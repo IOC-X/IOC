@@ -27,7 +27,7 @@
                 </select>
             </td>
             <td>
-                <input type="text"  class="form-control btn" name="Vno" id="Vno">
+                <input type="text"  class="form-control btn" name="Vno" id="Vno" placeholder="">
             </td>
             <td>
                 <input type="text"  class="form-control btn" name="original_amount" id="original_amount" readonly="readonly" value="">
@@ -51,13 +51,13 @@
 
 <!-- DISPLAYING LATEST TRANSACTIONS-->
                 <div class="row">
-                    <h3 class="text-center success"><strong>Latest Regular Customer Transactions</strong></h3>
+                    <h3 class="text-center success"><strong>Today's Regular Customer Transactions</strong></h3>
 					
 				</div>
 <table class="table table-striped table-bordered table-hover">
 		
                     <thead>
-						<tr>
+                        <tr class="success">
                             <th>Customer ID</th>
                             <th>Package Name</th>
                             <th>Vehicle Number</th>
