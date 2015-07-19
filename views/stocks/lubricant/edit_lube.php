@@ -3,7 +3,7 @@
         <legend>Search lubricants</legend>
         <div class="form-group">
             <div class="col-lg-5">
-                <input type="text" class="form-control" id="search_lb" placeholder="filter">
+                <input type="text" class="form-control" id="searchInput" placeholder="filter">
             </div>
         </div>
     </fieldset>
@@ -18,7 +18,7 @@
             <th>Supplier</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="fbody">
     </tbody>
 </table>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -99,16 +99,32 @@
             
             $('.remove').click(function(e){
                 var id = $(this).attr('href');
-                $.post('stocks/removeLubricant', { ID : id }, function(data){
-                    console.log(data);
-                    alert('Done !');
-                    $('#subloader2').empty();
-                    $('#subloader2').load('/IOC/stocks/edit_lube',function(){
-                        $('#subloader2').hide();
-                        $('#subloader2').fadeIn('slow');
+                e.preventDefault();
+                
+                
+                swal({   title: "Are you sure?",   
+                    text: "You will not be able to recover this entry",   
+                    type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",   
+                    confirmButtonText: "Yes, delete it!",   cancelButtonText: "No, cancel !",   
+                    closeOnConfirm: false,   closeOnCancel: false }, 
+                    function(isConfirm){   
+                        if (isConfirm) {     
+                            $.post('stocks/removeLubricant', { ID : id }, function(data){
+                                console.log(data);
+                                //alert('Done !');
+                                $('#subloader2').empty();
+                                $('#subloader2').load('/IOC/stocks/edit_lube',function(){
+                                    $('#subloader2').hide();
+                                    $('#subloader2').fadeIn('slow');
+                                });
+                            });
+                            swal("Deleted!", "Entry deleted !.", "success");    
+                        } 
+                        else {    
+                            swal("Cancelled", "", "error");   
+                        } 
                     });
-                });
-                return false;
+                
             });
 
             $('.edit').click(function(e){
@@ -136,5 +152,29 @@
                 console.log('Dtataa');
             });
     });
+    $("#searchInput").keyup(function () {
+        //split the current value of searchInput
+        var data = this.value.split(" ");
+        //create a jquery object of the rows
+        var jo = $("#fbody").find("tr");
+        if (this.value == "") {
+            jo.show();
+            return;
+        }
+        //hide all the rows
+        jo.hide();
 
+        //Recusively filter the jquery object to get results.
+        jo.filter(function () {
+            var $t = $(this);
+            for (var d = 0; d < data.length; ++d) {
+                if ($t.is(":contains('" + data[d] + "')")) {
+                    return true;
+                }
+            }
+            return false;
+        })
+        //show the rows that match.
+        .show();
+    });
 </script>
