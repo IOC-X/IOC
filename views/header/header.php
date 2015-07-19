@@ -24,6 +24,9 @@
     <link rel="stylesheet" type="text/css" href="<?php echo CSS1?>stocks/graph.css">
 
 
+    <script src="<?php echo BOWER ?>sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo BOWER ?>sweetalert/dist/sweetalert.css">
+
 </head>
 <body onbeforeunload="return myFunction()">
 <div class="navbar navbar-default">
