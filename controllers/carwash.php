@@ -205,9 +205,9 @@ class Carwash extends Controller {
         $list=$model->searchCustomer();
         foreach ($list as $rs) {
 	// put in bold the written text
-	$country_name = str_replace($_POST['keyword'], '<b>'.$_POST['keyword'].'</b>', $rs->name);
+	$name = str_replace($_POST['keyword'], '<b>'.$_POST['keyword'].'</b>', $rs->name);
 	// add new option
-    echo '<li onclick="set_item(\''.str_replace("'", "\'", $rs->name).'\')">'.$country_name.'</li>';
+    echo '<li onclick="set_item(\''.str_replace("'", "\'", $rs->name).'\')">'.$name.'</li>';
 }
     }
 
