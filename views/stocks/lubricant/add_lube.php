@@ -49,7 +49,7 @@
           success: function(data){
             console.log(data);
             if(data){
-                alert('Successfully added');
+                swal("Supplier added successfully!", "click okay to continue", "success");
                 $('#prd-name').val("");
                 $('#price').val("");
                 $('#qnty').val("");

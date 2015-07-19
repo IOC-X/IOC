@@ -33,15 +33,25 @@
 <script>
     $('#add_supplier_form').submit(function(e){
         e.preventDefault();
-        console.log('succ');
-        var form = $('#add_supplier_form');
-        $.ajax({
-          type : form.attr('method'),
-          url : form.attr('action'),
-          data : form.serialize(),
-          success: function(data){
-            console.log(data);
-          }
-        });
+        var name = $('#sup-name').val();
+        var products = $('#products').val();
+        var contact = $('#tel-number').val();
+        if(name == "" || products == "" || contact == ""){
+          swal("Bump !", "Please fill every field")
+        }
+        else{
+          console.log('succ');
+          var form = $('#add_supplier_form');
+          $.ajax({
+            type : form.attr('method'),
+            url : form.attr('action'),
+            data : form.serialize(),
+            success: function(data){
+              console.log(data);
+              swal("Supplier added successfully!", "click okay to continue", "success")
+            }
+          });
+
+        }
     });
 </script>
