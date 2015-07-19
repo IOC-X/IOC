@@ -209,6 +209,27 @@
 			$model = new Stocks_model();
 			echo json_encode($model->loadLubricants());
 		}
+		/**
+		* Edit lubricant entries 
+		* @returns boolean
+		*/
+		public function editLube(){
+			$id = $_POST['id'];
+			$name = $_POST['name'];
+			$price = $_POST['price'];
+			$qnty = $_POST['qnty'];
+			$supplier = $_POST['supplier'];
+			
+			require 'models/Stocks_model.php';
+			$model = new Stocks_model();
+			if($model->editLube($id,$name,$price,$qnty,$supplier)){
+				return true;
+			}
+			else{
+				return false;
+			}
+			
+		}
 		public function removeLubricant(){
 			require 'models/Stocks_model.php';
 			$id = $_POST['ID'];

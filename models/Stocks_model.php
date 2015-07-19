@@ -63,6 +63,17 @@
 			$st->execute();
 			return $st->fetchAll();
 		}
+		public function editLube($id,$name,$price,$qnty,$supplier){
+			$st = $this->db->prepare("UPDATE Lubricants SET Name=:name,Price=:price,Quantity=:qnty,Supplier=:supplier WHERE Id=:id");
+			$st->execute(array(
+				':id' => $id,
+				':name' => $name,
+				':price' => $price,
+				':qnty' => $qnty,
+				':supplier' => $supplier
+			));
+			return true;
+		}
 		public function addSupplier($name,$products,$contact){
 			$st = $this->db->prepare("INSERT INTO Lubricant_suppliers (name,product,quantity) VALUES (:name,:product,:contact)");
 			if($st->execute(array(

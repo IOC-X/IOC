@@ -31,7 +31,7 @@
             </div>
             
             <div class="modal-body">
-                <form class="form-horizontal" id="edit_lube_form" action="stocks/addLube" method="post">
+    <form class="form-horizontal" id="edit_lube_form" action="stocks/addLube" method="post">
     <fieldset>
     
         <div class="form-group">
@@ -67,14 +67,15 @@
             
             
         </div>  
-    </fieldset>
+    
 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
+                <button type="submit" id="edit_sub" class="btn btn-primary">Save changes</button>
             </div>
         </div>
+        </fieldset>
         </form>
     </div>
 </div>
@@ -129,7 +130,7 @@
 
             $('.edit').click(function(e){
                 var id = $(this).attr('href');
-
+                window.editID = id;
                 $('#myModal').modal('show');
                 setTimeout(function(){
                     var name = $()
@@ -148,8 +149,17 @@
             });
 
         });
-            $('#edit_lube_form').submit(function(){
-                console.log('Dtataa');
+            $('#edit_sub').click(function(){
+                
+                var prd_ID = window.editID;
+                var prd_name = $('#prd-name').val();
+                var prd_price = $('#price').val();
+                var prd_qnty = $('#qnty').val();
+                var prd_supplier = $('#supplier').val();
+
+                $.post('stocks/editLube',{ name : prd_name , price : prd_price , qnty : prd_qnty , supplier : prd_supplier , id : prd_ID },function(data){
+                    console.log(data);
+                });
             });
     });
     $("#searchInput").keyup(function () {
@@ -177,4 +187,5 @@
         //show the rows that match.
         .show();
     });
+
 </script>

@@ -10,7 +10,7 @@
         <div class="form-group">
         <label for="price" class="col-lg-2 control-label">Price</label>
         <div class="col-lg-7">
-            <input type="text" class="form-control" id="price" placeholder="price" name="prd-price">
+            <input type="number" class="form-control" id="price" placeholder="price" name="prd-price">
         </div>
     	</div>
         <div class="form-group">
