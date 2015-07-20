@@ -168,11 +168,14 @@
 		*/
 		public function searchLube(){
 			//$name = $_POST['name'];
-			$name = $_GET['nm'];
+//			$name = $_GET['nm'];
+			$value = $_POST['key'];
+			
 			require 'models/Stocks_model.php';
 
 			$model = new Stocks_model();
-			$result = $model->searchLube($name);
+			$result = $model->searchLube($value);
+
 			echo json_encode($result);
 		}
 		//renders add lubes page
@@ -205,6 +208,27 @@
 
 			$model = new Stocks_model();
 			echo json_encode($model->loadLubricants());
+		}
+		/**
+		* Edit lubricant entries 
+		* @returns boolean
+		*/
+		public function editLube(){
+			$id = $_POST['id'];
+			$name = $_POST['name'];
+			$price = $_POST['price'];
+			$qnty = $_POST['qnty'];
+			$supplier = $_POST['supplier'];
+			
+			require 'models/Stocks_model.php';
+			$model = new Stocks_model();
+			if($model->editLube($id,$name,$price,$qnty,$supplier)){
+				return true;
+			}
+			else{
+				return false;
+			}
+			
 		}
 		public function removeLubricant(){
 			require 'models/Stocks_model.php';
@@ -252,6 +276,10 @@
 		*/
 		public function edit_suppliers(){
 			$this->view->render('stocks/suppliers/edit',false);	
+		}
+		public function loadLubricantEditData(){
+			$va = "he";
+			return json_encode($va);
 		}
 		public function loadLubricantsSuppliers(){
 			require 'models/Stocks_model.php';
