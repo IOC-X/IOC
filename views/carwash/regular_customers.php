@@ -1,7 +1,8 @@
     <div class="btn-group btn-group-justified">
-    <a href="carwash/add_customer/" class="btn btn-primary" id="add_customer">Add Customer</a>
-    <a href="carwash/EditCustomerEntries/" class="btn btn-primary" id="EditCustomerEntries">Edit Entries</a>
-    <a href="carwash/searchCustomer/" class="btn btn-primary" id="searchCustomer">Search Customers</a>
+    <a href="carwash/add_customer/" class="btn btn-primary" id="add_customer"><i class="glyphicon glyphicon-user"></i>  Add Customer</a>
+    <a href="carwash/EditCustomerEntries/" class="btn btn-primary" id="EditCustomerEntries"><i class="glyphicon glyphicon-edit"></i>  Edit Entries</a>
+    <a href="carwash/searchCustomer/" class="btn btn-primary" id="searchCustomer"><i class="glyphicon glyphicon-zoom-in"></i>  Search Customers</a>
+
     </div>
 <div>
     <h1 class="text-center text-success">Regular Customers</h1>

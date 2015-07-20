@@ -1,7 +1,7 @@
 
 <div class="btn-group btn-group-justified">
-    <a href="carwash/create_package/" class="btn btn-primary" id="create_package">Add Package</a>
-    <a href="carwash/EditPackageEntries/" class="btn btn-primary" id="EditPackageEntries">Edit Entries</a>
+    <a href="carwash/create_package/" class="btn btn-primary" id="create_package"><i class="glyphicon glyphicon-gift"></i>  Add Package</a>
+    <a href="carwash/EditPackageEntries/" class="btn btn-primary" id="EditPackageEntries"><i class="glyphicon glyphicon-wrench"></i>  Edit Entries</a>
 </div>
 <div data-role="page">
     <h1 class="text-center text-success">Carwash Packages</h1>

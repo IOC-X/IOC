@@ -37,7 +37,7 @@ function set_item(item) {
         <h1 class="main_title"></h1>
         
             <form>
-                <div class="label_div">Type a keyword : </div>
+                <div class="label_div">Search Customer : </div>
                 <div class="input_container">
                     <input type="text" id="id" onkeyup="autocomplet()">
                     <ul id="list_id"></ul>

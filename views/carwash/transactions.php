@@ -1,6 +1,6 @@
 <div class="btn-group btn-group-justified">
-<a href="carwash/Reg_transactions/" class="btn btn-primary" id="Reg_transactions">Regular Customer Transactions</a>
-<a href="carwash/NonReg_transactions/" class="btn btn-primary" id="NonReg_transactions">Non-Regular Customer Transactions</a>
+<a href="carwash/Reg_transactions/" class="btn btn-primary" id="Reg_transactions"><i class="mdi-social-people"></i> Regular Customer Transactions</a>
+<a href="carwash/NonReg_transactions/" class="btn btn-primary" id="NonReg_transactions"><i class="mdi-social-people-outline"></i> Non-Regular Customer Transactions</a>
 </div>
 
 <script>

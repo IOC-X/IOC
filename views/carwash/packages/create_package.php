@@ -15,32 +15,32 @@
                 </div>
 
                 <form class="form-horizontal" action="" method="post" id="form">
-                    <div class="control-group panel panel-info">
+                    <div class="form-group">
                         <label class="control-label col-lg-4">Name</label>
-                        <div class="controls col-lg-6 panel">
+                        <div class="controls col-lg-6">
                             <input type="text" class="form-control" name="name" id="name" placeholder=" Package Name" value="<?php echo ($name); ?>">
                             <span class="help-inline"></span>
                         </div>
                     </div>
 
-                    <div class="control-group">
+                    <div class="form-group">
                         <label class="control-label col-lg-4">Description</label>
-                        <div class="controls col-lg-6 panel">
+                        <div class="controls col-lg-6">
                             <textarea  name="description" id="description" class="form-control floating-label" placeholder="Package Description" rows="4" cols="50"><?php echo ($description); ?></textarea>
                             <span class="help-inline"></span>
                         </div>
                     </div>
-                    <div class="control-group">
+                    <div class="form-group">
                         <label class="control-label col-lg-4">Time</label>
-                        <div class="controls col-lg-6 panel">
+                        <div class="controls col-lg-6">
                             <input type="number" class="form-control floating-label" name="time" id="time" placeholder="Time in Hours" value="<?php echo ($time); ?>">
                             <span class="help-inline"></span>
                         </div>
                     </div>
 
-                    <div class="control-group">
+                    <div class="form-group">
                         <label class="control-label col-lg-4">Price</label>
-                        <div class="controls col-lg-6 panel">
+                        <div class="controls col-lg-6">
                             <input type="number" class="form-control floating-label" name="price" id="price" placeholder="Package Price" value="<?php echo ($price); ?>">
                             <span class="help-inline"></span>
                         </div>

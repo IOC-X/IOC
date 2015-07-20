@@ -50,6 +50,8 @@ class Carwash extends Controller {
 
         include '/views/carwash/report.php';
     }
+    
+   
 
     public function CustomerReport() {
         $model = new Carwash_model();
@@ -62,7 +64,12 @@ class Carwash extends Controller {
         $stats = $model->packageUsage();
         include '/views/carwash/report/packageReport.php';
     }
+    
+    public function history(){
+        include '/views/carwash/history.php';
+    }
 
+    
     public function editPackage() {
         $model = new Carwash_model();
         $id = $_POST['id'];
@@ -207,7 +214,7 @@ class Carwash extends Controller {
 	// put in bold the written text
 	$name = str_replace($_POST['keyword'], '<b>'.$_POST['keyword'].'</b>', $rs->name);
 	// add new option
-    echo '<li onclick="set_item(\''.str_replace("'", "\'", $rs->name).'\')">'.$name.'</li>';
+    echo '<li style="padding: 2px;list-style: none;border: 1px solid #eaeaea" onclick="set_item(\''.str_replace("'", "\'", $rs->name).'\')">'.$name.'</li>';
 }
     }
 
@@ -255,6 +262,8 @@ class Carwash extends Controller {
         }
         //  $this->redirect('/IOC/#/carwash/packages');     
     }
+    
+    
 
 }
 

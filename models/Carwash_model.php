@@ -93,7 +93,7 @@ class Carwash_model extends Model {
     public function searchCustomer() {
         $keyword = '%' . $_POST['keyword'] . '%';
         
-        $sql = $this->db->prepare("SELECT name FROM regular_customers WHERE name LIKE '$keyword' ORDER BY cust_id ASC LIMIT 0, 10");
+        $sql = $this->db->prepare("SELECT * FROM regular_customers WHERE name LIKE '$keyword' ORDER BY cust_id ASC LIMIT 0, 10");
         $sql->execute();
 
        // $sql = "SELECT * FROM regular_customers WHERE name LIKE (:keyword) ORDER BY cust_id ASC LIMIT 0, 10";
