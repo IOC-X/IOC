@@ -59,11 +59,42 @@
 			));
 		}
 		public function searchLube($name){
-			$st = $this->db->prepare("SELECT FROM Lubricants WHERE Name = :name");
+			$st = $this->db->prepare("SELECT * FROM Lubricants WHERE Name LIKE '{$name}%'");
+			$st->execute();
+			return $st->fetchAll();
+		}
+		public function editLube($id,$name,$price,$qnty,$supplier){
+			$st = $this->db->prepare("UPDATE Lubricants SET Name=:name,Price=:price,Quantity=:qnty,Supplier=:supplier WHERE Id=:id");
 			$st->execute(array(
-				':name' => $name
+				':id' => $id,
+				':name' => $name,
+				':price' => $price,
+				':qnty' => $qnty,
+				':supplier' => $supplier
 			));
-			return $st->fetch();
+			return true;
+		}
+		public function addSupplier($name,$products,$contact){
+			$st = $this->db->prepare("INSERT INTO Lubricant_suppliers (name,product,quantity) VALUES (:name,:product,:contact)");
+			if($st->execute(array(
+				':name' => $name,
+				':product' => $products,
+				':contact' => $contact
+			))){
+				return true;
+			}
+
+		}
+		public function loadLubricantsSuppliers(){
+			$st = $this->db->prepare("SELECT * FROM Lubricant_suppliers");
+			$st->execute();
+			return $st->fetchAll();
+		}
+		public function removeLubricantSupplier($id){
+			$st = $this->db->prepare("DELETE FROM Lubricant_suppliers where Id=:id");
+			$st->execute(array(
+				':id' => $id
+			));
 		}
 	}
 ?>

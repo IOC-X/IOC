@@ -7,7 +7,7 @@ class Carwash_model extends Model {
     function __construct() {
         parent::__construct();
     }
-
+//PACKAGE DATA RETREIVING STARTS HERE
     public function selectAllpackages() {
         
         $sql = $this->db->prepare("SELECT * FROM packages");
@@ -29,10 +29,10 @@ class Carwash_model extends Model {
         return $result;
     }
 
-    public function editPackage($name, $description, $price, $id) {
+    public function editPackage($name, $description, $price,$time, $id) {
         //$pdo = Database::connect();
-        $sql = $this->db->prepare("UPDATE packages SET name = ?, description = ?, price = ? WHERE id = ? LIMIT 1");
-        $result = $sql->execute(array($name, $description, $price, $id));
+        $sql = $this->db->prepare("UPDATE packages SET name = ?, description = ?, price = ?, time = ? WHERE id = ? LIMIT 1");
+        $result = $sql->execute(array($name, $description, $price,$time, $id));
     }
 
     public function deletePackage($id) {
@@ -53,6 +53,9 @@ class Carwash_model extends Model {
             
         }
     }
+    //PACKAGE DATA RETREIVING ENDS HERE
+    
+    //CUSTOMER DATA RETREIVING STARTS HERE
     public function selectAllcustomers() {
        
         $sql = $this->db->prepare("SELECT * FROM regular_customers");
@@ -64,10 +67,10 @@ class Carwash_model extends Model {
         }
         return $customers;
     }
-    public function selectCustomerById($id) {
+    public function selectCustomerById($cust_id) {
 
-        $sql = $this->db->prepare("SELECT * FROM regular_customers WHERE cust_id =$id");
-        $sql->bindValue(1, $id);
+        $sql = $this->db->prepare("SELECT * FROM regular_customers WHERE cust_id =$cust_id");
+        $sql->bindValue(1, $cust_id);
         $sql->execute();
         $result = $sql->fetch(PDO::FETCH_OBJ);
         return $result;
@@ -84,12 +87,34 @@ class Carwash_model extends Model {
             
         }
     }
-    public function deleteCustomer($id) {
+     public function editCustomer($name, $nic, $address,$contact,$cust_id) {
+        //$pdo = Database::connect();
+        $sql = $this->db->prepare("UPDATE regular_customers SET name = ?, nic = ?, address = ?, contact = ? WHERE cust_id = ? LIMIT 1");
+        $result = $sql->execute(array($name, $nic, $address,$contact,$cust_id));
+    }
+    public function deleteCustomer($cust_id) {
 
-        $sql = $this->db->prepare("DELETE FROM regular_customers WHERE cust_id=$id");
+        $sql = $this->db->prepare("DELETE FROM regular_customers WHERE cust_id=$cust_id");
         $sql->execute();
     }
-
+//CUSTOMER DATA RETREIVING ENDS HERE
+    
+//REGULAR TRANSACTIONS DATA RETREIVING STARTS HERE    
+    public function addTransaction($cust_id, $package, $vehicleNo, $amount, $date){
+    
+        $sql = $this->db->prepare("INSERT INTO regular_transactions(cust_id, package, vehicleNo, amount, date) VALUES(?, ?, ?, ?, ?)");
+        $result = $sql->execute(array($cust_id, $package, $vehicleNo, $amount, $date));
+    }
+    
+    public function selectAllRegulartransactions() {
+        
+        $sql = $this->db->prepare("SELECT * FROM regular_transactions");
+        $sql->execute();
+        while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+            $regularTransactions[] = $obj;
+        }
+        return $regularTransactions;
+    }
 }
 
 ?>
