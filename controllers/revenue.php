@@ -1,6 +1,6 @@
 <?php
 	/**
-	* revnue module
+	* revenue module
 	* controller for revenue model
 	* author @Sarasi Sumathipala
 	*/
@@ -44,6 +44,13 @@
 		**/
 		public function fuel(){
 			$this->view->render('revenue/income/fuel',false);
+		}
+		/**
+		*	renders lubricant tab in income section
+		*	
+		**/
+		public function lubricants(){
+			$this->view->render('revenue/income/lubricants',false);
 		}
 	}
   ?>
