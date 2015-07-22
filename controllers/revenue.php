@@ -23,6 +23,11 @@
 
 		}
 
+		public function incomefuel()
+		{
+			$this->view->render('revenue/incomefuel',false);
+		}
+
 		public function expenses()
 		{
 			$this->view->render('revenue/expenses',false);
