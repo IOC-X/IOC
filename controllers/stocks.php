@@ -138,7 +138,7 @@
 		}
 		//daily reading of pumps
 		public function daily_readings(){
-			$this->view->render('stocks/daily_readings',false);
+			$this->view->render('stocks/pump/daily_readings',false);
 		}
 		//inserting pump readings
 		public function insertPumpReadings(){
