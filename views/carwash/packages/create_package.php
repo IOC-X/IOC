@@ -1,20 +1,12 @@
-<!DOCTYPE HTML>
-<html lang="en">
-    <head>
-        <title>Package Form</title>
-        <meta charset="utf-8">
 
-    </head>
-
-    <body>
-        <div class="container col-lg-8">
+<div class="col-lg-7">
             <div class="span">
                 <div class="row">
                     <h3><strong>Create a Package</strong></h3>
 
                 </div>
 
-                <form class="form-horizontal" action="" method="post" id="form">
+                <form id="form2" class="form-horizontal" action="" method="post">
                     <div class="form-group">
                         <label class="control-label col-lg-4">Name</label>
                         <div class="controls col-lg-6">
@@ -54,14 +46,14 @@
                 </form>
             </div>
         </div>
-    </body>
-</html>
+ 
 
 <script type="text/javascript">
 
     $(document).ready(function () {
         console.log('package creation');
-        $("#form-submitted").click(function () {
+        $("#form-submitted").click(function (e) {
+            e.preventDefault();
 //assigning values
             var name = $("#name").val();
             var description = $("#description").val();
@@ -91,8 +83,8 @@
                 // Returns successful data submission message when the entered information is stored in database.
                 $.post("carwash/createPackage", {name: name, description: description, time: time, price: price},
                 function (data) {
-                    //alert(data);
-                    $('#form')[0].reset(); //To reset form fields
+                    swal("Good job!", "Successfully added the New Package!", "success");
+                    $('#form2')[0].reset(); //To reset form fields
                 });
                 console.log('data sent');
 

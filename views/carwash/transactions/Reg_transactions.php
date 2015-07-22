@@ -1,13 +1,14 @@
+<div class="col-lg-12">
 <form method="post" id="transactionForm" name="transactionForm">
 <table class="table table-condensed table-striped table-bordered">
     <thead>
         <tr>
-            <th class="col-lg-2">Customer ID</th>
-            <th class="col-lg-2">Package</th>
-            <th class="col-lg-2">Vehicle Number</th>
-            <th class="col-lg-2">Original Amount</th>
-            <th class="col-lg-2">Discounted Amount</th>
-            <th class="col-lg-2">Date</th>
+            <th>Customer ID</th>
+            <th>Package</th>
+            <th>Vehicle Number</th>
+            <th>Original Amount</th>
+            <th>Discounted Amount</th>
+            <th>Date</th>
         </tr>
     </thead>
     <tbody>
@@ -42,43 +43,12 @@
         
     </tbody>
 </table>
-                    <div class="form-actions col-lg-11 col-lg-offset-9">
-						
-                        <button type="submit" class="btn btn-success btn-raised" id="form-submitted" name="form-submitted" >Add Transaction</button>
-						
-					</div>
+                    <div class="form-actions col-lg-12">
+                        <div class="col-lg-0 col-lg-1"><a href="javascript:void(0)" class="btn btn-primary btn-raised" id="reg_history"><i class="mdi-action-restore"></i> History</a></div>
+                        <div class="col-lg-0 col-lg-offset-9"><button type="submit" class="btn btn-primary btn-raised" id="form-submitted" name="form-submitted" ><i class="mdi-content-save"></i> Add Transaction</button></div>
+                    </div>
 </form>
-
-<!-- DISPLAYING LATEST TRANSACTIONS-->
-                <div class="row">
-                    <h3 class="text-center success"><strong>Today's Regular Customer Transactions</strong></h3>
-					
-				</div>
-<table class="table table-striped table-bordered table-hover">
-		
-                    <thead>
-                        <tr class="success">
-                            <th>Customer ID</th>
-                            <th>Package Name</th>
-                            <th>Vehicle Number</th>
-                            <th>Amount(20% Discount)</th>
-                            <th>Date</th>
-                            
-						</tr>
-                    </thead>
-                    <tbody>
-						<?php  foreach ($regularTransactions as $transaction) : ?>						
-                            <tr>
-                                    <td><?php echo ($transaction->cust_id); ?></td>
-                                    <td><?php echo ($transaction->package); ?></td>
-                                    <td><?php echo ($transaction->vehicleNo); ?></td>
-                                    <td><?php echo "Rs." .($transaction->amount); ?></td>
-                                    <td><?php echo  ($transaction->date); ?></td>
-							</tr>
-						<?php endforeach; ?>
-					</tbody>
-            </table>
-
+</div>
 
 <script type="text/javascript">
     function getPackageAmount () { 
@@ -89,7 +59,11 @@
         document.transactionForm.amount.value=NewPacakgeAmount.toFixed(2);
         	}
             
-$(document).ready(function(){  
+$(document).ready(function(){
+     $("#history").click(function(e){
+         e.preventDefault();
+        $("#history1").show();
+    }); 
     console.log('adding transactions');
 $("#form-submitted").click(function(){
 //assigning values
@@ -117,5 +91,15 @@ var date = $("#date").val();
             }
         });
         });
-
+        
+        
+        $('#reg_history').click(function(e2){
+	        	e2.preventDefault();
+	        	var id = $(this).attr('id');
+                $('#subloader2').load('/IOC/carwash/' + id,function(){
+                    
+                    $('#subloader2').hide();
+                	$('#subloader2').fadeIn('fast');
+                });
+	        });
 </script>

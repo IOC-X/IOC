@@ -1,34 +1,32 @@
-
+<style>
+    a:hover {color:white;}
+</style>
 <div class="btn-group btn-group-justified">
     <a href="carwash/create_package/" class="btn btn-primary" id="create_package"><i class="glyphicon glyphicon-gift"></i>  Add Package</a>
     <a href="carwash/EditPackageEntries/" class="btn btn-primary" id="EditPackageEntries"><i class="glyphicon glyphicon-wrench"></i>  Edit Entries</a>
 </div>
-<div data-role="page">
+<div id="subloader2">
     <h1 class="text-center text-success">Carwash Packages</h1>
-    <table class="table table-striped table-bordered table-hover">
-
-        <thead>
-            <tr>
-                
-                <th>Name</th>
-                <th>Description</th>
-                <th>Time</th>
-                <th>Price</th>
-
-            </tr>
-        </thead>
-        <tbody>
+   
             <?php foreach ($packages as $package) : ?>						
-                <tr>
+    <div class="col-lg-4 panel panel-info text-center ">
                     
-                    <td><?php echo ($package->name); ?></td>
-                    <td><?php echo ($package->description); ?></td>
-                    <td><?php echo ($package->time) . " Hours"; ?></td>
-                    <td><?php echo "Rs." . ($package->price); ?></td>
-                </tr>
+        <div class="panel-heading panel">
+            <a data-toggle="collapse" data-parent="#subloader2" href="#<?php echo ($package->id); ?>"><i class="glyphicon glyphicon-chevron-down"></i> <?php echo ($package->name); ?></a>
+        </div>
+        
+        
+        <div id="<?php echo ($package->id); ?>" class="panel panel-body panel-collapse collapse">  
+            <div class="col-lg-12 panel"><?php echo ($package->description); ?></div>
+            <div class="col-lg-12 panel"><?php echo ($package->time) . " Hours estimated"; ?></div>
+            <div class="col-lg-12 panel"><?php echo "Price Rs." . ($package->price); ?></div> 
+        </div>
+    </div>         
             <?php endforeach; ?>
-        </tbody>
-    </table>
+       
+
+</div>
+<div >
 
 </div>
 <script type="text/javascript">
@@ -36,20 +34,20 @@
     $('#EditPackageEntries').click(function (e2) {
         e2.preventDefault();
         var id = $(this).attr('id');
-        $('#subloader').load('/IOC/carwash/' + id, function () {
+        $('#subloader2').load('/IOC/carwash/' + id, function () {
 
-            $('#subloader').hide();
-            $('#subloader').fadeIn('fast');
+            $('#subloader2').hide();
+            $('#subloader2').fadeIn('fast');
         });
     });
               
     $('#create_package').click(function (e2) {
         e2.preventDefault();
         var id = $(this).attr('id');
-        $('#subloader').load('/IOC/carwash/' + id, function () {
+        $('#subloader2').load('/IOC/carwash/' + id, function () {
 
-            $('#subloader').hide();
-            $('#subloader').fadeIn('fast');
+            $('#subloader2').hide();
+            $('#subloader2').fadeIn('fast');
         });
     });
 

@@ -1,40 +1,38 @@
-<div>
+<style>
+    a {color:#66ff66;}      /* unvisited link */
+a:visited {color:white;}  /* visited link */
+a:hover {color:red;}  /* mouse over link */
+a:active {color:#0000FF;}  /* selected link */
+</style>
+<div class="subloader2">
 
     <h1 class="text-center text-success">Carwash Packages</h1>
-    <table class="table table-striped table-bordered">
-
-        <thead>
-            <tr>
-                
-                <th>Name</th>
-                <th>Description</th>
-                <th>Time</th>
-                <th>Price</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($packages as $package) : ?>						
-                <tr>
+    <?php foreach ($packages as $package) : ?>						
+    <div class="col-lg-4 panel panel-primary text-center">
                     
-                    <td><?php echo ($package->name); ?></td>
-                    <td><?php echo ($package->description); ?></td>
-                    <td><?php echo ($package->time) . " Hours"; ?></td>
-                    <td><?php echo "Rs." . ($package->price); ?></td>
-                    <td>
-                        <a onclick="Editpackage('<?php echo ($package->id); ?>', '<?php echo ($package->name); ?>', '<?php echo ($package->description); ?>', '<?php echo ($package->time); ?>', '<?php echo ($package->price); ?>')"> <i class="mdi-content-create"></i> </a>                                                                      
-                    </td>
-                    <td>
-                        <a id="delete_package" onclick="DeleteAlert('<?php echo ($package->id); ?>')" > <i class="mdi-content-remove-circle"></i></a>
-                    </td>
-
-                </tr>
+        <div class="panel-heading panel"> 
+            <a data-toggle="collapse" data-parent="#subloader2" href="#<?php echo ($package->id); ?>"><i class="glyphicon glyphicon-chevron-down"></i><?php echo ($package->name); ?></a>
+        </div>
+<!--        <div id="<?php echo ($package->id); ?>" class="panel-collapse collapse">-->
+        <div class="panel panel-body panel-collapse collapse" id="<?php echo ($package->id); ?>">  
+            <div class="col-lg-12 panel"><?php echo ($package->description); ?></div>
+            <div class="col-lg-12 panel"><?php echo ($package->time) . " Hours estimated"; ?></div>
+            <div class="col-lg-12 panel"><?php echo "Price Rs." . ($package->price); ?></div> 
+        </div>
+        <div class="panel-footer clearfix danger">
+        <div class="pull-right">
+            <a onclick="Editpackage('<?php echo ($package->id); ?>', '<?php echo ($package->name); ?>', '<?php echo ($package->description); ?>', '<?php echo ($package->time); ?>', '<?php echo ($package->price); ?>')"> <i class="mdi-content-create"></i> </a>
+            <a id="delete_package" onclick="DeleteAlert('<?php echo ($package->id); ?>')" > <i class="mdi-content-remove-circle"></i></a>
+        </div>
+        </div>
+        </div>
+        
+    </div>         
             <?php endforeach; ?>
-        </tbody>
-    </table>
+                                                                                              
+</div>               
 
-
+<!--PACKAGE EDIT MODAL-->
 
     <div class="ui modal" id="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog">
@@ -43,7 +41,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title text-justify">Edit Package Details</h4>
                 </div>
-                <form role="form" action="carwash/editPackage" name="frmPackages" method="post">
+                <form role="form" action="" name="frmPackages" method="post">
                     <div class="col-lg-12">
 
                         <div class="form-group">
@@ -71,7 +69,7 @@
                             <input type="number" name="price" id="price" class="form-control" required>
                         </div>  
 
-                        <button type="submit" class="btn btn-info btn-lg">
+                        <button type="submit" class="btn btn-primary btn-lg" name="form-submitted" id="form-submitted">
                             <span class="mdi-content-create" aria-hidden="true"></span> Edit
                         </button>
 
@@ -92,7 +90,7 @@
                             $('#create_package').click(function (e2) {
                                 e2.preventDefault();
                                 var id = $(this).attr('id');
-                                $('#subloader').load('/IOC/carwash/' + id, function () {
+                                $('#subloader2').load('/IOC/carwash/' + id, function () {
 
                                     $('#subloader').hide();
                                     $('#subloader').fadeIn('fast');
@@ -102,14 +100,50 @@
 
                             function Editpackage(id, name, description, time, price) {
 
-                                
+
                                 document.frmPackages.id.value = id;
                                 document.frmPackages.name.value = name;
                                 document.frmPackages.description.value = description;
                                 document.frmPackages.time.value = time;
                                 document.frmPackages.price.value = price;
                                 $('#modal').modal('show');
+
                             }
+
+                            $(document).ready(function () {
+                                console.log('Editing Packages');
+                                $("#form-submitted").click(function (e) {
+//assiging values    
+                                    e.preventDefault();
+                                    var id = $("#id").val();
+                                    var name = $("#name").val();
+                                    var description = $("#description").val();
+                                    var time = $("#time").val();
+                                    var price = $("#price").val();
+                                    
+//expression for validation
+                                    var numbers = /^[0-9]+$/;
+
+//validation
+                                    if (id == '' || name == '' || description == '' || time == '' || price == '') {
+                                        
+                                        sweetAlert("Oops...", "Insertion Failed Some Fields are Blank....!!", "error");
+                                    }
+                                    
+
+                                    else {
+// Returns successful data submission message when the entered information is stored in database.
+                                        $.post("carwash/editPackage", {id: id, name: name, description: description, time: time, price: price},
+                                        function (data) {
+                                            swal("Good job!", "Successfully Updated the package!", "success");
+                                           // $('#form')[0].reset(); //To reset form fields
+                                           
+                                        });
+                                        console.log('data sent');
+
+                                    }
+                                });
+                            });
 
                             function DeleteAlert(id) {
                                 swal({
@@ -126,7 +160,7 @@
                                 function (isConfirm) {
                                     if (isConfirm) {
                                         swal("Deleted!", "Your Package details has been deleted.", "success");
-                                        window.location = 'carwash/delete_package/'+id+'';
+                                        window.location = 'carwash/delete_package/' + id + '';
 
                                     } else {
                                         swal("Cancelled", "Your Package details is safe :)", "error");

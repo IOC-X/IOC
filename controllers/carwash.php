@@ -83,7 +83,7 @@ class Carwash extends Controller {
         {
             $packages = $model->editPackage($name, $description, $price, $time, $id);
         }
-        $this->redirect('/IOC/#/carwash');
+       // $this->redirect('/IOC/#/carwash');
     }
 
     public function edit_package($id = false) {
@@ -123,7 +123,7 @@ class Carwash extends Controller {
         $price = isset($_POST['price']) ? trim($_POST['price']) : null; {
             $packages = $model->createPackage($name, $description, $time, $price);
         }
-        $this->redirect('/IOC/#/carwash/packages');
+      //  $this->redirect('/IOC/#/carwash/packages');
     }
 
     public function create_package() {
@@ -222,7 +222,7 @@ class Carwash extends Controller {
         $model = new Carwash_model();
         $customers = $model->selectAllcustomers();
         $packages = $model->selectAllpackages();
-        $regularTransactions = $model->selectAllRegulartransactions();
+        
         include '/views/carwash/transactions/Reg_transactions.php';
     }
 
@@ -239,11 +239,17 @@ class Carwash extends Controller {
         }
         //  $this->redirect('/IOC/#/carwash/packages');     
     }
+    public function reg_history(){
+        $model = new Carwash_model();
+        $regularTransactions = $model->selectAllRegulartransactions();
+        include '/views/carwash/transactions/reg_history.php';
+    }
+    
 
     public function NonReg_transactions() {
         $model = new Carwash_model();
         $packages = $model->selectAllpackages();
-        $Transactions = $model->selectAlltransactions();
+        
         include '/views/carwash/transactions/NonReg_transactions.php';
     }
 
@@ -263,7 +269,11 @@ class Carwash extends Controller {
         //  $this->redirect('/IOC/#/carwash/packages');     
     }
     
-    
+    public function nonreg_history(){
+        $model = new Carwash_model();
+        $Transactions = $model->selectAlltransactions();
+        include '/views/carwash/transactions/nonreg_history.php';
+    }
 
 }
 

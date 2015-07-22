@@ -32,7 +32,7 @@ function set_item(item) {
 
 
 
-    <div class="container">
+    <div class="col-lg-7">
        
         <h1 class="main_title"></h1>
         

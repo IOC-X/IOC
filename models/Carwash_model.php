@@ -122,8 +122,8 @@ class Carwash_model extends Model {
     }
 
     public function selectAllRegulartransactions() {
-        $date = date("Y-m-d");
-        $sql = $this->db->prepare("SELECT * FROM regular_transactions where date like'$date' ");
+        //$date = date("Y-m-d");  where date like'$date' 
+        $sql = $this->db->prepare("SELECT * FROM regular_transactions");
         $sql->execute();
         while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
             $regularTransactions[] = $obj;
@@ -132,8 +132,8 @@ class Carwash_model extends Model {
     }
 
     public function selectAlltransactions() {
-        $date = date("Y-m-d");
-        $sql = $this->db->prepare("SELECT * FROM car_transactions where date like'$date' ");
+        //$date = date("Y-m-d");  where date like'$date'
+        $sql = $this->db->prepare("SELECT * FROM car_transactions");
         $sql->execute();
 
         while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {

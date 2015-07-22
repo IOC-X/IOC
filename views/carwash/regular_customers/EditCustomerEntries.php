@@ -1,5 +1,5 @@
 
-<div>
+<div class="col-lg-12">
     <h1 class="text-center text-success">Regular Customers</h1>
     <table class="table table-striped table-bordered">
 
@@ -74,7 +74,7 @@
                             <input name="date" id="date" class="form-control" required>
                         </div> 
 
-                        <button type="submit" class="btn btn-info btn-lg">
+                        <button type="submit" class="btn btn-primary btn-lg">
                             <span class="mdi-content-create" aria-hidden="true"></span> Edit
                         </button>
 
