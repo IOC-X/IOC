@@ -1,7 +1,8 @@
 <?php
-	
 	/**
-	* 
+	* revnue module
+	* controller for revenue model
+	* author @Sarasi Sumathipala
 	*/
 	class Revenue extends Controller
 	{
@@ -19,7 +20,7 @@
 
 		public function income()
 		{
-			$this->view->render('revenue/income',false);
+			$this->view->render('revenue/income/index',false);
 
 		}
 
@@ -37,6 +38,12 @@
 		{
 			$this->view->render('revenue/payment',false);
 		}
-
+		/**
+		*	renders fuel tab in income section
+		*	
+		**/
+		public function fuel(){
+			$this->view->render('revenue/income/fuel',false);
+		}
 	}
   ?>
