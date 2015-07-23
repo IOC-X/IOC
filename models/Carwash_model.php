@@ -114,13 +114,15 @@ class Carwash_model extends Model {
         $sql = $this->db->prepare("INSERT INTO regular_transactions(cust_id, package, vehicleNo, amount, date) VALUES(?, ?, ?, ?, ?)");
         $result = $sql->execute(array($cust_id, $package, $vehicleNo, $amount, $date));
     }
+    public function deleteTransaction($id) {
 
-    public function addCarTransaction($cname, $contact, $email, $package, $vehicleNo, $amount, $date) {
-
-        $sql = $this->db->prepare("INSERT INTO car_transactions(cname, contact, email, package, vehicleNo, amount, date) VALUES(?, ?, ?, ?, ?, ?, ?)");
-        $result = $sql->execute(array($cname, $contact, $email, $package, $vehicleNo, $amount, $date));
+        $sql = $this->db->prepare("DELETE FROM regular_transactions WHERE id=$id");
+        $sql->execute();
     }
-
+    public function editRegTransaction($cust_id, $package, $vehicleNo, $amount, $date, $id) {
+        $sql = $this->db->prepare("UPDATE regular_transactions SET cust_id = ?, package = ?, vehicleNo = ?, amount = ?, date = ? WHERE id = ? LIMIT 1");
+        $result = $sql->execute(array($cust_id, $package, $vehicleNo, $amount, $date, $id));
+    }
     public function selectAllRegulartransactions() {
         //$date = date("Y-m-d");  where date like'$date' 
         $sql = $this->db->prepare("SELECT * FROM regular_transactions");
@@ -131,6 +133,14 @@ class Carwash_model extends Model {
         return $regularTransactions;
     }
 
+    //NON-REGULAR TRANSACTION DATA RETREIVING STARTS HERE
+    public function addCarTransaction($cname, $contact, $email, $package, $vehicleNo, $amount, $date) {
+
+        $sql = $this->db->prepare("INSERT INTO car_transactions(cname, contact, email, package, vehicleNo, amount, date) VALUES(?, ?, ?, ?, ?, ?, ?)");
+        $result = $sql->execute(array($cname, $contact, $email, $package, $vehicleNo, $amount, $date));
+    }
+
+    
     public function selectAlltransactions() {
         //$date = date("Y-m-d");  where date like'$date'
         $sql = $this->db->prepare("SELECT * FROM car_transactions");
@@ -143,7 +153,8 @@ class Carwash_model extends Model {
 
         return $Transactions;
     }
-
+    
+    //REPORT DATA RETRIEVING STARTS HERE
     public function CustomerStatistics() {
         $sql1 = $this->db->prepare("set @sum=0;");
         $sql1->execute();
@@ -165,6 +176,8 @@ class Carwash_model extends Model {
         }
         return $stats;
     }
+    
+    
 
 }
 

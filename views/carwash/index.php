@@ -10,8 +10,8 @@
                 <i class="mdi-action-assignment-ind"></i> Regular Customers</a>
             <a href="carwash/transactions" class="btn btn-flat btn-primary" id="transactions">
                 <i class="mdi-action-assignment"></i> Transactions</a>
-            <a href="carwash/history" class="btn btn-flat btn-primary" id="history">
-                <i class="mdi-action-restore"></i> History</a>
+            <a href="carwash/alert" class="btn btn-flat btn-primary" id="alert">
+                <i class="mdi-maps-local-post-office"></i> Alerts</a>
             <a href="carwash/report" class="btn btn-flat btn-primary" id="report">
                 <i class="mdi-action-today"></i> Report</a>
         </div>
@@ -50,7 +50,7 @@
 
                 });
             });
-            $('#history').click(function (e2) {
+            $('#alert').click(function (e2) {
                 e2.preventDefault();
                 var id = $(this).attr('id');
                 $('#subloader').load('/IOC/carwash/' + id, function () {

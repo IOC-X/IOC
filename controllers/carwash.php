@@ -65,8 +65,8 @@ class Carwash extends Controller {
         include '/views/carwash/report/packageReport.php';
     }
     
-    public function history(){
-        include '/views/carwash/history.php';
+    public function alert(){
+        include '/views/carwash/alert.php';
     }
 
     
@@ -239,8 +239,33 @@ class Carwash extends Controller {
         }
         //  $this->redirect('/IOC/#/carwash/packages');     
     }
+    
+    public function editTransaction() {
+        $model = new Carwash_model();
+        $id = $_POST['id'];
+
+       // $customer = $model->selectCustomerById($cust_id);
+        $cust_id = isset($_POST['cust_id']) ? trim($_POST['cust_id']) : null;
+        $package = isset($_POST['package']) ? trim($_POST['package']) : null;
+        $vehicleNo = isset($_POST['vehicleNo']) ? trim($_POST['vehicleNo']) : null;
+        $amount = isset($_POST['amount']) ? trim($_POST['amount']) : null;
+        $date = isset($_POST['date']) ? trim($_POST['date']) : null;
+        {
+            $customers = $model->editRegTransaction($cust_id, $package, $vehicleNo, $amount, $date, $id);
+        }
+        $this->redirect('/IOC/#/carwash');
+    }
+    
+    public function delete_transaction($id){
+        $model = new Carwash_model();
+        $transactions = $model->deleteTransaction($id);
+        $this->redirect('/IOC/#/carwash');
+    }
+
     public function reg_history(){
         $model = new Carwash_model();
+        $customers = $model->selectAllcustomers();
+        $packages = $model->selectAllpackages();
         $regularTransactions = $model->selectAllRegulartransactions();
         include '/views/carwash/transactions/reg_history.php';
     }

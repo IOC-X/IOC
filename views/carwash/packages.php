@@ -1,6 +1,4 @@
-<style>
-    a:hover {color:white;}
-</style>
+
 <div class="btn-group btn-group-justified">
     <a href="carwash/create_package/" class="btn btn-primary" id="create_package"><i class="glyphicon glyphicon-gift"></i>  Add Package</a>
     <a href="carwash/EditPackageEntries/" class="btn btn-primary" id="EditPackageEntries"><i class="glyphicon glyphicon-wrench"></i>  Edit Entries</a>
@@ -9,10 +7,10 @@
     <h1 class="text-center text-success">Carwash Packages</h1>
    
             <?php foreach ($packages as $package) : ?>						
-    <div class="col-lg-4 panel panel-info text-center ">
+    <div class="col-lg-4 panel panel-primary text-center ">
                     
         <div class="panel-heading panel">
-            <a data-toggle="collapse" data-parent="#subloader2" href="#<?php echo ($package->id); ?>"><i class="glyphicon glyphicon-chevron-down"></i> <?php echo ($package->name); ?></a>
+            <button class="btn-primary  btn-group btn-group-justified" data-toggle="collapse" data-parent="#subloader2" href="#<?php echo ($package->id); ?>"><i class="mdi-navigation-arrow-drop-down"></i> <?php echo ($package->name); ?></button>
         </div>
         
         

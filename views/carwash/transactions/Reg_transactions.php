@@ -39,6 +39,7 @@
             <td>
                 <input type="text" class="form-control btn" name="date" id="date"  readonly="readonly" value="<?php echo date("Y-m-d"); ?>">
             </td>
+            
         </tr>
         
     </tbody>
