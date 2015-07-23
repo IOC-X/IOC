@@ -63,7 +63,7 @@ height:70px;
             <td>
                 <a href="" class="btn btn-primary btn-sm btn btn-danger " >
 		<i class="mdi-action-highlight-remove"></i></a>
-                </div>
+                
             </td>
 
             </tr>
