@@ -134,11 +134,11 @@
 		} 
 		//pumpreadings index page
 		public function pump_readings(){
-			$this->view->render('stocks/pump_readings',false);
+			$this->view->render('stocks/pump/index',false);
 		}
 		//daily reading of pumps
 		public function daily_readings(){
-			$this->view->render('stocks/daily_readings',false);
+			$this->view->render('stocks/pump/daily_readings',false);
 		}
 		//inserting pump readings
 		public function insertPumpReadings(){
@@ -190,7 +190,7 @@
 			$prdPrice = $_POST['prd-price'];
 			$prdQnty = $_POST['prd-qnty'];
 			$supplier = $_POST['supplier'];
-
+			
 			$model = new Stocks_model();
 			if($model->addLubricant($prdName,$prdPrice,$prdQnty,$supplier)){
 				echo "Success";
