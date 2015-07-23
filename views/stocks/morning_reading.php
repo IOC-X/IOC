@@ -1,4 +1,4 @@
-<form class="form-horizontal" method="post" id="calculate_mrng" action="stocks/calculateStocks">
+<form class="form-horizontal" method="post" id="calculate_mrng" action="stocks/insertMrngOrder">
     <fieldset>
         <legend>Morning stock readings</legend>
             
@@ -8,16 +8,22 @@
             <label for="petrol" class="col-lg-2 control-label">Petrol</label>
                 <div class="col-lg-4">
                 <select id="petrol" placeholder="petrol" class="form-control" name="petrol">
-                  <option>169</option>
+                  <option></option>
+                  <option value="200">200</option>
+                  <option value="700">700</option>
+                  <option value="1200">1200</option>
                 </select>
                 </div>
                 <div class="col-lg-4">
-                    <label class="qnty"></label>
+                    <label class="qnty" id="qntyPetrol"></label>
+                    <input type="hidden" name="qntyPetrol" id="hiddenPetrol">
                 </div>
                 <div class="ajax-content">
-                <div class="col-lg-1">
-                <select placeholder="petrol" class="form-control">
-                  <option>169</option>
+                <div class="col-lg-2">
+                <select placeholder="petrol" class="form-control" id="suggestionPetrol" name="orderPetrol">
+                  <option value="6600">6600</option>
+                  <option value="13200">13200</option>
+                  <option value="19800">19800</option>
                 </select>
                 </div>
                 </div>
@@ -25,16 +31,22 @@
             <div class="form-group">
             <label for="spetrol" class="col-lg-2 control-label">Super petrol</label>
                 <div class="col-lg-4">
-                  <select id="petrol" placeholder="petrol" class="form-control" name="spetrol">
-                    <option>169</option>
+                  <select id="spetrol" placeholder="petrol" class="form-control" name="spetrol">
+                    <option></option>
+                    <option>200</option>
+                    <option>700</option>
+                    <option>1200</option>
                   </select>
                 </div>
                 <div class="col-lg-4">
-                    <label class="qnty"></label>
+                    <label class="qnty" id="qntySPetrol"></label>
+                    <input type="hidden" name="qntySPetrol" id="hiddenSPetrol">
                 </div>
-                <div class="col-lg-1">
-                <select placeholder="petrol" class="form-control">
-                  <option>169</option>
+                <div class="col-lg-2">
+                <select placeholder="petrol" class="form-control" id="suggestionSPetrol" name="orderSPetrol">
+                  <option value="6600">6600</option>
+                  <option value="13200">13200</option>
+                  <option value="19800">19800</option>
                 </select>
                 </div>
             </div>
@@ -42,15 +54,21 @@
             <label for="diesel" class="col-lg-2 control-label">Diesel</label>
                 <div class="col-lg-4">
                   <select id="diesel" placeholder="petrol" class="form-control" name="diesel">
-                    <option>169</option>
+                    <option></option>
+                    <option>200</option>
+                    <option>700</option>
+                    <option>1200</option>
                   </select>
                 </div>
                 <div class="col-lg-4">
-                    <label class="qnty"></label>
+                    <label class="qnty" id="qntyDiesel"></label>
+                    <input type="hidden" name="qntyDiesel" id="hiddenDiesel">
                 </div>
-                <div class="col-lg-1">
-                <select placeholder="petrol" class="form-control">
-                  <option>169</option>
+                <div class="col-lg-2">
+                <select placeholder="petrol" class="form-control" id="suggestionDiesel" name="orderDiesel">
+                  <option value="6600">6600</option>
+                  <option value="6600">13200</option>
+                  <option value="6600">19800</option>
                 </select>
                 </div>
             </div>
@@ -58,30 +76,33 @@
             <label for="sdiesel" class="col-lg-2 control-label">Super diesel</label>
                 <div class="col-lg-4">
                   <select id="sdiesel" placeholder="petrol" class="form-control" name="sdiesel">
-                    <option>169</option>
+                    <option></option>
+                    <option>200</option>
+                    <option>700</option>
+                    <option>1200</option>
                   </select>
                 </div>
                 <div class="col-lg-4">
-                    <label class="qnty"></label>
+                    <label class="qnty" id="qntySDiesel"></label>
+                    <input type="hidden" name="qntySDiesel" id="hiddenSDiesel">
                 </div>
-                <div class="col-lg-1">
-                <select placeholder="petrol" class="form-control">
-                  <option>169</option>
+                <div class="col-lg-2">
+                <select placeholder="petrol" class="form-control" id="suggestionSDiesel" name="orderSDiesel">
+                  <option value="6600">6600</option>
+                  <option value="13200">13200</option>
+                  <option value="19800">19800</option>
                 </select>
                 </div>
             </div>
         <div class="form-group">
             <div class="col-lg-10 col-lg-offset-2">
                 <button class="btn btn-default" id="cancel_reading">Cancel</button>
-                <button type="submit" class="btn btn-primary" id="calculate">Calculate</button>
+                <button type="submit" class="btn btn-primary" id="calculate">Confirm orders</button>
                 <span class="order"></span>
             </div>
         </div>
     </fieldset>
 </form>
-
-
-
     <script type="text/javascript">
     $('#cancel_reading').click(function(e){
         $('#subloader2').fadeOut('500',function(){
@@ -90,10 +111,89 @@
         e.preventDefault();
     });
     </script>
+    <script type="text/javascript">
+    $('#petrol').change(function(){
 
+        issetQntyLabel();
+
+        var reading = $('#petrol').val();
+        window.petrol = reading;
+        $('#qntyPetrol').empty();
+        setTimeout(function(){
+            $('#qntyPetrol').append('<label style="margin-left:50px">' + qntyPetrol(reading) + '</label>').hide().fadeIn('slow');    
+            $('#hiddenPetrol').val(Number(qntyPetrol(reading)));
+        },500);
+        
+        $('#stock-graph').load('/IOC/stocks/stockgraph').hide().fadeIn('slow');
+
+
+        document.getElementById('suggestionPetrol').selectedIndex = 2;
+    });
+    $('#spetrol').change(function(){
+        issetQntyLabel();
+        var reading = $('#spetrol').val();
+        window.spetrol = reading;
+        $('#qntySPetrol').empty();
+        setTimeout(function(){
+            $('#qntySPetrol').append('<label style="margin-left:50px">' + qntySPetrol(reading) + '</label>').hide().fadeIn('slow');    
+            $('#hiddenSPetrol').val(Number(qntySPetrol(reading)));
+        },500);
+
+        $('#stock-graph').load('/IOC/stocks/stockgraph').hide().fadeIn('slow');
+        
+        document.getElementById('suggestionSPetrol').selectedIndex = 2;
+    });
+    $('#diesel').change(function(){
+        issetQntyLabel();
+        var reading = $('#diesel').val();
+        window.diesel = reading;
+        $('#qntyDiesel').empty();
+        setTimeout(function(){
+            $('#qntyDiesel').append('<label style="margin-left:50px">' + qntyDiesel(reading) + '</label>').hide().fadeIn('slow');    
+            $('#hiddenDiesel').val(Number(qntyDiesel(reading)));
+        },500);
+        
+        $('#stock-graph').load('/IOC/stocks/stockgraph').hide().fadeIn('slow');
+
+        document.getElementById('suggestionDiesel').selectedIndex = 2;
+    });
+    $('#sdiesel').change(function(){
+        issetQntyLabel();
+        var reading = $('#sdiesel').val();
+        window.sdiesel = reading;
+        $('#qntySDiesel').empty();
+        setTimeout(function(){
+            $('#qntySDiesel').append('<label style="margin-left:50px">' + qntySDiesel(reading) + '</label>').hide().fadeIn('slow');    
+            $('#hiddenSDiesel').val(Number(qntySDiesel(reading)));
+        },500);
+        
+        $('#stock-graph').load('/IOC/stocks/stockgraph').hide().fadeIn('slow');
+
+        document.getElementById('suggestionSDiesel').selectedIndex = 2;
+    });
+    function issetQntyLabel(){
+        $('#qnty-label').empty().append('Quantity available');
+    }
+    function qntyPetrol(petrol){
+        return petrol;
+    }
+    function qntySPetrol(spetrol){
+        return spetrol;
+    }
+    function qntyDiesel(diesel){
+        return diesel;
+    }
+    function qntySDiesel(sdiesel){
+        return sdiesel;
+    }
+    
+
+
+    </script>
     <script type="text/javascript">
       $('#calculate_mrng').submit(function(e){
         e.preventDefault();
+        var Data;
         var form = $('#calculate_mrng');
         $.ajax({
           type : form.attr('method'),
@@ -101,13 +201,10 @@
           data : form.serialize(),
           success: function(data){
             console.log(data);
-            $('#calculate').attr('disabled','disabled');
-            $('#qnty-label').append('Quantity available').hide().fadeIn('slow');
-            var input = '<input type="button" class="btn btn-primary" id="confirm_orders" value="Confirm Orders">';
-            $('.order').append(input).hide().fadeIn('slow');
-            $('#suggestion-label').append('Order suggestions').hide().fadeIn('slow');
-            $('.qnty').append('<label style="padding-left:50px">' + data + '</label>').hide().fadeIn('slow');
-            $('#stock-graph').load('/IOC/stocks/stockgraph').hide().fadeIn('slow');
+            if(data){
+                alert('Done !');
+            }
+            $('#calculate').attr('disabled','disabled');                    
           }
         });
       });

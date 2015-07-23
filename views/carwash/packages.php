@@ -1,67 +1,49 @@
+
+    <div class="btn-group btn-group-justified">
+    <a href="carwash/create_package/" class="btn btn-primary" id="create_package">Add Package</a>
+    <a href="carwash/EditPackageEntries/" class="btn btn-primary" id="EditPackageEntries">Edit Entries</a>
+    </div>
 <div data-role="page">
-    <h1 class="text-center">Carwash Packages</h1>
-            <table class="table table-striped table-bordered">
+    <h1 class="text-center text-success">Carwash Packages</h1>
+            <table class="table table-striped table-bordered table-hover">
 		
                     <thead>
 						<tr>
-							<th>Name</th>
-							<th>Description</th>
-                                                        <th>Time</th>
-							<th>Price</th>
-							<th>Action</th>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Time</th>
+                            <th>Price</th>
+                            
 						</tr>
                     </thead>
                     <tbody>
 						<?php  foreach ($packages as $package) : ?>						
-							<tr>
-								<td><?php echo ($package->name);  ?></td>
-								<td><?php echo ($package->description); ?></td>
-                                                                <td><?php echo ($package->time)." Hours";  ?></td>
-								<td><?php echo "Rs.".($package->price); ?></td>
-								<td>
-                                                                        <a class="btn btn-info" id="view_package" href="carwash/view_package/<?php echo $package->id; ?>">View</a>
-                                                                        <a class="btn btn-success" id="edit_package" href="carwash/edit_package/<?php echo $package->id; ?>">Update</a>
-                                                                        <a class="btn btn-danger" id="delete_package" href="carwash/delete_package/<?php echo $package->id; ?>">Delete Package</a>
-								</td>
-
+                        <tr onmouseover="colvalue(this);">
+                                    <td><?php echo ($package->id); ?></td>
+                                    <td><?php echo ($package->name); ?></td>
+                                    <td><?php echo ($package->description); ?></td>
+                                    <td><?php echo ($package->time) . " Hours"; ?></td>
+                                    <td><?php echo "Rs." . ($package->price); ?></td>
 							</tr>
 						<?php endforeach; ?>
 					</tbody>
             </table>
-    <a class="btn btn-primary" id="create_package" href="carwash/create_package/">Add Package</a>     
+   
 	</div>
 <script type="text/javascript">
-// $('#view_package').click(function(e2){
-//	        	e2.preventDefault();
-//	        	var id = $(this).attr('id');
-//                $('#subloader').load('/IOC/carwash/' + id,function(){
-//                    
-//                        $('#subloader').hide();
-//                	$('#subloader').fadeIn('fast');
-//                        //$('#subloader').empty();
-//                       
-//                });
-//	        });
-                
-//                $('#edit').click(function(e2){
-//	        	e2.preventDefault();
-//	        	var id = $(this).attr('id');
-//                $('#subloader').load('/IOC/carwash/' + id,function(){
-//                    
-//                    $('#subloader').hide();
-//                	$('#subloader').fadeIn('fast');
-//                });
-//	        });
+               
+                $('#EditPackageEntries').click(function(e2){
+	        	e2.preventDefault();
+	        	var id = $(this).attr('id');
+                $('#subloader').load('/IOC/carwash/' + id,function(){
+                    
+                    $('#subloader').hide();
+                	$('#subloader').fadeIn('fast');
+                });
+	        });
 //                
-//                $('#delete').click(function(e2){
-//	        	e2.preventDefault();
-//	        	var id = $(this).attr('id');
-//                $('#subloader').load('/IOC/carwash/' + id,function(){
-//                    
-//                    $('#subloader').hide();
-//                	$('#subloader').fadeIn('fast');
-//                });
-//	        });
+//               
 //                
                 $('#create_package').click(function(e2){
 	        	e2.preventDefault();
@@ -70,6 +52,32 @@
                     
                     $('#subloader').hide();
                     $('#subloader').fadeIn('fast');
+                });
+	        });
+            
+            var idValue;
+            function colvalue(row){
+                     var x=row.cells;
+                     idValue = x[0].innerHTML;
+                     idValue = idValue.toString();
+
+                 }
+       
+            $.post("carwash/view_package/",
+            {id:idValue},
+            function(data, textStatus, jqXHR)
+            {
+                //data : Data from server
+            });
+ 
+ $('#view_package').click(function(e2){
+	        	e2.preventDefault();
+	        	//var id = $(this).attr('id');
+                $('#subloader').load('carwash/view_package/' + idValue,function(){
+                    
+                    $('#subloader').hide();
+                	$('#subloader').fadeIn('fast');
+                       console.log('Success !');
                 });
 	        });
           </script>

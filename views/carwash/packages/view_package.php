@@ -3,27 +3,15 @@
 	<head>
 		<title>View Package</title>
 		<meta charset="utf-8">
-<!--<link href="<?php echo CSS ?>dist/css/roboto.min.css" rel="stylesheet">
-    <link href="<?php echo CSS ?>dist/css/material.min.css" rel="stylesheet">
-    <link href="<?php echo CSS ?>dist/css/ripples.min.css" rel="stylesheet">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">-->
 	</head>
 	
         <body> 
-            <?php
-            //include_once 'C:\wamp\www\IOC\controllers\carwash.php';
-           // $model = new Carwash_model();
-            //$id='4';
-            //$id=(isset($_POST['id']) ? $_POST['id'] : null);
-           // echo $id;
-          // $package = $model->selectPackgeById($id); 
-            ?>
 		<div class="container col-lg-6">
 			<div class="span10 offset 1">
 				<div class="row">
 					<h3><strong>View Package</strong></h3>
 				</div>
-
+<?php ?>
 				<div class="form-horizontal col-lg-6">
 					<div class="control-group">
 						<label class="control-label">Name:</label>

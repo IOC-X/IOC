@@ -4,13 +4,26 @@
 			parent::__construct();
 		}
 		public function index(){
-			$this->view->render('stocks/index',false);
+			// if($_SERVER['HTTP_X_REQUESTED_WITH'] == "XMLHttpRequest"){
+			// 	$this->view->render('stocks/index',false);				
+			// }
+			// else{
+			// 	$this->view->render('header/header',false);		
+			// 	$this->view->render('stocks/index',false);				
+			// }
+			$this->view->render('stocks/index',false);				
 		}
 		public function stocks(){
 			//require('models/Stocks_model.php');
 			//$model = new Stocks_model();
 			//$data = $model->getMorningStocks();
-			$this->view->render('stocks/stocks',false);
+			if($_SERVER['HTTP_X_REQUESTED_WITH'] == "XMLHttpRequest"){
+				$this->view->render('stocks/stocks',false);			
+			}
+			else{
+				$this->view->render('stocks/stocks',true);
+			}
+
 		}
 		public function morning_reading(){
 			$this->view->render('stocks/morning_reading',false);
@@ -29,7 +42,22 @@
 			$diesel = $_POST['diesel'];
 			$sdiesel = $_POST['sdiesel'];
 			//returning calculated value to ajax call
-			echo self::petrolReading($petrol);
+			$Apetrol =  self::petrolReading($petrol);
+			$Aspetrol = self::spetrolReading($spetrol);
+			$Adiesel = self::dieselReading($diesel);
+			$Asdiesel = self::sdieselReading($sdiesel);
+
+			$petrol = self::suggestionPetrol($Apetrol);
+			$spetrol = self::suggestionSPetrol($Aspetrol);
+			$diesel = self::suggestionDiesel($Adiesel);
+			$sdiesel = self::suggestionSDiesel($sdiesel);		
+
+
+			$suggestions = array("petrol" => $petrol , "spetrol" => $spetrol, "diesel"=> $diesel, "sdiesel" => $sdiesel);
+			
+			$values = array("petrol" => $Apetrol , "spetrol" => $Aspetrol,"diesel"=> $Adiesel, "sdiesel" => $Asdiesel);
+			$json_array = array($values,$suggestions);
+			echo json_encode($json_array);
 		}
 		//calculates the quantity for each fuel type
 		private function petrolReading($petrol){
@@ -44,6 +72,59 @@
 		private function sdieselReading($sdiesel){
 			return $petrol*2;
 		}
+
+		/* 
+		* calculates order suggestions for each fuel type
+		*/
+		private function suggestionPetrol($Apetrol){
+			if($Apetrol > 100){
+				return 1600;
+			}
+		}
+		private function suggestionSPetrol($Aspetrol){
+			if($Aspetrol > 400){
+				return 1600;
+			}
+		}
+		private function suggestionDiesel($Adiesel){
+			if($Adiesel > 400){
+				return 1600;
+			}
+		}
+		private function suggestionSDiesel($Asdiesel){
+			if($Asdiesel > 400){
+				return 1600;
+			}
+		}	
+
+		/*
+		*  saves order details
+		*/
+		public function insertMrngOrder(){
+
+			require 'models/Stocks_model.php';
+
+			$readingPetrol = $_POST['petrol'];
+			$readingSPetrol = $_POST['spetrol'];
+			$readingDiesel = $_POST['diesel'];
+			$readingSDiesel = $_POST['sdiesel'];
+
+			$qntyPetrol = $_POST['qntyPetrol'];
+			$qntySPetrol = $_POST['qntySPetrol'];
+			$qntyDiesel = $_POST['qntyDiesel'];
+			$qntySDiesel = $_POST['qntySDiesel'];
+			
+			$orderpetrol = $_POST['orderPetrol'];
+			$orderspetrol = $_POST['orderSPetrol'];
+			$orderdiesel = $_POST['orderDiesel'];
+			$ordersdiesel = $_POST['orderSDiesel'];
+			
+			$model = new Stocks_model();
+			$model->insertMrngOrder($readingPetrol,$qntyPetrol,$orderpetrol,$readingSPetrol,$qntySPetrol,$orderspetrol,$readingDiesel,$qntyDiesel,$orderdiesel,$readingSDiesel,$qntySDiesel,$ordersdiesel);
+		}
+
+
+
 		/* 
 		*end for fuel calculation functions
 		*/
@@ -80,19 +161,81 @@
 		public function search_lube(){
 			$this->view->render('stocks/lubricant/search_lube',false);
 		}
+		/*
+		* search function for lubricant search 
+		* @returns String 
+		* search results 
+		*/
+		public function searchLube(){
+			//$name = $_POST['name'];
+//			$name = $_GET['nm'];
+			$value = $_POST['key'];
+			
+			require 'models/Stocks_model.php';
+
+			$model = new Stocks_model();
+			$result = $model->searchLube($value);
+
+			echo json_encode($result);
+		}
 		//renders add lubes page
 		public function add_lube(){
 			$this->view->render('stocks/lubricant/add_lube',false);	
 		}
 		//handles data from add lubePage
 		public function addLube(){
-			echo $_POST['prd-name'];
-			echo $_POST['prd-price'];
-			echo $_POST['prd-qnty'];
+			require 'models/Stocks_model.php';
+
+			$prdName =  $_POST['prd-name'];
+			$prdPrice = $_POST['prd-price'];
+			$prdQnty = $_POST['prd-qnty'];
+			$supplier = $_POST['supplier'];
+
+			$model = new Stocks_model();
+			if($model->addLubricant($prdName,$prdPrice,$prdQnty,$supplier)){
+				echo "Success";
+			}
+			else{
+				echo "Nah";
+			}
 		}
 		//renders editing in lubricants 
 		public function edit_lube(){
 			$this->view->render('stocks/lubricant/edit_lube',false);	
+		}
+		public function loadLubricants(){
+			require 'models/Stocks_model.php';
+
+			$model = new Stocks_model();
+			echo json_encode($model->loadLubricants());
+		}
+		/**
+		* Edit lubricant entries 
+		* @returns boolean
+		*/
+		public function editLube(){
+			$id = $_POST['id'];
+			$name = $_POST['name'];
+			$price = $_POST['price'];
+			$qnty = $_POST['qnty'];
+			$supplier = $_POST['supplier'];
+			
+			require 'models/Stocks_model.php';
+			$model = new Stocks_model();
+			if($model->editLube($id,$name,$price,$qnty,$supplier)){
+				return true;
+			}
+			else{
+				return false;
+			}
+			
+		}
+		public function removeLubricant(){
+			require 'models/Stocks_model.php';
+			$id = $_POST['ID'];
+			$model = new Stocks_model();
+			$model->removeLubricant($id);
+			echo "Done";
 		}
 		//renders suppliers
 		public function suppliers(){
@@ -108,11 +251,51 @@
 		/*
 		* Adding suppliers 
 		* renders adding page
-		* @returns the status of processing
+		* @returns the status of processing | static page |
 		*/
+		public function addSupplier(){
+			$name = $_POST['sup-name'];
+			$products = $_POST['products'];
+			$contact = $_POST['sup-tel-number'];
+
+			require 'models/Stocks_model.php';
+			$model = new Stocks_model();
+			if($model->addSupplier($name,$products,$contact)){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
 		public function add_supplier(){
 			$this->view->render('stocks/suppliers/add',false);
 		}
+		/*
+		* Adding suppliers interacting with the model
+		* @return status of process | boolean |
+		*/
+		public function edit_suppliers(){
+			$this->view->render('stocks/suppliers/edit',false);	
+		}
+		public function loadLubricantEditData(){
+			$va = "he";
+			return json_encode($va);
+		}
+		public function loadLubricantsSuppliers(){
+			require 'models/Stocks_model.php';
 
+			$model = new Stocks_model();
+			echo json_encode($model->loadLubricantsSuppliers());
+		}
+		public function removeLubricantSupplier(){
+			require 'models/Stocks_model.php';
+			$id = $_POST['ID'];
+			$model = new Stocks_model();
+			$model->removeLubricantSupplier($id);
+			echo "Done";
+		}
+		public function history(){
+			$this->view->render('stocks/stockgraph',false);
+		}
 	}
 ?>
