@@ -190,7 +190,7 @@
 			$prdPrice = $_POST['prd-price'];
 			$prdQnty = $_POST['prd-qnty'];
 			$supplier = $_POST['supplier'];
-
+			
 			$model = new Stocks_model();
 			if($model->addLubricant($prdName,$prdPrice,$prdQnty,$supplier)){
 				echo "Success";
