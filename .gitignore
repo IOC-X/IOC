@@ -4,6 +4,4 @@
 /Gruntfile.js
 /nbproject
 libs/Database.php
-libs/Database.php
-
-libs/Database.php
+ioc.sql
