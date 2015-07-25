@@ -52,6 +52,11 @@
 			$st->execute();
 			return $st->fetchAll();
 		}
+		public function getLubricantSuppliers(){
+			$st = $this->db->prepare("SELECT * FROM Suppliers where product='lubricant'");
+			$st->execute();
+			return $st->fetchAll();
+		}
 		public function removeLubricant($id){
 			$st = $this->db->prepare("DELETE FROM Lubricants where Id=:id");
 			$st->execute(array(
@@ -74,24 +79,25 @@
 			));
 			return true;
 		}
-		public function addSupplier($name,$products,$contact){
-			$st = $this->db->prepare("INSERT INTO Lubricant_suppliers (name,product,quantity) VALUES (:name,:product,:contact)");
+		public function addSupplier($name,$product,$email,$contact){
+			$st = $this->db->prepare("INSERT INTO Suppliers (name,product,contact,email) VALUES (:name,:product,:contact,:email)");
 			if($st->execute(array(
 				':name' => $name,
-				':product' => $products,
-				':contact' => $contact
+				':product' => $product,
+				':contact' => $contact,
+				':email' => $email
 			))){
 				return true;
 			}
 
 		}
 		public function loadLubricantsSuppliers(){
-			$st = $this->db->prepare("SELECT * FROM Lubricant_suppliers");
+			$st = $this->db->prepare("SELECT * FROM Suppliers");
 			$st->execute();
 			return $st->fetchAll();
 		}
 		public function removeLubricantSupplier($id){
-			$st = $this->db->prepare("DELETE FROM Lubricant_suppliers where Id=:id");
+			$st = $this->db->prepare("DELETE FROM Suppliers where Id=:id");
 			$st->execute(array(
 				':id' => $id
 			));
