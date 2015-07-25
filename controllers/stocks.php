@@ -134,11 +134,11 @@
 		} 
 		//pumpreadings index page
 		public function pump_readings(){
-			$this->view->render('stocks/pump_readings',false);
+			$this->view->render('stocks/pump/index',false);
 		}
 		//daily reading of pumps
 		public function daily_readings(){
-			$this->view->render('stocks/daily_readings',false);
+			$this->view->render('stocks/pump/daily_readings',false);
 		}
 		//inserting pump readings
 		public function insertPumpReadings(){
@@ -199,6 +199,17 @@
 				echo "Nah";
 			}
 		}
+
+		/**
+		* returns JSON with lubricant suppliers
+		*
+		**/
+		public function getLubricantSuppliers(){
+			require 'models/Stocks_model.php';
+
+			$model = new Stocks_model();
+			echo json_encode($model->getLubricantSuppliers());
+		}
 		//renders editing in lubricants 
 		public function edit_lube(){
 			$this->view->render('stocks/lubricant/edit_lube',false);	
@@ -248,6 +259,9 @@
 		public function search_suppliers(){
 			$this->view->render('stocks/suppliers/search',false);
 		}
+		public function add_supplier(){
+			$this->view->render('stocks/suppliers/add',false);
+		}
 		/*
 		* Adding suppliers 
 		* renders adding page
@@ -255,20 +269,38 @@
 		*/
 		public function addSupplier(){
 			$name = $_POST['sup-name'];
-			$products = $_POST['products'];
-			$contact = $_POST['sup-tel-number'];
-
+			$email = $_POST['sup-email'];
+			$contact = $_POST['sup-contact'];
+			$fuel = $_POST['fuel-sup'];
+			$lubricant = $_POST['lubricant-sup'];
 			require 'models/Stocks_model.php';
 			$model = new Stocks_model();
-			if($model->addSupplier($name,$products,$contact)){
-				return true;
+			
+			if($fuel == "on"){
+				$fuel = "fuel";
+				if($model->addSupplier($name,$fuel,$email,$contact)){
+					return true;
+				}
+				else{
+					return false;
+				}	
 			}
-			else{
-				return false;
+			else if($lubricant == "on"){
+				$lubricant = "lubricant";
+				if($model->addSupplier($name,$lubricant,$email,$contact)){
+					return true;
+				}
+				else{
+					return false;
+				}
 			}
-		}
-		public function add_supplier(){
-			$this->view->render('stocks/suppliers/add',false);
+			else if($fuel == "on" && $lubricant == "on"){
+				$fuel = "fuel";
+				$lubricant = "lubricant";
+				$model->addSupplier($name,$fuel,$email,$contact);
+				//$model->addSupplier($name,$lubricant,$email,$contact));
+			}
+			
 		}
 		/*
 		* Adding suppliers interacting with the model

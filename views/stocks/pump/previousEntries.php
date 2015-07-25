@@ -6,6 +6,9 @@
     <li><a href="javascript:void(0)" id="pump_4">Pump 4</a></li>
     <li><a href="javascript:void(0)" id="pump_5">Pump 5</a></li>
     <li><a href="javascript:void(0)" id="pump_6">Pump 6</a></li>
+    <li><a href="javascript:void(0)" id="pump_7">Pump 7</a></li>
+    <li><a href="javascript:void(0)" id="pump_8">Pump 8</a></li>
+    <li><a href="javascript:void(0)" id="pump_9">Pump 9</a></li>
 
 </ul>
 <table class="table table-striped table-hover ">
