@@ -13,7 +13,7 @@
     <thead>
         <tr>
             <th>Name</th>
-            <th>Price</th>
+            <th>Price(Rs)</th>
             <th>Quantity</th>
             <th>Supplier</th>
         </tr>
