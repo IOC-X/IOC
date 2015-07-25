@@ -1,0 +1,41 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+
+.label_div {
+	width: 120px;
+	float: left;
+	line-height: 30px;
+}
+.input_container {
+	height: 30px;
+	float: left;
+}
+.input_container input {
+	height: 30px;
+	width: 199px;
+	padding: 3px;
+	border: 1px solid #cccccc;
+	border-radius: 5px;
+}
+.input_container ul {
+	width: 199px;
+	border: 1px solid #eaeaea;
+	position: absolute;
+	z-index: 9;
+	background: #f3f3f3;
+	list-style: none;
+}
+.input_container ul li {
+	padding: 2px;
+}
+.input_container ul li:hover{
+	background: #eaeaea;
+}
+#country_list_id {
+	display: none;
+}
+
+
