@@ -10,6 +10,7 @@
                 <th>NIC</th>
                 <th>Address</th>
                 <th>Contact</th>
+                <th>Email</th>
                 <th>Date Registered</th>
                 <th>Edit</th>
                 <th>Delete</th>
@@ -23,9 +24,10 @@
                     <td><?php echo ($customer->nic); ?></td>
                     <td><?php echo ($customer->address); ?></td>
                     <td><?php echo ($customer->contact); ?></td>
+                    <td><?php echo ($customer->email); ?></td>
                     <td><?php echo ($customer->date); ?></td>
                     <td>
-                        <a id="edit_customer" onclick="Editcustomer('<?php echo ($customer->cust_id); ?>','<?php echo ($customer->name); ?>','<?php echo ($customer->nic); ?>','<?php echo ($customer->address); ?>','<?php echo ($customer->contact); ?>','<?php echo ($customer->date); ?>')"> <i class="mdi-content-create"></i> </a>
+                        <a id="edit_customer" onclick="Editcustomer('<?php echo ($customer->cust_id); ?>', '<?php echo ($customer->name); ?>', '<?php echo ($customer->nic); ?>', '<?php echo ($customer->address); ?>', '<?php echo ($customer->contact); ?>','<?php echo ($customer->email); ?>', '<?php echo ($customer->date); ?>')"> <i class="mdi-content-create"></i> </a>
                     </td>
                     <td>
                         <a id="delete_customer" onclick="DeleteAlert('<?php echo ($customer->cust_id); ?>')"> <i class="mdi-content-remove-circle"></i></a>
@@ -70,6 +72,10 @@
                             <input type="number" name="contact" id="contact" class="form-control" required>
                         </div>
                         <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" name="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
                             <label>Date Registered</label>
                             <input name="date" id="date" class="form-control" required>
                         </div> 
@@ -92,48 +98,50 @@
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.0.1/sweetalert.css">
 <script type="text/javascript">
 
-                                    $('#add_customer').click(function (e2) {
-                                        e2.preventDefault();
-                                        var id = $(this).attr('id');
-                                        $('#subloader').load('/IOC/carwash/' + id, function () {
+                            $('#add_customer').click(function (e2) {
+                                e2.preventDefault();
+                                var id = $(this).attr('id');
+                                $('#subloader').load('/IOC/carwash/' + id, function () {
 
-                                            $('#subloader').hide();
-                                            $('#subloader').fadeIn('fast');
-                                        });
-                                    });
+                                    $('#subloader').hide();
+                                    $('#subloader').fadeIn('fast');
+                                });
+                            });
+                            
 
-                                    function Editcustomer(cust_id, name, nic, address, contact, date) {
+                            function Editcustomer(cust_id, name, nic, address, contact, email, date) {
 
 
-                                        document.frmCustomers.cust_id.value = cust_id;
-                                        document.frmCustomers.name.value = name;
-                                        document.frmCustomers.nic.value = nic;
-                                        document.frmCustomers.address.value = address;
-                                        document.frmCustomers.contact.value = contact;
-                                        document.frmCustomers.date.value = date;
-                                        $('#modal').modal('show');
+                                document.frmCustomers.cust_id.value = cust_id;
+                                document.frmCustomers.name.value = name;
+                                document.frmCustomers.nic.value = nic;
+                                document.frmCustomers.address.value = address;
+                                document.frmCustomers.contact.value = contact;
+                                document.frmCustomers.email.value = email;
+                                document.frmCustomers.date.value = date;
+                                $('#modal').modal('show');
+                            }
+
+                            function DeleteAlert(cust_id) {
+                                swal({
+                                    title: "Are you sure?",
+                                    text: "You will not be able to recover this Customer Details!",
+                                    type: "warning",
+                                    showCancelButton: true,
+                                    confirmButtonClass: "btn-danger",
+                                    confirmButtonText: "Yes, Delete it!",
+                                    cancelButtonText: "No, Cancel!",
+                                    closeOnConfirm: false,
+                                    closeOnCancel: false
+                                },
+                                function (isConfirm) {
+                                    if (isConfirm) {
+                                        swal("Deleted!", "Your Customer details has been deleted.", "success");
+                                        window.location = 'carwash/delete_customer/' + cust_id + '';
+
+                                    } else {
+                                        swal("Cancelled", "Your Customer details is safe :)", "error");
                                     }
-
-                                    function DeleteAlert(cust_id) {
-                                        swal({
-                                            title: "Are you sure?",
-                                            text: "You will not be able to recover this Customer Details!",
-                                            type: "warning",
-                                            showCancelButton: true,
-                                            confirmButtonClass: "btn-danger",
-                                            confirmButtonText: "Yes, Delete it!",
-                                            cancelButtonText: "No, Cancel!",
-                                            closeOnConfirm: false,
-                                            closeOnCancel: false
-                                        },
-                                        function (isConfirm) {
-                                            if (isConfirm) {
-                                                swal("Deleted!", "Your Customer details has been deleted.", "success");
-                                                window.location = 'carwash/delete_customer/'+cust_id+'';
-
-                                            } else {
-                                                swal("Cancelled", "Your Customer details is safe :)", "error");
-                                            }
-                                        });
-                                    }
+                                });
+                            }
 </script>

@@ -11,7 +11,7 @@
             <a href="carwash/transactions" class="btn btn-flat btn-primary" id="transactions">
                 <i class="mdi-action-assignment"></i> Transactions</a>
             <a href="carwash/alert" class="btn btn-flat btn-primary" id="alert">
-                <i class="mdi-maps-local-post-office"></i> Alerts</a>
+                <i class="mdi-social-notifications-on"></i> Alerts</a>
             <a href="carwash/report" class="btn btn-flat btn-primary" id="report">
                 <i class="mdi-action-today"></i> Report</a>
         </div>

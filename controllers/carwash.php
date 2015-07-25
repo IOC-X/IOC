@@ -151,6 +151,7 @@ class Carwash extends Controller {
         $nic = isset($_POST['nic']) ? trim($_POST['nic']) : null;
         $address = isset($_POST['address']) ? trim($_POST['address']) : null;
         $contact = isset($_POST['contact']) ? trim($_POST['contact']) : null;
+        $email = isset($_POST['email']) ? trim($_POST['email']) : null;
         $date = isset($_POST['date']) ? trim($_POST['date']) : null; {
             $customers = $model->addCustomer($cust_id, $name, $nic, $address, $contact, $date);
         }
@@ -162,6 +163,7 @@ class Carwash extends Controller {
         $nic = '';
         $address = '';
         $contact = '';
+        $email = '';
 
         include '/views/carwash/regular_customers/add_customer.php';
     }
@@ -181,9 +183,10 @@ class Carwash extends Controller {
         $nic = isset($_POST['nic']) ? trim($_POST['nic']) : null;
         $address = isset($_POST['address']) ? trim($_POST['address']) : null;
         $contact = isset($_POST['contact']) ? trim($_POST['contact']) : null;
+        $email = isset($_POST['email']) ? trim($_POST['email']) : null;
         $date = isset($_POST['date']) ? trim($_POST['date']) : null;
         {
-            $customers = $model->editCustomer($name, $nic, $address, $contact, $date, $cust_id);
+            $customers = $model->editCustomer($name, $nic, $address, $contact,$email, $date, $cust_id);
         }
         $this->redirect('/IOC/#/carwash');
     }
@@ -294,12 +297,58 @@ class Carwash extends Controller {
         //  $this->redirect('/IOC/#/carwash/packages');     
     }
     
+    public function editCarTransaction() {
+        $model = new Carwash_model();
+        $id = $_POST['id'];
+
+       // $customer = $model->selectCustomerById($cust_id);
+        $cname = isset($_POST['cname']) ? trim($_POST['cname']) : null;
+        $contact = isset($_POST['contact']) ? trim($_POST['contact']) : null;
+        $email = isset($_POST['email']) ? trim($_POST['email']) : null;
+        $package = isset($_POST['package']) ? trim($_POST['package']) : null;
+        $vehicleNo = isset($_POST['vehicleNo']) ? trim($_POST['vehicleNo']) : null;
+        $amount = isset($_POST['amount']) ? trim($_POST['amount']) : null;
+        $date = isset($_POST['date']) ? trim($_POST['date']) : null;
+        {
+            $customers = $model->editCarTransaction($cname, $contact, $email, $package, $vehicleNo, $amount, $date, $id);
+        }
+        $this->redirect('/IOC/#/carwash');
+    }
+    
+    public function delete_Cartransaction($id){
+        $model = new Carwash_model();
+        $transactions = $model->deleteCarTransaction($id);
+        $this->redirect('/IOC/#/carwash');
+    }
+    
     public function nonreg_history(){
         $model = new Carwash_model();
         $Transactions = $model->selectAlltransactions();
         include '/views/carwash/transactions/nonreg_history.php';
     }
 
+    public function RegularAlert(){
+          $model = new Carwash_model();
+          $regularTransactions = $model->selectAllRegtransactions();
+        include '/views/carwash/alerts/RegularAlert.php';
+        
+    }
+    public function NormalAlert(){
+        $model = new Carwash_model();
+        $Transactions = $model->selectAllCartransactions();
+        
+        include '/views/carwash/alerts/NormalAlert.php';
+    }
+    public function UpdateStatus($id){
+        $model = new Carwash_model();
+        $status = $model->updateRegStatus($id);
+        $this->redirect('/IOC/#/carwash');
+    }
+    public function UpdateNonRegStatus($id){
+        $model = new Carwash_model();
+        $status = $model->updateNonRegStatus($id);
+        $this->redirect('/IOC/#/carwash');
+    }
 }
 
 ?>

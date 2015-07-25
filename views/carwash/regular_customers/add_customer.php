@@ -51,6 +51,13 @@
                             <span class="help-inline"></span>
                         </div>
                     </div>
+                    <div class="control-group">
+                        <label class="control-label col-lg-4">Email</label>
+                        <div class="controls col-lg-6 panel">
+                            <input type="email" class="form-control floating-label" name="email" id="email" placeholder="Email" value="<?php echo ($email); ?>">
+                            <span class="help-inline"></span>
+                        </div>
+                    </div>
 
                     <div class="control-group">
                         <label class="control-label col-lg-4">Date Registered</label>
@@ -82,12 +89,13 @@
             var nic = $("#nic").val();
             var address = $("#address").val();
             var contact = $("#contact").val();
+            var email = $("#email").val();
             var date = $("#date").val();
 //expression for validation
             var numbers = /^[0-9]+$/;
 
 //validation
-            if (cust_id == '' || name == '' || nic == '' || address == '' || contact == '') {
+            if (cust_id == '' || name == '' || nic == '' || address == '' || contact == ''|| email == '') {
                 alert("Insertion Failed Some Fields are Blank....!!");
             }
             // else if( !(cust_id.match(numbers)) ){
@@ -95,7 +103,7 @@
 
             else {
 // Returns successful data submission message when the entered information is stored in database.
-                $.post("carwash/addCustomer", {cust_id: cust_id, name: name, nic: nic, address: address, contact: contact, date: date},
+                $.post("carwash/addCustomer", {cust_id: cust_id, name: name, nic: nic, address: address, contact: contact,email: email , date: date},
                 function (data) {
                     swal("Good job!", "Successfully added the New Customer!", "success");
                     $('#form')[0].reset(); //To reset form fields

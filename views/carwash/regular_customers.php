@@ -15,6 +15,7 @@
 							<th class="text-center">NIC</th>
 							<th class="text-center">Address</th>
                             <th class="text-center">Contact</th>
+                            <th class="text-center">Email</th>
                             <th class="text-center">Date Registered</th>
 
 						</tr>
@@ -27,6 +28,7 @@
                                     <td><?php echo ($customer->nic); ?></td>
                                     <td><?php echo ($customer->address); ?></td>
                                     <td><?php echo ($customer->contact); ?></td>
+                                     <td><?php echo ($customer->email); ?></td>
                                     <td><?php echo ($customer->date); ?></td>
 
 							</tr>

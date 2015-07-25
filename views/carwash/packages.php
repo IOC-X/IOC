@@ -10,7 +10,7 @@
     <div class="col-lg-4 panel panel-primary text-center ">
                     
         <div class="panel-heading panel">
-            <button class="btn-primary  btn-group btn-group-justified" data-toggle="collapse" data-parent="#subloader2" href="#<?php echo ($package->id); ?>"><i class="mdi-navigation-arrow-drop-down"></i> <?php echo ($package->name); ?></button>
+            <button type="button" class=" btn btn-primary  btn-group btn-group-justified " data-toggle="collapse" data-parent="#subloader2" href="#<?php echo ($package->id); ?>"><i class="mdi-navigation-arrow-drop-down"></i> <?php echo ($package->name); ?></button>
         </div>
         
         

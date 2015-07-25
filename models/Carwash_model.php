@@ -70,18 +70,18 @@ class Carwash_model extends Model {
         return $result;
     }
 
-    public function addCustomer($cust_id, $name, $nic, $address, $contact, $date) {
+    public function addCustomer($cust_id, $name, $nic, $address, $contact,$email, $date) {
         try {
-            $sql = $this->db->prepare("INSERT INTO regular_customers(cust_id, name, nic, address, contact ,date) VALUES(?, ?, ?, ?, ?, ?)");
-            $result = $sql->execute(array($cust_id, $name, $nic, $address, $contact, $date));
+            $sql = $this->db->prepare("INSERT INTO regular_customers(cust_id, name, nic, address, contact ,email ,date) VALUES(?, ?, ?, ?, ?, ?)");
+            $result = $sql->execute(array($cust_id, $name, $nic, $address, $contact, $email, $date));
         } catch (Exception $e) {
             
         }
     }
 
-    public function editCustomer($name, $nic, $address, $contact, $date, $cust_id) {
-        $sql = $this->db->prepare("UPDATE regular_customers SET name = ?, nic = ?, address = ?, contact = ?, date = ? WHERE cust_id = ? LIMIT 1");
-        $result = $sql->execute(array($name, $nic, $address, $contact, $date, $cust_id));
+    public function editCustomer($name, $nic, $address, $contact, $email, $date, $cust_id) {
+        $sql = $this->db->prepare("UPDATE regular_customers SET name = ?, nic = ?, address = ?, contact = ?, email = ?, date = ? WHERE cust_id = ? LIMIT 1");
+        $result = $sql->execute(array($name, $nic, $address, $contact, $email, $date, $cust_id));
     }
 
     public function deleteCustomer($cust_id) {
@@ -140,7 +140,15 @@ class Carwash_model extends Model {
         $result = $sql->execute(array($cname, $contact, $email, $package, $vehicleNo, $amount, $date));
     }
 
-    
+     public function deleteCarTransaction($id) {
+
+        $sql = $this->db->prepare("DELETE FROM car_transactions WHERE id=$id");
+        $sql->execute();
+    }
+    public function editCarTransaction($cname, $contact, $email, $package, $vehicleNo, $amount, $date, $id) {
+        $sql = $this->db->prepare("UPDATE car_transactions SET cname = ?, contact = ?,email = ?, package = ? , vehicleNo = ?, amount = ?, date = ? WHERE id = ? LIMIT 1");
+        $result = $sql->execute(array($cname, $contact, $email, $package, $vehicleNo, $amount, $date, $id));
+    }
     public function selectAlltransactions() {
         //$date = date("Y-m-d");  where date like'$date'
         $sql = $this->db->prepare("SELECT * FROM car_transactions");
@@ -176,7 +184,43 @@ class Carwash_model extends Model {
         }
         return $stats;
     }
+    //ALERTS
+    //REGULAR TRANSACTIONS DATA RETRIEVING FOR ALERTS
+    public function selectAllRegtransactions() {
+        //$date = date("Y-m-d");  where date like'$date'
+        $sql = $this->db->prepare("select t.id, r.name, t.package, t.vehicleNo ,t.date,t.status, r.email from regular_customers r, regular_transactions t where r.cust_id=t.cust_id and t.status like 'Not Returned'");
+        $sql->execute();
+
+        while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+            
+           $Transactions[] = $obj;
+        }
+
+        return $Transactions;
+                    
+        
+    }
     
+    public function updateRegStatus($id){
+        $sql = $this->db->prepare("UPDATE regular_transactions SET status = 'Returned' WHERE id = ? LIMIT 1");
+        $result = $sql->execute(array($id));
+    }
+    public function selectAllCartransactions() {
+        //$date = date("Y-m-d");  where date like'$date'
+        $sql = $this->db->prepare("SELECT * FROM car_transactions where status like 'Not Returned'");
+        $sql->execute();
+
+        while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+
+            $Transactions[] = $obj;
+        }
+
+        return $Transactions;
+    }
+    public function updateNonRegStatus($id){
+        $sql = $this->db->prepare("UPDATE car_transactions SET status = 'Returned' WHERE id = ? LIMIT 1");
+        $result = $sql->execute(array($id));
+    }
     
 
 }

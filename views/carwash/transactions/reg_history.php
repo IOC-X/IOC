@@ -13,6 +13,7 @@
                 <th>Vehicle Number</th>
                 <th>Amount(20% Discount)</th>
                 <th>Date</th>
+                <th>Status</th>
                 <th>Edit</th>
                 <th>Delete</th>
 
@@ -26,6 +27,7 @@
                     <td><?php echo ($transaction->vehicleNo); ?></td>
                     <td><?php echo "Rs." . ($transaction->amount); ?></td>
                     <td><?php echo ($transaction->date); ?></td>
+                    <td><?php echo ($transaction->status); ?></td>
                     <td>
                         <a id="edit_trans" onclick="EditTrans('<?php echo ($transaction->id); ?>', '<?php echo ($transaction->cust_id); ?>', '<?php echo ($transaction->package); ?>', '<?php echo ($transaction->vehicleNo); ?>', '<?php echo ($transaction->amount); ?>', '<?php echo ($transaction->date); ?>')"> <i class="mdi-content-create"></i> </a>
                     </td>
@@ -44,7 +46,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title text-justify">Edit Customer Details</h4>
+                    <h4 class="modal-title text-justify">Edit Transaction Details</h4>
                 </div>
                 <form role="form" action="carwash/editTransaction" name="frmTrans" method="post">
                     <div class="col-lg-12">
