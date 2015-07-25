@@ -6,8 +6,8 @@
         <div class="col-lg-7">
             <input type="text" class="form-control" id="sup-name" placeholder="product name" name="sup-name">
         </div>
-      </div>
-        <div class="form-group">
+        </div>
+        <!--<div class="form-group">
         <label for="products" class="col-lg-2 control-label">Products</label>
         <div class="col-lg-4">
                 <select id="products" placeholder="supplier" class="form-control" name="products">
@@ -16,13 +16,47 @@
                   <option value="lubricants">Lubricants</option>
                 </select>
         </div>
+        
+        --> 
+      
+      <div class="form-group">
+            <label for="products" class="col-lg-2 control-label">Products</label>
+            <div class="col-lg-10" id="products">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" class="fuel" id="fuel-checkbox" id="fuel-checkbox" name="fuel-sup"> Fuel
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label id="lubricantx">
+                        <input type="checkbox" name="lubricant-sup" id="lubricant-checkbox"> Lubricants
+                    </label>
+                </div>
+            </div>
+        <br/>
       </div>
-        <div class="form-group">
+      <!-- <div class="form-group" id="qnty-div">
         <label for="tel-number" class="col-lg-2 control-label">Quantity</label>
         <div class="col-lg-7">
-            <input type="text" class="form-control" id="tel-number" placeholder="contact number" name="sup-tel-number">
+            <input type="text" class="form-control" id="sup-quantity" placeholder="quantity" name="sup-tel-number">
+        </div>
+        </div>
+      -->
+      <div class="form-group">
+        <label for="sup-email" class="col-lg-2 control-label">Email</label>
+        <div class="col-lg-7">
+            <input type="email" class="form-control" id="sup-email" placeholder="email" name="sup-email">
         </div>
       </div>
+        <div class="form-group">
+        <label for="sup-contact" class="col-lg-2 control-label">Contact no</label>
+        <div class="col-lg-7">
+            <input type="text" class="form-control" id="sup-contact" placeholder="contact no" name="sup-contact">
+        </div>    
+        </div>
+        
+
+
         <div class="form-group">
             <div class="col-lg-10 col-lg-offset-2">
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -31,13 +65,35 @@
     </fieldset>
 </form>
 <script>
+    // $(document).ready(function(){
+    //   $('#qnty-div').hide();
+    // });
+    // $('#lubricant-checkbox').change(function(){
+    //   if($(this).is(':checked')){
+    //     $('#qnty-div').fadeIn('slow'); 
+    //   }
+    //   else{
+    //    $('#qnty-div').fadeOut('slow');
+    //   }
+    // });
     $('#add_supplier_form').submit(function(e){
         e.preventDefault();
         var name = $('#sup-name').val();
-        var products = $('#products').val();
-        var contact = $('#tel-number').val();
-        if(name == "" || products == "" || contact == ""){
-          swal("Bump !", "Please fill every field")
+        var contact = $('#sup-contact').val(); 
+        var email = $('#sup-email').val();
+        var contact = $('#sup-contact').val();
+        // console.log($('lubricant-checkbox').is(':checked'));
+        // if($('lubricant-checkbox').is(':checked') == false || $('fuel-checkbox').is(':checked') == false){
+        //   swal("Bump !", "Please check at least one")
+        //   console.log('inside');
+        // }
+        if(name == "" || email == "" || contact == ""){
+            swal("Bump !", "Please fill every field");
+            return false;
+        }
+        if(name.length>=30){
+            swal("Bump !", "Name filed should be less than 30 characters")  
+            return false;
         }
         else{
           console.log('succ');
@@ -54,4 +110,32 @@
 
         }
     });
+    $('#sup-contact').focusout(function(){
+        if(!validateContact($(this).val())){
+            swal("Duhh !", "Please enter 10 digits");    
+        }
+    });
+    $('#sup-email').focusout(function(){
+        if(!validateEmail($(this).val())){
+            swal("Bruhh !", "Not a valid email");    
+        }
+    });
+    function validateEmail(email){
+        if(!email.match(/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i)){
+            return false;
+        }
+        else{
+            return true;            
+        }
+    }
+    function validateContact(contact){
+        if(!contact.match(/^\d{10}$/)){
+            //console.log('Nope !');
+            return false;
+        }
+        else{
+            //console.log('Match ');
+            return true;
+        }
+    }
 </script>
