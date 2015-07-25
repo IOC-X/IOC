@@ -14,7 +14,8 @@
         <tr>
             <th>Name</th>
             <th>Product</th>
-            <th>Quantity</th>
+            <th>Contact</th>
+            <th>Email</th>
         </tr>
     </thead>
     <tbody id="fbody">
@@ -32,7 +33,8 @@
                 $("tbody").append('<tr class="' + x +'">');
                 $("." + x + "").append('<td>' + data[x].name + '</td>');
                 $("." + x + "").append('<td>' + data[x].product + '</td>');
-                $("." + x + "").append('<td>' + data[x].quantity + '</td>');
+                $("." + x + "").append('<td>' + data[x].contact + '</td>');
+                $("." + x + "").append('<td>' + data[x].email + '</td>');
                 $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].Id + '" class="edit"><i class="mdi-content-create"></i></a></div></td>');
                 $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].Id + '" class="remove"><i class="mdi-content-remove-circle"></i></a></div></td>');
                 $("." + x + "").append('</tr>');
