@@ -24,9 +24,6 @@
         <div class="col-lg-4">
                 <select id="supplier" placeholder="supplier" class="form-control" name="supplier">
                   <option></option>
-                  <option value="IOC">IOC</option>
-                  <option value="T2 dude">T2 dude</option>
-                  <option value="Le Dude">Le Dude</option>
                 </select>
         </div>
     	</div>
@@ -40,22 +37,43 @@
 <script>
     $('#add_lube_form').submit(function(e){
         e.preventDefault();
-        console.log('succ');
-        var form = $('#add_lube_form');
-        $.ajax({
-          type : form.attr('method'),
-          url : form.attr('action'),
-          data : form.serialize(),
-          success: function(data){
-            console.log(data);
-            if(data){
-                swal("Supplier added successfully!", "click okay to continue", "success");
-                $('#prd-name').val("");
-                $('#price').val("");
-                $('#qnty').val("");
-                $('#supplier').val("");
+        var name = $('#prd-name').val();
+        var price = $('#prd-price').val();
+        var qnty = $('#prd-qnty').val();
+        var supplier = $('#supplier').val();
+
+        if(name == "" || price == "" || qnty == "" || supplier == ""){
+            swal("Bump !", "Please fill every field")  
+            //return false;
+        }
+        else{
+            console.log('succ');
+            var form = $('#add_lube_form');
+            $.ajax({
+              type : form.attr('method'),
+              url : form.attr('action'),
+              data : form.serialize(),
+              success: function(data){
+                console.log(data);
+                if(data){
+                    swal("Supplier added successfully!", "click okay to continue", "success");
+                    $('#prd-name').val("");
+                    $('#price').val("");
+                    $('#qnty').val("");
+                    $('#supplier').val("");
+                }
+              }
+            });
+        }
+    });
+    $(document).ready(function(){
+        console.log('Clicked !');
+        $.getJSON('stocks/getLubricantSuppliers',function(data){
+            var len = data.length;
+            for(a=0;a<len;a++){
+                $('#supplier').append($('<option>', {value:data[a].name, text:data[a].name}));                
             }
-          }
         });
+        console.log('Done !');
     });
 </script>

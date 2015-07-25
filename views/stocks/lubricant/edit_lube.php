@@ -56,9 +56,7 @@
         <label for="supplier" class="col-lg-2 control-label">Supplier</label>
         <div class="col-lg-4">
                 <select id="supplier" placeholder="supplier" class="form-control" name="supplier">
-                  <option value="IOC">IOC</option>
-                  <option value="T2 dude">T2 dude</option>
-                  <option value="Le Dude">Le Dude</option>
+                  
                 </select>
         </div>
         </div>
@@ -113,11 +111,7 @@
                             $.post('stocks/removeLubricant', { ID : id }, function(data){
                                 console.log(data);
                                 //alert('Done !');
-                                $('#subloader2').empty();
-                                $('#subloader2').load('/IOC/stocks/edit_lube',function(){
-                                    $('#subloader2').hide();
-                                    $('#subloader2').fadeIn('slow');
-                                });
+                                refresh();
                             });
                             swal("Deleted!", "Entry deleted !.", "success");    
                         } 
@@ -129,16 +123,25 @@
             });
 
             $('.edit').click(function(e){
+
                 var id = $(this).attr('href');
                 window.editID = id;
                 $('#myModal').modal('show');
                 setTimeout(function(){
+                    $('#supplier').empty();
                     var name = $()
                     //$('#prd-name').val('Test');
                     var name = $('#'+ id +'-name').text();
                     var price = $('#'+ id +'-price').text();
                     var quantity = $('#'+ id +'-quantity').text();
                     var supplier = $('#'+ id +'-supplier').text();
+
+                    $.getJSON('stocks/getLubricantSuppliers',function(data){
+                        var len = data.length;
+                        for(a=0;a<len;a++){
+                            $('#supplier').append($('<option>', {value:data[a].name, text:data[a].name}));                
+                        }
+                    });
                     //console.log(name + price + quantity + supplier);
                     $('#prd-name').val(name);
                     $('#price').val(price);
@@ -159,6 +162,8 @@
 
                 $.post('stocks/editLube',{ name : prd_name , price : prd_price , qnty : prd_qnty , supplier : prd_supplier , id : prd_ID },function(data){
                     console.log(data);
+                    $('#myModal').hide();
+                    refresh();
                 });
             });
     });
@@ -187,5 +192,12 @@
         //show the rows that match.
         .show();
     });
+    function refresh(){
+        $('#subloader2').empty();
+        $('#subloader2').load('/IOC/stocks/edit_lube',function(){
+            $('#subloader2').hide();
+            $('#subloader2').fadeIn('slow');
+        });
+    }
 
 </script>
