@@ -4,57 +4,46 @@
         <div class="form-group">
         <label for="sup-name" class="col-lg-2 control-label">Supplier name</label>
         <div class="col-lg-7">
-            <input type="text" class="form-control" id="sup-name" placeholder="product name" name="sup-name">
+            <input type="text" class="form-control" id="sup-name" placeholder="supplier name" name="sup-name">
         </div>
         </div>
-        <!--<div class="form-group">
-        <label for="products" class="col-lg-2 control-label">Products</label>
-        <div class="col-lg-4">
-                <select id="products" placeholder="supplier" class="form-control" name="products">
-                  <option></option>
-                  <option value="fuel">Fuel</option>
-                  <option value="lubricants">Lubricants</option>
-                </select>
-        </div>
-        
-        --> 
-      
-      <div class="form-group">
-            <label for="products" class="col-lg-2 control-label">Products</label>
-            <div class="col-lg-10" id="products">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" class="fuel" id="fuel-checkbox" id="fuel-checkbox" name="fuel-sup"> Fuel
-                    </label>
+          
+          <div class="form-group">
+                <label for="products" class="col-lg-2 control-label">Products</label>
+                <div class="col-lg-10" id="products">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" class="fuel" id="fuel-checkbox" id="fuel-checkbox" name="fuel-sup"> Fuel
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label id="lubricantx">
+                            <input type="checkbox" name="lubricant-sup" id="lubricant-checkbox"> Lubricants
+                        </label>
+                    </div>
                 </div>
-                <div class="checkbox">
-                    <label id="lubricantx">
-                        <input type="checkbox" name="lubricant-sup" id="lubricant-checkbox"> Lubricants
-                    </label>
-                </div>
+            <br/>
+          </div>
+          <!-- <div class="form-group" id="qnty-div">
+            <label for="tel-number" class="col-lg-2 control-label">Quantity</label>
+            <div class="col-lg-7">
+                <input type="text" class="form-control" id="sup-quantity" placeholder="quantity" name="sup-tel-number">
             </div>
-        <br/>
-      </div>
-      <!-- <div class="form-group" id="qnty-div">
-        <label for="tel-number" class="col-lg-2 control-label">Quantity</label>
-        <div class="col-lg-7">
-            <input type="text" class="form-control" id="sup-quantity" placeholder="quantity" name="sup-tel-number">
-        </div>
-        </div>
-      -->
-      <div class="form-group">
-        <label for="sup-email" class="col-lg-2 control-label">Email</label>
-        <div class="col-lg-7">
-            <input type="email" class="form-control" id="sup-email" placeholder="email" name="sup-email">
-        </div>
-      </div>
-        <div class="form-group">
-        <label for="sup-contact" class="col-lg-2 control-label">Contact no</label>
-        <div class="col-lg-7">
-            <input type="text" class="form-control" id="sup-contact" placeholder="contact no" name="sup-contact">
-        </div>    
-        </div>
-        
+            </div>
+          -->
+          <div class="form-group">
+            <label for="sup-email" class="col-lg-2 control-label">Email</label>
+            <div class="col-lg-7">
+                <input type="email" class="form-control" id="sup-email" placeholder="email" name="sup-email">
+            </div>
+          </div>
+            <div class="form-group">
+            <label for="sup-contact" class="col-lg-2 control-label">Contact no</label>
+            <div class="col-lg-7">
+                <input type="text" class="form-control" id="sup-contact" placeholder="contact no" name="sup-contact">
+            </div>    
+            </div>
+            
 
 
         <div class="form-group">
@@ -96,18 +85,17 @@
             return false;
         }
         else{
-          console.log('succ');
-          var form = $('#add_supplier_form');
-          $.ajax({
-            type : form.attr('method'),
-            url : form.attr('action'),
-            data : form.serialize(),
-            success: function(data){
-              console.log(data);
-              swal("Supplier added successfully!", "click okay to continue", "success")
-            }
-          });
-
+            console.log('succ');
+            var form = $('#add_supplier_form');
+            $.ajax({
+                type : form.attr('method'),
+                url : form.attr('action'),
+                data : form.serialize(),
+                success: function(data){
+                  console.log(data);
+                  swal("Supplier added successfully!", "click okay to continue", "success")
+                }
+            });
         }
     });
     $('#sup-contact').focusout(function(){
