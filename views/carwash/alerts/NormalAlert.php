@@ -32,7 +32,7 @@
                 <td><?php echo ($transaction->date); ?></td>
                
                 <td>
-                    <a id="alert_Cartrans" onclick="SendNormalAlert('<?php echo ($transaction->id); ?>')"> <i class="mdi-communication-textsms"></i></a>
+                    <a id="alert_Cartrans" onclick="SendNormalAlert('<?php echo ($transaction->id); ?>','<?php echo ($transaction->cname); ?>','<?php echo ($transaction->email); ?>','<?php echo ($transaction->contact); ?>')"> <i class="mdi-communication-textsms"></i></a>
                 </td>
             </tr>
         <?php endforeach; ?>
@@ -42,7 +42,7 @@
 <script type="text/javascript">
 
    
-    function SendNormalAlert(id) {
+    function SendNormalAlert(id,cname,email,contact) {
         swal({
             title: "Are you sure?",
             text: "You are about to send a confirmation Email to client for collect the vehicle!!",
@@ -57,7 +57,16 @@
         function (isConfirm) {
             if (isConfirm) {
                 swal("Message Sent!", "Your Confirmation Alert has been sent.", "success");
-                window.location = 'carwash/UpdateNonRegStatus/' + id + '';
+                
+                $.post('carwash/UpdateNonRegStatus', {id: id, user:cname, email:email, contact:contact}, function (data) {
+                                            console.log(data);
+
+                                        });
+                                        $('#subloader2').empty();
+                                        $('#subloader2').load('/IOC/carwash/NormalAlert', function () {
+                                            $('#subloader2').hide();
+                                            $('#subloader2').fadeIn('fast');
+                                        });
 
             } else {
                 swal("Cancelled", "Your Email was not sent :)", "error");

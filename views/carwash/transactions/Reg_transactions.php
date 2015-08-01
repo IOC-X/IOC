@@ -88,13 +88,18 @@
             } 
 
             else {
+                
                 // Returns successful data submission message when the entered information is stored in database.
                 $.post("carwash/addTransaction", {cust_id: cust_id, package: package, vehicleNo: vehicleNo, amount: amount, date: date},
                 function (data) {
                     //alert(data);
-                    window.location.reload(true);
                     swal("Good job!", "Successfully added the New Transaction!", "success");
-                    $('#transactionForm')[0].reset(); //To reset form fields
+                    
+                        $('#subloader2').empty();
+                        $('#subloader2').load('/IOC/carwash/reg_history', function () {
+                        $('#subloader2').hide();
+                        $('#subloader2').fadeIn('fast');
+                    });
                 });
                 console.log('data sent');
 
