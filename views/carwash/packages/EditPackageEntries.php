@@ -123,13 +123,26 @@
 
 //expression for validation
                         var numbers = /^[0-9]+$/;
-
+                       
 //validation
                         if (id == '' || name == '' || description == '' || time == '' || price == '') {
 
-                            sweetAlert("Oops...", "Insertion Failed Some Fields are Blank....!!", "error");
+                            swal("Oops...", "Insertion Failed Some Fields are Blank....!!", "error");
                         }
-
+                        
+                        else if(name.match(numbers)){
+                            swal("Oops...", "Name should be letters....!!", "error");
+                        }
+                        else if(description.match(numbers)){
+                            swal("Oops...", "Description should be letters....!!", "error");
+                        }
+                        
+                        else if(time<1){
+                            swal("Oops...", "Duration should be atleast one hour....!!", "error");
+                        }
+                        else if(price<1000){
+                            swal("Oops...", "Check the price again....!!", "error");
+                        }
 
                         else {
 // Returns successful data submission message when the entered information is stored in database.
@@ -137,6 +150,11 @@
                             function (data) {
                                 swal("Good job!", "Successfully Updated the package!", "success");
                                 // $('#form')[0].reset(); //To reset form fields
+                                $('#subloader').empty();
+                                $('#subloader').load('/IOC/carwash/EditPackageEntries', function () {
+                                    $('#subloader').hide();
+                                    $('#subloader').fadeIn('fast');
+                                });
 
                             });
                             console.log('data sent');
@@ -160,8 +178,16 @@
                     function (isConfirm) {
                         if (isConfirm) {
                             swal("Deleted!", "Your Package details has been deleted.", "success");
-                            window.location = 'carwash/delete_package/' + id + '';
-
+                            $.post('carwash/delete_package', { ID : id }, function(data){
+                                console.log(data);
+                               
+                                
+                            });
+                            
+                        $('#subloader2').load('/IOC/carwash/EditPackageEntries', function () {
+                        $('#subloader2').hide();
+                        $('#subloader2').fadeIn('fast');
+                    });
                         } else {
                             swal("Cancelled", "Your Package details is safe :)", "error");
                         }

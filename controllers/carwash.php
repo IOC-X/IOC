@@ -107,10 +107,11 @@ class Carwash extends Controller {
         include '/views/carwash/packages/view_package.php';
     }
 
-    public function delete_package($id) {
+    public function delete_package() {
+        $id = $_POST['ID'];
         $model = new Carwash_model();
         $package = $model->deletePackage($id);
-        $this->redirect('/IOC/#/carwash');
+        
     }
 
     public function createPackage() {
@@ -153,7 +154,7 @@ class Carwash extends Controller {
         $contact = isset($_POST['contact']) ? trim($_POST['contact']) : null;
         $email = isset($_POST['email']) ? trim($_POST['email']) : null;
         $date = isset($_POST['date']) ? trim($_POST['date']) : null; {
-            $customers = $model->addCustomer($cust_id, $name, $nic, $address, $contact, $date);
+            $customers = $model->addCustomer($cust_id, $name, $nic, $address, $contact,$email, $date);
         }
     }
 
@@ -168,10 +169,11 @@ class Carwash extends Controller {
         include '/views/carwash/regular_customers/add_customer.php';
     }
 
-    public function delete_customer($id) {
+    public function delete_customer() {
+        $id = $_POST['ID'];
         $model = new Carwash_model();
         $customers = $model->deleteCustomer($id);
-        $this->redirect('/IOC/#/carwash');
+        
     }
 
     public function editCustomer() {
@@ -191,19 +193,9 @@ class Carwash extends Controller {
         $this->redirect('/IOC/#/carwash');
     }
 
-    public function edit_customer($cust_id = false) {
-        //$this->view->render('carwash/edit',false);
-        //$id=$_POST['id'];
-        $name = '';
-        $nic = '';
-        $address = '';
-        $contact = '';
-        $date = '';
-        $title = 'Edit Customer Details';
-        $model = new Carwash_model();
-        $customer = $model->selectCustomerById($cust_id);
-
-        include '/views/carwash/regular_customers/edit_customer.php';
+    public function edit_customer() {
+       
+        include '/views/carwash/regular_customers/EditCustomerEntries.php';
     }
     
     public function searchCustomer(){

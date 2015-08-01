@@ -41,7 +41,7 @@
 
 </div>
 
- <div class="ui modal" id="modal" tabindex="-1" role="dialog">
+ <div class="ui modal" id="modalT" tabindex="-1" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -83,7 +83,7 @@
                         
                         <div class="form-group">
                             <label>Transaction Date</label>
-                            <input name="date" id="date" class="form-control form_datetime" required>
+                            <input type="date" name="date" id="date" class="form-control form_datetime" required>
                         </div> 
 
                         <button type="submit" class="btn btn-primary btn-lg">
@@ -109,7 +109,7 @@
                                         document.frmTrans.vehicleNo.value = vehicleNo;
                                         document.frmTrans.amount.value = amount;
                                         document.frmTrans.date.value = date;
-                                        $('#modal').modal('show');
+                                        $('#modalT').modal('show');
                                     }
 
                                     function DeleteAlert(id) {

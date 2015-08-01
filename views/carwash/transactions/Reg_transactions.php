@@ -72,13 +72,20 @@
             var cust_id = $("#select1 option:selected").text();
             var package = $("#select2 option:selected").text();
             var vehicleNo = $("#Vno").val();
+            var originalAmount = $("#original_amount").val();
             var amount = $("#amount").val();
             var date = $("#date").val();
 
 //validation
             if (vehicleNo == '') {
-                alert("Transaction Failed. Please Enter Vehicle Number");
+                swal("Oops.. Something went wrong..","Transaction Failed. Please Enter Vehicle Number..!","error");
+                return false;
             }
+            
+            else if(amount==''|| originalAmount==''){
+                swal("Oops.. Something went wrong..","Transaction Failed. Please select the package again..!","error");
+                return false;
+            } 
 
             else {
                 // Returns successful data submission message when the entered information is stored in database.
@@ -86,6 +93,7 @@
                 function (data) {
                     //alert(data);
                     window.location.reload(true);
+                    swal("Good job!", "Successfully added the New Transaction!", "success");
                     $('#transactionForm')[0].reset(); //To reset form fields
                 });
                 console.log('data sent');

@@ -72,7 +72,7 @@ class Carwash_model extends Model {
 
     public function addCustomer($cust_id, $name, $nic, $address, $contact,$email, $date) {
         try {
-            $sql = $this->db->prepare("INSERT INTO regular_customers(cust_id, name, nic, address, contact ,email ,date) VALUES(?, ?, ?, ?, ?, ?)");
+            $sql = $this->db->prepare("INSERT INTO regular_customers(cust_id, name, nic, address, contact ,email ,date) VALUES(?, ?, ?, ?, ?, ?, ?)");
             $result = $sql->execute(array($cust_id, $name, $nic, $address, $contact, $email, $date));
         } catch (Exception $e) {
             
@@ -192,10 +192,10 @@ class Carwash_model extends Model {
         $sql->execute();
 
         while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
-            
+             
            $Transactions[] = $obj;
         }
-
+        
         return $Transactions;
                     
         
