@@ -224,7 +224,7 @@
           success: function(data){
             console.log(data);
             if(data){
-                alert('Done !');
+                swal("Success !", "Order entries successfully added !", "success")
             }
             $('#calculate').attr('disabled','disabled');                    
           }
