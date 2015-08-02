@@ -43,7 +43,7 @@
                     <input type="hidden" name="qntySPetrol" id="hiddenSPetrol">
                 </div>
                 <div class="col-lg-2">
-                <select placeholder="petrol" class="form-control" id="suggestionSPetrol" name="orderSPetrol">
+                <select placeholder="petrol" class="form-control" id="suggestionSPetrol" name="orderSPetrol" hidee >
                   <option value="6600">6600</option>
                   <option value="13200">13200</option>
                   <option value="19800">19800</option>
@@ -116,6 +116,12 @@
         });
         e.preventDefault();
     });
+    $(document).ready(function(){
+        $('#suggestionPetrol').hide();
+        $('#suggestionSPetrol').hide();
+        $('#suggestionDiesel').hide();
+        $('#suggestionSDiesel').hide();
+    });
     </script>
     <script type="text/javascript">
     $('#petrol').change(function(){
@@ -127,6 +133,7 @@
         $('#qntyPetrol').empty();
         setTimeout(function(){
             $('#qntyPetrol').append('<label style="margin-left:50px">' + qntyPetrol(reading) + '</label>').hide().fadeIn('slow');    
+            $('#suggestionPetrol').fadeIn();
             $('#hiddenPetrol').val(Number(qntyPetrol(reading)));
         },500);
         
@@ -143,6 +150,7 @@
         $('#qntySPetrol').empty();
         setTimeout(function(){
             $('#qntySPetrol').append('<label style="margin-left:50px">' + qntySPetrol(reading) + '</label>').hide().fadeIn('slow');    
+            $('#suggestionSPetrol').fadeIn();
             $('#hiddenSPetrol').val(Number(qntySPetrol(reading)));
         },500);
 
@@ -158,6 +166,7 @@
         $('#qntyDiesel').empty();
         setTimeout(function(){
             $('#qntyDiesel').append('<label style="margin-left:50px">' + qntyDiesel(reading) + '</label>').hide().fadeIn('slow');    
+            $('#suggestionDiesel').fadeIn();
             $('#hiddenDiesel').val(Number(qntyDiesel(reading)));
         },500);
         
@@ -173,6 +182,7 @@
         $('#qntySDiesel').empty();
         setTimeout(function(){
             $('#qntySDiesel').append('<label style="margin-left:50px">' + qntySDiesel(reading) + '</label>').hide().fadeIn('slow');    
+            $('#suggestionSDiesel').fadeIn();
             $('#hiddenSDiesel').val(Number(qntySDiesel(reading)));
         },500);
         
