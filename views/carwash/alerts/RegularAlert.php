@@ -19,13 +19,14 @@ if (!$regularTransactions){ ?>
 
         <thead>
             <tr class="success">
-                <th>Customer Name</th>
-                <th>Package Name</th>
-                <th>Vehicle Number</th>
-                <th>Date</th>
-                <th>Status</th>
-                <th>Email</th>
-                <th>Send Email Alert</th>
+                <th class="text-center">Customer Name</th>
+                <th class="text-center">Package Name</th>
+                <th class="text-center">Vehicle Number</th>
+                <th class="text-center">Date</th>
+                <th class="text-center">Status</th>
+                <th class="text-center">Email</th>
+                <th class="text-center">Phone Number</th>
+                <th class="text-center">Send Sms & Email Alert</th>
 
             </tr>
         </thead>
@@ -38,8 +39,9 @@ if (!$regularTransactions){ ?>
                     <td><?php echo ($transaction->date); ?></td>
                     <td><?php echo ($transaction->status); ?></td>
                     <td><?php echo ($transaction->email); ?></td>
+                    <td><?php echo ($transaction->contact); ?></td>
                     <td>
-                        <a id="delete_trans" onclick="SendAlert('<?php echo ($transaction->id); ?>')"> <i class="mdi-communication-email"></i></a>
+                        <a id="delete_trans" onclick="SendAlert('<?php echo ($transaction->id); ?>','<?php echo ($transaction->name); ?>','<?php echo ($transaction->email); ?>','<?php echo ($transaction->contact); ?>')"> <i class="mdi-communication-email"></i></a>
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -54,7 +56,7 @@ if (!$regularTransactions){ ?>
 
                                    
 
-                                    function SendAlert(id) {
+                                    function SendAlert(id,name,email,contact) {
                                         swal({
                                             title: "Are you sure?",
                                             text: "You are about to send a confirmation Email to client for collect the vehicle!",
@@ -69,7 +71,16 @@ if (!$regularTransactions){ ?>
                                         function (isConfirm) {
                                             if (isConfirm) {
                                                 swal("Message Sent!", "Your Confirmation Email has been sent.", "success");
-                                                window.location = 'carwash/UpdateStatus/'+id+'';
+                                                
+                                                $.post('carwash/UpdateStatus', {id: id, user:name, email:email, contact:contact}, function (data) {
+                                            console.log(data);
+
+                                        });
+                                        $('#subloader2').empty();
+                                        $('#subloader2').load('/IOC/carwash/RegularAlert', function () {
+                                            $('#subloader2').hide();
+                                            $('#subloader2').fadeIn('fast');
+                                        });
 
                                             } else {
                                                 swal("Cancelled", "Your Email was not sent :)", "error");
