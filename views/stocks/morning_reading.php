@@ -14,7 +14,7 @@
                   <option value="1200">1200</option>
                 </select>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <label class="qnty" id="qntyPetrol"></label>
                     <input type="hidden" name="qntyPetrol" id="hiddenPetrol">
                 </div>
@@ -38,12 +38,12 @@
                     <option>1200</option>
                   </select>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <label class="qnty" id="qntySPetrol"></label>
                     <input type="hidden" name="qntySPetrol" id="hiddenSPetrol">
                 </div>
                 <div class="col-lg-2">
-                <select placeholder="petrol" class="form-control" id="suggestionSPetrol" name="orderSPetrol">
+                <select placeholder="petrol" class="form-control" id="suggestionSPetrol" name="orderSPetrol" hidee >
                   <option value="6600">6600</option>
                   <option value="13200">13200</option>
                   <option value="19800">19800</option>
@@ -60,7 +60,7 @@
                     <option>1200</option>
                   </select>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <label class="qnty" id="qntyDiesel"></label>
                     <input type="hidden" name="qntyDiesel" id="hiddenDiesel">
                 </div>
@@ -82,7 +82,7 @@
                     <option>1200</option>
                   </select>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <label class="qnty" id="qntySDiesel"></label>
                     <input type="hidden" name="qntySDiesel" id="hiddenSDiesel">
                 </div>
@@ -103,24 +103,37 @@
         </div>
     </fieldset>
 </form>
+
+
     <script type="text/javascript">
     $('#cancel_reading').click(function(e){
         $('#subloader2').fadeOut('500',function(){
+            window.petrol = "";
+            window.spetrol = "";
+            window.diesel = "";
+            window.sdiesel = "";
             $('#subloader2').empty();
         });
         e.preventDefault();
+    });
+    $(document).ready(function(){
+        $('#suggestionPetrol').hide();
+        $('#suggestionSPetrol').hide();
+        $('#suggestionDiesel').hide();
+        $('#suggestionSDiesel').hide();
     });
     </script>
     <script type="text/javascript">
     $('#petrol').change(function(){
 
         issetQntyLabel();
-
+        issetOrderAmt();
         var reading = $('#petrol').val();
-        window.petrol = reading;
+        window.petrol = qntyPetrol(reading);
         $('#qntyPetrol').empty();
         setTimeout(function(){
             $('#qntyPetrol').append('<label style="margin-left:50px">' + qntyPetrol(reading) + '</label>').hide().fadeIn('slow');    
+            $('#suggestionPetrol').fadeIn();
             $('#hiddenPetrol').val(Number(qntyPetrol(reading)));
         },500);
         
@@ -130,12 +143,14 @@
         document.getElementById('suggestionPetrol').selectedIndex = 2;
     });
     $('#spetrol').change(function(){
+        issetOrderAmt();
         issetQntyLabel();
         var reading = $('#spetrol').val();
-        window.spetrol = reading;
+        window.spetrol = qntySPetrol(reading);
         $('#qntySPetrol').empty();
         setTimeout(function(){
             $('#qntySPetrol').append('<label style="margin-left:50px">' + qntySPetrol(reading) + '</label>').hide().fadeIn('slow');    
+            $('#suggestionSPetrol').fadeIn();
             $('#hiddenSPetrol').val(Number(qntySPetrol(reading)));
         },500);
 
@@ -144,12 +159,14 @@
         document.getElementById('suggestionSPetrol').selectedIndex = 2;
     });
     $('#diesel').change(function(){
+        issetOrderAmt();
         issetQntyLabel();
         var reading = $('#diesel').val();
-        window.diesel = reading;
+        window.diesel = qntyDiesel(reading);
         $('#qntyDiesel').empty();
         setTimeout(function(){
             $('#qntyDiesel').append('<label style="margin-left:50px">' + qntyDiesel(reading) + '</label>').hide().fadeIn('slow');    
+            $('#suggestionDiesel').fadeIn();
             $('#hiddenDiesel').val(Number(qntyDiesel(reading)));
         },500);
         
@@ -158,12 +175,14 @@
         document.getElementById('suggestionDiesel').selectedIndex = 2;
     });
     $('#sdiesel').change(function(){
+        issetOrderAmt();
         issetQntyLabel();
         var reading = $('#sdiesel').val();
-        window.sdiesel = reading;
+        window.sdiesel = qntySDiesel(reading);
         $('#qntySDiesel').empty();
         setTimeout(function(){
             $('#qntySDiesel').append('<label style="margin-left:50px">' + qntySDiesel(reading) + '</label>').hide().fadeIn('slow');    
+            $('#suggestionSDiesel').fadeIn();
             $('#hiddenSDiesel').val(Number(qntySDiesel(reading)));
         },500);
         
@@ -172,19 +191,22 @@
         document.getElementById('suggestionSDiesel').selectedIndex = 2;
     });
     function issetQntyLabel(){
-        $('#qnty-label').empty().append('Quantity available');
+        $('#qnty-label').empty().append('Quantity available (litres)');
+    }
+    function issetOrderAmt(){
+        $('#suggestion-label').empty().append('Orders (litres)');
     }
     function qntyPetrol(petrol){
-        return petrol;
+        return 2*petrol;
     }
     function qntySPetrol(spetrol){
-        return spetrol;
+        return 2*spetrol;
     }
     function qntyDiesel(diesel){
-        return diesel;
+        return 2*diesel;
     }
     function qntySDiesel(sdiesel){
-        return sdiesel;
+        return 2*sdiesel;
     }
     
 
@@ -202,7 +224,7 @@
           success: function(data){
             console.log(data);
             if(data){
-                alert('Done !');
+                swal("Success !", "Order entries successfully added !", "success")
             }
             $('#calculate').attr('disabled','disabled');                    
           }
@@ -212,6 +234,5 @@
 <div id="stock-graph" >
    
 </div>
-
 
 

@@ -57,5 +57,14 @@
 		public function lubricants(){
 			$this->view->render('revenue/income/lubricants',false);
 		}
+
+		/**
+		*	renders overall income tab in income section
+		*
+		 **/
+
+		public function overall(){
+			$this->view->render('revenue/income/overall',false);
+		}
 	}
   ?>

@@ -5,9 +5,9 @@
 			<h3 class="panel-title"></h3>
 			</div>
 			<div class="panel-body">
-				<a href="transport/emergencyTransport" class="btn btn-flat btn-primary" id="emgTransport">
+				<a href="transport/emergencyTransport" class="btn btn-flat btn-primary" id="emergencyTransport">
 				<i class=""></i> Emergency transport</a>
-				<a href="transport/lubricantTrasnport" class="btn btn-flat btn-primary" id="lbTransport">
+				<a href="transport/lubricantTrasnport" class="btn btn-flat btn-primary" id="lubricantTrasnport">
 				<i class=""></i> Lubricant transport</a>
 				<a href="transport/branches" class="btn btn-flat btn-primary" id="branches">
 				<i class=""></i>Branches</a>
@@ -23,24 +23,24 @@
 		    	//}
 		    }
 
-				$('#emgTransport').click(function(e2){
+				$('#emergencyTransport').click(function(e2){
 	        	e2.preventDefault();
 	        	var id = $(this).attr('id');
 
                 $('#subloader').load('/IOC/transport/' + id,function(){
-                    //console.log('emgTransport !');
+                    //console.log('emergencyTransport !');
  					$('#subloader').hide();
                 	$('#subloader').fadeIn('fast');
                 	window.location.hash = "";
                 	window.location.hash = "/transport/" + id;
                 });
 	        });
-                 $('#lbTransport').click(function(e2){
+                 $('#lubricantTrasnport').click(function(e2){
 	        	e2.preventDefault();
 	        	var id = $(this).attr('id');
 
                 $('#subloader').load('/IOC/transport/' + id,function(){
-                    //console.log('lbTransport !');
+                    //console.log('lubricantTrasnport !');
  					$('#subloader').hide();
                 	$('#subloader').fadeIn('fast');
                 	window.location.hash = "";

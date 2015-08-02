@@ -118,7 +118,7 @@
 			$orderspetrol = $_POST['orderSPetrol'];
 			$orderdiesel = $_POST['orderDiesel'];
 			$ordersdiesel = $_POST['orderSDiesel'];
-			
+
 			$model = new Stocks_model();
 			$model->insertMrngOrder($readingPetrol,$qntyPetrol,$orderpetrol,$readingSPetrol,$qntySPetrol,$orderspetrol,$readingDiesel,$qntyDiesel,$orderdiesel,$readingSDiesel,$qntySDiesel,$ordersdiesel);
 		}
