@@ -8,14 +8,14 @@
 
     <thead>
         <tr class="success">
-            <th>Customer Name</th>
-            <th>Package</th>
-            <th>Contact</th>
-            <th>Email</th>
-            <th>Vehicle No</th>
-            <th>Status</th>
-            <th>Date</th>
-            <th>Send Alert</th>
+            <th class="text-center">Customer Name</th>
+            <th class="text-center">Package</th>
+            <th class="text-center">Contact</th>
+            <th class="text-center">Email</th>
+            <th class="text-center">Vehicle No</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">Date</th>
+            <th class="text-center">Send SMS & Email Alert</th>
             
 
         </tr>
