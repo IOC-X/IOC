@@ -96,7 +96,7 @@
                     swal("Good job!", "Successfully added the New Transaction!", "success");
                     
                         $('#subloader2').empty();
-                        $('#subloader2').load('/IOC/carwash/reg_history', function () {
+                        $('#subloader2').load('/IOC/carwash/reg_history',function(){
                         $('#subloader2').hide();
                         $('#subloader2').fadeIn('fast');
                     });
