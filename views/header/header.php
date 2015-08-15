@@ -35,7 +35,7 @@
 
 </head>
 <body onbeforeunload="return myFunction()">
-<div class="navbar navbar-default">
+<div class="navbar navbar-default" id="NavBar">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
             <span class="icon-bar"></span>
@@ -58,6 +58,7 @@
 
  
         <ul class="nav navbar-nav navbar-right">
+            <li><a href="index/Dashboard" id="dashboard">Dashboard</a></li>
             <li><a href="index/logout">Logout</a></li>
         <!--    <li class="dropdown">
                 <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
@@ -171,10 +172,10 @@
                         console.log('Success !');
                     });   
                 }
-                else if(url == ''){
+                else if(url == '/'){
                     $('#loader').load('/IOC/',function(){
                         fadeIN();
-                        console.log('Success !');
+                        console.log('Success index!');
                     });
                 }
                 else if(url == "clients"){
@@ -239,6 +240,17 @@
             $('#loader').hide();
             $('#loader').fadeIn('slow');
         }
+
+        $('#dashboard').click(function(e){
+            e.preventDefault();  
+            $('#NavBar').fadeOut('fast').fadeIn('slow');
+            setTimeout(function(){
+                $('#NavBar').removeClass('navbar navbar-default').addClass('navbar navbar-inverse');
+                $('#loader').empty();
+
+            },200);
+            
+        });
     </script>
 </div>
     <div class="col-lg-12">
@@ -255,3 +267,4 @@
         </div>
         </div>
     </div>
+    
