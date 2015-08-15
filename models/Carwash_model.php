@@ -208,7 +208,7 @@ class Carwash_model extends Model {
 
  //MAIL SENDER
     public function SendMail($email,$user) {
-        require_once '/views/carwash/alerts/emailLib/PHPMailer/PHPMailerAutoload.php';
+        require_once '/libs/email/PHPMailer/PHPMailerAutoload.php';
         
         
         $mail = new PHPMailer;
@@ -243,7 +243,7 @@ class Carwash_model extends Model {
         }
     }
     public function SendSms($contact){
-        include ( "/views/carwash/alerts/smsLib/src/NexmoMessage.php" );
+        include ( "/libs/sms/src/NexmoMessage.php" );
 	$newCon= substr($contact,1);
 
 	// Step 1: Declare new NexmoMessage.
