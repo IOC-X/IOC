@@ -1,4 +1,4 @@
-<div class="btn-group btn-group-justified">
+<div class="btn-group btn-group-justified" id="pump-tabs">
     <a href="javascript:void(0)" class="btn btn-primary" id="daily_readings">Daily readings</a>
     <a href="javascript:void(0)" class="btn btn-primary" id="statuses">Pump statuses</a>
 </div>
@@ -13,7 +13,12 @@
         $('#statuses').click(function(){
             $('#subloader2').load('/IOC/stocks/statuses',function(){
                 $('#subloader2').hide();
-                $('#subloader2').fadeIn('fast');
+                $('#loader').fadeOut('slow');
+                $('#pump-tabs').fadeOut('slow');
+                setTimeout(function(){
+                    $('#subloader2').fadeIn('slow');
+                },500);
+                
             });
         });
         $('#cancel_reading').click(function(){

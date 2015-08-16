@@ -102,5 +102,17 @@
 				':id' => $id
 			));
 		}
+		public function pumpStatuses(){
+			$st = $this->db->prepare("SELECT * FROM pumpstatus");
+			$st->execute();
+			return $st->fetchAll();
+		}
+		public function updatePumpStatus($id,$status){
+			$st = $this->db->prepare("UPDATE pumpstatus SET Status=:status WHERE PumpNo=:id");
+			$st->execute(array(
+				':status' => $status,
+				':id' => $id
+			));
+		}
 	}
 ?>
