@@ -143,7 +143,18 @@
 		}
 		//inserting pump readings
 		public function insertPumpReadings(){
-			echo 'Success reponse';
+			require 'models/Stocks_model.php';
+			$model = new Stocks_model();
+			$pumpNos = array();
+			for($a=1;$a<=10;$a++){
+				$pumpNos[$a] = $_POST[$a];
+			}
+			if($model->insertPumpReadings($pumpNos)){
+				echo "Success";
+			}
+			else{
+				echo "Failed";
+			}
 		}
 		//editing previous pump readings
 		public function previousEntries(){

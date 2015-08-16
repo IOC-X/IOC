@@ -37,6 +37,20 @@
 				':date' => Date('y-m-d')
 			));
 		}
+		public function insertPumpReadings($pumpNos){
+			$len = sizeof($pumpNos);
+			for($b=1;$b<=$len;$b++){
+				if(!empty($pumpNos[$b])){
+					$st = $this->db->prepare("INSERT INTO pumpreadings (Date,Reading,PumpNo) VALUES (:date,:reading,:pumpno)");
+					$st->execute(array(
+						':date' => Date('y-m-d'),
+						':reading' => $pumpNos[$b],
+						':pumpno' => $b
+					));	
+				}			
+			}
+			return true;
+		}
 		public function addLubricant($prdName,$prdPrice,$prdQnty,$supplier){
 			$st = $this->db->prepare("INSERT INTO Lubricants (Name,Price,Quantity,Supplier) VALUES (:name,:price,:qnty,:supplier)");
 			$st->execute(array(
