@@ -108,10 +108,10 @@
     <script type="text/javascript">
     $('#cancel_reading').click(function(e){
         $('#subloader2').fadeOut('500',function(){
-            window.petrol = "";
-            window.spetrol = "";
-            window.diesel = "";
-            window.sdiesel = "";
+            delete window.petrol;
+            delete window.spetrol;
+            delete window.diesel;
+            delete window.sdiesel;
             $('#subloader2').empty();
         });
         e.preventDefault();

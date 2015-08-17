@@ -8,6 +8,10 @@
             $('#subloader2').load('/IOC/stocks/morning_reading',function(){
                 $('#subloader2').hide();
                 $('#subloader2').fadeIn('fast');
+                delete window.petrol;
+                delete window.spetrol;
+                delete window.diesel;
+                delete window.sdiesel;
             });
         });
         $('#evening_reading').click(function(){

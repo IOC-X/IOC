@@ -163,7 +163,27 @@
 			$model->insertMrngOrder($readingPetrol,$qntyPetrol,$orderpetrol,$readingSPetrol,$qntySPetrol,$orderspetrol,$readingDiesel,$qntyDiesel,$orderdiesel,$readingSDiesel,$qntySDiesel,$ordersdiesel);
 			echo "DONE";
 		}
+		/*
+		* Insert evening order entries
+		*/
+		public function insertEveningOrder(){
 
+			require 'models/Stocks_model.php';
+
+			$readingPetrol = $_POST['petrol'];
+			$readingSPetrol = $_POST['spetrol'];
+			$readingDiesel = $_POST['diesel'];
+			$readingSDiesel = $_POST['sdiesel'];
+
+			$qntyPetrol = $_POST['qntyPetrol'];
+			$qntySPetrol = $_POST['qntySPetrol'];
+			$qntyDiesel = $_POST['qntyDiesel'];
+			$qntySDiesel = $_POST['qntySDiesel'];
+
+			$model = new Stocks_model();
+			$model->insertEveningStock($readingPetrol,$qntyPetrol,$readingSPetrol,$qntySPetrol,$readingDiesel,$qntyDiesel,$readingSDiesel,$qntySDiesel);
+			echo "DONE";
+		}
 
 
 		/* 

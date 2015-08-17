@@ -37,6 +37,37 @@
 				':date' => Date('y-m-d')
 			));
 		}
+		public function insertEveningStock($readingPetrol,$qntyPetrol,$readingSPetrol,$qntySPetrol,$readingDiesel,$qntyDiesel,$readingSDiesel,$qntySDiesel){
+			$st = $this->db->prepare("INSERT INTO eveningstocks (FuelType,Reading,Quantity,Date) VALUES (:type,:reading,:qnty,:date)");
+			$st->execute(array(
+				':type' => 'Petrol',
+				':reading' => $readingPetrol,
+				':qnty' => $qntyPetrol,
+				':date' => Date('y-m-d')
+			));
+			$st = $this->db->prepare("INSERT INTO eveningstocks (FuelType,Reading,Quantity,Date) VALUES (:type,:reading,:qnty,:date)");
+			$st->execute(array(
+				':type' => 'SPetrol',
+				':reading' => $readingSPetrol,
+				':qnty' => $qntySPetrol,
+				':date' => Date('y-m-d')
+			));
+			$st = $this->db->prepare("INSERT INTO eveningstocks (FuelType,Reading,Quantity,Date) VALUES (:type,:reading,:qnty,:date)");
+			$st->execute(array(
+				':type' => 'Diesel',
+				':reading' => $readingDiesel,
+				':qnty' => $qntyDiesel,
+				':date' => Date('y-m-d')
+			));
+			$st = $this->db->prepare("INSERT INTO eveningstocks (FuelType,Reading,Quantity,Date) VALUES (:type,:reading,:qnty,:date)");
+			$st->execute(array(
+				':type' => 'SDiesel',
+				':reading' => $readingSDiesel,
+				':qnty' => $qntySDiesel,
+				':date' => Date('y-m-d')
+			));
+
+		}
 		public function loadOrders($type){
 			$st = $this->db->prepare("SELECT * FROM Orders WHERE FuelType=:fueltype LIMIT 7 ");
 			$st->execute(array(
