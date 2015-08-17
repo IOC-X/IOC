@@ -8,7 +8,6 @@
 		
 		function __construct()
 		{
-			# code...
 			parent::__construct();
 		}
 		public function index()
@@ -20,7 +19,13 @@
 			$this->view->render('transport/report',false);
 		}
 		public function emergencyTransport(){
-
+			$this->view->render('transport/emergencyTransport/Add',false);
+		}
+		public function newEntry(){
+			$this->view->render('transport/emergencyTransport/Add',false);
+		}
+		public function history(){
+			$this->view->render('transport/emergencyTransport/history',false);
 		}
 	}
   ?>

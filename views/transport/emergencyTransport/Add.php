@@ -1,22 +1,9 @@
-
-<table class="table table-striped table-hover ">
-    <thead>
-        <tr>
-            <th>CustomerName</th>
-            <th>Date</th>
-            <th>Contact</th>
-            <th>Vehicle no</th>
-        </tr>
-    </thead>
-    <tbody id="fbody">
-    </tbody>
-</table>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                 <h4 class="modal-title" id="myModalLabel"><legend>Edit entry</legend></h4>
+                 <h4 class="modal-title" id="myModalLabel"><legend>Add Entry</legend></h4>
 
             </div>
             
@@ -25,38 +12,35 @@
     <fieldset>
     
         <div class="form-group">
-        <label for="prd-name" class="col-lg-2 control-label">Product name</label>
+        <label for="fullname" class="col-lg-2 control-label">Full name</label>
         <div class="col-lg-7">
-            <input type="text" class="form-control" id="prd-name" placeholder="product name" name="prd-name">
+            <input type="text" class="form-control" id="fullname" name="fullname">
         </div>
         </div>
         <div class="form-group">
-        <label for="price" class="col-lg-2 control-label">Price</label>
+        <label for="nic" class="col-lg-2 control-label">NIC</label>
         <div class="col-lg-7">
-            <input type="text" class="form-control" id="price" placeholder="price" name="prd-price">
+            <input type="text" class="form-control" id="nic" name="nic">
         </div>
         </div>
         <div class="form-group">
-        <label for="qnty" class="col-lg-2 control-label">Quantity</label>
+        <label for="contact" class="col-lg-2 control-label">Contact</label>
         <div class="col-lg-7">
-            <input type="number" class="form-control" id="qnty" placeholder="quantity" name="prd-qnty">
+            <input type="number" class="form-control" id="contact" name="contact">
         </div>
         </div>
         <div class="form-group">
-        <label for="supplier" class="col-lg-2 control-label">Supplier</label>
-        <div class="col-lg-4">
-                <select id="supplier" placeholder="supplier" class="form-control" name="supplier">
-                  
-                </select>
+        <label for="description" class="col-lg-2 control-label">Description</label>
+        <div class="col-lg-7">
+            <textarea class="form-control" id="description"  name="description" rows="4" cols="50"></textarea>
         </div>
         </div>
         <div class="form-group">
-            
-            
-            
-        </div>  
-    
-
+        <label for="email" class="col-lg-2 control-label">Email</label>
+        <div class="col-lg-7">
+            <input type="email" class="form-control" id="email" name="email">
+        </div>
+        </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -67,3 +51,28 @@
         </form>
     </div>
 </div>
+<ul id="menu" class="mfb-component--br mfb-zoomin" data-mfb-toggle="hover">
+      <li class="mfb-component__wrap">
+        <a href="#" data-mfb-label="A long long label" class="mfb-component__button--main">
+          <i class="mfb-component__main-icon--resting ion-plus-round"></i>
+          <i class="mfb-component__main-icon--active ion-edit"></i>
+        </a>
+        <ul class="mfb-component__list">
+
+       <li>
+            <a href="#" data-mfb-label="Add" class="mfb-component__button--child" id="addEntry">
+              <i class="mfb-component__child-icon ion-calendar"></i>
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+<script type="text/javascript">
+    $("#addEntry").click(function(){
+        $('#myModal').modal('show');
+    });
+
+
+</script>
