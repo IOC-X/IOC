@@ -83,7 +83,12 @@
                         <th></th>
                     </tr>
                 </thead>
-                <tbody id="fbody">
-                </tbody>
+                <!--<tbody id="fbody">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><div class="icon-preview"><a href=""><i class="mdi-content-create"></i></a></div></td>
+                <td><div class="icon-preview"><a href=""><i class="mdi-content-remove-circle"></i></a></div></td>
+                </tbody>-->
             </table>
         </div>
