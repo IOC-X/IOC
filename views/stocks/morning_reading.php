@@ -224,7 +224,12 @@
           success: function(data){
             console.log(data);
             if(data){
-                swal("Success !", "Order entries successfully added !", "success")
+                swal("Success !", "Order entries successfully added !", "success");
+                $('#subloader2').empty();
+                $('#subloader2').load('/IOC/stocks/view_orders',function(){
+                    $('#subloader2').hide();
+                    $('#subloader2').fadeIn('fast');
+                });
             }
             $('#calculate').attr('disabled','disabled');                    
           }

@@ -37,10 +37,33 @@
 				':date' => Date('y-m-d')
 			));
 		}
-		public function loadOrders(){
-			$st = $this->db->prepare("SELECT * FROM Orders");
-			$st->execute();
+		public function loadOrders($type){
+			$st = $this->db->prepare("SELECT * FROM Orders WHERE FuelType=:fueltype LIMIT 7 ");
+			$st->execute(array(
+				':fueltype' => $type
+			));
 			return $st->fetchAll();
+		}
+		public function removeOrder($id){
+			$st = $this->db->prepare("DELETE FROM Orders where Id=:id");
+			if($st->execute(array(
+				':id' => $id
+			))){
+				return true;	
+			}
+			else{
+				return false;
+			}
+		}
+		public function editOrder($id,$reading,$qnty,$order){
+			$st = $this->db->prepare("UPDATE Orders SET Reading=:reading,Quantity=:qnty,Orderamnt=:orderamnt WHERE Id=:id");
+			$st->execute(array(
+				':id' => $id,
+				':reading' => $reading,
+				':qnty' => $qnty,
+				':orderamnt' => $order
+			));
+			return true;
 		}
 		public function insertPumpReadings($pumpNos){
 			$len = sizeof($pumpNos);

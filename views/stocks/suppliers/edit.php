@@ -33,7 +33,7 @@
             
             <div class="modal-body">
    
-    <form class="form-horizontal" id="edit_supplier_form" action="stocks/addSupplier" method="post">
+    <form class="form-horizontal" id="edit_supplier_form" action="stocks/editSupplier" method="post">
     <fieldset>
         <div class="form-group">
         <label for="sup-name" class="col-lg-2 control-label">Supplier name</label>
@@ -175,9 +175,23 @@
                     $('#supplier').val(supplier);
                 },250);
                 e.preventDefault();
-            })
+            });
+            $('#edit_sub').click(function(){
+                var sup_ID = window.editID;
+                var sup_name = $('#sup-name').val();
+                var sup_email = $('#sup-email').val();
+                var sup_contact = $('#sup-contact').val();
+                var sup_products = $('#supplier').val();
+                console.log(sup_ID+sup_name+sup_email+sup_contact);
+                $.post('stocks/editSupplier',{ name : sup_name , email : sup_email , contact : sup_contact , id : sup_ID },function(data){
+                    console.log(data);
+                    $('#myModal').hide();
+                    //refresh();
+                });
+            });
         });
-
+        
+    
     });
     $("#searchInput").keyup(function () {
         //split the current value of searchInput

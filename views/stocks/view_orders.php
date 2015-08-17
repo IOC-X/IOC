@@ -1,3 +1,10 @@
+<ul class="breadcrumb">
+    <li><a href="javascript:void(0)" id="Petrol" class="fuelType">Petrol</a></li>
+    <li><a href="javascript:void(0)" id="SPetrol" class="fuelType">Super Petrol</a></li>
+    <li><a href="javascript:void(0)" id="Diesel" class="fuelType">Diesel</a></li>
+    <li><a href="javascript:void(0)" id="SDiesel" class="fuelType">Super Diesel</a></li>
+</ul>
+
 <form class="form-horizontal">
     <fieldset>
         <legend>Filter by date</legend>
@@ -33,41 +40,33 @@
             </div>
             
             <div class="modal-body">
-    <form class="form-horizontal" id="edit_lube_form" action="stocks/addLube" method="post">
+    <form class="form-horizontal" id="edit_lube_form" action="" method="post">
     <fieldset>
     
         <div class="form-group">
-        <label for="prd-name" class="col-lg-2 control-label">Product name</label>
+        <label for="prd-name" class="col-lg-2 control-label">Reading</label>
         <div class="col-lg-7">
-            <input type="text" class="form-control" id="prd-name" placeholder="product name" name="prd-name">
+            <input type="number" class="form-control" id="pmp-reading" placeholder="reading" name="pmp-reading">
         </div>
         </div>
         <div class="form-group">
-        <label for="price" class="col-lg-2 control-label">Price</label>
+        <label for="price" class="col-lg-2 control-label">Quantity</label>
         <div class="col-lg-7">
-            <input type="text" class="form-control" id="price" placeholder="price" name="prd-price">
+            <input type="number" class="form-control" id="pmp-qnty" placeholder="quantity" name="pmp-qnty">
         </div>
         </div>
         <div class="form-group">
-        <label for="qnty" class="col-lg-2 control-label">Quantity</label>
+        <label for="qnty" class="col-lg-2 control-label">Order</label>
         <div class="col-lg-7">
-            <input type="number" class="form-control" id="qnty" placeholder="quantity" name="prd-qnty">
-        </div>
-        </div>
-        <div class="form-group">
-        <label for="supplier" class="col-lg-2 control-label">Supplier</label>
-        <div class="col-lg-4">
-                <select id="supplier" placeholder="supplier" class="form-control" name="supplier">
-                  
-                </select>
-        </div>
-        </div>
-        <div class="form-group">
             
-            
-            
-        </div>  
-    
+            <select id="pmp-order" class="form-control" name="prd-qnty">
+                  <option value="6600">6600</option>
+                  <option value="13200">13200</option>
+                  <option value="19800">19800</option>
+            </select>
+
+        </div>
+        </div>
 
             </div>
             <div class="modal-footer">
@@ -83,89 +82,95 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-        $.getJSON('stocks/loadOrders',function(data){
-            console.log(data);
 
-            //var len = data.length;
-            for(x=0;x<10;x++){
-                $("tbody").append('<tr class="' + x +'" id="' + data[x].Id + '">');
-                $("." + x + "").append('<td id="' + data[x].Id + "-name" + '">' + data[x].Date + '</td>');
-                $("." + x + "").append('<td id="' + data[x].Id + "-price" + '">' + data[x].Reading + '</td>');
-                $("." + x + "").append('<td id="' + data[x].Id + "-quantity" + '">' + data[x].Quantity + '</td>');
-                $("." + x + "").append('<td id="' + data[x].Id + "-supplier" + '">' + data[x].Orderamnt + '</td>');
-                $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].Id + '" class="edit"><i class="mdi-content-create"></i></a></div></td>');
-                $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].Id + '" class="remove"><i class="mdi-content-remove-circle"></i></a></div></td>');
-                $("." + x + "").append('</tr>');
-            }
-            
-            $('.remove').click(function(e){
-                var id = $(this).attr('href');
-                e.preventDefault();
+        refresh('Petrol');
+
+
+        $('.fuelType').click(function(){
+            $("tbody").empty();
+            var fType = $(this).attr('id');
+        
+            $.getJSON('stocks/loadOrders', { type : fType } ,function(data){
+                console.log(data[0].Id);
+
+                var len = data.length;
+                for(x=0;x<len;x++){
+                    $("tbody").append('<tr class="' + x +'" id="' + data[x].Id + '">');
+                    $("." + x + "").append('<td id="' + data[x].Id + "-date" + '">' + data[x].Date + '</td>');
+                    $("." + x + "").append('<td id="' + data[x].Id + "-reading" + '">' + data[x].Reading + '</td>');
+                    $("." + x + "").append('<td id="' + data[x].Id + "-quantity" + '">' + data[x].Quantity + '</td>');
+                    $("." + x + "").append('<td id="' + data[x].Id + "-order" + '">' + data[x].Orderamnt + '</td>');
+                    $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].Id + '" class="edit"><i class="mdi-content-create"></i></a></div></td>');
+                    $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].Id + '" class="remove"><i class="mdi-content-remove-circle"></i></a></div></td>');
+                    $("." + x + "").append('</tr>').hide().fadeIn('slow');
+                }
                 
-                
-                swal({   title: "Are you sure?",   
-                    text: "You will not be able to recover this entry",   
-                    type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",   
-                    confirmButtonText: "Yes, delete it!",   cancelButtonText: "No, cancel !",   
-                    closeOnConfirm: false,   closeOnCancel: false }, 
-                    function(isConfirm){   
-                        if (isConfirm) {     
-                            $.post('stocks/removeLubricant', { ID : id }, function(data){
-                                console.log(data);
-                                //alert('Done !');
-                                refresh();
-                            });
-                            swal("Deleted!", "Entry deleted !.", "success");    
-                        } 
-                        else {    
-                            swal("Cancelled", "", "error");   
-                        } 
-                    });
-                
-            });
+                $('.remove').click(function(e){
+                    var id = $(this).attr('href');
+                    e.preventDefault();
+                    
+                    
+                    swal({   title: "Are you sure?",   
+                        text: "You will not be able to recover this entry",   
+                        type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",   
+                        confirmButtonText: "Yes, delete it!",   cancelButtonText: "No, cancel !",   
+                        closeOnConfirm: false,   closeOnCancel: false }, 
+                        function(isConfirm){   
+                            if (isConfirm) {     
+                                $.post('stocks/removeOrder', { ID : id }, function(data){
+                                    console.log(data);
+                                    //alert('Done !');
+                                    refresh();
+                                });
+                                swal("Deleted!", "Entry deleted !.", "success");    
+                            } 
+                            else {    
+                                swal("Cancelled", "", "error");   
+                            } 
+                        });
+                    
+                });
 
-            $('.edit').click(function(e){
+                $('.edit').click(function(e){
 
-                var id = $(this).attr('href');
-                window.editID = id;
-                $('#myModal').modal('show');
-                setTimeout(function(){
-                    $('#supplier').empty();
-                    var name = $()
-                    //$('#prd-name').val('Test');
-                    var name = $('#'+ id +'-name').text();
-                    var price = $('#'+ id +'-price').text();
-                    var quantity = $('#'+ id +'-quantity').text();
-                    var supplier = $('#'+ id +'-supplier').text();
+                    var id = $(this).attr('href');
+                    window.editID = id;
+                    $('#myModal').modal('show');
+                    setTimeout(function(){
+                        var reading = $('#'+ id +'-reading').text();
+                        var quantity = $('#'+ id +'-quantity').text();
+                        var order = $('#'+ id +'-order').text();
 
-                    $.getJSON('stocks/getLubricantSuppliers',function(data){
-                        var len = data.length;
-                        for(a=0;a<len;a++){
-                            $('#supplier').append($('<option>', {value:data[a].name, text:data[a].name}));                
-                        }
-                    });
-                    //console.log(name + price + quantity + supplier);
-                    $('#prd-name').val(name);
-                    $('#price').val(price);
-                    $('#qnty').val(quantity);
-                    $('#supplier').val(supplier);
-                },250);
-                e.preventDefault();
+                        $.getJSON('stocks/getLubricantSuppliers',function(data){
+                            var len = data.length;
+                            for(a=0;a<len;a++){
+                                $('#supplier').append($('<option>', {value:data[a].name, text:data[a].name}));                
+                            }
+                        });
+                        //console.log(name + price + quantity + supplier);
+                        $('#pmp-reading').val(reading);
+                        $('#pmp-qnty').val(quantity);
+                        $('#pmp-order').val(order);
+                    },250);
+                    e.preventDefault();
+                });
+
             });
 
         });
+
+
             $('#edit_sub').click(function(){
                 
-                var prd_ID = window.editID;
-                var prd_name = $('#prd-name').val();
-                var prd_price = $('#price').val();
-                var prd_qnty = $('#qnty').val();
-                var prd_supplier = $('#supplier').val();
+                var pmp_ID = window.editID;
+                var pmp_reading = $('#pmp-reading').val();
+                var pmp_order = $('#pmp-order').val();
+                var pmp_qnty = $('#pmp-qnty').val();
 
-                $.post('stocks/editLube',{ name : prd_name , price : prd_price , qnty : prd_qnty , supplier : prd_supplier , id : prd_ID },function(data){
+                $.post('stocks/editOrder',{ Id : pmp_ID , reading : pmp_reading , order : pmp_order , qnty : pmp_qnty },function(data){
                     console.log(data);
                     $('#myModal').hide();
-                    refresh();
+                    refresh(fType);
                 });
             });
     });
@@ -194,12 +199,74 @@
         //show the rows that match.
         .show();
     });
-    function refresh(){
-        $('#subloader2').empty();
-        $('#subloader2').load('/IOC/stocks/edit_lube',function(){
-            $('#subloader2').hide();
-            $('#subloader2').fadeIn('slow');
-        });
+    function refresh(fType){
+        $("#tbody").empty();
+        $.getJSON('stocks/loadOrders', { type : fType } ,function(data){
+                console.log(data[0].Id);
+
+                var len = data.length;
+                for(x=0;x<len;x++){
+                    $("tbody").append('<tr class="' + x +'" id="' + data[x].Id + '">');
+                    $("." + x + "").append('<td id="' + data[x].Id + "-date" + '">' + data[x].Date + '</td>');
+                    $("." + x + "").append('<td id="' + data[x].Id + "-reading" + '">' + data[x].Reading + '</td>');
+                    $("." + x + "").append('<td id="' + data[x].Id + "-quantity" + '">' + data[x].Quantity + '</td>');
+                    $("." + x + "").append('<td id="' + data[x].Id + "-order" + '">' + data[x].Orderamnt + '</td>');
+                    $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].Id + '" class="edit"><i class="mdi-content-create"></i></a></div></td>');
+                    $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].Id + '" class="remove"><i class="mdi-content-remove-circle"></i></a></div></td>');
+                    $("." + x + "").append('</tr>').hide().fadeIn('slow');
+                }
+                
+                $('.remove').click(function(e){
+                    var id = $(this).attr('href');
+                    e.preventDefault();
+                    
+                    
+                    swal({   title: "Are you sure?",   
+                        text: "You will not be able to recover this entry",   
+                        type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",   
+                        confirmButtonText: "Yes, delete it!",   cancelButtonText: "No, cancel !",   
+                        closeOnConfirm: false,   closeOnCancel: false }, 
+                        function(isConfirm){   
+                            if (isConfirm) {     
+                                $.post('stocks/removeOrder', { ID : id }, function(data){
+                                    console.log(data);
+                                    //alert('Done !');
+                                    //refresh();
+                                });
+                                swal("Deleted!", "Entry deleted !.", "success");    
+                            } 
+                            else {    
+                                swal("Cancelled", "", "error");   
+                            } 
+                        });
+                    
+                });
+
+                $('.edit').click(function(e){
+
+                    var id = $(this).attr('href');
+                    window.editID = id;
+                    $('#myModal').modal('show');
+                    setTimeout(function(){
+                        var reading = $('#'+ id +'-reading').text();
+                        var quantity = $('#'+ id +'-quantity').text();
+                        var order = $('#'+ id +'-order').text();
+
+                        $.getJSON('stocks/getLubricantSuppliers',function(data){
+                            var len = data.length;
+                            for(a=0;a<len;a++){
+                                $('#supplier').append($('<option>', {value:data[a].name, text:data[a].name}));                
+                            }
+                        });
+                        //console.log(name + price + quantity + supplier);
+                        $('#pmp-reading').val(reading);
+                        $('#pmp-qnty').val(quantity);
+                        $('#pmp-order').val(order);
+                    },250);
+                    e.preventDefault();
+                });
+
+            });
     }
 
 </script>

@@ -31,17 +31,45 @@
 		public function evening_reading(){
 			$this->view->render('stocks/evening_reading',false);
 		}
-		/**renders orders template for stocks -> orders
+		/**
 		*
-		*
+		*renders orders template for stocks -> orders
 		*/
 		public function view_orders(){
 			$this->view->render('stocks/view_orders',false);	
 		}
+		/**
+		*
+		*loads orders data to template rendered 
+		*/
 		public function loadOrders(){
 			require 'models/Stocks_model.php';
 			$model = new Stocks_model();
-			echo json_encode($model->loadOrders());
+			$type = $_GET['type'];
+			echo json_encode($model->loadOrders($type));
+		}
+		/**
+		*removes order entries 
+		*/
+		public function removeOrder(){
+			require 'models/Stocks_model.php';
+			$model = new Stocks_model();
+			$id = $_POST['ID'];
+			echo $id;
+			$model->removeOrder($id);
+		}
+		/**
+		*Edits order entries
+		*/
+		public function editOrder(){
+			$id = $_POST['Id'];
+			$reading = $_POST['reading'];
+			$qnty = $_POST['qnty'];
+			$order = $_POST['order'];
+			require 'models/Stocks_model.php';
+			$model = new Stocks_model();
+			$model->editOrder($id,$reading,$qnty,$order);
+			echo "Success";
 		}
 		/*
 		* calculating stocks values
