@@ -37,6 +37,11 @@
 				':date' => Date('y-m-d')
 			));
 		}
+		public function loadOrders(){
+			$st = $this->db->prepare("SELECT * FROM Orders");
+			$st->execute();
+			return $st->fetchAll();
+		}
 		public function insertPumpReadings($pumpNos){
 			$len = sizeof($pumpNos);
 			for($b=1;$b<=$len;$b++){
@@ -49,6 +54,33 @@
 					));	
 				}			
 			}
+			return true;
+		}
+		public function loadPumpReadings($id){
+			$st = $this->db->prepare("SELECT * FROM pumpreadings WHERE PumpNo=:pumpno ORDER BY Date desc LIMIT 7");
+			$st->execute(array(
+				':pumpno' => $id
+			));
+			return $st->fetchAll();
+		}
+		public function removePumpReading($id){
+			$st = $this->db->prepare("DELETE FROM pumpreadings where Id=:id");
+			if($st->execute(array(
+				':id' => $id
+			))){
+				return true;	
+			}
+			else{
+				return false;
+			}
+		}
+		public function editPumpReading($id,$reading,$date){
+			$st = $this->db->prepare("UPDATE pumpreadings SET Reading=:reading,Date=:date WHERE Id=:id");
+			$st->execute(array(
+				':id' => $id,
+				':reading' => $reading,
+				':date' => $date
+			));
 			return true;
 		}
 		public function addLubricant($prdName,$prdPrice,$prdQnty,$supplier){

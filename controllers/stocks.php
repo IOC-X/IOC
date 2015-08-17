@@ -31,6 +31,18 @@
 		public function evening_reading(){
 			$this->view->render('stocks/evening_reading',false);
 		}
+		/**renders orders template for stocks -> orders
+		*
+		*
+		*/
+		public function view_orders(){
+			$this->view->render('stocks/view_orders',false);	
+		}
+		public function loadOrders(){
+			require 'models/Stocks_model.php';
+			$model = new Stocks_model();
+			echo json_encode($model->loadOrders());
+		}
 		/*
 		* calculating stocks values
 		* @return reading in litres after calculation
@@ -159,6 +171,35 @@
 		//editing previous pump readings
 		public function previousEntries(){
 			$this->view->render('stocks/pump/previousEntries',false);	
+		}
+		public function editPumpReading(){
+			$id = $_POST['Id'];
+			$reading = $_POST['reading'];
+			$date = $_POST['date'];
+			$date = date("Y-m-d", strtotime($date));
+			require 'models/Stocks_model.php';
+			$model = new Stocks_model();
+			$model->editPumpReading($id,$reading,$date);
+		}
+		//loadPreviousentries of pump readings
+		public function loadPumpReadings(){
+			require 'models/Stocks_model.php';
+
+			$model = new Stocks_model();
+			$id = $_GET['pumpno'];			
+			echo json_encode($model->loadPumpReadings($id));
+		}
+		//removes pump readings 
+		public function removePumpReading(){
+			require 'models/Stocks_model.php';
+			$id = $_POST['ID'];
+			$model = new Stocks_model();
+			if($model->removePumpReading($id)){
+				echo "Success";
+			}
+			else{
+				echo "Failed";
+			}
 		}
 		//returns statuses of pumps
 		public function statuses(){
