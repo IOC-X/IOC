@@ -181,8 +181,9 @@
 			$qntySDiesel = $_POST['qntySDiesel'];
 
 			$model = new Stocks_model();
-			$model->insertEveningStock($readingPetrol,$qntyPetrol,$readingSPetrol,$qntySPetrol,$readingDiesel,$qntyDiesel,$readingSDiesel,$qntySDiesel);
-			echo "DONE";
+			if($model->insertEveningStock($readingPetrol,$qntyPetrol,$readingSPetrol,$qntySPetrol,$readingDiesel,$qntyDiesel,$readingSDiesel,$qntySDiesel)){
+				echo "DONE";				
+			}
 		}
 
 

@@ -66,7 +66,7 @@
 				':qnty' => $qntySDiesel,
 				':date' => Date('y-m-d')
 			));
-
+			return true;
 		}
 		public function loadOrders($type){
 			$st = $this->db->prepare("SELECT * FROM Orders WHERE FuelType=:fueltype LIMIT 7 ");
