@@ -8,14 +8,14 @@
 
     <thead>
         <tr class="success">
-            <th>Customer Name</th>
-            <th>Package</th>
-            <th>Contact</th>
-            <th>Email</th>
-            <th>Vehicle No</th>
-            <th>Status</th>
-            <th>Date</th>
-            <th>Send Alert</th>
+            <th class="text-center">Customer Name</th>
+            <th class="text-center">Package</th>
+            <th class="text-center">Contact</th>
+            <th class="text-center">Email</th>
+            <th class="text-center">Vehicle No</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">Date</th>
+            <th class="text-center">Send SMS & Email Alert</th>
             
 
         </tr>
@@ -32,7 +32,7 @@
                 <td><?php echo ($transaction->date); ?></td>
                
                 <td>
-                    <a id="alert_Cartrans" onclick="SendNormalAlert('<?php echo ($transaction->id); ?>')"> <i class="mdi-communication-textsms"></i></a>
+                    <a id="alert_Cartrans" onclick="SendNormalAlert('<?php echo ($transaction->id); ?>','<?php echo ($transaction->cname); ?>','<?php echo ($transaction->email); ?>','<?php echo ($transaction->contact); ?>')"> <i class="mdi-communication-textsms"></i></a>
                 </td>
             </tr>
         <?php endforeach; ?>
@@ -42,7 +42,7 @@
 <script type="text/javascript">
 
    
-    function SendNormalAlert(id) {
+    function SendNormalAlert(id,cname,email,contact) {
         swal({
             title: "Are you sure?",
             text: "You are about to send a confirmation Email to client for collect the vehicle!!",
@@ -57,7 +57,16 @@
         function (isConfirm) {
             if (isConfirm) {
                 swal("Message Sent!", "Your Confirmation Alert has been sent.", "success");
-                window.location = 'carwash/UpdateNonRegStatus/' + id + '';
+                
+                $.post('carwash/UpdateNonRegStatus', {id: id, user:cname, email:email, contact:contact}, function (data) {
+                                            console.log(data);
+
+                                        });
+                                        $('#subloader2').empty();
+                                        $('#subloader2').load('/IOC/carwash/NormalAlert', function () {
+                                            $('#subloader2').hide();
+                                            $('#subloader2').fadeIn('fast');
+                                        });
 
             } else {
                 swal("Cancelled", "Your Email was not sent :)", "error");

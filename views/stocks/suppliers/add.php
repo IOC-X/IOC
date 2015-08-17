@@ -84,6 +84,14 @@
             swal("Bump !", "Name filed should be less than 30 characters")  
             return false;
         }
+        if(!validateContact($('#sup-contact').val())){
+            swal("Duhh !", "Please enter 10 digits for contact number");
+            return false;    
+        }
+        if(!validateEmail($('#sup-email').val())){
+            swal("Bruhh !", "Not a valid email");
+            return false;    
+        }
         else{
             console.log('succ');
             var form = $('#add_supplier_form');

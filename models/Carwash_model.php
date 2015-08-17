@@ -1,6 +1,6 @@
 <?php
 
-include_once 'C:\wamp\www\IOC\libs\Database.php';
+include_once '\libs\Database.php';
 
 class Carwash_model extends Model {
 
@@ -72,7 +72,7 @@ class Carwash_model extends Model {
 
     public function addCustomer($cust_id, $name, $nic, $address, $contact,$email, $date) {
         try {
-            $sql = $this->db->prepare("INSERT INTO regular_customers(cust_id, name, nic, address, contact ,email ,date) VALUES(?, ?, ?, ?, ?, ?)");
+            $sql = $this->db->prepare("INSERT INTO regular_customers(cust_id, name, nic, address, contact ,email ,date) VALUES(?, ?, ?, ?, ?, ?, ?)");
             $result = $sql->execute(array($cust_id, $name, $nic, $address, $contact, $email, $date));
         } catch (Exception $e) {
             
@@ -188,14 +188,14 @@ class Carwash_model extends Model {
     //REGULAR TRANSACTIONS DATA RETRIEVING FOR ALERTS
     public function selectAllRegtransactions() {
         //$date = date("Y-m-d");  where date like'$date'
-        $sql = $this->db->prepare("select t.id, r.name, t.package, t.vehicleNo ,t.date,t.status, r.email from regular_customers r, regular_transactions t where r.cust_id=t.cust_id and t.status like 'Not Returned'");
+        $sql = $this->db->prepare("select t.id, r.name, t.package, t.vehicleNo ,t.date,t.status, r.email , r.contact from regular_customers r, regular_transactions t where r.cust_id=t.cust_id and t.status like 'Not Returned'");
         $sql->execute();
 
         while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
-            
+             
            $Transactions[] = $obj;
         }
-
+        
         return $Transactions;
                     
         
@@ -205,6 +205,59 @@ class Carwash_model extends Model {
         $sql = $this->db->prepare("UPDATE regular_transactions SET status = 'Returned' WHERE id = ? LIMIT 1");
         $result = $sql->execute(array($id));
     }
+
+ //MAIL SENDER
+    public function SendMail($email,$user) {
+        require_once '/libs/email/PHPMailer/PHPMailerAutoload.php';
+        
+        
+        $mail = new PHPMailer;
+//$mail->SMTPDebug = 1;                               // Enable verbose debug output
+        $mail->isSMTP();                                      // Set mailer to use SMTP
+        $mail->Host = 'ssl://smtp.gmail.com';  // Specify main and backup SMTP servers
+        $mail->SMTPAuth = true;                               // Enable SMTP authentication
+        $mail->Username = 'ioc.negambo@gmail.com';                 // SMTP username
+        $mail->Password = 'IocNegambo123';                           // SMTP password
+        $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
+        $mail->Port = 465;                                    // TCP port to connect to
+
+        $mail->From = 'carwash@gmail.com';
+        $mail->FromName = 'IOC Carwash';
+        $mail->addAddress($email, $user);     // Add a recipient
+//$mail->addAddress('ellen@example.com');               // Name is optional
+        $mail->addReplyTo('ioc.negambo@gmail.com', 'IOC');
+//$mail->addCC('cc@example.com');
+        $mail->addBCC('bcc@example.com');
+//$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+//$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+        $mail->isHTML(true);                                  // Set email format to HTML
+        $mail->Subject = 'IOC Carwash';
+        $mail->Body = 'Dear Customer your Carwash service is done. You can collect your vehicle at our service station. Thank You for using our service.';
+        $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+        if (!$mail->send()) {
+            echo 'Message could not be sent.';
+            echo 'Mailer Error: ' . $mail->ErrorInfo;
+        } else {
+            echo 'Message has been sent';
+        }
+    }
+    public function SendSms($contact){
+        include ( "/libs/sms/src/NexmoMessage.php" );
+	$newCon= substr($contact,1);
+
+	// Step 1: Declare new NexmoMessage.
+	$nexmo_sms = new NexmoMessage('0fd288d7', '4ba994ca');
+
+	// Step 2: Use sendText( $to, $from, $message ) method to send a message. 
+	$info = $nexmo_sms->sendText( '+94'.$newCon, 'IOC', 'Dear Customer your Carwash service is done. You can collect your vehicle at our service station. Thank You for using our service.' );
+
+	// Step 3: Display an overview of the message
+	echo $nexmo_sms->displayOverview($info);
+
+	// Done!
+    }
+
     public function selectAllCartransactions() {
         //$date = date("Y-m-d");  where date like'$date'
         $sql = $this->db->prepare("SELECT * FROM car_transactions where status like 'Not Returned'");

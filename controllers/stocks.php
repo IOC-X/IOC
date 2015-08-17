@@ -118,9 +118,10 @@
 			$orderspetrol = $_POST['orderSPetrol'];
 			$orderdiesel = $_POST['orderDiesel'];
 			$ordersdiesel = $_POST['orderSDiesel'];
-			
+
 			$model = new Stocks_model();
 			$model->insertMrngOrder($readingPetrol,$qntyPetrol,$orderpetrol,$readingSPetrol,$qntySPetrol,$orderspetrol,$readingDiesel,$qntyDiesel,$orderdiesel,$readingSDiesel,$qntySDiesel,$ordersdiesel);
+			echo "DONE";
 		}
 
 
@@ -142,7 +143,18 @@
 		}
 		//inserting pump readings
 		public function insertPumpReadings(){
-			echo 'Success reponse';
+			require 'models/Stocks_model.php';
+			$model = new Stocks_model();
+			$pumpNos = array();
+			for($a=1;$a<=10;$a++){
+				$pumpNos[$a] = $_POST[$a];
+			}
+			if($model->insertPumpReadings($pumpNos)){
+				echo "Success";
+			}
+			else{
+				echo "Failed";
+			}
 		}
 		//editing previous pump readings
 		public function previousEntries(){
@@ -304,10 +316,23 @@
 		}
 		/*
 		* Adding suppliers interacting with the model
-		* @return status of process | boolean |
+		* @returns null
 		*/
 		public function edit_suppliers(){
 			$this->view->render('stocks/suppliers/edit',false);	
+		}
+		/*
+		* Editing suppliers info interacting with the model
+		* @returns boolean
+		*/
+		public function editSupplier(){
+			$id = $_POST['id'];
+			$name = $_POST['name'];
+			$email = $_POST['email'];
+			$contact = $_POST['contact'];
+
+			echo $id . $name . $email . $contact;
+
 		}
 		public function loadLubricantEditData(){
 			$va = "he";
@@ -328,6 +353,32 @@
 		}
 		public function history(){
 			$this->view->render('stocks/stockgraph',false);
+		}
+		//Dashboard functions start here
+		// public function stockDashboard(){
+		// 	$this->view->render('stocks/dashboard/index',false);	
+		// }
+		// public function customizePumps(){
+		// 	$this->view->render('stocks/dashboard/customizePumps',false);	
+		// }
+		public function pumpStatuses(){
+			require 'models/Stocks_model.php';
+			$model = new Stocks_model();
+			echo json_encode($model->pumpStatuses());
+		}
+		//renders pumpscards for online and offline pumps
+		public function pumpCardOnline(){
+			$this->view->render('stocks/pump/pumpcardOnline',false);
+		}
+		public function pumpCardOffline(){
+			$this->view->render('stocks/pump/pumpcardOffline',false);
+		}
+		public function updatePumpStatus(){
+			require 'models/Stocks_model.php';
+			$model = new Stocks_model();
+			$id = $_GET['id'];
+			$status = $_GET['status'];
+			$model->updatePumpStatus($id,$status);
 		}
 	}
 ?>

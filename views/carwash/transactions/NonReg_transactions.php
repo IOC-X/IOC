@@ -91,12 +91,18 @@ var date = $("#date").val();
         }
         
         else{
+            
             // Returns successful data submission message when the entered information is stored in database.
             $.post("carwash/addCarTransaction",{ cname: cname, contact:contact, email:email, package: package, vehicleNo: vehicleNo, amount: amount, date: date},
                         function(data) {
                         //alert(data);
-                        window.location.reload(true);
-                        $('#transactionForm2')[0].reset(); //To reset form fields
+                        swal("Good job!", "Successfully added the New Transaction!", "success");
+                        
+                        $('#subloader').empty();
+                        $('#subloader').load('/IOC/carwash/nonreg_history', function () {
+                        $('#subloader').hide();
+                        $('#subloader').fadeIn('fast');
+                    });
                     }   );
                         console.log('data sent');
 

@@ -49,7 +49,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title text-justify">Edit Transaction Details</h4>
             </div>
-            <form role="form" action="carwash/editCarTransaction" name="frmCarTrans" method="post">
+            <form role="form" action="" name="frmCarTrans" method="post">
                 <div class="col-lg-12">
 
                     <div class="form-group">
@@ -90,10 +90,10 @@
 
                     <div class="form-group">
                         <label>Transaction Date</label>
-                        <input name="date" id="date" class="form-control form_datetime" required>
+                        <input type="date" name="date" id="date" class="form-control form_datetime" required>
                     </div> 
 
-                    <button type="submit" class="btn btn-primary btn-lg">
+                    <button type="submit" class="btn btn-primary btn-lg" name="form-submitted" id="form-submitted">
                         <span class="mdi-content-create" aria-hidden="true"></span> Edit
                     </button>
 
@@ -120,6 +120,76 @@
         document.frmCarTrans.date.value = date;
         $('#modal').modal('show');
     }
+    
+    $(document).ready(function () {
+        console.log('Editing NONRegular History');
+        $("#form-submitted").click(function (e) {
+//assiging values    
+            e.preventDefault();
+            var id = $("#id").val(); 
+            var cname = $("#cname").val();
+            var package = $("#package").val();
+            var contact = $("#contact").val();
+            var email = $("#email").val();
+            var vehicleNo = $("#vehicleNo").val();
+            var amount = $("#amount").val();
+            var date = $("#date").val();
+
+//expression for validation
+            var numbers = /^[0-9]+$/;
+            var validDate = new Date();
+            var phone = /^\d{10}$/;
+            var validEmail = /\S+@\S+\.\S+/;
+
+
+//date validation
+            var chkdate = document.getElementById('date').value;
+            var edate = chkdate.split("-");
+            var spdate = new Date();
+            var sdd = spdate.getDate();
+            var smm = spdate.getMonth();
+            var syyyy = spdate.getFullYear();
+            var today = new Date(syyyy, smm, sdd);
+            var e_date = new Date(edate[0], edate[1] - 1, edate[2]);
+
+
+//validation
+            if (id == '' || cname == '' || package == '' ||contact == ''|| email == ''|| vehicleNo == '' || amount == '' || date == '') {
+
+                swal("Oops...", "Insertion Failed Some Fields are Blank....!!", "error");
+            }
+            else if (!(contact.match(phone))) {
+                swal("Oops...", "Invalid Contact Number....!!", "error");
+            }
+            else if (!(email.match(validEmail))) {
+                swal("Oops...", "Invalid Email....!!", "error");
+            }
+            else if (vehicleNo.match(numbers)) {
+                swal("Oops...", "Vehicle Number is invalid....!!", "error");
+            }
+            
+            else if (e_date > today) {
+                swal("Oops...", "Selected date is a future date....!!", "error");
+            }
+            else {
+// Returns successful data submission message when the entered information is stored in database.
+                $.post("carwash/editCarTransaction", {id: id,cname: cname, package:package, contact:contact, email:email, vehicleNo: vehicleNo, amount: amount, date: date},
+                function (data) {
+                    swal("Good job!", "Successfully Updated the Non-Regular Transaction Details!", "success");
+                    // $('#form')[0].reset(); //To reset form fields
+                    $('#subloader2').empty();
+                    $('#subloader2').load('/IOC/carwash/nonreg_history', function () {
+                        $('#subloader2').hide();
+                        $('#subloader2').fadeIn('fast');
+                    });
+
+                });
+                console.log('data sent');
+
+            }
+        });
+    });
+
 
     function DeleteAlert(id) {
         swal({
@@ -136,7 +206,15 @@
         function (isConfirm) {
             if (isConfirm) {
                 swal("Deleted!", "Your Transaction details has been deleted.", "success");
-                window.location = 'carwash/delete_Cartransaction/' + id + '';
+                $.post('carwash/delete_Cartransaction', { id : id }, function(data){
+                                console.log(data);                                
+                            });
+                        $('#subloader2').empty();
+                        $('#subloader2').load('/IOC/carwash/nonreg_history', function () {
+                        $('#subloader2').hide();
+                        $('#subloader2').fadeIn('fast');
+                    });
+                
 
             } else {
                 swal("Cancelled", "Your Customer details is safe :)", "error");

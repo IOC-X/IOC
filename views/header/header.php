@@ -19,24 +19,31 @@
     
     <!-- CSS for morning stock for stocks module -->
     <link rel="stylesheet" type="text/css" href="<?php echo CSS1 ?>stocks/morning_reading.css">
+    <!-- CSS for pump status  -->
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS ?>stocks/pump/css/statuses.css">
     <!-- Jquery  -->
     <script type="text/javascript" src="<?php echo JQuery ?>"></script>
     <link rel="stylesheet" type="text/css" href="<?php echo CSS1?>stocks/graph.css">
 
-
+    <!-- Path for foating action button CSS -->
+    <link href="<?php echo FLOATING ?>mfb.css" rel="stylesheet">
+    <!-- Path for foating action button JS -->
+    <script src="<?php echo FLOATING ?>mfb.js"></script>
+    <!-- ICONS for floating action -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/1.5.2/css/ionicons.css">
     <script src="<?php echo BOWER ?>sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" type="text/css" href="<?php echo BOWER ?>sweetalert/dist/sweetalert.css">
 
 </head>
 <body onbeforeunload="return myFunction()">
-<div class="navbar navbar-default">
+<div class="navbar navbar-default" id="NavBar">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/IOC/" id="brand">IOC<sup>ALPHA</sup></a>
+        <a class="navbar-brand" href="/IOC/" id="brand">IOC<sup>v0.8</sup></a>
     </div>
     <div class="navbar-collapse collapse navbar-responsive-collapse">
         <ul class="nav navbar-nav">
@@ -52,6 +59,8 @@
 
  
         <ul class="nav navbar-nav navbar-right">
+            <!-- <li id="dashboard-li"><a href="index/Dashboard" id="dashboard">Dashboard</a></li>
+            -->
             <li><a href="index/logout">Logout</a></li>
         <!--    <li class="dropdown">
                 <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
@@ -147,6 +156,9 @@
         //         $('#subloader').empty();
         //     }
         // });
+        
+            
+        
         $('.nav-bar').click(function(e){
             $('#loader').empty();
             $('#spinner').load('/IOC/views/css/header/spinkit.html');
@@ -160,15 +172,23 @@
                 $('#spinner').empty();
                 window.location.hash = "/"+url;  
                 if(url == 'stocks'){ 
-                    $('#loader').load('/IOC/stocks',function(){
-                        fadeIN();
-                        console.log('Success !');
-                    });   
+                    if(!window.mode){
+                        $('#loader').load('/IOC/stocks',function(){
+                            fadeIN();
+                            console.log('Success !');
+                        });  
+                    }
+                    else if(window.mode == "Dashboard"){
+                        $('#loader').load('stocks/stockDashboard',function(data){
+                            fadeIN();
+                            console.log(data);
+                        });    
+                    }
                 }
-                else if(url == ''){
+                else if(url == '/'){
                     $('#loader').load('/IOC/',function(){
                         fadeIN();
-                        console.log('Success !');
+                        console.log('Success index!');
                     });
                 }
                 else if(url == "clients"){
@@ -233,6 +253,29 @@
             $('#loader').hide();
             $('#loader').fadeIn('slow');
         }
+
+        // $('#dashboard').click(function(e){
+        //     e.preventDefault();
+        //     if(!window.mode){
+        //         window.mode = "Dashboard";
+        //         $('#NavBar').fadeOut('fast').fadeIn('slow');
+        //         setTimeout(function(){
+        //             $('#dashboard').text('Quit Dashboard');
+        //             $('#NavBar').removeClass('navbar navbar-default').addClass('navbar navbar-inverse');
+        //             window.mode = "Dashboard";
+        //             $('#loader').empty();
+        //         },200);
+        //     }
+        //     else if(window.mode == "Dashboard"){
+        //         $('#NavBar').fadeOut('fast').fadeIn('slow');
+        //         setTimeout(function(){
+        //             $('#dashboard').text('Dashboard');
+        //             $('#NavBar').removeClass('navbar navbar-inverse').addClass('navbar navbar-default');
+        //             delete window.mode;
+        //             $('#loader').empty();
+        //         },200);
+        //     }
+        // });
     </script>
 </div>
     <div class="col-lg-12">

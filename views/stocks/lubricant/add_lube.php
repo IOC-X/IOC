@@ -10,13 +10,13 @@
         <div class="form-group">
         <label for="price" class="col-lg-2 control-label">Price</label>
         <div class="col-lg-7">
-            <input type="number" class="form-control" id="price" placeholder="price" name="prd-price">
+            <input type="number" class="form-control" id="prd-price" placeholder="price (Rs)" name="prd-price">
         </div>
     	</div>
         <div class="form-group">
         <label for="qnty" class="col-lg-2 control-label">Quantity</label>
         <div class="col-lg-7">
-            <input type="number" class="form-control" id="qnty" placeholder="quantity" name="prd-qnty">
+            <input type="number" class="form-control" id="prd-qnty" placeholder="quantity" name="prd-qnty">
         </div>
     	</div>
         <div class="form-group">
@@ -44,7 +44,19 @@
 
         if(name == "" || price == "" || qnty == "" || supplier == ""){
             swal("Bump !", "Please fill every field")  
-            //return false;
+            return false;
+        }
+        if(name.length>=30){
+            swal("Bump !", "Name field should be less than 30 characters")  
+            return false;
+        }
+        if(qnty<=0){
+            swal("Oops !", "Invalid quantity !")  
+            return false;
+        }
+        if(price<=0){
+            swal("Oops !", "Invalid price !")  
+            return false;
         }
         else{
             console.log('succ');
@@ -75,5 +87,18 @@
             }
         });
         console.log('Done !');
+
+        $('#prd-price').focusout(function(){
+            if($(this).val()<=0){
+                swal("Oops !", "Invalid price !")  
+                return false;
+            }
+        });
+        $('#prd-qnty').focusout(function(){
+            if($(this).val()<=0){
+                swal("Oops !", "Invalid quantity !")  
+                return false;
+            }
+        });
     });
 </script>

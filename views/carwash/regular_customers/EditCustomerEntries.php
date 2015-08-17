@@ -27,7 +27,7 @@
                     <td><?php echo ($customer->email); ?></td>
                     <td><?php echo ($customer->date); ?></td>
                     <td>
-                        <a id="edit_customer" onclick="Editcustomer('<?php echo ($customer->cust_id); ?>', '<?php echo ($customer->name); ?>', '<?php echo ($customer->nic); ?>', '<?php echo ($customer->address); ?>', '<?php echo ($customer->contact); ?>','<?php echo ($customer->email); ?>', '<?php echo ($customer->date); ?>')"> <i class="mdi-content-create"></i> </a>
+                        <a id="edit_customer" onclick="Editcustomer('<?php echo ($customer->cust_id); ?>', '<?php echo ($customer->name); ?>', '<?php echo ($customer->nic); ?>', '<?php echo ($customer->address); ?>', '<?php echo ($customer->contact); ?>', '<?php echo ($customer->email); ?>', '<?php echo ($customer->date); ?>')"> <i class="mdi-content-create"></i> </a>
                     </td>
                     <td>
                         <a id="delete_customer" onclick="DeleteAlert('<?php echo ($customer->cust_id); ?>')"> <i class="mdi-content-remove-circle"></i></a>
@@ -38,14 +38,14 @@
         </tbody>
     </table>
 
-    <div class="ui modal" id="modal" tabindex="-1" role="dialog">
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title text-justify">Edit Customer Details</h4>
                 </div>
-                <form role="form" action="carwash/editCustomer" name="frmCustomers" method="post">
+                <form role="form" action="" name="frmCustomers" method="post">
                     <div class="col-lg-12">
 
                         <div class="form-group">
@@ -77,10 +77,10 @@
                         </div>
                         <div class="form-group">
                             <label>Date Registered</label>
-                            <input name="date" id="date" class="form-control" required>
+                            <input type="date" name="date" id="date" class="form-control" required>
                         </div> 
 
-                        <button type="submit" class="btn btn-primary btn-lg">
+                        <button type="submit" class="btn btn-primary btn-lg" name="form-submitted" id="form-submitted">
                             <span class="mdi-content-create" aria-hidden="true"></span> Edit
                         </button>
 
@@ -107,7 +107,7 @@
                                     $('#subloader').fadeIn('fast');
                                 });
                             });
-                            
+
 
                             function Editcustomer(cust_id, name, nic, address, contact, email, date) {
 
@@ -121,6 +121,82 @@
                                 document.frmCustomers.date.value = date;
                                 $('#modal').modal('show');
                             }
+                            
+                            $(document).ready(function () {
+                                console.log('Editing Customers');
+                                $("#form-submitted").click(function (e) {
+//assiging values    
+                                    e.preventDefault();
+                                    var cust_id = $("#cust_id").val();
+                                    var name = $("#name").val();
+                                    var nic = $("#nic").val();
+                                    var address = $("#address").val();
+                                    var contact = $("#contact").val();
+                                    var email = $("#email").val();
+                                    var date = $("#date").val();
+
+//expression for validation
+                                    var numbers = /^[0-9]+$/;
+                                    var validNic = /\d{9}[vV]$/;
+                                    var phone = /^\d{10}$/;
+                                    var validEmail = /\S+@\S+\.\S+/;
+                                    var validDate = new Date();
+                                    var c = 1;
+
+
+//date validation
+                                    var chkdate = document.getElementById('date').value;
+                                    var edate = chkdate.split("-");
+                                    var spdate = new Date();
+                                    var sdd = spdate.getDate();
+                                    var smm = spdate.getMonth();
+                                    var syyyy = spdate.getFullYear();
+                                    var today = new Date(syyyy, smm, sdd); 
+                                    var e_date = new Date(edate[0], edate[1] - 1, edate[2]);
+                                   
+                                    
+//validation
+                                    if (cust_id == '' || name == '' || nic == '' || address == '' || contact == '' || email == '' || date == '') {
+
+                                        swal("Oops...", "Insertion Failed Some Fields are Blank....!!", "error");
+                                    }
+
+                                    else if (name.match(numbers)) {
+                                        swal("Oops...", "Name should be in Letters....!!", "error");
+                                    }
+                                    else if (!(nic.match(validNic))) {
+                                        swal("Oops...", "Invalid Identity Card Number....!!", "error");
+                                    }
+                                    else if (address.match(numbers)) {
+                                        swal("Oops...", "Invalid Address....!!", "error");
+                                    }
+                                    else if (!(contact.match(phone))) {
+                                        swal("Oops...", "Invalid Contact Number....!!", "error");
+                                    }
+                                    else if (!(email.match(validEmail))) {
+                                        swal("Oops...", "Invalid Email....!!", "error");
+                                    }
+                                    else if (e_date > today) {
+                                        swal("Oops...", "Selected date is a future date....!!", "error");
+                                    }
+                                    else {
+// Returns successful data submission message when the entered information is stored in database.
+                                        $.post("carwash/editCustomer", {cust_id: cust_id, name: name, nic: nic, address: address, contact: contact, email: email, date: date},
+                                        function (data) {
+                                            swal("Good job!", "Successfully Updated the Customer Details!", "success");
+                                            // $('#form')[0].reset(); //To reset form fields
+                                            $('#subloader2').empty();
+                                            $('#subloader2').load('/IOC/carwash/EditCustomerEntries', function () {
+                                                $('#subloader2').hide();
+                                                $('#subloader2').fadeIn('fast');
+                                            });
+
+                                        });
+                                        console.log('data sent');
+
+                                    }
+                                });
+                            });
 
                             function DeleteAlert(cust_id) {
                                 swal({
@@ -137,8 +213,16 @@
                                 function (isConfirm) {
                                     if (isConfirm) {
                                         swal("Deleted!", "Your Customer details has been deleted.", "success");
-                                        window.location = 'carwash/delete_customer/' + cust_id + '';
+                                        //window.location = 'carwash/delete_customer/\'' + cust_id + '\'';
+                                        var id = '\'' + cust_id + '\'';
+                                        $.post('carwash/delete_customer', {ID: id}, function (data) {
+                                            console.log(data);
 
+                                        });
+                                        $('#subloader2').load('/IOC/carwash/EditCustomerEntries', function () {
+                                            $('#subloader2').hide();
+                                            $('#subloader2').fadeIn('fast');
+                                        });
                                     } else {
                                         swal("Cancelled", "Your Customer details is safe :)", "error");
                                     }
