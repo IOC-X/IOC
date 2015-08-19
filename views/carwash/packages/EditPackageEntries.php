@@ -11,13 +11,13 @@
         <div class="col-lg-4 panel panel-primary text-center">
 
             <div class="panel-heading panel"> 
-                <button class="btn btn-primary btn-group btn-group-justified" data-toggle="collapse" data-parent="#subloader2" href="#<?php echo ($package->id); ?>"><i class="mdi-navigation-arrow-drop-down"></i> <?php echo ($package->name); ?></button>
+                <button class="btn btn-primary btn-group btn-group-justified" data-toggle="collapse" data-parent="#subloader2" href="#<?php echo ($package->id); ?>"><i class="mdi-navigation-arrow-drop-down"></i><h5> <?php echo ($package->name); ?></button>
             </div>
 
             <div class="panel panel-body panel-collapse collapse" id="<?php echo ($package->id); ?>">  
-                <div class="col-lg-12 panel"><?php echo ($package->description); ?></div>
-                <div class="col-lg-12 panel"><?php echo ($package->time) . " Hours estimated"; ?></div>
-                <div class="col-lg-12 panel"><?php echo "Price Rs." . ($package->price); ?></div> 
+                <div class="col-lg-12"><?php echo ($package->description); ?></div>
+                <div class="col-lg-12"><h4><?php echo ($package->time) . " Hours estimated"; ?></h4></div>
+                <div class="col-lg-12 panel"><h1><?php echo "Price Rs." . ($package->price); ?></div> 
             </div>
             <div class="panel-footer clearfix danger">
                 <div class="pull-right">
@@ -27,7 +27,7 @@
             </div>
         </div>
 
-    </div>         
+           
 <?php endforeach; ?>
 
 </div>               

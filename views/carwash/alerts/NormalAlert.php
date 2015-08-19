@@ -1,4 +1,13 @@
+<?php  
+if (!$Transactions){ ?>
+     <h3 class="text-center success"><strong>All the Non-Regular Customer Vehicles are returned back to the customers.</strong></h3>
+<?php
 
+}
+ else {
+    
+
+?>
 <!-- DISPLAYING LATEST TRANSACTIONS-->
 <div class="col-lg-12 text-center">
     <h3 class="text-center success"><strong>Earlier NON-Regular Customer Transactions</strong></h3>
@@ -38,7 +47,7 @@
         <?php endforeach; ?>
     </tbody>
 </table>
-
+<?php } ?>
 <script type="text/javascript">
 
    

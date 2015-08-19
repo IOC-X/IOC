@@ -1,4 +1,4 @@
-<?php // 
+<?php  
 if (!$regularTransactions){ ?>
      <h3 class="text-center success"><strong>All the Regular Customer Vehicles are returned back to the customers.</strong></h3>
 <?php
