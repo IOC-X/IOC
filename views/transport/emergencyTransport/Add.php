@@ -252,11 +252,11 @@
             $('#edit_sub').click(function(e){
                 e.preventDefault();
                 console.log("CLIKCED !");
-                var pmpID = window.editID;
+                var transID = window.editID;
                 var reading = $('#pmp-reading').val();
                 var date = $('#pmp-date').val();
 
-                $.post('stocks/editPumpReading',{ Id : pmpID , reading : reading , date : date },function(data){
+                $.post('stocks/editPumpReading',{ Id : transID , reading : reading , date : date },function(data){
                     console.log(data);
                     $('#myModal').hide();
                     refresh(id);

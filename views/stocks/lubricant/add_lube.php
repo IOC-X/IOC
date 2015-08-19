@@ -73,6 +73,10 @@
                     $('#price').val("");
                     $('#qnty').val("");
                     $('#supplier').val("");
+                    $('#subloader2').load('/IOC/stocks/edit_lube',function(){
+                        $('#subloader2').hide();
+                        $('#subloader2').fadeIn('fast');
+                    });
                 }
               }
             });

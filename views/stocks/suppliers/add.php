@@ -101,7 +101,11 @@
                 data : form.serialize(),
                 success: function(data){
                   console.log(data);
-                  swal("Supplier added successfully!", "click okay to continue", "success")
+                  swal("Supplier added successfully!", "click okay to continue", "success");
+                  $('#subloader2').load('/IOC/stocks/edit_suppliers',function(){
+                    $('#subloader2').hide();
+                    $('#subloader2').fadeIn('fast');
+                  });
                 }
             });
         }

@@ -126,9 +126,11 @@
                 });
 
                 $('.edit').click(function(e){
+                    e.preventDefault();
+                    console.log('Inside');
                     var id = $(this).attr('href');
                     window.editID = id;
-                    console.log(today);
+                    
                     $('#myModal').modal('show');
                     setTimeout(function(){
                         var date = $('#'+ id +'-Date').text();
@@ -138,7 +140,7 @@
                         $('#pmp-date').val(date);
                         $('#pmp-reading').val(pumpReading);
                     },250);
-                    e.preventDefault();
+                    
                 });
             });
 
@@ -210,10 +212,10 @@
                 });
 
                 $('.edit').click(function(e){
-                    var today = new Date();
+                    
                     var id = $(this).attr('href');
                     window.editID = id;
-                    console.log(today);
+                    
                     $('#myModal').modal('show');
                     setTimeout(function(){
                         var date = $('#'+ id +'-Date').text();
