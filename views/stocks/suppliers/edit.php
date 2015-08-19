@@ -1,6 +1,6 @@
 <form class="form-horizontal">
     <fieldset>
-        <legend>Search lubricants</legend>
+        <legend>Search suppliers</legend>
         <div class="form-group">
             <div class="col-lg-5">
                 <input type="text" class="form-control" id="searchInput" placeholder="filter">
@@ -103,7 +103,7 @@
                 $("." + x + "").append('<td id="' + data[x].Id + "-name" + '">' + data[x].name + '</td>');
                 $("." + x + "").append('<td id="' + data[x].Id + "-product" + '">' + data[x].product + '</td>');
                 $("." + x + "").append('<td id="' + data[x].Id + "-contact" + '">' + data[x].contact + '</td>');
-                $("." + x + "").append('<td id="' + data[x].Id + "-email" + '">' + data[x].email + '</td>');
+                $("." + x + "").append('<td id="' + data[x].Id + "-email" + '"><a href="">' + data[x].email + '</a></td>');
                 $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].Id + '" class="edit"><i class="mdi-content-create"></i></a></div></td>');
                 $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].Id + '" class="remove"><i class="mdi-content-remove-circle"></i></a></div></td>');
                 $("." + x + "").append('</tr>');
