@@ -4,7 +4,7 @@
         <div class="form-group">
         <label for="sup-name" class="col-lg-2 control-label">Supplier name</label>
         <div class="col-lg-7">
-            <input type="text" class="form-control" id="sup-name" placeholder="supplier name" name="sup-name">
+            <input type="text" class="form-control floating-label" id="sup-name" placeholder="supplier name" name="sup-name">
         </div>
         </div>
           
@@ -34,13 +34,13 @@
           <div class="form-group">
             <label for="sup-email" class="col-lg-2 control-label">Email</label>
             <div class="col-lg-7">
-                <input type="email" class="form-control" id="sup-email" placeholder="email" name="sup-email">
+                <input type="email" class="form-control floating-label" id="sup-email" placeholder="email" name="sup-email">
             </div>
           </div>
             <div class="form-group">
             <label for="sup-contact" class="col-lg-2 control-label">Contact no</label>
             <div class="col-lg-7">
-                <input type="text" class="form-control" id="sup-contact" placeholder="contact no" name="sup-contact">
+                <input type="text" class="form-control floating-label" id="sup-contact" placeholder="contact no" name="sup-contact">
             </div>    
             </div>
             

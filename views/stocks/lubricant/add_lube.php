@@ -4,19 +4,19 @@
         <div class="form-group">
         <label for="prd-name" class="col-lg-2 control-label">Product name</label>
         <div class="col-lg-7">
-            <input type="text" class="form-control" id="prd-name" placeholder="product name" name="prd-name">
+            <input type="text" class="form-control floating-label" id="prd-name" placeholder="product name" name="prd-name">
         </div>
     	</div>
         <div class="form-group">
         <label for="price" class="col-lg-2 control-label">Price</label>
         <div class="col-lg-7">
-            <input type="number" class="form-control" id="prd-price" placeholder="price (Rs)" name="prd-price">
+            <input type="number" class="form-control floating-label" id="prd-price" placeholder="price (Rs)" name="prd-price">
         </div>
     	</div>
         <div class="form-group">
         <label for="qnty" class="col-lg-2 control-label">Quantity</label>
         <div class="col-lg-7">
-            <input type="number" class="form-control" id="prd-qnty" placeholder="quantity" name="prd-qnty">
+            <input type="number" class="form-control floating-label" id="prd-qnty" placeholder="quantity" name="prd-qnty">
         </div>
     	</div>
         <div class="form-group">
