@@ -420,9 +420,11 @@
 			$name = $_POST['name'];
 			$email = $_POST['email'];
 			$contact = $_POST['contact'];
-
-			echo $id . $name . $email . $contact;
-
+			require 'models/Stocks_model.php';
+			$model = new Stocks_model();
+			if($model->editSupplier($id,$name,$email,$contact)){
+				echo "Success";
+			}
 		}
 		public function loadLubricantEditData(){
 			$va = "he";
