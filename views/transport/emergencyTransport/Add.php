@@ -2,7 +2,7 @@
     <thead>
         <tr>
             <th>Date</th>
-            <th>CustomerName</th>
+            <th>Customer Name</th>
             <th>NIC</th>
             <th>Vehicle no</th>
             <th>Contact</th>
@@ -31,7 +31,7 @@
     <fieldset>
     <form class="form-horizontal" id="addEmgTransport" action="transport/addEmgTransport" method="post">
         <div class="form-group">
-        <label for="fullname" class="col-lg-3 control-label">Full name</label>
+        <label for="fullname" class="col-lg-3 control-label">Customer name</label>
         <div class="col-lg-7">
             <input type="text" class="form-control" id="fullname" name="fullname">
         </div>
@@ -94,37 +94,37 @@
         <div class="form-group">
         <label for="fullname" class="col-lg-3 control-label">Full name</label>
         <div class="col-lg-7">
-            <input type="text" class="form-control" id="fullname" name="fullname">
+            <input type="text" class="form-control" id="edit-fullname" name="fullname">
         </div>
         </div>
         <div class="form-group">
         <label for="nic" class="col-lg-3 control-label">NIC</label>
         <div class="col-lg-7">
-            <input type="text" class="form-control" id="nic" name="nic">
+            <input type="text" class="form-control" id="edit-nic" name="nic">
         </div>
         </div>
         <div class="form-group">
         <label for="vehicleno" class="col-lg-3 control-label">Vehicle No</label>
         <div class="col-lg-7">
-            <input type="text" class="form-control" id="vehicleno" name="vehicleno">
+            <input type="text" class="form-control" id="edit-vehicleno" name="vehicleno">
         </div>
         </div>
         <div class="form-group">
         <label for="contact" class="col-lg-3 control-label">Contact</label>
         <div class="col-lg-7">
-            <input type="number" class="form-control" id="contact" name="contact">
+            <input type="number" class="form-control" id="edit-contact" name="contact">
         </div>
         </div>
         <div class="form-group">
         <label for="description" class="col-lg-3 control-label">Description</label>
         <div class="col-lg-7">
-            <textarea class="form-control" id="description"  name="description" rows="4" cols="50"></textarea>
+            <textarea class="form-control" id="edit-description"  name="edit-description" rows="4" cols="50"></textarea>
         </div>
         </div>
         <div class="form-group">
         <label for="email" class="col-lg-3 control-label">Email</label>
         <div class="col-lg-7">
-            <input type="email" class="form-control" id="email" name="email">
+            <input type="email" class="form-control" id="edit-email" name="email">
         </div>
         </div>
         </div>
@@ -176,6 +176,13 @@
                     swal("Entry added successfully!", "click okay to continue", "success");
                     $('.form-control').val("");
                     $('#myModal').modal('hide');
+                    $('#subloader').load('/IOC/transport/emergencyTransport',function(){
+                            //console.log('emergencyTransport !');
+                        $('#subloader').hide();
+                        $('#subloader').fadeIn('fast');
+                        window.location.hash = "";
+                        window.location.hash = "/transport/emergencyTransport";
+                    });
                 }
               }
             });
@@ -239,11 +246,19 @@
                     $('#myModal2').modal('show');
                     setTimeout(function(){
                         var date = $('#'+ id +'-Date').text();
-                        var pumpReading = $('#'+ id +'-Reading').text();
-                        
+                        var fullname = $('#'+ id +'-Fullname').text();
+                        var nic = $('#'+ id +'-Nic').text();
+                        var vehicleno = $('#'+ id +'-Vehicleno').text();
+                        var contact = $('#'+ id +'-Contact').text();
+                        var email = $('#'+ id +'-Email').text();
+                        var description = $('#'+ id +'-Description').text();
                         //console.log(name + price + quantity + supplier);
-                        $('#pmp-date').val(date);
-                        $('#pmp-reading').val(pumpReading);
+                        $('#edit-fullname').val(fullname);
+                        $('#edit-nic').val(nic);
+                        $('#edit-vehicleno').val(vehicleno);
+                        $('#edit-contact').val(contact);
+                        $('#edit-email').val(email);
+                        $('#edit-description').val(description);
                     },250);
                     
                 });
