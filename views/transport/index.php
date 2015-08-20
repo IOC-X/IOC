@@ -6,7 +6,7 @@
 			<div class="panel-body">
 				<a href="transport/emergencyTransport" class="btn btn-flat btn-primary" id="emergencyTransport">
 				<i class=""></i> Emergency transport</a>
-				<a href="transport/lubricantTrasnport" class="btn btn-flat btn-primary" id="lubricantTrasnport">
+				<a href="transport/lubricantTransport" class="btn btn-flat btn-primary" id="lubricantTransport">
 				<i class=""></i> Lubricant transport</a>
 				<a href="transport/branches" class="btn btn-flat btn-primary" id="branches">
 				<i class=""></i> Branches</a>
@@ -37,13 +37,13 @@
  		       	window.location.hash = "/transport/" + id;
             });
     	});
-         $('#lubricantTrasnport').click(function(e2){
+         $('#lubricantTransport').click(function(e2){
     	e2.preventDefault();
     	var id = $(this).attr('id');
 
         $('#subloader').load('/IOC/transport/' + id,function(){
                 //console.log('lubricantTrasnport !');
-					$('#subloader').hide();
+				$('#subloader').hide();
             	$('#subloader').fadeIn('fast');
             	window.location.hash = "";
             	window.location.hash = "/transport/" + id;
