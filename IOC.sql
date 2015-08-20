@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10deb1
+-- version 4.2.7.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Aug 17, 2015 at 07:16 PM
--- Server version: 5.5.43-0ubuntu0.14.04.1
--- PHP Version: 5.5.9-1ubuntu4.9
+-- Host: 127.0.0.1
+-- Generation Time: Aug 20, 2015 at 12:25 PM
+-- Server version: 5.6.20
+-- PHP Version: 5.5.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,8 +17,25 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `IOC`
+-- Database: `ioc`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `attendance`
+--
+
+CREATE TABLE IF NOT EXISTS `attendance` (
+  `empCode` varchar(50) NOT NULL,
+  `shiftCode` varchar(50) NOT NULL,
+  `year` int(4) NOT NULL,
+  `month` varchar(50) NOT NULL,
+  `date` varchar(50) NOT NULL,
+  `startTime` varchar(50) NOT NULL,
+  `colour` varchar(50) NOT NULL,
+  `endTime` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -27,7 +44,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `car_transactions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `cname` varchar(40) NOT NULL,
   `contact` varchar(10) NOT NULL,
   `email` varchar(50) NOT NULL,
@@ -35,8 +52,7 @@ CREATE TABLE IF NOT EXISTS `car_transactions` (
   `vehicleNo` varchar(15) NOT NULL,
   `amount` float NOT NULL,
   `date` varchar(15) NOT NULL,
-  `status` varchar(50) NOT NULL DEFAULT 'Not Returned',
-  PRIMARY KEY (`id`)
+  `status` varchar(50) NOT NULL DEFAULT 'Not Returned'
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
@@ -55,16 +71,89 @@ INSERT INTO `car_transactions` (`id`, `cname`, `contact`, `email`, `package`, `v
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `clients`
+--
+
+CREATE TABLE IF NOT EXISTS `clients` (
+  `client_id` varchar(50) NOT NULL DEFAULT '',
+  `client_fname` varchar(100) DEFAULT NULL,
+  `client_lname` varchar(100) DEFAULT NULL,
+  `client_address` varchar(200) DEFAULT NULL,
+  `client_nic` varchar(50) DEFAULT NULL,
+  `client_phone` varchar(100) DEFAULT NULL,
+  `client_purchase_date` varchar(50) DEFAULT NULL,
+  `client_purchase_amount` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `clients`
+--
+
+INSERT INTO `clients` (`client_id`, `client_fname`, `client_lname`, `client_address`, `client_nic`, `client_phone`, `client_purchase_date`, `client_purchase_amount`) VALUES
+('0', 'J.R', 'Jayawardane', 'Colombo', '221821298V', '011-8965250', '2015-06-01', '80000'),
+('1', 'Mahinda ', 'Rajapakshe', 'Hambanthota', '481821298V', '77', '2015-07-01', '50,000'),
+('2', 'Ranil ', 'Wickramasinghe', 'Colombo', '456321258V', '077-9898987', '2015-07-01', '100000'),
+('fe', 'e', 'e', 'e', '324234', '2342', '2015-08-12', '4444');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `client_transactions`
+--
+
+CREATE TABLE IF NOT EXISTS `client_transactions` (
+  `clientid` varchar(50) NOT NULL,
+  `clientfirstname` varchar(50) NOT NULL,
+  `clientlastname` varchar(50) NOT NULL,
+  `updateddate` varchar(100) NOT NULL,
+  `fullamount` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employee_list`
+--
+
+CREATE TABLE IF NOT EXISTS `employee_list` (
+`countid` int(100) NOT NULL,
+  `employeeCode` varchar(50) NOT NULL,
+  `firstName` varchar(50) DEFAULT NULL,
+  `lastName` varchar(50) DEFAULT NULL,
+  `address` varchar(50) DEFAULT NULL,
+  `nicNumber` varchar(50) DEFAULT NULL,
+  `homePhone` varchar(50) DEFAULT NULL,
+  `mobilePhone` varchar(50) DEFAULT NULL,
+  `birthDate` varchar(50) DEFAULT NULL,
+  `hireDate` varchar(50) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `userName` varchar(50) DEFAULT NULL,
+  `userPassword` varchar(50) DEFAULT NULL,
+  `userFile` varchar(250) DEFAULT NULL,
+  `userTextarea` varchar(250) DEFAULT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+
+--
+-- Dumping data for table `employee_list`
+--
+
+INSERT INTO `employee_list` (`countid`, `employeeCode`, `firstName`, `lastName`, `address`, `nicNumber`, `homePhone`, `mobilePhone`, `birthDate`, `hireDate`, `email`, `userName`, `userPassword`, `userFile`, `userTextarea`) VALUES
+(9, 'MG-841', '', '', '', '', '', '', '', '', '', '', '', NULL, ''),
+(10, 'MG-726', '', '', '', '', '', '', '2015-07-16', '', '', '', '', NULL, ''),
+(11, 'MG-440', '', '', '', '', '', '', '', '', '', '', '', NULL, '');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `eveningstocks`
 --
 
 CREATE TABLE IF NOT EXISTS `eveningstocks` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
+`Id` int(11) NOT NULL,
   `FuelType` varchar(2) NOT NULL,
   `Reading` float NOT NULL,
   `Quantity` float NOT NULL,
-  `Date` date NOT NULL,
-  PRIMARY KEY (`Id`)
+  `Date` date NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
@@ -80,23 +169,22 @@ INSERT INTO `eveningstocks` (`Id`, `FuelType`, `Reading`, `Quantity`, `Date`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Lubricants`
+-- Table structure for table `lubricants`
 --
 
-CREATE TABLE IF NOT EXISTS `Lubricants` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `lubricants` (
+`Id` int(11) NOT NULL,
   `Name` varchar(30) NOT NULL,
   `Price` float NOT NULL,
   `Quantity` int(11) NOT NULL,
-  `Supplier` varchar(30) NOT NULL,
-  PRIMARY KEY (`Id`)
+  `Supplier` varchar(30) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `Lubricants`
+-- Dumping data for table `lubricants`
 --
 
-INSERT INTO `Lubricants` (`Id`, `Name`, `Price`, `Quantity`, `Supplier`) VALUES
+INSERT INTO `lubricants` (`Id`, `Name`, `Price`, `Quantity`, `Supplier`) VALUES
 (2, 'T2', 780, 4, 'T2 dude'),
 (4, 'K3', 1, 5, 'T2 dude');
 
@@ -112,8 +200,7 @@ CREATE TABLE IF NOT EXISTS `lu_customers` (
   `address` varchar(100) NOT NULL,
   `contact` varchar(10) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `date` varchar(15) NOT NULL,
-  PRIMARY KEY (`id`)
+  `date` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -130,10 +217,9 @@ INSERT INTO `lu_customers` (`id`, `name`, `address`, `contact`, `email`, `date`)
 --
 
 CREATE TABLE IF NOT EXISTS `lu_packages` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `price` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `price` int(11) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
@@ -158,15 +244,14 @@ INSERT INTO `lu_packages` (`id`, `name`, `price`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `nonreglu_transactions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `cname` varchar(40) NOT NULL,
   `contact` varchar(10) NOT NULL,
   `email` varchar(50) NOT NULL,
   `package` varchar(50) NOT NULL,
   `vehicleNo` varchar(15) NOT NULL,
   `amount` float NOT NULL,
-  `date` varchar(15) NOT NULL,
-  PRIMARY KEY (`id`)
+  `date` varchar(15) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
@@ -179,24 +264,23 @@ INSERT INTO `nonreglu_transactions` (`id`, `cname`, `contact`, `email`, `package
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Orders`
+-- Table structure for table `orders`
 --
 
-CREATE TABLE IF NOT EXISTS `Orders` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `orders` (
+`Id` int(11) NOT NULL,
   `FuelType` varchar(10) NOT NULL,
   `Reading` float NOT NULL,
   `Quantity` float NOT NULL,
   `Orderamnt` int(10) NOT NULL,
-  `Date` date NOT NULL,
-  PRIMARY KEY (`Id`)
+  `Date` date NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=159 ;
 
 --
--- Dumping data for table `Orders`
+-- Dumping data for table `orders`
 --
 
-INSERT INTO `Orders` (`Id`, `FuelType`, `Reading`, `Quantity`, `Orderamnt`, `Date`) VALUES
+INSERT INTO `orders` (`Id`, `FuelType`, `Reading`, `Quantity`, `Orderamnt`, `Date`) VALUES
 (143, 'Petrol', 200, 44, 19800, '2015-08-17'),
 (144, 'SPetrol', 700, 1400, 19800, '2015-08-17'),
 (145, 'Diesel', 200, 400, 6600, '2015-08-17'),
@@ -217,105 +301,82 @@ INSERT INTO `Orders` (`Id`, `FuelType`, `Reading`, `Quantity`, `Orderamnt`, `Dat
 --
 
 CREATE TABLE IF NOT EXISTS `packages` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `description` varchar(500) NOT NULL,
   `time` varchar(11) NOT NULL,
-  `price` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+  `price` varchar(11) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `packages`
 --
 
 INSERT INTO `packages` (`id`, `name`, `description`, `time`, `price`) VALUES
-(1, 'Platinum Value Car Wash', 'Ultimate value car wash with mat shampoo - Limit 4', '48', 2000),
-(2, 'Ultimate Value Car Wash', 'Full service wash, clear coat shine, cleat coat protectant, underbody wash, tire shine, rim cleaning wheel bright, triple foam polish wax, rust inhibitor and interior fragrance spray.', '48', 4500),
-(4, 'Hand Wash', 'smooth washing\nhee', '2', 10000);
+(1, 'Ultimate Value Car Wash', 'Full service wash, clear coat shine, cleat coat protectant, underbody wash, tire shine, rim cleaning wheel bright, triple foam polish wax, rust inhibitor and interior fragrance spray, 48 hour guarantee, return within 2 days and receive a free exterior only wash with receipt with matching license plate', '3', '3000'),
+(2, 'Value Car Wash', 'Full service wash, clear coat shine, cleat coat protectant and underbody wash', '2', '200');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pumpreadings`
+-- Table structure for table `regular_customers`
 --
 
-CREATE TABLE IF NOT EXISTS `pumpreadings` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Date` date NOT NULL,
-  `Reading` float NOT NULL,
-  `PumpNo` int(11) NOT NULL,
-  PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
-
---
--- Dumping data for table `pumpreadings`
---
-
-INSERT INTO `pumpreadings` (`Id`, `Date`, `Reading`, `PumpNo`) VALUES
-(1, '2015-08-16', 3, 0),
-(2, '2015-08-16', 34, 0),
-(3, '2015-08-16', 45, 0),
-(4, '2015-08-16', 56, 0),
-(7, '2015-08-16', 56, 3),
-(8, '2015-12-16', 34, 4),
-(9, '2015-08-16', 22, 7),
-(10, '2015-08-16', 33, 9),
-(12, '2015-08-16', 78, 2),
-(20, '2015-08-16', 88, 4),
-(27, '2012-02-01', 8, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pumpstatus`
---
-
-CREATE TABLE IF NOT EXISTS `pumpstatus` (
-  `PumpNo` int(11) NOT NULL,
-  `Status` varchar(10) NOT NULL,
-  `Fuel` varchar(20) NOT NULL,
-  PRIMARY KEY (`PumpNo`)
+CREATE TABLE IF NOT EXISTS `regular_customers` (
+  `cust_id` varchar(10) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `nic` varchar(10) NOT NULL,
+  `address` char(100) NOT NULL,
+  `contact` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pumpstatus`
+-- Dumping data for table `regular_customers`
 --
 
-INSERT INTO `pumpstatus` (`PumpNo`, `Status`, `Fuel`) VALUES
-(1, 'Online', 'SuperPetrol'),
-(2, 'Online', ''),
-(3, 'Offline', 'Petrol'),
-(4, 'Offline', 'SuperPetrol'),
-(5, 'Offline', 'Diesel'),
-(6, 'Offline', 'SuperDiesel'),
-(7, 'Online', 'Diesel'),
-(8, 'Offline', 'SuperDiesel'),
-(9, 'Offline', 'Petrol'),
-(10, 'Offline', 'SuperPetrol');
+INSERT INTO `regular_customers` (`cust_id`, `name`, `nic`, `address`, `contact`) VALUES
+('1', 'chooty putha', '1234', 'marawila', '119'),
+('123', 'Maaravila Roxz', '123456789v', 'No.1,Maravila,Negambo', '0712345678');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Suppliers`
+-- Table structure for table `shiftdb`
 --
 
-CREATE TABLE IF NOT EXISTS `Suppliers` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) NOT NULL,
-  `product` varchar(10) NOT NULL,
-  `contact` int(11) NOT NULL,
-  `email` varchar(20) NOT NULL,
-  PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=43 ;
+CREATE TABLE IF NOT EXISTS `shiftdb` (
+  `shiftId` varchar(50) NOT NULL,
+  `shiftName` varchar(50) NOT NULL,
+  `shiftDuration` varchar(50) NOT NULL,
+  `shiftRate` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `Suppliers`
+-- Dumping data for table `shiftdb`
 --
 
-INSERT INTO `Suppliers` (`Id`, `name`, `product`, `contact`, `email`) VALUES
-(41, 'T2 dude', 'lubricant', 717479370, 't2dude@gmail.com'),
-(42, 'T3 dude', 'lubricant', 717479370, 't3dude@gmail.com');
+INSERT INTO `shiftdb` (`shiftId`, `shiftName`, `shiftDuration`, `shiftRate`) VALUES
+('SH-751', '', '', ''),
+('SH115124', '7hours One', '7', 'Rs:280'),
+('SH248', '', '', 'Rs:');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `test`
+--
+
+CREATE TABLE IF NOT EXISTS `test` (
+  `managerCode` varchar(50) NOT NULL,
+  `fname` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `test`
+--
+
+INSERT INTO `test` (`managerCode`, `fname`) VALUES
+('as', 'jkjkljkl');
 
 -- --------------------------------------------------------
 
@@ -325,8 +386,7 @@ INSERT INTO `Suppliers` (`Id`, `name`, `product`, `contact`, `email`) VALUES
 
 CREATE TABLE IF NOT EXISTS `users` (
   `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  PRIMARY KEY (`username`)
+  `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -336,6 +396,132 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`username`, `password`) VALUES
 ('rajika', '123');
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `car_transactions`
+--
+ALTER TABLE `car_transactions`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `clients`
+--
+ALTER TABLE `clients`
+ ADD PRIMARY KEY (`client_id`);
+
+--
+-- Indexes for table `employee_list`
+--
+ALTER TABLE `employee_list`
+ ADD PRIMARY KEY (`countid`);
+
+--
+-- Indexes for table `eveningstocks`
+--
+ALTER TABLE `eveningstocks`
+ ADD PRIMARY KEY (`Id`);
+
+--
+-- Indexes for table `lubricants`
+--
+ALTER TABLE `lubricants`
+ ADD PRIMARY KEY (`Id`);
+
+--
+-- Indexes for table `lu_customers`
+--
+ALTER TABLE `lu_customers`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `lu_packages`
+--
+ALTER TABLE `lu_packages`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `nonreglu_transactions`
+--
+ALTER TABLE `nonreglu_transactions`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+ ADD PRIMARY KEY (`Id`);
+
+--
+-- Indexes for table `packages`
+--
+ALTER TABLE `packages`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `regular_customers`
+--
+ALTER TABLE `regular_customers`
+ ADD PRIMARY KEY (`cust_id`);
+
+--
+-- Indexes for table `shiftdb`
+--
+ALTER TABLE `shiftdb`
+ ADD PRIMARY KEY (`shiftId`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+ ADD PRIMARY KEY (`username`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `car_transactions`
+--
+ALTER TABLE `car_transactions`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT for table `employee_list`
+--
+ALTER TABLE `employee_list`
+MODIFY `countid` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT for table `eveningstocks`
+--
+ALTER TABLE `eveningstocks`
+MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `lubricants`
+--
+ALTER TABLE `lubricants`
+MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `lu_packages`
+--
+ALTER TABLE `lu_packages`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `nonreglu_transactions`
+--
+ALTER TABLE `nonreglu_transactions`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=159;
+--
+-- AUTO_INCREMENT for table `packages`
+--
+ALTER TABLE `packages`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
