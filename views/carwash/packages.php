@@ -1,3 +1,4 @@
+<!--checks for returned db objects-->
 <?php  
 if (!$packages){ ?>
      <h3 class="text-center success"><strong>No Packages added yet. Please add a package.</strong></h3>
