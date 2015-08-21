@@ -22,8 +22,9 @@
         
         public function client_transactions(){
             
-            alert("transaction");
-            
+         $result = $this->db->query('Select * From clients');
+         $results->execute();
+         return $results->fetchAll();  
         }
 
         public function addclient($autocode, $fname, $lname, $address, $nic, $phone, $purchasedate, $amount) {

@@ -191,6 +191,16 @@
 			}
 
 		}
+		public function editSupplier($id,$name,$email,$contact){
+			$st = $this->db->prepare("UPDATE Suppliers SET name=:name,contact=:contact,email=:email WHERE Id=:id");
+			$st->execute(array(
+				':id' => $id,
+				':name' => $name,
+				':contact' => $contact,
+				':email' => $email
+			));
+			return true;
+		}
 		public function loadLubricantsSuppliers(){
 			$st = $this->db->prepare("SELECT * FROM Suppliers");
 			$st->execute();

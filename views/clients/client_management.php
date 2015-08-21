@@ -1,3 +1,24 @@
+<div class="btn-group btn-group-justified">
+    <a href="javascript:void(0)" class="btn btn-primary" id="list"><i class="mdi-social-person"></i> Client List</a>
+    <a href="javascript:void(0)" class="btn btn-primary" id="add"><i class="mdi-social-person-add"></i> Add New Client</a>
+</div>
+
+<script>
+        $('#list').click(function(){
+            $('#subloader2').load('/IOC/clients/getclientdata',function(){
+                $('#subloader2').hide();
+                $('#subloader2').fadeIn('fast');
+            });
+        });
+        $('#add').click(function(){
+            $('#subloader2').load('/IOC/clients/addclient',function(){
+                $('#subloader2').hide();
+                $('#subloader2').fadeIn('fast');
+            });
+        });
+
+    </script>
+
 <table class="table table-striped table-hover ">
     <col style="width:10%">
     <col style="width:15%">

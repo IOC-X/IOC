@@ -22,7 +22,7 @@
 
                     <div class="col-lg-4">
                         <input type="text" class="form-control" name="fnameManager" placeholder="" 
-                               title="Use only letters for First Name"/>
+                               pattern="[a-zA-Z]{1,20}" title="Use only letters for First Name"/>
                     </div>
 
                     <div class="col-lg-2 control-label">
@@ -31,7 +31,7 @@
 
                     <div class="col-lg-4">
                         <input type="text" class="form-control" name="lnameManager" placeholder="" 
-                               title="Use only letters for Last Name" />
+                               pattern="[a-zA-Z]{1,20}" title="Use only letters for Last Name" required />
                     </div>
 
                 </div>
@@ -55,8 +55,8 @@
                     </div>
 
                     <div class="col-lg-4">
-                        <input type="text" class="form-control" name="nicnumber" placeholder="" 
-                               title="Use National ID card number eg:123456789v"/>
+                        <input type="text" class="form-control" name="nicnumber" placeholder="" required=""
+                              pattern="[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][vV]" title="Use National ID card number eg:123456789v"/>
                     </div>
 
                     <div class="col-lg-2 control-label">
@@ -64,8 +64,8 @@
                     </div>
 
                     <div class="col-lg-4">
-                        <input type="text" class="form-control" name="mpnumber" placeholder="" 
-                               title="Phone Number eg:0711234567 or 0112345678" />
+                        <input type="text" class="form-control" name="mpnumber" placeholder="" required=""
+                               pattern="[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]" title="Phone Number eg:0711234567 or 0112345678"/>
                     </div>
 
                 </div>
@@ -77,12 +77,12 @@
 
                     <label for="birthdate" class="col-lg-2 control-label">Birth Date</label>
                     <div class="col-lg-4">
-                        <input type="date" class="form-control" name="birthdate" placeholder="" >
+                        <input type="date" class="form-control" name="birthdate" placeholder="" required="">
                     </div>
 
                     <label for="hiredate" class="col-lg-2 control-label">Hire Date</label>
                     <div class="col-lg-4">
-                        <input type="date" class="form-control" name="hiredate" placeholder="" >
+                        <input type="date" class="form-control" name="hiredate" placeholder="" required="">
                     </div>
 
                 </div>
@@ -92,7 +92,7 @@
                 <div class="form-group">
                     <label for="emptype" class="col-lg-2 control-label" >Types of Employment</label>
                     <div class="col-lg-10" id="typeinemp">
-                        <select class="form-control" id="idDetails" name="idDetails"  >
+                        <select class="form-control" id="idDetails" name="idDetails" required="" >
 
                             <option selected disabled>Choose here</option>
                             <option value="admin" >Admin</option>
@@ -116,16 +116,16 @@
 
                         <label for="username" class="col-lg-2 control-label">User Name</label>
                         <div class="col-lg-4">
-                            <input type="text" class="form-control" name="username" id="changevaluename" placeholder="" 
-                                   title="User Name must contain 8 or more Letters:"/>
+                            <input type="text" class="form-control" name="username" id="changevaluename" placeholder="" required=""
+                                   pattern="[a-zA-Z]{8,}" title="User Name must contain 8 or more Letters:"/>
                         </div>
 
 
 
                         <label for="userpassword" class="col-lg-2 control-label">Password</label>
                         <div class="col-lg-4">
-                            <input type="password" class="form-control" name="userpassword" id="changevaluepassword" placeholder=""
-                                   title="Password must contain 6 or more characters including 1 number 1 capital letter 1 lower letter"/>
+                            <input type="password" class="form-control" name="userpassword" id="changevaluepassword" placeholder="" required=""
+                                  pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,}" title="Password must contain 6 or more characters including 1 number 1 capital letter 1 lower letter"/>
                         </div>
                     </div>
                 </div>

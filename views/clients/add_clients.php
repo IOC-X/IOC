@@ -1,3 +1,8 @@
+<div class="btn-group btn-group-justified">
+    <a href="javascript:void(0)" class="btn btn-primary" id="list"><i class="mdi-social-person"></i> Client List</a>
+    <a href="javascript:void(0)" class="btn btn-primary" id="add"><i class="mdi-social-person-add"></i> Add New Client</a>
+</div>
+
 <div>
     <div class="col-md-12">
         <form class="form-horizontal" method="POST" action="clients/insertClients" enctype="multipart/form-data" id="insertClients" >

@@ -3,14 +3,10 @@
     <thead>
         <tr>
             <th>Date</th>
-            <th>Customer Name</th>
-            <th>NIC</th>
-            <th>Vehicle no</th>
-            <th>Contact</th>
-            <th>Email</th>
-            <th>Description</th>
-            <th></th>
-            <th></th>
+            <th>Driver</th>
+            <th>Branch</th>
+            <th>Product</th>
+            <th>Vehicle No</th>
         </tr>
     </thead>
     <tbody id="fbody">
@@ -30,17 +26,17 @@
         <div class="modal-body">
     
     <fieldset>
-    <form class="form-horizontal" id="addEmgTransport" action="transport/addEmgTransport" method="post">
+    <form class="form-horizontal" id="addLubricantTransport" action="transport/addLubricantTransport" method="post">
         <div class="form-group">
-        <label for="fullname" class="col-lg-3 control-label">Customer name</label>
+        <label for="driver" class="col-lg-3 control-label">Driver</label>
         <div class="col-lg-7">
-            <input type="text" class="form-control" id="fullname" name="fullname">
+            <input type="text" class="form-control" id="driver" name="driver">
         </div>
         </div>
         <div class="form-group">
-        <label for="nic" class="col-lg-3 control-label">NIC</label>
+        <label for="branch" class="col-lg-3 control-label">Branch</label>
         <div class="col-lg-7">
-            <input type="text" class="form-control" id="nic" name="nic">
+            <input type="text" class="form-control" id="branch" name="branch">
         </div>
         </div>
         <div class="form-group">
@@ -50,21 +46,9 @@
         </div>
         </div>
         <div class="form-group">
-        <label for="contact" class="col-lg-3 control-label">Contact</label>
+        <label for="product" class="col-lg-3 control-label">Product</label>
         <div class="col-lg-7">
-            <input type="number" class="form-control" id="contact" name="contact">
-        </div>
-        </div>
-        <div class="form-group">
-        <label for="description" class="col-lg-3 control-label">Description</label>
-        <div class="col-lg-7">
-            <textarea class="form-control" id="description"  name="description" rows="4" cols="50"></textarea>
-        </div>
-        </div>
-        <div class="form-group">
-        <label for="email" class="col-lg-3 control-label">Email</label>
-        <div class="col-lg-7">
-            <input type="email" class="form-control" id="email" name="email">
+            <input type="number" class="form-control" id="product" name="product">
         </div>
         </div>
         </div>
@@ -91,41 +75,29 @@
         <div class="modal-body">
     
     <fieldset>
-    <form class="form-horizontal" id="editPumpReading" action="transport/editPumpReading" method="post">
+    <form class="form-horizontal" id="editLubricantTransport" action="transport/editLubricantTransport" method="post">
         <div class="form-group">
-        <label for="fullname" class="col-lg-3 control-label">Full name</label>
+        <label for="driver" class="col-lg-3 control-label">Driver</label>
         <div class="col-lg-7">
-            <input type="text" class="form-control" id="edit-fullname" name="fullname">
+            <input type="text" class="form-control" id="driver" name="driver">
         </div>
         </div>
         <div class="form-group">
-        <label for="nic" class="col-lg-3 control-label">NIC</label>
+        <label for="branch" class="col-lg-3 control-label">Branch</label>
         <div class="col-lg-7">
-            <input type="text" class="form-control" id="edit-nic" name="nic">
+            <input type="text" class="form-control" id="branch" name="branch">
         </div>
         </div>
         <div class="form-group">
         <label for="vehicleno" class="col-lg-3 control-label">Vehicle No</label>
         <div class="col-lg-7">
-            <input type="text" class="form-control" id="edit-vehicleno" name="vehicleno">
+            <input type="text" class="form-control" id="vehicleno" name="vehicleno">
         </div>
         </div>
         <div class="form-group">
-        <label for="contact" class="col-lg-3 control-label">Contact</label>
+        <label for="product" class="col-lg-3 control-label">Product</label>
         <div class="col-lg-7">
-            <input type="number" class="form-control" id="edit-contact" name="contact">
-        </div>
-        </div>
-        <div class="form-group">
-        <label for="description" class="col-lg-3 control-label">Description</label>
-        <div class="col-lg-7">
-            <textarea class="form-control" id="edit-description"  name="edit-description" rows="4" cols="50"></textarea>
-        </div>
-        </div>
-        <div class="form-group">
-        <label for="email" class="col-lg-3 control-label">Email</label>
-        <div class="col-lg-7">
-            <input type="email" class="form-control" id="edit-email" name="email">
+            <input type="number" class="form-control" id="product" name="product">
         </div>
         </div>
         </div>
@@ -189,19 +161,17 @@
             });
             console.log('Addd');
         });
-        $.getJSON('transport/loadEmgTransport',function(data){
+        $.getJSON('transport/loadLubricantTransport',function(data){
                 console.log(data);
 
                 var len = data.length;
                 for(x=0;x<len;x++){
                     $("tbody").append('<tr class="' + x +'" id="' + data[x].Id + '">');
-                    $("." + x + "").append('<td id="' + data[x].Id + "-Date" + '">' + data[x].date + '</td>');
-                    $("." + x + "").append('<td id="' + data[x].Id + "-Fullname" + '">' + data[x].fullname + '</td>');
-                    $("." + x + "").append('<td id="' + data[x].Id + "-Nic" + '">' + data[x].nic + '</td>');
-                    $("." + x + "").append('<td id="' + data[x].Id + "-Vehicleno" + '">' + data[x].vehicleno + '</td>');
-                    $("." + x + "").append('<td id="' + data[x].Id + "-Contact" + '">' + data[x].contact + '</td>');
-                    $("." + x + "").append('<td id="' + data[x].Id + "-Email" + '">' + data[x].email + '</td>');
-                    $("." + x + "").append('<td id="' + data[x].Id + "-Description" + '">' + data[x].description + '</td>');
+                    $("." + x + "").append('<td id="' + data[x].Id + "-Date" + '">' + data[x].Date + '</td>');
+                    $("." + x + "").append('<td id="' + data[x].Id + "-Driver" + '">' + data[x].Driver + '</td>');
+                    $("." + x + "").append('<td id="' + data[x].Id + "-Branch" + '">' + data[x].Branch + '</td>');
+                    $("." + x + "").append('<td id="' + data[x].Id + "-Product" + '">' + data[x].Product + '</td>');
+                    $("." + x + "").append('<td id="' + data[x].Id + "-Vehicleno" + '">' + data[x].Vehicleno + '</td>');
                     $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].Id + '" class="edit"><i class="mdi-content-create"></i></a></div></td>');
                     $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].Id + '" class="remove"><i class="mdi-content-remove-circle"></i></a></div></td>');
                     $("." + x + "").append('</tr>');
@@ -220,18 +190,18 @@
                         closeOnConfirm: false,   closeOnCancel: false }, 
                         function(isConfirm){   
                             if (isConfirm) {     
-                                $.post('transport/removeEmgTransport', { ID : id }, function(data){
+                                $.post('transport/removeLubricantTransport', { ID : id }, function(data){
                                     console.log(data);
                                     //alert('Done !');
                                     if(data == "Success"){
                                         swal("Deleted!", "Entry deleted !.", "success");
-                                        $('#subloader').load('/IOC/transport/emergencyTransport',function(){
-                                                //console.log('emergencyTransport !');
-                                            $('#subloader').hide();
-                                            $('#subloader').fadeIn('fast');
-                                            window.location.hash = "";
-                                            window.location.hash = "/transport/emergencyTransport";
-                                        });                                         
+                                        $('#subloader').load('/IOC/transport/lubricantTransport',function(){
+                                                //console.log('lubricantTrasnport !');
+                                                $('#subloader').hide();
+                                                $('#subloader').fadeIn('fast');
+                                                window.location.hash = "";
+                                                window.location.hash = "/transport/lubricantTransport";
+                                        });
                                     }
                                     else{
                                         swal("Ooops", "", "error");
@@ -254,19 +224,19 @@
                     $('#myModal2').modal('show');
                     setTimeout(function(){
                         var date = $('#'+ id +'-Date').text();
-                        var fullname = $('#'+ id +'-Fullname').text();
-                        var nic = $('#'+ id +'-Nic').text();
+                        var driver = $('#'+ id +'-driver').text();
+                        var branch = $('#'+ id +'-branch').text();
                         var vehicleno = $('#'+ id +'-Vehicleno').text();
-                        var contact = $('#'+ id +'-Contact').text();
+                        var product = $('#'+ id +'-product').text();
                         var email = $('#'+ id +'-Email').text();
-                        var description = $('#'+ id +'-Description').text();
+                        var vehicleno = $('#'+ id +'-vehicleno').text();
                         //console.log(name + price + quantity + supplier);
-                        $('#edit-fullname').val(fullname);
-                        $('#edit-nic').val(nic);
+                        $('#edit-driver').val(driver);
+                        $('#edit-branch').val(branch);
                         $('#edit-vehicleno').val(vehicleno);
-                        $('#edit-contact').val(contact);
+                        $('#edit-product').val(product);
                         $('#edit-email').val(email);
-                        $('#edit-description').val(description);
+                        $('#edit-vehicleno').val(vehicleno);
                     },250);
                     
                 });
@@ -276,13 +246,13 @@
                 e.preventDefault();
                 console.log("CLIKCED !");
                 var transID = window.editID;
-                var fullname = $('#edit-fullname').val();
-                var nic = $('#edit-nic').val();
+                var driver = $('#edit-driver').val();
+                var branch = $('#edit-branch').val();
                 var vehicleno = $('#edit-vehicleno').val();
-                var contactno = $('#edit-contact').val();
+                var productno = $('#edit-product').val();
                 var email = $('#edit-email').val();
-                var description = $('#edit-description').val();
-                $.post('transport/editPumpReading',{ Id : transID , fullname : fullname , nic : nic , vehicleno : vehicleno , contactno : contactno , email : email , description : description },function(server){
+                var vehicleno = $('#edit-vehicleno').val();
+                $.post('transport/editPumpReading',{ Id : transID , driver : driver , branch : branch , vehicleno : vehicleno , productno : productno , email : email , vehicleno : vehicleno },function(server){
                     console.log(server);
                     $('#myModal2').modal('hide');
                     $('#subloader').load('/IOC/transport/emergencyTransport',function(){

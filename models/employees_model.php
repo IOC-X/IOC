@@ -2,10 +2,12 @@
 
 class Employees_model extends Model {
 
-    private $value;
 
     function __construct() {
+        
+        
         parent::__construct();
+
     }
 
     public function list_employee() {
@@ -108,7 +110,42 @@ class Employees_model extends Model {
         $attend->execute(array(':empcode' => $empcode, ':shiftcode' => $shiftcode, ':shiftprice' => $shiftprice, ':atyear' => $atyear,':atmonth'=>$atmonth,':atdate'=>$atdate,':starttime'=>$starttime,':colour'=>$colour,'pumpto'=>$pumpto));
     
     }
+        public function markabsence($empcode,$yearyear,$monthmonth,$datedate) {
+            $colourr="#ff0000";
+        $attend = $this->db->prepare("INSERT INTO attendance (empCode,atyear,atmonth,atdate,colour)
+                            VALUES(:empcode,:atyear,:atmonth,:atdate,:colour)");
 
+        $attend->execute(array(':empcode' => $empcode, ':atyear' => $yearyear,':atmonth'=>$monthmonth,':atdate'=>$datedate,':colour'=>$colourr));
+    
+    }
+	
+    public function markfinish($empcode,$yearyear,$monthmonth,$datedate,$timetime) {
+
+                echo "got";
+        echo $empcode;
+        echo $yearyear;
+        echo $monthmonth;
+        echo $datedate;
+        echo $timetime;
+        
+        
+        $sql = $this->db->prepare("UPDATE attendance SET endTime=? WHERE empCode =? AND atyear =? AND atmonth =? AND atdate =? LIMIT 1");
+        $sql->bindValue(1, $timetime);
+        $sql->bindValue(2, $empcode);
+        $sql->bindValue(3, $yearyear);
+        $sql->bindValue(4, $monthmonth);
+        $sql->bindValue(5, $datedate);
+        $sql->execute();
+    }	
+    
+           
+    
+    public function select_attendance() {
+        $results = $this->db->prepare("SELECT * FROM attendance");
+        $results->execute();
+        return $results->fetchAll();
+    }
+    
 }
 
 ?>

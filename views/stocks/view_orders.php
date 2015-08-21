@@ -81,15 +81,15 @@
 
 
 <script type="text/javascript">
+
     $(document).ready(function(){
 
         refresh('Petrol');
 
-
         $('.fuelType').click(function(){
             $("tbody").empty();
             var fType = $(this).attr('id');
-        
+            FooType = fType;
             $.getJSON('stocks/loadOrders', { type : fType } ,function(data){
                 console.log(data[0].Id);
 
@@ -120,7 +120,7 @@
                                 $.post('stocks/removeOrder', { ID : id }, function(data){
                                     console.log(data);
                                     //alert('Done !');
-                                    refresh();
+                                    refresh(fType);
                                 });
                                 swal("Deleted!", "Entry deleted !.", "success");    
                             } 
@@ -170,7 +170,7 @@
                 $.post('stocks/editOrder',{ Id : pmp_ID , reading : pmp_reading , order : pmp_order , qnty : pmp_qnty },function(data){
                     console.log(data);
                     $('#myModal').hide();
-                    refresh(fType);
+                    refresh(FooType);
                 });
             });
     });
@@ -200,9 +200,10 @@
         .show();
     });
     function refresh(fType){
-        $("#tbody").empty();
+        console.log('Refreshing');
+        $("#fbody").empty();
         $.getJSON('stocks/loadOrders', { type : fType } ,function(data){
-                console.log(data[0].Id);
+                //console.log(data[0].Id);
 
                 var len = data.length;
                 for(x=0;x<len;x++){

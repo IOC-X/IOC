@@ -21,11 +21,104 @@
 		public function emergencyTransport(){
 			$this->view->render('transport/emergencyTransport/Add',false);
 		}
+		/*
+		* Inserts emgTransport entries
+		*/
+		public function addEmgTransport(){
+			$fullname = $_POST['fullname'];
+			$nic = $_POST['nic'];
+			$vehicleno = $_POST['vehicleno'];
+			$contact = $_POST['contact'];
+			$description = $_POST['description'];
+			$email = $_POST['email'];
+			
+			require 'models/Transport_model.php';
+			$model = new Transport_model();
+			if($model->addEmgTransport($fullname,$nic,$vehicleno,$contact,$description,$email)){
+				echo "Success";
+			}
+		}
+		/**
+		*	loads data for emergency transport table
+		*/
+		public function loadEmgTransport(){
+			require 'models/Transport_model.php';
+			$model = new Transport_model();
+			echo json_encode($model->loadEmgTransport());
+		}
+		/*
+		*	removes emergency transport record
+		*/
+		public function removeEmgTransport(){
+			require 'models/Transport_model.php';
+			$model = new Transport_model();
+			$id = $_POST['ID'];
+			if($model->removeEmgTransport($id)){
+				echo "Success";
+			}
+		}
+		/*
+		*	edits emergency transport record
+		*/
+		public function editPumpReading(){
+			echo "DONE";
+			$id = $_POST['Id'];
+			$fullname = $_POST['fullname'];
+			$nic = $_POST['nic'];
+			$vehicleno = $_POST['vehicleno'];
+			$contactno = $_POST['contactno'];
+			$email = $_POST['email'];
+			$description = $_POST['description'];
+
+			require 'models/Transport_model.php';
+			$model = new Transport_model();
+			$model->editPumpReading($id,$fullname,$nic,$vehicleno,$contactno,$email,$description);
+
+		}
 		public function newEntry(){
 			$this->view->render('transport/emergencyTransport/Add',false);
 		}
 		public function history(){
 			$this->view->render('transport/emergencyTransport/history',false);
+		}
+		/*
+		*	lubricant transport for branches 
+		* 	render lubricant transport page
+		*/
+		public function lubricantTransport(){
+			$this->view->render('transport/lubricantTransport/index',false);	
+		}
+		/*
+		* 	loads lubricant transport date for AJAX request
+		*	return type JSON
+		*/
+		public function loadLubricantTransport(){
+			require 'models/Transport_model.php';
+			$model = new Transport_model();
+			echo json_encode($model->loadLubricantTransport());
+		}
+		public function addLubricantTransport(){
+			$driver = $_POST['driver'];
+			$branch = $_POST['branch'];
+			$vehicleno = $_POST['vehicleno'];
+			$product = $_POST['product'];
+
+			require 'models/Transport_model.php';
+			$model = new Transport_model();
+			if($model->addLubricantTransport($driver,$branch,$vehicleno,$product)){
+				echo "Success";
+			}
+		}
+		/*
+		* removes lubricant tranportation records
+		*/
+		public function removeLubricantTransport(){
+			require 'models/Transport_model.php';
+			$model = new Transport_model();
+			$id = $_POST['ID'];
+			if($model->removeLubricantTransport($id)){
+				echo "Success";
+			}
 		}
 	}
   ?>

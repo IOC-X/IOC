@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 20, 2015 at 12:25 PM
+-- Generation Time: Aug 20, 2015 at 07:33 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -27,15 +27,55 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `attendance` (
-  `empCode` varchar(50) NOT NULL,
-  `shiftCode` varchar(50) NOT NULL,
-  `year` int(4) NOT NULL,
-  `month` varchar(50) NOT NULL,
-  `date` varchar(50) NOT NULL,
-  `startTime` varchar(50) NOT NULL,
-  `colour` varchar(50) NOT NULL,
-  `endTime` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+`atid` int(11) NOT NULL,
+  `empCode` varchar(50) DEFAULT NULL,
+  `shiftCode` varchar(50) DEFAULT NULL,
+  `shiftprice` varchar(100) DEFAULT NULL,
+  `atyear` varchar(50) DEFAULT NULL,
+  `atmonth` varchar(50) DEFAULT NULL,
+  `atdate` varchar(50) DEFAULT NULL,
+  `startTime` varchar(50) DEFAULT NULL,
+  `colour` varchar(50) DEFAULT NULL,
+  `endTime` varchar(50) DEFAULT NULL,
+  `pumps` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=485 ;
+
+--
+-- Dumping data for table `attendance`
+--
+
+INSERT INTO `attendance` (`atid`, `empCode`, `shiftCode`, `shiftprice`, `atyear`, `atmonth`, `atdate`, `startTime`, `colour`, `endTime`, `pumps`) VALUES
+(10, 'MG-795', 'SH-268', '95', '2015', '07', '26', '01:00', 'orange', NULL, 'SH-268'),
+(13, 'MG-795', NULL, NULL, '2015', '07', '27', NULL, '#ff0000', NULL, NULL),
+(14, 'PM-368', NULL, NULL, '2015', '07', '27', NULL, '#ff0000', NULL, NULL),
+(16, 'PM-638', 'SH-147', '750', '2015', '07', '27', '03:00', 'orange', NULL, 'SH-147'),
+(458, 'PM-368', 'SH-147', '750', '2015', '07', '28', '02:01', 'orange', NULL, 'SH-147'),
+(459, 'MG-453', 'SH-725', '1500', '2015', '07', '29', '14:02', 'blue', NULL, 'SH-725'),
+(460, 'MG-453', NULL, NULL, '2015', '07', '26', NULL, '#ff0000', NULL, NULL),
+(461, 'PM-453', 'SH-147', '750', '2015', '07', '26', '03:00', 'orange', NULL, 'SH-147'),
+(462, 'PM-368', NULL, NULL, '2015', '07', '26', NULL, '#ff0000', NULL, NULL),
+(463, 'PM-638', 'SH-256', '1000', '2015', '07', '28', '01:00', 'green', NULL, 'SH-147'),
+(464, 'PM-638', NULL, NULL, '2015', '07', '26', NULL, '#ff0000', NULL, NULL),
+(465, 'MG-453', NULL, NULL, '2015', '07', '30', NULL, '#ff0000', NULL, NULL),
+(466, 'PM-638', NULL, NULL, '2015', '07', '30', NULL, '#ff0000', NULL, NULL),
+(467, 'MG-795', 'SH-147', '750', '2015', '07', '30', '02:00', 'orange', NULL, 'SH-147'),
+(468, 'MG-453', NULL, NULL, '2015', '07', '31', NULL, '#ff0000', NULL, NULL),
+(469, 'PM-368', NULL, NULL, '2015', '07', '31', NULL, '#ff0000', NULL, NULL),
+(470, 'MG-453', NULL, NULL, '2015', '08', '6', NULL, '#ff0000', NULL, NULL),
+(471, 'MG-453', NULL, NULL, '2015', '07', '15', NULL, '#ff0000', NULL, NULL),
+(472, 'MG-453', 'SH-147', '750', '2015', '08', '15', '01:00', 'orange', NULL, 'SH-147'),
+(473, 'MG-795', NULL, NULL, '2015', '08', '15', NULL, '#ff0000', NULL, NULL),
+(474, 'PM-368', 'SH-147', '750', '2015', '08', '15', '01:00', 'orange', NULL, 'SH-193'),
+(475, 'PM-155', 'SH-147', '750', '2015', '08', '16', '01:00', 'orange', NULL, 'SH-193'),
+(476, 'MG-453', NULL, NULL, '2015', '08', '16', NULL, '#ff0000', NULL, NULL),
+(477, 'PM-453', NULL, NULL, '2015', '08', '16', NULL, '#ff0000', NULL, NULL),
+(478, 'MG-453', 'SH-193', '500', '2015', '08', '17', '01:00', 'yellow', NULL, 'SH-147'),
+(479, 'MG-795', NULL, NULL, '2015', '08', '18', NULL, '#ff0000', NULL, NULL),
+(480, 'PM-155', NULL, NULL, '2015', '08', '18', NULL, '#ff0000', NULL, NULL),
+(481, 'PM-368', 'SH-193', '500', '2015', '08', '18', '02:01', 'yellow', '12:57', 'SH-147'),
+(482, 'MG-453', NULL, NULL, '2015', '08', '18', NULL, '#ff0000', NULL, NULL),
+(483, 'PM-453', 'SH-193', '500', '2015', '08', '18', '18:01', 'yellow', '15:59', 'SH-147'),
+(484, 'PM-638', NULL, NULL, '2015', '08', '18', NULL, '#ff0000', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -116,31 +156,31 @@ CREATE TABLE IF NOT EXISTS `client_transactions` (
 --
 
 CREATE TABLE IF NOT EXISTS `employee_list` (
-`countid` int(100) NOT NULL,
   `employeeCode` varchar(50) NOT NULL,
   `firstName` varchar(50) DEFAULT NULL,
   `lastName` varchar(50) DEFAULT NULL,
   `address` varchar(50) DEFAULT NULL,
   `nicNumber` varchar(50) DEFAULT NULL,
-  `homePhone` varchar(50) DEFAULT NULL,
   `mobilePhone` varchar(50) DEFAULT NULL,
   `birthDate` varchar(50) DEFAULT NULL,
   `hireDate` varchar(50) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
+  `emptype` varchar(50) DEFAULT NULL,
   `userName` varchar(50) DEFAULT NULL,
   `userPassword` varchar(50) DEFAULT NULL,
-  `userFile` varchar(250) DEFAULT NULL,
-  `userTextarea` varchar(250) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+  `userFile` varchar(250) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employee_list`
 --
 
-INSERT INTO `employee_list` (`countid`, `employeeCode`, `firstName`, `lastName`, `address`, `nicNumber`, `homePhone`, `mobilePhone`, `birthDate`, `hireDate`, `email`, `userName`, `userPassword`, `userFile`, `userTextarea`) VALUES
-(9, 'MG-841', '', '', '', '', '', '', '', '', '', '', '', NULL, ''),
-(10, 'MG-726', '', '', '', '', '', '', '2015-07-16', '', '', '', '', NULL, ''),
-(11, 'MG-440', '', '', '', '', '', '', '', '', '', '', '', NULL, '');
+INSERT INTO `employee_list` (`employeeCode`, `firstName`, `lastName`, `address`, `nicNumber`, `mobilePhone`, `birthDate`, `hireDate`, `emptype`, `userName`, `userPassword`, `userFile`) VALUES
+('MG-453', 'gfhg', 'hgfhgfhg', '', '', '', '', '', 'Admin', '', '', ''),
+('MG-795', 'damman', 'man', '', '', '', '', '', 'Admin', '', '', ''),
+('PM-155', 'rajika', 'kakak', 'lol', '930152400v', '0718122424', '2015-08-20', '2015-07-31', 'Pump Staff', 'nullnull', 'nullNull123', 'Share2015-07-07-00f4417c7a22057f8d99dbd9c8260929ad19ef94401ef73cb8ba8a79a6de5806-Picture.jpg'),
+('PM-368', 'ghfhgf', 'hgfhgfhg', 'fhgfhgfhg', 'fhgfhgfhgf', 'hgfhgfhg', '2015-07-22', '2015-06-30', 'Pump Staff', 'nullnull', 'nullNull123', 'Screenshot (52).png'),
+('PM-453', 'sunil', 'abeysekara', 'hkjhkjh', '930512400v', '0716010860', '2015-07-13', '2015-07-21', 'Pump Staff', 'nullnull', 'nullNull123', 'Screenshot (50).png'),
+('PM-638', 'Kavi', 'Oshan', 'kollupitiya', '150512488v', '0716010860', '2015-07-27', '2015-07-21', 'Pump Staff', 'nullnull', 'nullNull123', '');
 
 -- --------------------------------------------------------
 
@@ -348,17 +388,19 @@ CREATE TABLE IF NOT EXISTS `shiftdb` (
   `shiftId` varchar(50) NOT NULL,
   `shiftName` varchar(50) NOT NULL,
   `shiftDuration` varchar(50) NOT NULL,
-  `shiftRate` varchar(50) NOT NULL
+  `shiftRate` varchar(50) NOT NULL,
+  `shiftcolor` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `shiftdb`
 --
 
-INSERT INTO `shiftdb` (`shiftId`, `shiftName`, `shiftDuration`, `shiftRate`) VALUES
-('SH-751', '', '', ''),
-('SH115124', '7hours One', '7', 'Rs:280'),
-('SH248', '', '', 'Rs:');
+INSERT INTO `shiftdb` (`shiftId`, `shiftName`, `shiftDuration`, `shiftRate`, `shiftcolor`) VALUES
+('SH-147', '7 hour', '7.00', '750', 'orange'),
+('SH-193', '8 hours', '8.00', '500', 'yellow'),
+('SH-256', '12hour', '12.00', '1000', 'green'),
+('SH-725', '10 hour', '10.00', '1500', 'blue');
 
 -- --------------------------------------------------------
 
@@ -401,6 +443,12 @@ INSERT INTO `users` (`username`, `password`) VALUES
 --
 
 --
+-- Indexes for table `attendance`
+--
+ALTER TABLE `attendance`
+ ADD PRIMARY KEY (`atid`);
+
+--
 -- Indexes for table `car_transactions`
 --
 ALTER TABLE `car_transactions`
@@ -416,7 +464,7 @@ ALTER TABLE `clients`
 -- Indexes for table `employee_list`
 --
 ALTER TABLE `employee_list`
- ADD PRIMARY KEY (`countid`);
+ ADD PRIMARY KEY (`employeeCode`);
 
 --
 -- Indexes for table `eveningstocks`
@@ -483,15 +531,15 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `attendance`
+--
+ALTER TABLE `attendance`
+MODIFY `atid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=485;
+--
 -- AUTO_INCREMENT for table `car_transactions`
 --
 ALTER TABLE `car_transactions`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
---
--- AUTO_INCREMENT for table `employee_list`
---
-ALTER TABLE `employee_list`
-MODIFY `countid` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `eveningstocks`
 --
