@@ -58,10 +58,10 @@
     var SDiesel = Number(window.sdiesel);
     // SDiesel = SDiesel / 2000;
     arrayOfData = new Array(
-        [Petrol,'Petrol','#FF1919'],
+        [Petrol,'Petrol','#52CC52'],
         [SPetrol,'Super Petrol','#52CC52'],
-        [Diesel,'Diesel','#FFFF19'],
-        [SDiesel,'Super Diesel','#4747FF']
+        [Diesel,'Diesel','#52CC52'],
+        [SDiesel,'Super Diesel','#52CC52']
     );
     $('#divForGraph').jqBarGraph({ data: arrayOfData , width: 780 , barSpace: 30 }); 
 </script>
