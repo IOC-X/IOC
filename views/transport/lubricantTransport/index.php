@@ -79,25 +79,25 @@
         <div class="form-group">
         <label for="driver" class="col-lg-3 control-label">Driver</label>
         <div class="col-lg-7">
-            <input type="text" class="form-control" id="driver" name="driver">
+            <input type="text" class="form-control" id="edit-driver" name="driver">
         </div>
         </div>
         <div class="form-group">
         <label for="branch" class="col-lg-3 control-label">Branch</label>
         <div class="col-lg-7">
-            <input type="text" class="form-control" id="branch" name="branch">
+            <input type="text" class="form-control" id="edit-branch" name="branch">
         </div>
         </div>
         <div class="form-group">
         <label for="vehicleno" class="col-lg-3 control-label">Vehicle No</label>
         <div class="col-lg-7">
-            <input type="text" class="form-control" id="vehicleno" name="vehicleno">
+            <input type="text" class="form-control" id="edit-vehicleno" name="vehicleno">
         </div>
         </div>
         <div class="form-group">
         <label for="product" class="col-lg-3 control-label">Product</label>
         <div class="col-lg-7">
-            <input type="number" class="form-control" id="product" name="product">
+            <input type="number" class="form-control" id="edit-product" name="product">
         </div>
         </div>
         </div>
@@ -138,7 +138,7 @@
 
         $("#add_sub").click(function(e){
             e.preventDefault();
-            var form = $("#addEmgTransport");
+            var form = $("#addLubricantTransport");
             $.ajax({
               type : form.attr('method'),
               url : form.attr('action'),
@@ -149,12 +149,12 @@
                     swal("Entry added successfully!", "click okay to continue", "success");
                     $('.form-control').val("");
                     $('#myModal').modal('hide');
-                    $('#subloader').load('/IOC/transport/emergencyTransport',function(){
-                            //console.log('emergencyTransport !');
-                        $('#subloader').hide();
-                        $('#subloader').fadeIn('fast');
-                        window.location.hash = "";
-                        window.location.hash = "/transport/emergencyTransport";
+                    $('#subloader').load('/IOC/transport/lubricantTransport',function(){
+                            //console.log('lubricantTrasnport !');
+                            $('#subloader').hide();
+                            $('#subloader').fadeIn('fast');
+                            window.location.hash = "";
+                            window.location.hash = "/transport/lubricantTransport";
                     });
                 }
               }
@@ -224,18 +224,14 @@
                     $('#myModal2').modal('show');
                     setTimeout(function(){
                         var date = $('#'+ id +'-Date').text();
-                        var driver = $('#'+ id +'-driver').text();
-                        var branch = $('#'+ id +'-branch').text();
+                        var driver = $('#'+ id +'-Driver').text();
+                        var branch = $('#'+ id +'-Branch').text();
+                        var product = $('#'+ id +'-Product').text();
                         var vehicleno = $('#'+ id +'-Vehicleno').text();
-                        var product = $('#'+ id +'-product').text();
-                        var email = $('#'+ id +'-Email').text();
-                        var vehicleno = $('#'+ id +'-vehicleno').text();
-                        //console.log(name + price + quantity + supplier);
+
                         $('#edit-driver').val(driver);
                         $('#edit-branch').val(branch);
-                        $('#edit-vehicleno').val(vehicleno);
                         $('#edit-product').val(product);
-                        $('#edit-email').val(email);
                         $('#edit-vehicleno').val(vehicleno);
                     },250);
                     
@@ -250,17 +246,16 @@
                 var branch = $('#edit-branch').val();
                 var vehicleno = $('#edit-vehicleno').val();
                 var productno = $('#edit-product').val();
-                var email = $('#edit-email').val();
-                var vehicleno = $('#edit-vehicleno').val();
-                $.post('transport/editPumpReading',{ Id : transID , driver : driver , branch : branch , vehicleno : vehicleno , productno : productno , email : email , vehicleno : vehicleno },function(server){
+
+                $.post('transport/editLubricantTransport',{ Id : transID , driver : driver , branch : branch , vehicleno : vehicleno , productno : productno },function(server){
                     console.log(server);
                     $('#myModal2').modal('hide');
-                    $('#subloader').load('/IOC/transport/emergencyTransport',function(){
+                    $('#subloader').load('/IOC/transport/lubricantTransport',function(){
                     //console.log('emergencyTransport !');
                         $('#subloader').hide();
                         $('#subloader').fadeIn('fast');
                         window.location.hash = "";
-                        window.location.hash = "/transport/emergencyTransport";
+                        window.location.hash = "/transport/lubricantTransport";
                     });
                 });
             });

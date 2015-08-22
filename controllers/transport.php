@@ -150,5 +150,8 @@
 				echo "Success";
 			}
 		}
+		public function cardTemplate(){
+			$this->view->render('transport/branches/cardTemplate',false);
+		}
 	}
   ?>

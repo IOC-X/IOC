@@ -54,7 +54,7 @@
         	e2.preventDefault();
         	var id=$(this).attr('id');
 
-        $('#subloader').load('/IOC/transport/'+id,function(){
+            $('#subloader').load('/IOC/transport/'+id,function(){
            		//console.log('payment');
            		 $('#subloader').hide();
             	 $('#subloader').fadeIn('fast');

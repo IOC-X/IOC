@@ -75,4 +75,29 @@
                 return false;
             }
         }
+        public function editLubricantTransport($id,$vehicleno,$driver,$branch,$product){
+            $st = $this->db->prepare("UPDATE lubricanttransport SET vehicleno=:vehicleno,driver=:driver,branch=:branch,product=:product WHERE Id=:id");
+            $st->execute(array(
+                ':id' => $id,
+                ':vehicleno' => $vehicleno,
+                ':driver' => $driver,
+                ':branch' => $branch,
+                ':product' => $product
+            ));
+            return true;
+        }
+        public function loadBranchDetails(){
+            $st = $this->db->prepare("SELECT * FROM branches");
+            $st->execute();
+            return $st->fetchAll();
+        }
+        public function addBranch($name,$description,$address){
+            $st = $this->db->prepare("INSERT INTO branches (name,description,address) VALUES (:name,:description,:address)");
+            $st->execute(array(
+                ':name' => $name,
+                ':description' => $description,
+                ':address' => $address
+            ));
+            return true;
+        }
     }
