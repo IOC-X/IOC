@@ -1,3 +1,7 @@
+<script src="https://cdn.rawgit.com/FezVrasta/dropdown.js/master/jquery.dropdown.js"></script>
+<script>
+      $("#dropdown-menu select").dropdown();
+    </script>
 <form class="form-horizontal" method="post" id="calculate_mrng" action="stocks/insertMrngOrder">
     <fieldset>
         <legend>Morning stock readings</legend>
@@ -9,9 +13,6 @@
                 <div class="col-lg-4">
                 <select id="petrol" placeholder="petrol" class="form-control" name="petrol">
                   <option></option>
-                  <option value="200">200</option>
-                  <option value="700">700</option>
-                  <option value="1200">1200</option>
                 </select>
                 </div>
                 <div class="col-lg-3">
@@ -33,9 +34,6 @@
                 <div class="col-lg-4">
                   <select id="spetrol" placeholder="petrol" class="form-control" name="spetrol">
                     <option></option>
-                    <option>200</option>
-                    <option>700</option>
-                    <option>1200</option>
                   </select>
                 </div>
                 <div class="col-lg-3">
@@ -55,9 +53,6 @@
                 <div class="col-lg-4">
                   <select id="diesel" placeholder="petrol" class="form-control" name="diesel">
                     <option></option>
-                    <option>200</option>
-                    <option>700</option>
-                    <option>1200</option>
                   </select>
                 </div>
                 <div class="col-lg-3">
@@ -77,9 +72,6 @@
                 <div class="col-lg-4">
                   <select id="sdiesel" placeholder="petrol" class="form-control" name="sdiesel">
                     <option></option>
-                    <option>200</option>
-                    <option>700</option>
-                    <option>1200</option>
                   </select>
                 </div>
                 <div class="col-lg-3">
@@ -117,6 +109,19 @@
         e.preventDefault();
     });
     $(document).ready(function(){
+        for(a=0.5;a<=122;a=a+0.5){
+            $('#petrol').append("<option value='"+ a +"'>" + a + "</option>")            
+        }
+        for(a=0.5;a<=212;a=a+0.5){
+            $('#spetrol').append("<option value='"+ a +"'>" + a + "</option>")            
+        }
+        for(a=0.5;a<=122;a=a+0.5){
+            $('#diesel').append("<option value='"+ a +"'>" + a + "</option>")            
+        }
+        for(a=0.5;a<=212;a=a+0.5){
+            $('#sdiesel').append("<option value='"+ a +"'>" + a + "</option>")            
+        }
+
         $('#suggestionPetrol').hide();
         $('#suggestionSPetrol').hide();
         $('#suggestionDiesel').hide();
@@ -197,16 +202,16 @@
         $('#suggestion-label').empty().append('Orders (litres)');
     }
     function qntyPetrol(petrol){
-        return 2*petrol;
+        return Math.round(99.359342916*petrol);
     }
     function qntySPetrol(spetrol){
-        return 2*spetrol;
+        return Math.round(76.103773585*spetrol);
     }
     function qntyDiesel(diesel){
-        return 2*diesel;
+        return Math.round(99.359342916*diesel);
     }
     function qntySDiesel(sdiesel){
-        return 2*sdiesel;
+        return Math.round(76.103773585*sdiesel);
     }
     
 
@@ -217,23 +222,58 @@
         e.preventDefault();
         var Data;
         var form = $('#calculate_mrng');
-        $.ajax({
-          type : form.attr('method'),
-          url : form.attr('action'),
-          data : form.serialize(),
-          success: function(data){
-            console.log(data);
-            if(data){
-                swal("Success !", "Order entries successfully added !", "success");
-                $('#subloader2').empty();
-                $('#subloader2').load('/IOC/stocks/view_orders',function(){
-                    $('#subloader2').hide();
-                    $('#subloader2').fadeIn('fast');
-                });
-            }
-            $('#calculate').attr('disabled','disabled');                    
-          }
-        });
+        if($("#petrol").val() == "" || $("#spetrol").val() == "" || $("#diesel").val() == "" || $("#sdiesel").val() == ""){
+            swal({   title: "Are you sure?",   
+                    text: "You're going to add entries without values for some fuel types !",   
+                    type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",   
+                    confirmButtonText: "Yes, add it !",   cancelButtonText: "No, cancel !",   
+                    closeOnConfirm: false,   closeOnCancel: false }, 
+                    function(isConfirm){   
+                        if (isConfirm) {     
+                            
+                            $.ajax({
+                              type : form.attr('method'),
+                              url : form.attr('action'),
+                              data : form.serialize(),
+                              success: function(data){
+                                console.log(data);
+                                if(data){
+                                    swal("Success !", "Order entries successfully added !", "success");
+                                    $('#subloader2').empty();
+                                    $('#subloader2').load('/IOC/stocks/view_orders',function(){
+                                        $('#subloader2').hide();
+                                        $('#subloader2').fadeIn('fast');
+                                    });
+                                }
+                                $('#calculate').attr('disabled','disabled');                    
+                              }
+                            });
+                            
+                        } 
+                            else {    
+                             swal("Cancelled", "", "error");   
+                            } 
+                    });
+        }
+        else{
+            $.ajax({
+              type : form.attr('method'),
+              url : form.attr('action'),
+              data : form.serialize(),
+              success: function(data){
+                console.log(data);
+                if(data){
+                    swal("Success !", "Order entries successfully added !", "success");
+                    $('#subloader2').empty();
+                    $('#subloader2').load('/IOC/stocks/view_orders',function(){
+                        $('#subloader2').hide();
+                        $('#subloader2').fadeIn('fast');
+                    });
+                }
+                $('#calculate').attr('disabled','disabled');                    
+              }
+            });
+        }
       });
     </script>
 <div id="stock-graph" >
