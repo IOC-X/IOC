@@ -1,6 +1,6 @@
 <?php
 
-include_once '/models/Carwash_model.php';
+//include_once '/models/Carwash_model.php';
 
 class Carwash extends Controller {
 
@@ -17,11 +17,12 @@ class Carwash extends Controller {
     }
 
     public function packages() {
+        include 'models/Carwash_model.php';
         $model = new Carwash_model();
         $packages = $model->selectAllpackages();
-
+        print_r($packages);
         //$this->view->render('carwash/packages',false);
-        include '/views/carwash/packages.php';
+        $this->view->render('carwash/packages',false);
     }
 
     public function EditPackageEntries() {
@@ -48,13 +49,14 @@ class Carwash extends Controller {
 
     public function report() {
 
-        include '/views/carwash/report.php';
+        $this->view->render('carwash/report',false);
     }
 
     public function CustomerReport() {
+        include 'models/Carwash_model.php';
         $model = new Carwash_model();
         $stats = $model->CustomerStatistics();
-        include '/views/carwash/report/CustomerReport.php';
+        $this->view->render('carwash/report/CustomerReport',false);
     }
 
     public function packageReport() {
@@ -64,7 +66,7 @@ class Carwash extends Controller {
     }
 
     public function alert() {
-        include '/views/carwash/alert.php';
+        include 'views/carwash/alert.php';
     }
 
     public function editPackage() {
@@ -110,6 +112,7 @@ class Carwash extends Controller {
     }
 
     public function createPackage() {
+        include 'models/Carwash_model.php';
         $model = new Carwash_model();
 
 //        if (isset($_POST['form-submitted'])) {
@@ -129,7 +132,7 @@ class Carwash extends Controller {
         $time = '';
         $price = '';
         //$this->view->render('carwash/create_package', false);
-        include '/views/carwash/packages/create_package.php';
+        $this->view->render('carwash/packages/create_package',false); 
     }
 
     public function view_customer($id = false) {
@@ -307,20 +310,22 @@ class Carwash extends Controller {
     public function nonreg_history() {
         $model = new Carwash_model();
         $Transactions = $model->selectAlltransactions();
-        include '/views/carwash/transactions/nonreg_history.php';
+        include 'views/carwash/transactions/nonreg_history.php';
     }
 
     public function RegularAlert() {
+        include 'models/Carwash_model.php';
         $model = new Carwash_model();
         $regularTransactions = $model->selectAllRegtransactions();
-        include '/views/carwash/alerts/RegularAlert.php';
+        include 'views/carwash/alerts/RegularAlert.php';
     }
 
     public function NormalAlert() {
+        include 'models/Carwash_model.php';
         $model = new Carwash_model();
         $Transactions = $model->selectAllCartransactions();
 
-        include '/views/carwash/alerts/NormalAlert.php';
+        include 'views/carwash/alerts/NormalAlert.php';
     }
 
     public function UpdateStatus() {
@@ -337,6 +342,8 @@ class Carwash extends Controller {
     }
 
     public function UpdateNonRegStatus() {
+        include 'models/Carwash_model.php';
+        
         $id = $_POST['id'];
         $user=$_POST['user'];
         $mail=$_POST['email'];

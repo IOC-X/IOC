@@ -61,7 +61,6 @@
 		*	edits emergency transport record
 		*/
 		public function editPumpReading(){
-			echo "DONE";
 			$id = $_POST['Id'];
 			$fullname = $_POST['fullname'];
 			$nic = $_POST['nic'];
@@ -117,6 +116,37 @@
 			$model = new Transport_model();
 			$id = $_POST['ID'];
 			if($model->removeLubricantTransport($id)){
+				echo "Success";
+			}
+		}
+		public function editLubricantTransport(){
+			require 'models/Transport_model.php';
+			$model = new Transport_model();
+			$id = $_POST['Id'];
+			$vehicleno = $_POST['vehicleno'];
+			$driver = $_POST['driver'];
+			$branch = $_POST['branch'];
+			$product = $_POST['productno'];
+			$model->editLubricantTransport($id,$vehicleno,$driver,$branch,$product);
+		}
+		public function branches(){
+			$this->view->render('transport/branches/index',false);
+		}
+		/*
+		* loads branch information
+		*/
+		public function loadBranchDetails(){
+			require 'models/Transport_model.php';
+			$model = new Transport_model();
+			echo json_encode($model->loadBranchDetails());
+		}
+		public function addBranch(){
+			$name = $_POST['name'];
+			$description = $_POST['description'];
+			$address = $_POST['address'];
+			require 'models/Transport_model.php';
+			$model = new Transport_model();
+			if($model->addBranch($name,$description,$address)){
 				echo "Success";
 			}
 		}

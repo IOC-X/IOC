@@ -1,6 +1,6 @@
 <?php
 
-include_once '\libs\Database.php';
+//include_once '\libs\Database.php';
 
 class Carwash_model extends Model {
 
