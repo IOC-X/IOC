@@ -123,7 +123,7 @@
             });
 
             $('.edit').click(function(e){
-
+                e.preventDefault();
                 var id = $(this).attr('href');
                 window.editID = id;
                 $('#myModal').modal('show');
@@ -148,7 +148,7 @@
                     $('#qnty').val(quantity);
                     $('#supplier').val(supplier);
                 },250);
-                e.preventDefault();
+                
             });
 
         });
