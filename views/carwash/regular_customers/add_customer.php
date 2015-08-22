@@ -1,11 +1,5 @@
-<!DOCTYPE HTML>
-<html lang="en">
-    <head>
-        <title>Customer Form</title>
-        <meta charset="utf-8">
-    </head>
 
-    <body>
+      
         <div class="container col-lg-7">
             <div class="span">
                 <div class="row">
@@ -75,8 +69,8 @@
             </div>
         </form>
     </div>
-</body>
-</html>
+
+
 
 <script type="text/javascript">
     $(document).ready(function () {

@@ -14,8 +14,7 @@ if (!$packages){ ?>
     <a href="carwash/EditPackageEntries/" class="btn btn-primary" id="EditPackageEntries"><i class="glyphicon glyphicon-wrench"></i>  Edit Entries</a>
 </div>
 <div id="subloader2">
-    <h1 class="text-center text-success">Carwash Packages</h1>
-   
+    <h1 class="text-center text-success">Carwash Packages</h1>   
             <?php foreach ($packages as $package) : ?>						
     <div class="col-lg-4 panel panel-primary text-center ">
                     
@@ -32,7 +31,7 @@ if (!$packages){ ?>
     </div>  
        
             <?php endforeach; ?>
-       
+      
 
 </div>
 <?php } ?>

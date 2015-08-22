@@ -8,7 +8,7 @@
                     <th>Vehicle Number</th>
                     <th>Original Amount</th>
                     <th>Discounted Amount</th>
-                    <th>Date</th>
+                    <th>Order Date</th>
                 </tr>
             </thead>
             <tbody>

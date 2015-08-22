@@ -20,14 +20,14 @@
                 <th class="text-center">Email</th>
                 <th class="text-center">Vehicle No</th>
                 <th class="text-center">Status</th>
-                <th class="text-center">Date</th>
+                <th class="text-center">Order Date</th>
                 <th class="text-center">Send SMS & Email Alert</th>
 
 
             </tr>
         </thead>
         <tbody>
-    <?php foreach ($Transactions as $transaction) : ?>						
+            <?php foreach ($Transactions as $transaction) : ?>						
                 <tr>
                     <td><?php echo ($transaction->cname); ?></td>
                     <td><?php echo ($transaction->package); ?></td>
@@ -41,9 +41,10 @@
                         <a id="alert_Cartrans" onclick="SendNormalAlert('<?php echo ($transaction->id); ?>', '<?php echo ($transaction->cname); ?>', '<?php echo ($transaction->email); ?>', '<?php echo ($transaction->contact); ?>')"> <i class="mdi-communication-textsms"></i></a>
                     </td>
                 </tr>
-    <?php endforeach; ?>
+            <?php endforeach; ?>
         </tbody>
     </table>
+    <div id="myAlert" class="alert alert-info fade col-lg-4 text-center pull-right"  data-alert="alert">SMS and Email has been delivered.<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></div>
 <?php } ?>
 <script type="text/javascript">
 
@@ -68,46 +69,56 @@
                     console.log(data);
 
                 });
-                $('#subloader2').empty();
-                $('#subloader2').load('/IOC/carwash/NormalAlert', function () {
-                    $('#subloader2').hide();
-                    $('#subloader2').fadeIn('fast');
-                });
-
+                window.setTimeout(function () {
+                    $('#subloader2').empty();
+                    $('#subloader2').load('/IOC/carwash/NormalAlert', function () {
+                        $('#subloader2').hide();
+                        $('#subloader2').fadeIn('fast');
+                        window.setTimeout(function () {
+                            showAlert();
+                        }, 3000);
+                    });
+                }, 3000);
             } else {
                 swal("Cancelled", "Your Email was not sent :)", "error");
             }
         });
     }
 
-    $(document).ready(function()
-{
-	$('#search').keyup(function()
-	{
-		searchTable($(this).val());
-	});
-});
+    $(document).ready(function ()
+    {
+        $('#search').keyup(function ()
+        {
+            searchTable($(this).val());
+        });
+    });
 
-function searchTable(inputVal)
-{
-	var table = $('#tblData');
-	table.find('tr').each(function(index, row)
-	{
-		var allCells = $(row).find('td');
-		if(allCells.length > 0)
-		{
-			var found = false;
-			allCells.each(function(index, td)
-			{
-				var regExp = new RegExp(inputVal, 'i');
-				if(regExp.test($(td).text()))
-				{
-					found = true;
-					return false;
-				}
-			});
-			if(found == true)$(row).show();else $(row).hide();
-		}
-	});
-}
+    function searchTable(inputVal)
+    {
+        var table = $('#tblData');
+        table.find('tr').each(function (index, row)
+        {
+            var allCells = $(row).find('td');
+            if (allCells.length > 0)
+            {
+                var found = false;
+                allCells.each(function (index, td)
+                {
+                    var regExp = new RegExp(inputVal, 'i');
+                    if (regExp.test($(td).text()))
+                    {
+                        found = true;
+                        return false;
+                    }
+                });
+                if (found == true)
+                    $(row).show();
+                else
+                    $(row).hide();
+            }
+        });
+    }
+    function showAlert() {
+        $("#myAlert").addClass("in");
+    }
 </script>
