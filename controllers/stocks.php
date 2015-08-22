@@ -55,8 +55,12 @@
 			require 'models/Stocks_model.php';
 			$model = new Stocks_model();
 			$id = $_POST['ID'];
-			echo $id;
-			$model->removeOrder($id);
+			if($model->removeOrder($id)){
+				echo "Success";
+			}
+			else{
+				echo "Failed";
+			}
 		}
 		/**
 		*Edits order entries
