@@ -46,7 +46,9 @@
         <div class="form-group">
         <label for="prd-name" class="col-lg-2 control-label">Reading</label>
         <div class="col-lg-7">
-            <input type="number" class="form-control" id="pmp-reading" placeholder="reading" name="pmp-reading">
+            <select type="number" class="form-control" id="pmp-reading" name="pmp-reading">
+
+            </select>
         </div>
         </div>
         <div class="form-group">
@@ -84,6 +86,11 @@
 
     $(document).ready(function(){
 
+        var today = new Date();
+        today = today.toISOString().substring(0, 10);
+        //console.log(today);
+        $("#searchInput").attr("max",today);
+        
         refresh('Petrol');
 
         $('.fuelType').click(function(){
@@ -138,6 +145,55 @@
 
                 $('.edit').click(function(e){
 
+                    if(FooType == "Petrol");{
+                        for(a=0.5;a<=122;a=a+0.5){
+                            $('#pmp-reading').append("<option value='"+ a +"'>" + a + "</option>")            
+                        }                        
+                    }
+                    if(FooType == "SPetrol"){
+                        for(a=0.5;a<=212;a=a+0.5){
+                            $('#pmp-reading').append("<option value='"+ a +"'>" + a + "</option>")            
+                        }
+                    }
+                    if(FooType == "Diesel"){
+                        for(a=0.5;a<=122;a=a+0.5){
+                            $('#pmp-reading').append("<option value='"+ a +"'>" + a + "</option>")            
+                        }
+                    }
+                    if(FooType == "SDiesel"){
+                        for(a=0.5;a<=212;a=a+0.5){
+                            $('#pmp-reading').append("<option value='"+ a +"'>" + a + "</option>")            
+                        }
+                    }
+                    $("#pmp-reading").change(function(){
+                        if(FooType == "Petrol");{
+                            $("#pmp-qnty").val(qntyPetrol($(this).val()));                
+                        }
+                        if(FooType == "SPetrol"){
+                            $("#pmp-qnty").val(qntySPetrol($(this).val()));    
+                        }
+                        if(FooType == "Diesel"){
+                            $("#pmp-qnty").val(qntyDiesel($(this).val()));
+                        }
+                        if(FooType == "SDiesel"){
+                            $("#pmp-qnty").val(qntySDiesel($(this).val()));
+                        }
+                    });
+
+                    function qntyPetrol(petrol){
+                        return Math.round(99.359342916*petrol);
+                    }
+                    function qntySPetrol(spetrol){
+                        return Math.round(76.103773585*spetrol);
+                    }
+                    function qntyDiesel(diesel){
+                        return Math.round(99.359342916*diesel);
+                    }
+                    function qntySDiesel(sdiesel){
+                        return Math.round(76.103773585*sdiesel);
+                    }
+
+
                     var id = $(this).attr('href');
                     window.editID = id;
                     $('#myModal').modal('show');
@@ -182,18 +238,6 @@
                 });
                 //console.log('sign off');
                 
-            });
-
-
-            $('#pmp-reading').focusout(function(){
-                if(isNaN($(this).val()) || $(this).val() == ""){
-                    swal("Oops", "Reading should be a number");    
-                }
-            });
-            $('#pmp-qnty').focusout(function(){
-                if(isNaN($(this).val()) || $(this).val() == ""){
-                    swal("Oops", "Quantity should be a number");    
-                }
             });
 
     });
@@ -266,6 +310,57 @@
                 });
 
                 $('.edit').click(function(e){
+
+
+                    if(FooType == "Petrol");{
+                        for(a=0.5;a<=122;a=a+0.5){
+                            $('#pmp-reading').append("<option value='"+ a +"'>" + a + "</option>")            
+                        }                        
+                    }
+                    if(FooType == "SPetrol"){
+                        for(a=0.5;a<=212;a=a+0.5){
+                            $('#pmp-reading').append("<option value='"+ a +"'>" + a + "</option>")            
+                        }
+                    }
+                    if(FooType == "Diesel"){
+                        for(a=0.5;a<=122;a=a+0.5){
+                            $('#pmp-reading').append("<option value='"+ a +"'>" + a + "</option>")            
+                        }
+                    }
+                    if(FooType == "SDiesel"){
+                        for(a=0.5;a<=212;a=a+0.5){
+                            $('#pmp-reading').append("<option value='"+ a +"'>" + a + "</option>")            
+                        }
+                    }
+                    $("#pmp-reading").change(function(){
+                        if(FooType == "Petrol");{
+                            $("#pmp-qnty").val(qntyPetrol($(this).val()));                
+                        }
+                        if(FooType == "SPetrol"){
+                            $("#pmp-qnty").val(qntySPetrol($(this).val()));    
+                        }
+                        if(FooType == "Diesel"){
+                            $("#pmp-qnty").val(qntyDiesel($(this).val()));
+                        }
+                        if(FooType == "SDiesel"){
+                            $("#pmp-qnty").val(qntySDiesel($(this).val()));
+                        }
+                    });
+
+                    function qntyPetrol(petrol){
+                        return Math.round(99.359342916*petrol);
+                    }
+                    function qntySPetrol(spetrol){
+                        return Math.round(76.103773585*spetrol);
+                    }
+                    function qntyDiesel(diesel){
+                        return Math.round(99.359342916*diesel);
+                    }
+                    function qntySDiesel(sdiesel){
+                        return Math.round(76.103773585*sdiesel);
+                    }
+
+
 
                     var id = $(this).attr('href');
                     window.editID = id;
