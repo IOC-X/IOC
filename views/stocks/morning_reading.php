@@ -1,7 +1,3 @@
-<script src="https://cdn.rawgit.com/FezVrasta/dropdown.js/master/jquery.dropdown.js"></script>
-<script>
-      $("#dropdown-menu select").dropdown();
-    </script>
 <form class="form-horizontal" method="post" id="calculate_mrng" action="stocks/insertMrngOrder">
     <fieldset>
         <legend>Morning stock readings</legend>
