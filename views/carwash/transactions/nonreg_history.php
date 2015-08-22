@@ -1,10 +1,11 @@
 
 <!-- DISPLAYING LATEST TRANSACTIONS-->
+<div class="col-lg-3"><input type="text" class="form-control" id="search" placeholder="Type to search"></div>
+
 <div class="col-lg-12 text-center">
     <h3 class="text-center success"><strong>Earlier NON-Regular Customer Transactions</strong></h3>
-
 </div>
-<table class="table table-striped table-bordered table-hover">
+<table class="table table-striped table-bordered table-hover" id="tblData">
 
     <thead>
         <tr class="success">
@@ -120,13 +121,13 @@
         document.frmCarTrans.date.value = date;
         $('#modal').modal('show');
     }
-    
+
     $(document).ready(function () {
         console.log('Editing NONRegular History');
         $("#form-submitted").click(function (e) {
 //assiging values    
             e.preventDefault();
-            var id = $("#id").val(); 
+            var id = $("#id").val();
             var cname = $("#cname").val();
             var package = $("#package").val();
             var contact = $("#contact").val();
@@ -154,7 +155,7 @@
 
 
 //validation
-            if (id == '' || cname == '' || package == '' ||contact == ''|| email == ''|| vehicleNo == '' || amount == '' || date == '') {
+            if (id == '' || cname == '' || package == '' || contact == '' || email == '' || vehicleNo == '' || amount == '' || date == '') {
 
                 swal("Oops...", "Insertion Failed Some Fields are Blank....!!", "error");
             }
@@ -167,13 +168,13 @@
             else if (vehicleNo.match(numbers)) {
                 swal("Oops...", "Vehicle Number is invalid....!!", "error");
             }
-            
+
             else if (e_date > today) {
                 swal("Oops...", "Selected date is a future date....!!", "error");
             }
             else {
 // Returns successful data submission message when the entered information is stored in database.
-                $.post("carwash/editCarTransaction", {id: id,cname: cname, package:package, contact:contact, email:email, vehicleNo: vehicleNo, amount: amount, date: date},
+                $.post("carwash/editCarTransaction", {id: id, cname: cname, package: package, contact: contact, email: email, vehicleNo: vehicleNo, amount: amount, date: date},
                 function (data) {
                     swal("Good job!", "Successfully Updated the Non-Regular Transaction Details!", "success");
                     // $('#form')[0].reset(); //To reset form fields
@@ -206,19 +207,49 @@
         function (isConfirm) {
             if (isConfirm) {
                 swal("Deleted!", "Your Transaction details has been deleted.", "success");
-                $.post('carwash/delete_Cartransaction', { id : id }, function(data){
-                                console.log(data);                                
-                            });
-                        $('#subloader2').empty();
-                        $('#subloader2').load('/IOC/carwash/nonreg_history', function () {
-                        $('#subloader2').hide();
-                        $('#subloader2').fadeIn('fast');
-                    });
-                
+                $.post('carwash/delete_Cartransaction', {id: id}, function (data) {
+                    console.log(data);
+                });
+                $('#subloader2').empty();
+                $('#subloader2').load('/IOC/carwash/nonreg_history', function () {
+                    $('#subloader2').hide();
+                    $('#subloader2').fadeIn('fast');
+                });
+
 
             } else {
                 swal("Cancelled", "Your Customer details is safe :)", "error");
             }
         });
     }
+    $(document).ready(function()
+{
+	$('#search').keyup(function()
+	{
+		searchTable($(this).val());
+	});
+});
+
+function searchTable(inputVal)
+{
+	var table = $('#tblData');
+	table.find('tr').each(function(index, row)
+	{
+		var allCells = $(row).find('td');
+		if(allCells.length > 0)
+		{
+			var found = false;
+			allCells.each(function(index, td)
+			{
+				var regExp = new RegExp(inputVal, 'i');
+				if(regExp.test($(td).text()))
+				{
+					found = true;
+					return false;
+				}
+			});
+			if(found == true)$(row).show();else $(row).hide();
+		}
+	});
+}
 </script>
