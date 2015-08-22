@@ -46,18 +46,11 @@ require_once('models/clients_model.php');
                         $phone=$_POST['client_phone'];
                         $purchasedate=$_POST['client_purchase_date'];
                         $amount=$_POST['client_purchase_amount'];
-//                    echo $autocode;
-//                    echo $fname;
-//                    echo $lname;
-//                    echo $address;
-//                    echo $nic;
-//                    echo $phone;
-//                    echo $purchasedate;
-//                    echo $amount;
+                    
 //                       echo $code,"-",$fname,"-",$lname,"-",$address,"-",$nic,"-",$phone,"-",$purchase_date,"-",$amount;
-                    require_once('models/clients_model.php');
-                    $sendtomodel=new clients_model();
-                    $sendtomodel->addclient($autocode,$fname,$lname,$address,$nic,$phone,$purchasedate,$amount);
+                       require_once('models/clients_model.php');
+                       $sendtomodel=new clients_model();
+                       $sendtomodel->addclient($autocode,$fname,$lname,$address,$nic,$phone,$purchasedate,$amount);
                 }
                 
                 public function searchClients(){
@@ -68,22 +61,13 @@ require_once('models/clients_model.php');
                     
                     
                 }
-//                public function deleteClients(){
-//                      require ('models/clients_model.php');
-//                      $id=$_GET['client_code'];
-////                    $id = $_POST['idclient'];
-////                    print_r($_GET['idclient']);
-////                    echo $id;
-//                    
-//                }
-    public function deleteClients() {
-
-        $id = $_POST['idclients'];
-        echo $id;
-        $model = new clients_model();
-        $delete = $model->deleteClient($id);
-
-    }
-
+                public function deleteClients(){
+                      require ('models/clients_model.php');
+                      $id=$_GET['client_code'];
+//                    $id = $_POST['idclient'];
+//                    print_r($_GET['idclient']);
+//                    echo $id;
+                    
+                }
 	}
 ?>

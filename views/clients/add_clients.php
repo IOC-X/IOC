@@ -1,18 +1,13 @@
-<div class="btn-group btn-group-justified">
-    <a href="javascript:void(0)" class="btn btn-primary" id="list"><i class="mdi-social-person"></i> Client List</a>
-    <a href="javascript:void(0)" class="btn btn-primary" id="add"><i class="mdi-social-person-add"></i> Add New Client</a>
-</div>
-
 <div>
     <div class="col-md-12">
-        <form class="form-horizontal" method="POST" action="clients/insertClients" enctype="multipart/form-data" id="insertClients" >
+        <form class="form-horizontal" method="POST" action="clients/insertClients" enctype="multipart/form-data" id="form_insertClients" >
             <fieldset>
                 <legend><ul><b>New Client Details</b></ul></legend>
 
                 <div class="form-group">
                     <label for="client_code" class="col-lg-2 control-label">Client Code</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" name="client_code" id="client_code" placeholder="">
+                        <input type="text" class="form-control" name="client_code" id="autocode" placeholder="">
                     </div>
                 </div>
 
@@ -20,14 +15,14 @@
                  <div class="form-group">
                     <label for="client_fname" class="col-lg-2 control-label">First Name</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" name="client_fname" placeholder=""  id="client_fname">
+                        <input type="text" class="form-control" name="client_fname" placeholder=""  id="Fname">
                     </div>
                 </div> 
                 
                 <div class="form-group">
                     <label for="client_lname" class="col-lg-2 control-label">Last Name</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" name="client_lname" placeholder="" id="client_lname" >
+                        <input type="text" class="form-control" name="client_lname" placeholder="" id="Lname" >
                     </div>
                 </div> 
 
@@ -36,21 +31,21 @@
                 <div class="form-group">
                     <label for="client_address" class="col-lg-2 control-label">Address</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" name="client_address" placeholder="" id="client_address" >
+                        <input type="text" class="form-control" name="client_address" placeholder="" id="address" >
                     </div>
                 </div> 
                 
                 <div class="form-group">
                     <label for="client_nic" class="col-lg-2 control-label">NIC Number</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" name="client_nic" placeholder="Eg: 921821298V" id="client_nic" >
+                        <input type="text" class="form-control" name="client_nic" placeholder="Eg: 921821298V" id="NIC" >
                     </div>
                 </div> 
 
                 <div class="form-group">
                     <label for="client_phone" class="col-lg-2 control-label">Mobile Number</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" name="client_phone" placeholder="Eg: 0778394947" id="client_phone" >
+                        <input type="text" class="form-control" name="client_phone" placeholder="Eg: 0778394947" id="Phone" >
                     </div>
                 </div>
 
@@ -58,7 +53,7 @@
                 <div class="form-group">
                     <label for="client_purchase_date" class="col-lg-2 control-label">Purchase Date</label>
                     <div class="col-lg-2">
-                        <input type="date" class="form-control" name="client_purchase_date" placeholder="" id="client_purchase_date" >
+                        <input type="date" class="form-control" name="client_purchase_date" placeholder="" id="purchasedate" >
                     </div>
                 </div>
                     
@@ -66,15 +61,15 @@
                 <div class="form-group">
                     <label for="client_purchase_amount" class="col-lg-2 control-label">Purchase Amount</label>
                     <div class="col-lg-2">
-                        <input type="text" class="form-control" name="client_purchase_amount" placeholder="" id="client_purchase_amount" >
+                        <input type="text" class="form-control" name="client_purchase_amount" placeholder="" id="Amount" >
                     </div>
                 </div>
-                
+                </div>
 
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">
-                        <input type="reset" class="btn btn-warning">
-                        <input type="submit" class="btn btn-success btn-raised">
+                        <button type="reset" class="btn btn-warning">Reset</button>
+                        <button type="submit" class="btn btn-success btn-raised" id="form-submitted" name="form-submitted">Submit</button>
                       
                     </div>
                 </div>
@@ -82,10 +77,9 @@
             </fieldset>
         </form>
     </div>
-</div> 
-<script>
-     $('#insertClients').submit(function (e) {
-      
+    
+<script type="text/javascript">
+     $('insertClients').submit(function (e) {
         e.preventDefault();
         var form = $('#insertClients');
         $.ajax({
