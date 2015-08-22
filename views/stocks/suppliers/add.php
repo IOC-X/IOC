@@ -77,19 +77,19 @@
         //   console.log('inside');
         // }
         if(name == "" || email == "" || contact == ""){
-            swal("Bump !", "Please fill every field");
+            swal("Oops !", "Please fill every field");
             return false;
         }
         if(name.length>=30){
-            swal("Bump !", "Name filed should be less than 30 characters")  
+            swal("Oops !", "Name filed should be less than 30 characters")  
             return false;
         }
         if(!validateContact($('#sup-contact').val())){
-            swal("Duhh !", "Please enter 10 digits for contact number");
+            swal("Oops !", "Please enter 10 digits for contact number");
             return false;    
         }
         if(!validateEmail($('#sup-email').val())){
-            swal("Bruhh !", "Not a valid email");
+            swal("Oops !", "Not a valid email");
             return false;    
         }
         else{
@@ -110,14 +110,19 @@
             });
         }
     });
+    $('#sup-name').focusout(function(){
+        if(($(this).val()) == ""){
+            swal("Oops !", "Please fill name field");    
+        }
+    });
     $('#sup-contact').focusout(function(){
         if(!validateContact($(this).val())){
-            swal("Duhh !", "Please enter 10 digits");    
+            swal("Oops !", "Please enter 10 digits");    
         }
     });
     $('#sup-email').focusout(function(){
         if(!validateEmail($(this).val())){
-            swal("Bruhh !", "Not a valid email");    
+            swal("Oops !", "Not a valid email");    
         }
     });
     function validateEmail(email){

@@ -74,7 +74,7 @@
             <div class="form-group">
             <label for="sup-contact" class="col-lg-2 control-label">Contact no</label>
             <div class="col-lg-7">
-                <input type="text" class="form-control" id="sup-contact" placeholder="contact no" name="sup-contact">
+                <input type="number" class="form-control" id="sup-contact" placeholder="contact no" name="sup-contact">
             </div>    
             </div>
             
@@ -174,7 +174,31 @@
                 var sup_email = $('#sup-email').val();
                 var sup_contact = $('#sup-contact').val();
                 //var sup_products = $('#supplier').val();
-                console.log(sup_ID+sup_name+sup_email+sup_contact);
+
+
+                if(sup_name == ""){
+                    swal("Oops !", "Please fill name field");
+                    return false;
+                }
+                if(sup_email == ""){
+                    swal("Oops !", "Please fill email field");
+                    return false;
+                }
+                if(!validateContact(sup_contact) || sup_contact == ""){
+                    swal("Oops !", "Invalid contact number !");
+                    return false;
+                }
+                function validateContact(contact){
+                    if(!contact.match(/^\d{10}$/)){
+                        //console.log('Nope !');
+                        return false;
+                    }
+                    else{
+                        //console.log('Match ');
+                        return true;
+                    }
+                }
+                //console.log(sup_ID+sup_name+sup_email+sup_contact);
                 $.post('stocks/editSupplier',{ name : sup_name , email : sup_email , contact : sup_contact , id : sup_ID },function(data){
                     console.log(data);
                     $('#myModal').hide();

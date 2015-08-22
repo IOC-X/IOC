@@ -78,6 +78,12 @@
         $('.pumpBread').click(function(){
             $("tbody").empty();
             var id = $(this).attr('id');
+            FooType = id;
+            var today = new Date();
+            today = today.toISOString().substring(0, 10);
+            //console.log(today);
+            $("#pmp-date").attr("max",today);
+
             $.getJSON('stocks/loadPumpReadings',{ pumpno : id },function(data){
                 console.log(data);
 
@@ -109,7 +115,8 @@
                                     console.log(data);
                                     //alert('Done !');
                                     if(data == "Success"){
-                                        swal("Deleted!", "Entry deleted !.", "success");                                            
+                                        swal("Deleted!", "Entry deleted !.", "success");
+                                        refresh(FooType);                                       
                                     }
                                     else{
                                         swal("Ooops", "", "error");
@@ -127,6 +134,13 @@
 
                 $('.edit').click(function(e){
                     e.preventDefault();
+                    
+                    $("#pmp-reading").focusout(function(){
+                        if(isNaN($(this).val()) || $(this).val() == ""){
+                            swal("Oops !", "Reading should be a number !")  
+                        }
+                    });
+
                     console.log('Inside');
                     var id = $(this).attr('href');
                     window.editID = id;
@@ -146,6 +160,10 @@
 
             $('#edit_sub').click(function(e){
                 e.preventDefault();
+                if(isNaN($("#pmp-reading").val()) || $("#pmp-reading").val() == ""){
+                    swal("Oops !", "Reading should be a number !")  
+                    return false;
+                }
                 console.log("CLIKCED !");
                 var pmpID = window.editID;
                 var reading = $('#pmp-reading').val();
