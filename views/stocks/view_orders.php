@@ -119,8 +119,13 @@
                             if (isConfirm) {     
                                 $.post('stocks/removeOrder', { ID : id }, function(data){
                                     console.log(data);
+
                                     //alert('Done !');
-                                    refresh(fType);
+                                    if(data == "Success"){
+                                        console.log('OK');
+                                        refresh(fType);                                        
+                                    }
+
                                 });
                                 swal("Deleted!", "Entry deleted !.", "success");    
                             } 
@@ -170,9 +175,27 @@
                 $.post('stocks/editOrder',{ Id : pmp_ID , reading : pmp_reading , order : pmp_order , qnty : pmp_qnty },function(data){
                     console.log(data);
                     $('#myModal').hide();
+                    //console.log('Spec refreshing !');
                     refresh(FooType);
+                    //console.log('DONE with func');
+                    return true;
                 });
+                //console.log('sign off');
+                
             });
+
+
+            $('#pmp-reading').focusout(function(){
+                if(isNaN($(this).val()) || $(this).val() == ""){
+                    swal("Oops", "Reading should be a number");    
+                }
+            });
+            $('#pmp-qnty').focusout(function(){
+                if(isNaN($(this).val()) || $(this).val() == ""){
+                    swal("Oops", "Quantity should be a number");    
+                }
+            });
+
     });
     $("#searchInput").keyup(function () {
         //split the current value of searchInput
@@ -216,7 +239,6 @@
                     $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].Id + '" class="remove"><i class="mdi-content-remove-circle"></i></a></div></td>');
                     $("." + x + "").append('</tr>').hide().fadeIn('slow');
                 }
-                
                 $('.remove').click(function(e){
                     var id = $(this).attr('href');
                     e.preventDefault();
@@ -266,8 +288,10 @@
                     },250);
                     e.preventDefault();
                 });
-
-            });
+                //return true;
+        });
+            console.log('Refreshedd');
+            return true;
     }
 
 </script>
