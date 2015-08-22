@@ -10,9 +10,10 @@ class Carwash_model extends Model {
 
 //PACKAGE DATA RETREIVING STARTS HERE
     public function selectAllpackages() {
-
+        $packages='';
         $sql = $this->db->prepare("SELECT * FROM packages");
         $sql->execute();
+        
         while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
             $packages[] = $obj;
         }
@@ -51,7 +52,7 @@ class Carwash_model extends Model {
     //PACKAGE DATA RETREIVING ENDS HERE
     //CUSTOMER DATA RETREIVING STARTS HERE
     public function selectAllcustomers() {
-
+        $customers='';
         $sql = $this->db->prepare("SELECT * FROM regular_customers");
         $sql->execute();
         $customers = array();
@@ -130,7 +131,9 @@ class Carwash_model extends Model {
         while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
             $regularTransactions[] = $obj;
         }
+        
         return $regularTransactions;
+   
     }
 
     //NON-REGULAR TRANSACTION DATA RETREIVING STARTS HERE
@@ -190,15 +193,12 @@ class Carwash_model extends Model {
         //$date = date("Y-m-d");  where date like'$date'
         $sql = $this->db->prepare("select t.id, r.name, t.package, t.vehicleNo ,t.date,t.status, r.email , r.contact from regular_customers r, regular_transactions t where r.cust_id=t.cust_id and t.status like 'Not Returned'");
         $sql->execute();
-
+        $Transactions='';
         while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
              
            $Transactions[] = $obj;
         }
-        
-        return $Transactions;
-                    
-        
+        return $Transactions;        
     }
     
     public function updateRegStatus($id){
@@ -262,7 +262,7 @@ class Carwash_model extends Model {
         //$date = date("Y-m-d");  where date like'$date'
         $sql = $this->db->prepare("SELECT * FROM car_transactions where status like 'Not Returned'");
         $sql->execute();
-
+        $Transactions='';
         while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
 
             $Transactions[] = $obj;
