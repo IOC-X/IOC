@@ -46,7 +46,7 @@ class Carwash extends Controller {
         $customers = $model->selectAllcustomers();
         include '/views/carwash/regular_customers/EditCustomerEntries.php';
     }
-
+//REPORT GENARATION
     public function report() {
 
         $this->view->render('carwash/report',false);
@@ -64,6 +64,13 @@ class Carwash extends Controller {
         $stats = $model->packageUsage();
         include '/views/carwash/report/packageReport.php';
     }
+    
+    public function alertReport() {
+        $model = new Carwash_model();
+        $stats = $model->alertUsage();
+        include '/views/carwash/report/alertReport.php';
+    }
+    
 
     public function alert() {
         include 'views/carwash/alert.php';

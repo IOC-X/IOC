@@ -3,7 +3,7 @@
 
     <!--start of filling application -->
     <div class="col-md-12">
-        <form class="form-horizontal" method="POST" action="lubricants/income" enctype="multipart/form-data" id="lubricantincome" >
+        <form class="form-horizontal" method="POST" action="revenue/insertlubricantinc" enctype="multipart/form-data" id="lubricantincome" >
             <fieldset>
                 <legend>Search Lubricants</legend> <!--font style-->
 
@@ -13,7 +13,7 @@
                         <label for="name">Name</label>
                     </div>
                     <div class="col-lg-4">
-                        <input type="text" class="form-control" id="" placeholder="filter">
+                        <input type="text" class="form-control" name="lubname" placeholder="filter">
                     </div>
                 </div>
 
@@ -120,4 +120,22 @@
 
 </div>
 </div>
+
+<script>
+    $('#lubricantincome').submit(function (e) {
+
+        e.preventDefault();
+        var form = $('#lubricantincome');
+        $.ajax({
+            type: form.attr('method'),
+            url: form.attr('action'),
+            data: form.serialize(),
+            success: function (data) {
+                console.log(data);
+                $('#subloader2').empty();
+                $('#subloader2').load('/IOC/revenue/lubricants').hide().fadeIn('slow');
+            }
+        });
+    });
+</script>
 

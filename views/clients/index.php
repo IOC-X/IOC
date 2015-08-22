@@ -1,5 +1,3 @@
-
-
 <div>
     <div class="panel panel-warning">
         <div class="panel-heading">
@@ -44,7 +42,7 @@
         });
     });
     
-    $('#clienttransaction').click(function (e2) {
+    $('#client_transactions').click(function (e2) {
         e2.preventDefault();
         var id = $(this).attr('id');
         $('#subloader').load('/IOC/clients/' + id, function () {

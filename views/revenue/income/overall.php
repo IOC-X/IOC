@@ -10,6 +10,9 @@
 		</fieldset>
 	</form>
 
+
+	
+
 	 <table class="table table-striped table-hover ">
     <thead>
         <tr>
@@ -19,10 +22,18 @@
             <th>Non Regular Car wash Income</th>
             <th>Time(Date)</th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
-    <tbody id="fbody">
-    </tbody>
+    <!--<tbody id="fbody">
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><div class="icon-preview"><a href=""><i class="mdi-content-create"></i></a></div></td>
+    <td><div class="icon-preview"><a href=""><i class="mdi-content-remove-circle"></i></a></div></td>
+    </tbody>-->
 </table>
 
 

@@ -45,7 +45,7 @@
             </div>
         </div>  
         <div class="control-group panel panel-info">
-            <label class="control-label col-lg-4">Date</label>
+            <label class="control-label col-lg-4">Order Date</label>
             <div class="controls col-lg-6">
                 <input type="text" class="form-control btn" name="date" id="date"  readonly="readonly" value="<?php echo date("Y-m-d"); ?>">
             </div>

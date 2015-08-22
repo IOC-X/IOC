@@ -66,5 +66,22 @@
 		public function overall(){
 			$this->view->render('revenue/income/overall',false);
 		}
+
+
+		public function insertlubricantinc(){
+			require 'models/Revenue_model.php';
+
+			$name=$_POST['lubname'];
+			$price=$_POST['price'];
+			$qty=$_POST['qty'];
+			$supplier=$_POST['supplier'];
+			$sqty=$_POST['sqty'];
+			$inc=$_POST['income'];
+			$date=$_POST['time'];
+
+
+			$sendtomodel=new Revenue_model();
+			$sendtomodel->addlubinc($name, $qty, $supplier, $price, $sqty, $inc, $date);
+		}
 	}
   ?>

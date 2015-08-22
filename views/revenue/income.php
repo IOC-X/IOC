@@ -11,7 +11,7 @@
             });
         });
         $('#lubricants').click(function(){
-            $('#subloader2').load('/IOC/revenue/incomelubricants',function(){
+            $('#subloader2').load('/IOC/revenue/lubricants',function(){
                 $('#subloader2').hide();
                 $('#subloader2').fadeIn('fast');
             });
