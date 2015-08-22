@@ -5,13 +5,13 @@
 			</div>
 			<div class="panel-body">
 				<a href="transport/emergencyTransport" class="btn btn-flat btn-primary" id="emergencyTransport">
-				<i class=""></i> Emergency transport</a>
+				<i class="mdi-alert-error" style="margin-right:10px"></i> Emergency transport</a>
 				<a href="transport/lubricantTransport" class="btn btn-flat btn-primary" id="lubricantTransport">
-				<i class=""></i> Lubricant transport</a>
+				<i class="mdi-image-blur-on" style="margin-right:10px"></i> Lubricant transport</a>
 				<a href="transport/branches" class="btn btn-flat btn-primary" id="branches">
-				<i class=""></i> Branches</a>
+				<i class="mdi-image-filter-none" style="margin-right:10px"></i> Branches</a>
 				<a href="transport/report" class="btn btn-flat btn-primary" id="report">
-				<i class="mdi-social-poll"></i> Report</a>
+				<i class="mdi-image-style" style="margin-right:10px"></i> Report</a>
 			</div>
 		</div>
 </div>
