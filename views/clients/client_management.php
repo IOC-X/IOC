@@ -1,24 +1,3 @@
-<div class="btn-group btn-group-justified">
-    <a href="javascript:void(0)" class="btn btn-primary" id="list"><i class="mdi-social-person"></i> Client List</a>
-    <a href="javascript:void(0)" class="btn btn-primary" id="add"><i class="mdi-social-person-add"></i> Add New Client</a>
-</div>
-
-<script>
-        $('#list').click(function(){
-            $('#subloader2').load('/IOC/clients/getclientdata',function(){
-                $('#subloader2').hide();
-                $('#subloader2').fadeIn('fast');
-            });
-        });
-        $('#add').click(function(){
-            $('#subloader2').load('/IOC/clients/addclient',function(){
-                $('#subloader2').hide();
-                $('#subloader2').fadeIn('fast');
-            });
-        });
-
-    </script>
-
 <table class="table table-striped table-hover ">
     <col style="width:10%">
     <col style="width:15%">
@@ -26,7 +5,7 @@
     <col style="width:10%">
     <col style="width:10%">
     <col style="width:15%">
-    <col style="width:15%">
+<!--    <col style="width:15%">-->
     <col style="width:5%">
     <col style="width:5%">
     <thead>
@@ -36,10 +15,10 @@
             <th>Address</th>
             <th>NIC</th>
             <th>Phone</th>
-            <th>Purchase Date</th>
-            <th>Purchase Amount</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th></th>
+          
+            <th></th>
+            <th></th>
         </tr>
 
     </thead>
@@ -123,8 +102,8 @@
                 $("." + x + "").append('<td id="' + data[x].client_id+ "-caddress" + '">' + data[x].client_address + '</td>');
                 $("." + x + "").append('<td id="' + data[x].client_id + "-cnic" + '">' + data[x].client_nic + '</td>');
                 $("." + x + "").append('<td id="' + data[x].client_id + "-cphone" + '">' + data[x].client_phone + '</td>');
-                $("." + x + "").append('<td id="' + data[x].client_id + "-cpdate" + '">' + data[x].client_purchase_date + '</td>');
-                $("." + x + "").append('<td id="' + data[x].client_id + "-cpamount" + '">' + "Rs : " +data[x].client_purchase_amount + '</td>');
+                $("." + x + "").append('<td id="' + data[x].client_id + "-cpdate" + '">' + '</td>');
+              //  $("." + x + "").append('<td id="' + data[x].client_id + "-cpamount" + '">' +  '</td>');
                 $("." + x + "").append('<td class="hide" id="' + data[x].client_id + "-cnumber" + '">' + x + '</td>');
                 $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].client_id + '" class="edit"><i class="mdi-content-create"></i></a></div></td>');
                 $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].client_id + '" class="remove"><i class="mdi-content-remove-circle"></i></a></div></td>');
@@ -144,14 +123,14 @@
                     closeOnConfirm: false,
                     closeOnCancel: false},
                 function (isConfirm) {
-               
+                alert(id);
                     if (isConfirm) {
                         $.ajax({
                            
                             type: 'post',
                             url: 'clients/deleteClients',
                             data: {idclients: id},
-                            success: function (data) {
+                            success: function () {
                                 swal("Deleted!", "Your Client has been deleted!", "success");
                                 $('#subloader').empty();
                                 $('#subloader').load('/IOC/clients/client_management').hide().fadeIn('slow');
