@@ -25,6 +25,9 @@
     <script type="text/javascript" src="<?php echo JQuery ?>"></script>
     <link rel="stylesheet" type="text/css" href="<?php echo CSS1?>stocks/graph.css">
 
+    <!-- CSS for branches of branches module -->
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS ?>transport/branches/css/index.css">
+
     <!-- Path for foating action button CSS -->
     <link href="<?php echo FLOATING ?>mfb.css" rel="stylesheet">
     <!-- Path for foating action button JS -->
