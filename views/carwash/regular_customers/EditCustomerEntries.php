@@ -102,10 +102,10 @@
                         $('#add_customer').click(function (e2) {
                             e2.preventDefault();
                             var id = $(this).attr('id');
-                            $('#subloader').load('/IOC/carwash/' + id, function () {
+                            $('#subloader2').load('/IOC/carwash/' + id, function () {
 
-                                $('#subloader').hide();
-                                $('#subloader').fadeIn('fast');
+                                $('#subloader2').hide();
+                                $('#subloader2').fadeIn('fast');
                             });
                         });
 

@@ -91,22 +91,6 @@ class Carwash_model extends Model {
         $sql->execute();
     }
 
-    public function searchCustomer() {
-        $keyword = '%' . $_POST['keyword'] . '%';
-        
-        $sql = $this->db->prepare("SELECT * FROM regular_customers WHERE name LIKE '$keyword' ORDER BY cust_id ASC LIMIT 0, 10");
-        $sql->execute();
-
-       // $sql = "SELECT * FROM regular_customers WHERE name LIKE (:keyword) ORDER BY cust_id ASC LIMIT 0, 10";
-       // $query = $pdo->prepare($sql);
-       // $query->bindParam(':keyword', $keyword, PDO::PARAM_STR);
-       // $query->execute();
-        //$list = $query->fetchAll();
-        while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
-            $list[] = $obj;
-        }
-        return $list;
-    }
 
 //CUSTOMER DATA RETREIVING ENDS HERE
 //REGULAR TRANSACTIONS DATA RETREIVING STARTS HERE    
@@ -180,7 +164,17 @@ class Carwash_model extends Model {
 
     public function packageUsage() {
 
-        $sql = $this->db->prepare("select count(id) as counts,package from regular_transactions group by package union select count(id) as counts,package from car_transactions group by package");
+        $sql = $this->db->prepare("select sum(counts) as counts ,package from (select count(id) as counts,package from regular_transactions group by package union select count(id) as counts,package from car_transactions group by package) as t group by package");
+        $sql->execute();
+        while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+            $stats[] = $obj;
+        }
+        return $stats;
+    }
+    
+    public function alertUsage() {
+
+        $sql = $this->db->prepare("select sum(count) as count ,date from (SELECT COUNT(id) as count,returnedDate as date FROM car_transactions where status='returned' group by returnedDate union SELECT COUNT(id) as count,returnedDate as date FROM regular_transactions where status='returned' group by returnedDate) as t group by date");
         $sql->execute();
         while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
             $stats[] = $obj;
@@ -202,8 +196,12 @@ class Carwash_model extends Model {
     }
     
     public function updateRegStatus($id){
+        $date=date("Y-m-d");
         $sql = $this->db->prepare("UPDATE regular_transactions SET status = 'Returned' WHERE id = ? LIMIT 1");
         $result = $sql->execute(array($id));
+        
+        $sql2 = $this->db->prepare("UPDATE regular_transactions SET returnedDate = '$date' WHERE id = ? LIMIT 1");
+        $result2 = $sql2->execute(array($id));
     }
 
  //MAIL SENDER
@@ -240,6 +238,7 @@ class Carwash_model extends Model {
             echo 'Mailer Error: ' . $mail->ErrorInfo;
         } else {
             echo 'Message has been sent';
+            
         }
     }
     public function SendSms($contact){
@@ -271,11 +270,15 @@ class Carwash_model extends Model {
         return $Transactions;
     }
     public function updateNonRegStatus($id){
+        $date=date("Y-m-d");
         $sql = $this->db->prepare("UPDATE car_transactions SET status = 'Returned' WHERE id = ? LIMIT 1");
         $result = $sql->execute(array($id));
+        $sql2 = $this->db->prepare("UPDATE car_transactions SET returnedDate = '$date' WHERE id = ? LIMIT 1");
+        $result2 = $sql2->execute(array($id));
     }
     
 
 }
 
 ?>
+<!---->

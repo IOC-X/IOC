@@ -15,8 +15,8 @@
             <th>Email</th>
             <th>Vehicle No</th>
             <th>Amount</th>
-            <th>Date</th>
-            <th>Status</th>
+            <th>Order Date</th>
+            <th>Returned Date</th>
             <th>Edit</th>
             <th>Delete</th>
 
@@ -32,7 +32,7 @@
                 <td><?php echo ($transaction->vehicleNo); ?></td>
                 <td><?php echo "Rs." . ($transaction->amount); ?></td>
                 <td><?php echo ($transaction->date); ?></td>
-                <td><?php echo ($transaction->status); ?></td>
+                <td><?php echo ($transaction->returnedDate); ?></td>
                 <td>
                     <a id="edit_Cartrans" onclick="EditTrans('<?php echo ($transaction->id); ?>', '<?php echo ($transaction->cname); ?>', '<?php echo ($transaction->package); ?>', '<?php echo ($transaction->contact); ?>', '<?php echo ($transaction->email); ?>', '<?php echo ($transaction->vehicleNo); ?>', '<?php echo ($transaction->amount); ?>', '<?php echo ($transaction->date); ?>')"> <i class="mdi-content-create"></i> </a>
                 </td>
