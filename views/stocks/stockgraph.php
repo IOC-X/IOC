@@ -50,13 +50,13 @@
 <script type="text/javascript" src="<?php echo CSS?>stocks/js/jqBarGraph.1.1.js"></script>
 <script type="text/javascript">
     var Petrol = Number(window.petrol);
-    Petrol = Petrol / 2000;
+    //Petrol = Petrol / 2000;
     var SPetrol = Number(window.spetrol);
-    SPetrol = SPetrol / 2000;
+    //SPetrol = SPetrol / 2000;
     var Diesel = Number(window.diesel);
-    Diesel = Diesel / 2000;
+    //Diesel = Diesel / 2000;
     var SDiesel = Number(window.sdiesel);
-    SDiesel = SDiesel / 2000;
+    // SDiesel = SDiesel / 2000;
     arrayOfData = new Array(
         [Petrol,'Petrol','#FF1919'],
         [SPetrol,'Super Petrol','#52CC52'],
