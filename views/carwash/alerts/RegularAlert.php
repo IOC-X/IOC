@@ -30,7 +30,7 @@
                     <th class="text-center">Package Name</th>
                     <th class="text-center">Vehicle Number</th>
                     <th class="text-center">Order Date</th>
-                    <th class="text-center">Status</th>
+                    <th class="text-center">Returned Date</th>
                     <th class="text-center">Email</th>
                     <th class="text-center">Phone Number</th>
                     <th class="text-center">Send Sms & Email Alert</th>

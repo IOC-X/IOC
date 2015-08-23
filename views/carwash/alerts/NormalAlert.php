@@ -19,7 +19,7 @@
                 <th class="text-center">Contact</th>
                 <th class="text-center">Email</th>
                 <th class="text-center">Vehicle No</th>
-                <th class="text-center">Status</th>
+                <th class="text-center">Returned Date</th>
                 <th class="text-center">Order Date</th>
                 <th class="text-center">Send SMS & Email Alert</th>
 
