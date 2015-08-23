@@ -197,7 +197,13 @@
 		//returns the stockgraph 
 		public function stockgraph(){
 			$this->view->render('stocks/stockgraph',false);
-		} 
+		}
+		/*
+		* renders tanks template
+		*/
+		public function tank_stocks(){
+			$this->view->render('stocks/tanks',false);
+		}
 		//pumpreadings index page
 		public function pump_readings(){
 			$this->view->render('stocks/pump/index',false);
