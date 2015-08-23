@@ -139,27 +139,41 @@
         $("#add_sub").click(function(e){
             e.preventDefault();
             var form = $("#addLubricantTransport");
-            $.ajax({
-              type : form.attr('method'),
-              url : form.attr('action'),
-              data : form.serialize(),
-              success: function(data){
-                console.log(data);
-                if(data == "Success"){
-                    swal("Entry added successfully!", "click okay to continue", "success");
-                    $('.form-control').val("");
-                    $('#myModal').modal('hide');
-                    $('#subloader').load('/IOC/transport/lubricantTransport',function(){
-                            //console.log('lubricantTrasnport !');
-                            $('#subloader').hide();
-                            $('#subloader').fadeIn('fast');
-                            window.location.hash = "";
-                            window.location.hash = "/transport/lubricantTransport";
-                    });
-                }
-              }
-            });
-            console.log('Addd');
+
+            var driver = $('#driver').val();
+            var vehicleno = $('#vehicleno').val();
+
+            if(driver == "" || vehicleno == ""){
+                swal("Bump !", "Please fill every field")  
+                return false;
+            }
+            if(vehicleno.length!=6){
+                swal("Bump !", "Invalid vehicleno")  
+                return false;
+            }
+            else{
+                $.ajax({
+                  type : form.attr('method'),
+                  url : form.attr('action'),
+                  data : form.serialize(),
+                  success: function(data){
+                    console.log(data);
+                    if(data == "Success"){
+                        swal("Entry added successfully!", "click okay to continue", "success");
+                        $('.form-control').val("");
+                        $('#myModal').modal('hide');
+                        $('#subloader').load('/IOC/transport/lubricantTransport',function(){
+                                //console.log('lubricantTrasnport !');
+                                $('#subloader').hide();
+                                $('#subloader').fadeIn('fast');
+                                window.location.hash = "";
+                                window.location.hash = "/transport/lubricantTransport";
+                        });
+                    }
+                  }
+                });
+                console.log('Addd');               
+            }
         });
         $.getJSON('transport/loadLubricantTransport',function(data){
                 console.log(data);
@@ -247,17 +261,29 @@
                 var vehicleno = $('#edit-vehicleno').val();
                 var productno = $('#edit-product').val();
 
-                $.post('transport/editLubricantTransport',{ Id : transID , driver : driver , branch : branch , vehicleno : vehicleno , productno : productno },function(server){
-                    console.log(server);
-                    $('#myModal2').modal('hide');
-                    $('#subloader').load('/IOC/transport/lubricantTransport',function(){
-                    //console.log('emergencyTransport !');
-                        $('#subloader').hide();
-                        $('#subloader').fadeIn('fast');
-                        window.location.hash = "";
-                        window.location.hash = "/transport/lubricantTransport";
-                    });
-                });
+                if(driver == "" || vehicleno == ""){
+                    swal("Bump !", "Please fill every field")  
+                    return false;
+                }
+                if(vehicleno.length!=6){
+                    swal("Bump !", "Invalid vehicleno")  
+                    return false;
+                }
+                else{
+                    $.post('transport/editLubricantTransport',{ Id : transID , driver : driver , branch : branch , vehicleno : vehicleno , productno : productno },function(server){
+                        console.log(server);
+                        $('#myModal2').modal('hide');
+                        $('#subloader').load('/IOC/transport/lubricantTransport',function(){
+                        //console.log('emergencyTransport !');
+                            $('#subloader').hide();
+                            $('#subloader').fadeIn('fast');
+                            window.location.hash = "";
+                            window.location.hash = "/transport/lubricantTransport";
+                        });
+                    });    
+                }
+
+                
             });
 
 

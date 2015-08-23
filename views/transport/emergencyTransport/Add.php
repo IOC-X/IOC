@@ -167,27 +167,54 @@
         $("#add_sub").click(function(e){
             e.preventDefault();
             var form = $("#addEmgTransport");
-            $.ajax({
-              type : form.attr('method'),
-              url : form.attr('action'),
-              data : form.serialize(),
-              success: function(data){
-                console.log(data);
-                if(data == "Success"){
-                    swal("Entry added successfully!", "click okay to continue", "success");
-                    $('.form-control').val("");
-                    $('#myModal').modal('hide');
-                    $('#subloader').load('/IOC/transport/emergencyTransport',function(){
-                            //console.log('emergencyTransport !');
-                        $('#subloader').hide();
-                        $('#subloader').fadeIn('fast');
-                        window.location.hash = "";
-                        window.location.hash = "/transport/emergencyTransport";
-                    });
-                }
-              }
-            });
-            console.log('Addd');
+
+            var fullname = $('#fullname').val();
+            var nic = $('#nic').val();
+            var vehicleno = $('#vehicleno').val();
+            var contact = $('#contact').val();
+            var description = $('#description').val();
+            var email = $('#email').val();
+            console.log(fullname + nic + vehicleno + contact + description + email);
+            if(fullname == "" || nic == "" || vehicleno == "" || contact == "" || description == "" || email == ""){
+                swal("Bump !", "Please fill every field")  
+                return false;
+            }
+            if(nic.length!=10){
+                swal("Bump !", "NIC field should be 10 characters")  
+                return false;
+            }
+            if(contact.length!=10){
+                swal("Bump !", "Contact field should be 10 numbers")  
+                return false;
+            }
+            if(!validateEmail(email)){
+                swal("Oops !", "Invalid email !")  
+                return false;
+            }
+            else{
+                $.ajax({
+                  type : form.attr('method'),
+                  url : form.attr('action'),
+                  data : form.serialize(),
+                  success: function(data){
+                    console.log(data);
+                    if(data == "Success"){
+                        swal("Entry added successfully!", "click okay to continue", "success");
+                        $('.form-control').val("");
+                        $('#myModal').modal('hide');
+                        $('#subloader').load('/IOC/transport/emergencyTransport',function(){
+                                //console.log('emergencyTransport !');
+                            $('#subloader').hide();
+                            $('#subloader').fadeIn('fast');
+                            window.location.hash = "";
+                            window.location.hash = "/transport/emergencyTransport";
+                        });
+                    }
+                  }
+                });
+                console.log('Addd');    
+            }
+            
         });
         $.getJSON('transport/loadEmgTransport',function(data){
                 console.log(data);
@@ -282,21 +309,50 @@
                 var contactno = $('#edit-contact').val();
                 var email = $('#edit-email').val();
                 var description = $('#edit-description').val();
-                $.post('transport/editPumpReading',{ Id : transID , fullname : fullname , nic : nic , vehicleno : vehicleno , contactno : contactno , email : email , description : description },function(server){
-                    console.log(server);
-                    $('#myModal2').modal('hide');
-                    $('#subloader').load('/IOC/transport/emergencyTransport',function(){
-                    //console.log('emergencyTransport !');
-                        $('#subloader').hide();
-                        $('#subloader').fadeIn('fast');
-                        window.location.hash = "";
-                        window.location.hash = "/transport/emergencyTransport";
-                    });
-                });
+
+
+                if(fullname == "" || nic == "" || vehicleno == "" || contact == "" || description == "" || email == ""){
+                swal("Bump !", "Please fill every field")  
+                    return false;
+                }
+                if(nic.length!=10){
+                    swal("Bump !", "NIC field should be 10 characters")  
+                    return false;
+                }
+                if(contactno.length!=10){
+                    swal("Bump !", "Contact field should be 10 numbers")  
+                    return false;
+                }
+                if(!validateEmail(email)){
+                    swal("Oops !", "Invalid email !")  
+                    return false;
+                }
+                else{
+                    $.post('transport/editPumpReading',{ Id : transID , fullname : fullname , nic : nic , vehicleno : vehicleno , contactno : contactno , email : email , description : description },function(server){
+                        console.log(server);
+                        $('#myModal2').modal('hide');
+                        $('#subloader').load('/IOC/transport/emergencyTransport',function(){
+                        //console.log('emergencyTransport !');
+                            $('#subloader').hide();
+                            $('#subloader').fadeIn('fast');
+                            window.location.hash = "";
+                            window.location.hash = "/transport/emergencyTransport";
+                        });
+                    });                    
+                }
+
+
             });
 
 
-
+        function validateEmail(email){
+            if(!email.match(/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i)){
+                return false;
+            }
+            else{
+                return true;            
+            }
+        }
 
 
 
