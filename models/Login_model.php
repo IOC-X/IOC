@@ -16,7 +16,7 @@
 				header('location:' . URL);
 			}
 			else{
-				echo "Oops something went wrong !";
+				header('location:' . URL . 'login');
 			}
 		}
 		public function signup(){
