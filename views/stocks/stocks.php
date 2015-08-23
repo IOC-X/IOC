@@ -2,6 +2,7 @@
     <a href="javascript:void(0)" class="btn btn-primary" id="morning_reading">Morning readings</a>
     <a href="javascript:void(0)" class="btn btn-primary" id="evening_reading">Evening readings</a>
     <a href="javascript:void(0)" class="btn btn-primary" id="view_orders">Orders</a>
+    <a href="javascript:void(0)" class="btn btn-primary" id="tank_stocks">Tank stocks</a>
 </div>
     <script>
         $('#morning_reading').click(function(){
@@ -22,6 +23,12 @@
         });
         $('#view_orders').click(function(){
             $('#subloader2').load('/IOC/stocks/view_orders',function(){
+                $('#subloader2').hide();
+                $('#subloader2').fadeIn('fast');
+            });
+        });
+        $('#tank_stocks').click(function(){
+            $('#subloader2').load('/IOC/stocks/tank_stocks',function(){
                 $('#subloader2').hide();
                 $('#subloader2').fadeIn('fast');
             });

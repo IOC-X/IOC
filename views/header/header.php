@@ -28,6 +28,9 @@
     <!-- CSS for branches of branches module -->
     <link rel="stylesheet" type="text/css" href="<?php echo CSS ?>transport/branches/css/index.css">
 
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS ?>index/css/index.css">
+
+
     <!-- Path for foating action button CSS -->
     <link href="<?php echo FLOATING ?>mfb.css" rel="stylesheet">
     <!-- Path for foating action button JS -->
@@ -39,6 +42,7 @@
 
 </head>
 <body onbeforeunload="return myFunction()">
+<div id="back-img"></div>
 <div class="navbar navbar-default" id="NavBar">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -177,6 +181,8 @@
                 if(url == 'stocks'){ 
                     if(!window.mode){
                         $('#loader').load('/IOC/stocks',function(){
+                            $(".cont-card").empty();
+                            console.log('STOCKSSS');
                             fadeIN();
                             console.log('Success !');
                         });  
@@ -190,6 +196,7 @@
                 }
                 else if(url == '/'){
                     $('#loader').load('/IOC/',function(){
+                        $(".cont-card").empty();
                         fadeIN();
                         console.log('Success index!');
                     });
@@ -202,42 +209,49 @@
                 }
                 else if(url == "assets"){
                     $('#loader').load('/IOC/assets',function(){
+                        $(".cont-card").empty();
                         fadeIN();
                         console.log('Success !');
                     }); 
                 }
                 else if(url == "employees"){
                     $('#loader').load('/IOC/employees',function(){
+                        $(".cont-card").empty();
                         fadeIN();
                         console.log('Success !');
                     }); 
                 }
                 else if(url == "transport"){
                     $('#loader').load('/IOC/transport',function(){
+                        $(".cont-card").empty();
                         fadeIN();
                         console.log('Success !');
                     }); 
                 }
                 else if(url == "carwash"){
                     $('#loader').load('/IOC/carwash',function(){
+                        $(".cont-card").empty();
                         fadeIN();
                         console.log('Success !');
                     }); 
                 }
                 else if(url == "lube_service"){
                     $('#loader').load('/IOC/lube_service',function(){
+                        $(".cont-card").empty();
                         fadeIN();
                         console.log('Success !');
                     }); 
                 }
                 else if(url == "revenue"){
                     $('#loader').load('/IOC/revenue',function(){
+                        $(".cont-card").empty();
                         fadeIN();
                         console.log('Success !');
                     }); 
                 }
                 else{
                     $('#loader').load('/IOC/err',function(){
+                        $(".cont-card").empty();
                         fadeIN();
                         console.log('Error !');
                     });    
@@ -292,6 +306,5 @@
             <div style="padding-top:100px"></div>
             <div class="spinner" id="spinner">
             </div>
-        </div>
         </div>
     </div>
