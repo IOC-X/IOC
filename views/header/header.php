@@ -29,7 +29,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo CSS ?>transport/branches/css/index.css">
 
     <link rel="stylesheet" type="text/css" href="<?php echo CSS ?>index/css/index.css">
-
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS ?>profile/css/index.css">
 
     <!-- Path for foating action button CSS -->
     <link href="<?php echo FLOATING ?>mfb.css" rel="stylesheet">
@@ -41,7 +41,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo BOWER ?>sweetalert/dist/sweetalert.css">
 
 </head>
-<body onbeforeunload="return myFunction()">
+<body>
 <div id="back-img"></div>
 <div class="navbar navbar-default" id="NavBar">
     <div class="navbar-header">
@@ -50,7 +50,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/IOC/" id="brand">IOC<sup>v0.8</sup></a>
+        <a class="navbar-brand" href="/IOC/" id="brand">IOC<sup>v0.9.1</sup></a>
     </div>
     <div class="navbar-collapse collapse navbar-responsive-collapse">
         <ul class="nav navbar-nav">
@@ -68,6 +68,7 @@
         <ul class="nav navbar-nav navbar-right">
             <!-- <li id="dashboard-li"><a href="index/Dashboard" id="dashboard">Dashboard</a></li>
             -->
+            <li id="profile"><a href="profile">Profile</a></li>
             <li><a href="index/logout">Logout</a></li>
         <!--    <li class="dropdown">
                 <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
@@ -270,7 +271,15 @@
             $('#loader').hide();
             $('#loader').fadeIn('slow');
         }
-
+        $("#profile").click(function(e){
+            e.preventDefault();
+            $("#loader").empty();
+            $('#subloader').load('/IOC/profile',function(){
+                $(".cont-card").empty();
+                fadeIN();
+                console.log('Success !');
+            }); 
+        });
         // $('#dashboard').click(function(e){
         //     e.preventDefault();
         //     if(!window.mode){
