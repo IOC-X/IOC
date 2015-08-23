@@ -8,8 +8,8 @@
                     <p><b> Description : </b>{{ description }}</p>
                     <p><b> Address : </b>{{ address }}</p> 
                     <table><tbody><tr>
-                    <td><div class="icon-preview"><a href="" class="edit"><i class="mdi-content-create"></i></a></div></td>
-                    <td><div class="icon-preview"><a href="" class="remove"><i class="mdi-content-remove-circle"></i></a></div></td>
+                    <td><div class="icon-preview"><a href="{{ Id }}" class="edit"><i class="mdi-content-create"></i></a></div></td>
+                    <td><div class="icon-preview"><a href="{{ Id }}" class="remove"><i class="mdi-content-remove-circle"></i></a></div></td>
                     </tr></tbody></table>
                 </div>
             </figcaption>

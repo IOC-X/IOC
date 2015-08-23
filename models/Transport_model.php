@@ -100,4 +100,32 @@
             ));
             return true;
         }
+        public function removeBranch($id){
+            $st = $this->db->prepare("DELETE FROM branches where Id=:id");
+            if($st->execute(array(
+                ':id' => $id
+            ))){
+                return true;    
+            }
+            else{
+                return false;
+            }
+        }
+        public function getBranchSpec($id){
+            $st = $this->db->prepare("SELECT * FROM branches WHERE Id=:id");
+            $st->execute(array(
+                ':id' => $id
+            ));
+            return $st->fetchAll();    
+        }
+        public function editBranch($id,$name,$description,$address){
+            $st = $this->db->prepare("UPDATE branches SET Name=:name,description=:description,address=:address WHERE Id=:id");
+            $st->execute(array(
+                ':id' => $id,
+                ':name' => $name,
+                ':description' => $description,
+                ':address' => $address
+            ));
+            return true;
+        }
     }

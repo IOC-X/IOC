@@ -3,7 +3,7 @@
     <thead>
         <tr>
             <th>Date</th>
-            <th>Customer Name</th>
+            <th>Customer</th>
             <th>NIC</th>
             <th>Vehicle no</th>
             <th>Contact</th>
@@ -32,7 +32,7 @@
     <fieldset>
     <form class="form-horizontal" id="addEmgTransport" action="transport/addEmgTransport" method="post">
         <div class="form-group">
-        <label for="fullname" class="col-lg-3 control-label">Customer name</label>
+        <label for="fullname" class="col-lg-3 control-label">Customer</label>
         <div class="col-lg-7">
             <input type="text" class="form-control" id="fullname" name="fullname">
         </div>

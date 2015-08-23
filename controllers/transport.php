@@ -153,5 +153,38 @@
 		public function cardTemplate(){
 			$this->view->render('transport/branches/cardTemplate',false);
 		}
+		/*
+		*	Removes branch 
+		*/
+		public function removeBranch(){
+			require 'models/Transport_model.php';
+			$model = new Transport_model();
+			$id = $_POST['ID'];
+			if($model->removeBranch($id)){
+				echo "Success";
+			}
+		}
+		/*
+		*	returns one branch record at a time
+		*/
+		public function getBranchSpec(){
+			require 'models/Transport_model.php';
+			$model = new Transport_model();
+			$id = $_GET['ID'];
+			echo json_encode($model->getBranchSpec($id));
+		}
+		/*
+		*	edits branch info
+		*/
+		public function editBranch(){
+			$id = $_POST['Id'];
+			$name = $_POST['name'];
+			$description = $_POST['description'];
+			$address = $_POST['address'];
+			require 'models/Transport_model.php';
+			$model = new Transport_model();
+
+			$model->editBranch($id,$name,$description,$address);
+		}
 	}
   ?>
