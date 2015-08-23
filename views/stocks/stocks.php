@@ -1,16 +1,34 @@
 <div class="btn-group btn-group-justified">
     <a href="javascript:void(0)" class="btn btn-primary" id="morning_reading">Morning readings</a>
     <a href="javascript:void(0)" class="btn btn-primary" id="evening_reading">Evening readings</a>
+    <a href="javascript:void(0)" class="btn btn-primary" id="view_orders">Orders</a>
+    <a href="javascript:void(0)" class="btn btn-primary" id="tank_stocks">Tank stocks</a>
 </div>
     <script>
         $('#morning_reading').click(function(){
             $('#subloader2').load('/IOC/stocks/morning_reading',function(){
                 $('#subloader2').hide();
                 $('#subloader2').fadeIn('fast');
+                delete window.petrol;
+                delete window.spetrol;
+                delete window.diesel;
+                delete window.sdiesel;
             });
         });
         $('#evening_reading').click(function(){
             $('#subloader2').load('/IOC/stocks/evening_reading',function(){
+                $('#subloader2').hide();
+                $('#subloader2').fadeIn('fast');
+            });
+        });
+        $('#view_orders').click(function(){
+            $('#subloader2').load('/IOC/stocks/view_orders',function(){
+                $('#subloader2').hide();
+                $('#subloader2').fadeIn('fast');
+            });
+        });
+        $('#tank_stocks').click(function(){
+            $('#subloader2').load('/IOC/stocks/tank_stocks',function(){
                 $('#subloader2').hide();
                 $('#subloader2').fadeIn('fast');
             });

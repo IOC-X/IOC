@@ -1,5 +1,4 @@
 /bower_components/Chart.js
-/node_modules
 /Gruntfile.js
 /nbproject
 libs/Database.php

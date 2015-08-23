@@ -43,7 +43,7 @@
         <div class="form-group">
         <label for="price" class="col-lg-2 control-label">Price</label>
         <div class="col-lg-7">
-            <input type="text" class="form-control" id="price" placeholder="price" name="prd-price">
+            <input type="number" class="form-control" id="price" placeholder="price" name="prd-price">
         </div>
         </div>
         <div class="form-group">
@@ -123,7 +123,7 @@
             });
 
             $('.edit').click(function(e){
-
+                e.preventDefault();
                 var id = $(this).attr('href');
                 window.editID = id;
                 $('#myModal').modal('show');
@@ -148,7 +148,7 @@
                     $('#qnty').val(quantity);
                     $('#supplier').val(supplier);
                 },250);
-                e.preventDefault();
+                
             });
 
         });
@@ -159,7 +159,22 @@
                 var prd_price = $('#price').val();
                 var prd_qnty = $('#qnty').val();
                 var prd_supplier = $('#supplier').val();
-
+                if(prd_name == ""){
+                    swal("Oops !", "Please fill name field");
+                    return false;
+                }
+                if(isNaN(prd_price) || prd_price == ""){
+                    swal("Oops !", "Name should be a number !");
+                    return false;
+                }
+                if(isNaN(prd_qnty) || prd_qnty == ""){
+                    swal("Oops !", "Quantity should be a number !");
+                    return false;
+                }
+                if(prd_supplier == ""){
+                    swal("Oops !", "Please select a supplier");
+                    return false;
+                }
                 $.post('stocks/editLube',{ name : prd_name , price : prd_price , qnty : prd_qnty , supplier : prd_supplier , id : prd_ID },function(data){
                     console.log(data);
                     $('#myModal').hide();

@@ -1,6 +1,6 @@
 <form class="form-horizontal">
     <fieldset>
-        <legend>Search lubricants</legend>
+        <legend>Search suppliers</legend>
         <div class="form-group">
             <div class="col-lg-5">
                 <input type="text" class="form-control" id="searchInput" placeholder="filter">
@@ -33,7 +33,7 @@
             
             <div class="modal-body">
    
-    <form class="form-horizontal" id="edit_supplier_form" action="stocks/addSupplier" method="post">
+    <form class="form-horizontal" id="edit_supplier_form" action="stocks/editSupplier" method="post">
     <fieldset>
         <div class="form-group">
         <label for="sup-name" class="col-lg-2 control-label">Supplier name</label>
@@ -42,7 +42,7 @@
         </div>
         </div>
           
-          <div class="form-group">
+          <!--<div class="form-group">
                 <label for="products" class="col-lg-2 control-label">Products</label>
                 <div class="col-lg-10" id="products">
                     <div class="checkbox">
@@ -57,7 +57,7 @@
                     </div>
                 </div>
             <br/>
-          </div>
+          </div> -->
           <!-- <div class="form-group" id="qnty-div">
             <label for="tel-number" class="col-lg-2 control-label">Quantity</label>
             <div class="col-lg-7">
@@ -74,7 +74,7 @@
             <div class="form-group">
             <label for="sup-contact" class="col-lg-2 control-label">Contact no</label>
             <div class="col-lg-7">
-                <input type="text" class="form-control" id="sup-contact" placeholder="contact no" name="sup-contact">
+                <input type="number" class="form-control" id="sup-contact" placeholder="contact no" name="sup-contact">
             </div>    
             </div>
             
@@ -100,10 +100,10 @@
             var len = data.length;
             for(x=0;x<len;x++){
                 $("tbody").append('<tr class="' + x +'">');
-                $("." + x + "").append('<td>' + data[x].name + '</td>');
-                $("." + x + "").append('<td>' + data[x].product + '</td>');
-                $("." + x + "").append('<td>' + data[x].contact + '</td>');
-                $("." + x + "").append('<td>' + data[x].email + '</td>');
+                $("." + x + "").append('<td id="' + data[x].Id + "-name" + '">' + data[x].name + '</td>');
+                $("." + x + "").append('<td id="' + data[x].Id + "-product" + '">' + data[x].product + '</td>');
+                $("." + x + "").append('<td id="' + data[x].Id + "-contact" + '">' + data[x].contact + '</td>');
+                $("." + x + "").append('<td id="' + data[x].Id + "-email" + '"><a href="">' + data[x].email + '</a></td>');
                 $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].Id + '" class="edit"><i class="mdi-content-create"></i></a></div></td>');
                 $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].Id + '" class="remove"><i class="mdi-content-remove-circle"></i></a></div></td>');
                 $("." + x + "").append('</tr>');
@@ -150,34 +150,67 @@
             });
 
             $('.edit').click(function(e){
+                e.preventDefault();
                 var id = $(this).attr('href');
                 window.editID = id;
                 $('#myModal').modal('show');
                 setTimeout(function(){
-                    $('#supplier').empty();
-                    var name = $()
-                    //$('#prd-name').val('Test');
+//                    $('#supplier').empty();
                     var name = $('#'+ id +'-name').text();
-                    var price = $('#'+ id +'-price').text();
-                    var quantity = $('#'+ id +'-quantity').text();
-                    var supplier = $('#'+ id +'-supplier').text();
+                    //var product = $('#'+ id +'-product').text();
+                    var contact = $('#'+ id +'-contact').text();
+                    var email = $('#'+ id +'-email').text();
 
-                    $.getJSON('stocks/getLubricantSuppliers',function(data){
-                        var len = data.length;
-                        for(a=0;a<len;a++){
-                            $('#supplier').append($('<option>', {value:data[a].name, text:data[a].name}));                
-                        }
-                    });
-                    //console.log(name + price + quantity + supplier);
-                    $('#prd-name').val(name);
-                    $('#price').val(price);
-                    $('#qnty').val(quantity);
-                    $('#supplier').val(supplier);
+                    $('#sup-name').val(name);
+                    $('#sup-email').val(email);
+                    $('#sup-contact').val(contact);
+                    //$('#supplier').val(supplier);
                 },250);
-                e.preventDefault();
-            })
-        });
+                
+            });
+            $('#edit_sub').click(function(){
+                var sup_ID = window.editID;
+                var sup_name = $('#sup-name').val();
+                var sup_email = $('#sup-email').val();
+                var sup_contact = $('#sup-contact').val();
+                //var sup_products = $('#supplier').val();
 
+
+                if(sup_name == ""){
+                    swal("Oops !", "Please fill name field");
+                    return false;
+                }
+                if(sup_email == ""){
+                    swal("Oops !", "Please fill email field");
+                    return false;
+                }
+                if(!validateContact(sup_contact) || sup_contact == ""){
+                    swal("Oops !", "Invalid contact number !");
+                    return false;
+                }
+                function validateContact(contact){
+                    if(!contact.match(/^\d{10}$/)){
+                        //console.log('Nope !');
+                        return false;
+                    }
+                    else{
+                        //console.log('Match ');
+                        return true;
+                    }
+                }
+                //console.log(sup_ID+sup_name+sup_email+sup_contact);
+                $.post('stocks/editSupplier',{ name : sup_name , email : sup_email , contact : sup_contact , id : sup_ID },function(data){
+                    console.log(data);
+                    $('#myModal').hide();
+                    $('#subloader2').load('/IOC/stocks/edit_suppliers',function(){
+                        $('#subloader2').hide();
+                        $('#subloader2').fadeIn('fast');
+                    });
+                });
+            });
+        });
+        
+    
     });
     $("#searchInput").keyup(function () {
         //split the current value of searchInput

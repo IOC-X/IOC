@@ -1,5 +1,5 @@
 <div class="btn-group btn-group-justified">
-    <a href="javascript:void(0)" class="btn btn-primary" id="search_suppliers">Search</a>
+    <!-- <a href="javascript:void(0)" class="btn btn-primary" id="search_suppliers">Search</a> -->
 	<a href="javascript:void(0)" class="btn btn-primary" id="add_supplier">Add New Supplier</a>
     <a href="javascript:void(0)" class="btn btn-primary" id="edit_suppliers">Edit entries</a>
 </div>

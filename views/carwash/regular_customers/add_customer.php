@@ -1,11 +1,5 @@
-<!DOCTYPE HTML>
-<html lang="en">
-    <head>
-        <title>Customer Form</title>
-        <meta charset="utf-8">
-    </head>
 
-    <body>
+      
         <div class="container col-lg-7">
             <div class="span">
                 <div class="row">
@@ -14,22 +8,22 @@
                 </div>
 
                 <form id="form" class="form-horizontal" action="" method="post">
-                    <div class="control-group panel panel-info">
+                    <div class="form-group">
                         <label class="control-label col-lg-4">Customer ID</label>
                         <div class="controls col-lg-6">
-                            <input type="text" class="form-control" name="cust_id" id="cust_id" placeholder="Customer ID" readonly>
+                            <input type="text" class="form-control floating-label" name="cust_id" id="cust_id" placeholder="Customer ID" readonly>
                             <span class="help-inline"></span>
                         </div>
                     </div>
 
-                    <div class="control-group panel">
+                    <div class="form-group">
                         <label class="control-label col-lg-4">Name</label>
                         <div class="controls col-lg-6">
                             <input type="text" class="form-control floating-label" name="name" id="name" placeholder="Name" value="<?php echo ($name); ?>">
                             <span class="help-inline"></span>
                         </div>
                     </div>
-                    <div class="control-group panel">
+                    <div class="form-group">
                         <label class="control-label col-lg-4">NIC</label>
                         <div class="controls col-lg-6">
                             <input type="text" class="form-control floating-label" name="nic" id="nic" placeholder="NIC" value="<?php echo ($nic); ?>">
@@ -37,21 +31,21 @@
                         </div>
                     </div>
 
-                    <div class="control-group panel">
+                    <div class="form-group">
                         <label class="control-label col-lg-4">Address</label>
                         <div class="controls col-lg-6">
                             <input type="text" class="form-control floating-label" name="address" id="address" placeholder="Address" value="<?php echo ($address); ?>">
                             <span class="help-inline"></span>
                         </div>
                     </div>
-                    <div class="control-group panel">
+                    <div class="form-group">
                         <label class="control-label col-lg-4">Contact</label>
                         <div class="controls col-lg-6">
                             <input type="number" class="form-control floating-label" name="contact" id="contact" placeholder="Contact Number" value="<?php echo ($contact); ?>">
                             <span class="help-inline"></span>
                         </div>
                     </div>
-                    <div class="control-group panel">
+                    <div class="form-group">
                         <label class="control-label col-lg-4">Email</label>
                         <div class="controls col-lg-6">
                             <input type="email" class="form-control floating-label" name="email" id="email" placeholder="Email" value="<?php echo ($email); ?>">
@@ -59,7 +53,7 @@
                         </div>
                     </div>
 
-                    <div class="control-group panel">
+                    <div class="form-group">
                         <label class="control-label col-lg-4">Date Registered</label>
                         <div class="controls col-lg-6">
                             <input type="text" class="form-control floating-label" name="date" id="date" placeholder="" readonly="readonly" value="<?php echo date("Y-m-d"); ?>">
@@ -75,8 +69,8 @@
             </div>
         </form>
     </div>
-</body>
-</html>
+
+
 
 <script type="text/javascript">
     $(document).ready(function () {

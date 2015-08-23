@@ -1,5 +1,3 @@
-<script src="/IOC/views/employees/js/sweetalert.min.js"></script> 
-<link rel="stylesheet" type="text/css" href="/IOC/views/employees/js/sweetalert.css">
 <div class="btn-group btn-group-justified">
     <a href="javascript:void(0)" class="btn btn-primary" id="add"><i class="mdi-av-my-library-books"></i> Current Attendance</a>
     <a href="javascript:void(0)" class="btn btn-primary" id="list"><i class="mdi-content-sort"></i> Attendance History</a>
@@ -13,7 +11,7 @@
             $('#subloader2').hide();
             $('#subloader2').fadeIn('fast');
         });
-    });
+    }); 
     $('#add').click(function () {
         $('#subloader2').load('/IOC/employees/current_attendance', function () {
             $('#subloader2').hide();
@@ -38,7 +36,8 @@
                 <div class="form-group">
                     <label for="dates" class="col-lg-3 control-label">Date</label>
                     <div class="col-lg-6">
-                        <input type="date" class="form-control"  id="dates"  name="dates" onchange="loadsplit()" required>
+<!--                        <input type="date" class="form-control"  id="dates"  name="dates" onchange="loadsplit()" required>  -->
+                        <input type="text" class="form-control" id="curentdate" name="curentdate" readonly>
                         <input type="hidden" id="atyear" name="atyear">
                         <input type="hidden" id="atmonth" name="atmonth">
                         <input type="hidden" id="atdate" name="atdate">
@@ -48,13 +47,15 @@
                 <div class="form-group">
                     <label for="timesid" class="col-lg-3 control-label">Time</label>
                     <div class="col-lg-6">
-                        <input type="time" class="form-control"  id="timesid"  name="timesid" required="">
+                       <input type="time" class="form-control"  id="timesid"  name="timesid" required="">
+                        
                     </div>
                 </div> 
                 <div class="form-group">
                     <label for="empname" class="col-lg-3 control-label">Employee Name</label>
                     <div class="col-lg-6">
-                        <select id="empname"  class="form-control" name="empname" onchange="loademp()" required>
+                        <select id="empname"  class="form-control" name="empname" onchange="loademp()" required >
+                            
                             <option></option>
 
                         </select>
@@ -66,9 +67,9 @@
                     <div class="col-lg-6">
                         <select id="shiftname"  class="form-control" name="shiftname" onchange="loadshift()" required>
                             <option></option>
- <input type="hidden" id="shiftidd" name="shiftidd">
- <input type="hidden" id="shiftrated" name="shiftrated">
- <input type="hidden" id="shiftcolourd" name="shiftcolourd">
+                            <input type="hidden" id="shiftidd" name="shiftidd">
+                            <input type="hidden" id="shiftrated" name="shiftrated">
+                            <input type="hidden" id="shiftcolourd" name="shiftcolourd">
                         </select>
                     </div>
                 </div>
@@ -124,6 +125,7 @@
 
 </div>
 <style>
+    
     #circle
     {
         border-radius:50% 50% 50% 50%;  
@@ -132,55 +134,55 @@
     }
 </style>
 
-<!--<script>
-    var currentTime = new Date();
-    var dateadd = currentTime.getDate();
-    if (dateadd < 10)
-    {
-        dateadd = "0" + dateadd;
-    }
-
-    var monthadd = currentTime.getMonth();
-    if (monthadd < 10)
-    {
-        monthadd = "0" + monthadd;
-    }
-
-    var houradd = currentTime.getHours();
-    if (houradd < 10)
-    {
-        houradd = "0" + houradd;
-    }
-
-    var minadd = currentTime.getMinutes()
-    if (minadd < 10)
-    {
-        minadd = "0" + minadd;
-    }
-    var seadd = currentTime.getSeconds()
-    if (seadd < 10)
-    {
-        seadd = "0" + seadd;
-    }
-    var gotdate = currentTime.getFullYear() + "-" + monthadd + "-" + dateadd + "   " + houradd + " : " + minadd + " : " + seadd;
-
-    document.getElementById("dates").value = gotdate;
-</script>-->
-
 
 <script type="text/javascript">
+    //data config
+    var d1 = new Date();
+            document.getElementById("atyear").value = d1.getFullYear();
+            var dd1=d1.getMonth()+1;
+            if(dd1<10)
+            {
+                dd1="0"+dd1;
+            }
+            document.getElementById("atmonth").value =dd1 ;
+            var ddd1=d1.getDate();
+            if(ddd1<10)
+            {
+                ddd1="0"+ddd1;
+            }
+            document.getElementById("atdate").value = ddd1;
+            document.getElementById("curentdate").value=d1.getFullYear()+" - "+dd1+" - "+ddd1;
+   //from data base 
     $(document).ready(function () {
+    
         //employee list 
         $.getJSON('employees/list_employees', function (data) {
+//attendance list
+            $.getJSON('employees/attendance_list', function (dataatt) {
+                var len = data.length;
+                var len2 = dataatt.length;
+                var currentTime = new Date();
 
-            var len = data.length;
+                for (var x = 0; x < len; x++) {
+                    for (var y = 0; y < len2; y++) {
 
-            for (x = 0; x < len; x++) {
-                $('#empname').append(
-                        $('<option class="empcode" id="' + x + '"></option>').val(x).html(data[x].firstName + " " + data[x].lastName));
+                        if (data[x].employeeCode == dataatt[y].empCode && dataatt[y].atyear == currentTime.getFullYear() && dataatt[y].atmonth == currentTime.getMonth() + 1 && dataatt[y].atdate == currentTime.getDate())
+                        {
+                            break;
+                        }
+                        else if (y == len2 - 1)
+                        {
+                            $('#empname').append(
+                                    $('<option class="empcode" id="' + x + '"></option>').val(x).html(data[x].firstName + " " + data[x].lastName));
+                        }
+                    }
+                }
+            
 
-            }
-        });
+			           });
+            });
+
+      //  });
         //shiftlist
         $.getJSON('employees/shift_list', function (data) {
 
@@ -220,7 +222,7 @@
     }
 //shift list
     function loadshift() {
-   
+
         var ss = document.getElementById("shiftname").value;
         $.getJSON('employees/shift_list', function (data) {
             document.getElementById("shiftidd").value = data[ss].shiftId;
@@ -233,41 +235,41 @@
     function loadpump() {
         var ss = document.getElementById("pumpemp").value;
         $.getJSON('employees/shift_list', function (data) {
-document.getElementById("pumpidd").value = data[ss].shiftId;
+            document.getElementById("pumpidd").value = data[ss].shiftId;
         });
 
     }
 //dte changer loadsplit()
-    function loadsplit() {
+//    function loadsplit() {
+//
+//        var gotdate = $("#dates").val();
+//
+//
+//        var fields = gotdate.split("-");
+//        var yearr = fields[0];
+//        var monthh = fields[1];
+//        var datee = fields[2];
+//
+//
+//        var currentTime = new Date();
+//        if (currentTime.getYear() <= yearr && currentTime.getMonth() <= monthh && currentTime.getDate() <= datee)
+//        {
+//            document.getElementById("atyear").value = yearr;
+//            document.getElementById("atmonth").value = monthh;
+//            document.getElementById("atdate").value = datee;
+//
+//        }
+//        else {
+//
+//            swal("You Cannot Select Previous Dates!!");
+//            document.getElementById("dates").value = null;
+//        }
+//
+//
+//    }
 
-        var gotdate = $("#dates").val();
 
-
-        var fields = gotdate.split("-");
-        var yearr = fields[0];
-        var monthh = fields[1];
-        var datee = fields[2];
-
-
-        var currentTime = new Date();
-        if (currentTime.getYear() <= yearr && currentTime.getMonth() <= monthh && currentTime.getDate() <= datee)
-        {
-            document.getElementById("atyear").value = yearr;
-            document.getElementById("atmonth").value = monthh;
-            document.getElementById("atdate").value = datee;
-
-        }
-        else {
-
-            swal("You Cannot Select Previous Dates!!");
-            document.getElementById("dates").value = null;
-        }
-
-
-    }
-    
-    
-        $('#clicksub').submit(function (e) {
+    $('#clicksub').submit(function (e) {
         e.preventDefault();
         var form = $('#clicksub');
         $.ajax({
@@ -282,3 +284,39 @@ document.getElementById("pumpidd").value = data[ss].shiftId;
         });
     });
 </script>
+
+
+<!--<script>
+    var currentTime = new Date();
+    var dateadd = currentTime.getDate();
+    if (dateadd < 10)
+    {
+        dateadd = "0" + dateadd;
+    }
+
+    var monthadd = currentTime.getMonth();
+    if (monthadd < 10)
+    {
+        monthadd = "0" + monthadd;
+    }
+
+    var houradd = currentTime.getHours();
+    if (houradd < 10)
+    {
+        houradd = "0" + houradd;
+    }
+
+    var minadd = currentTime.getMinutes()
+    if (minadd < 10)
+    {
+        minadd = "0" + minadd;
+    }
+    var seadd = currentTime.getSeconds()
+    if (seadd < 10)
+    {
+        seadd = "0" + seadd;
+    }
+    var gotdate = currentTime.getFullYear() + "-" + monthadd + "-" + dateadd + "   " + houradd + " : " + minadd + " : " + seadd;
+
+    document.getElementById("dates").value = gotdate;
+</script>-->

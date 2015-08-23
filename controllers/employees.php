@@ -5,6 +5,7 @@ require_once('models/employees_model.php');
 class employees extends Controller {
 
     function __construct() {
+        
         parent::__construct();
     }
 
@@ -165,10 +166,10 @@ $this->view->render('employees/shift_sub/shift_list',false);
     }
 
     public function history_attendance() {
-        $x = 0;
-        if (x > 0) {
-            
-        }
+//        $x = 0;
+//        if (x > 0) {
+//            
+//        }
         $model = new Employees_model();
         $getemp1 = $model->list_employee();
         include '/views/employees/attendance/historyOfAttendance.php';
@@ -177,6 +178,12 @@ $this->view->render('employees/shift_sub/shift_list',false);
 
     public function current_attendance() {
         include '/views/employees/attendance/current_attendance.php';
+    }
+	
+    public function attendance_list() {
+        $model = new Employees_model();
+        echo json_encode($model->select_attendance());
+
     }
     public function addattend(){
         
@@ -191,10 +198,43 @@ $this->view->render('employees/shift_sub/shift_list',false);
         $colour= $_POST['shiftcolourd'];
         $pumpto=$_POST['pumpidd'];
 
-        echo $starttime;
+
         $attdto = new Employees_model();
         $attdto->addAttendance($empcode,$shiftcode,$shiftprice,$atyear,$atmonth,$atdate,$starttime,$colour,$pumpto);
         
+    }
+    public function addabc(){
+        $empcode = $_POST['idac'];
+        $yearyear=$_POST['idyear'];
+        $monthmonth=$_POST['idmonth'];
+        $datedate=$_POST['iddate'];
+       
+        $addab = new Employees_model();
+        $addab->markabsence($empcode,$yearyear,$monthmonth,$datedate);
+    }
+        public function with31month() {
+        $this->view->render('employees/attendance/monthwith31', false);
+    }
+            public function with30month() {
+        $this->view->render('employees/attendance/monthwith30', false);
+    }
+            public function with29month() {
+        $this->view->render('employees/attendance/monthwith29', false);
+    }
+            public function with28month() {
+        $this->view->render('employees/attendance/monthwith28', false);
+    }
+ 
+        public function addfinish(){
+        $empcode = $_POST['idac'];
+        $yearyear=$_POST['idyear'];
+        $monthmonth=$_POST['idmonth'];
+        $datedate=$_POST['iddate'];
+        $timetime=$_POST['idtime'];
+        
+
+        $addfin= new Employees_model();
+        $addfin->markfinish($empcode,$yearyear,$monthmonth,$datedate,$timetime);
     }
 
 }

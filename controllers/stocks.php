@@ -31,6 +31,50 @@
 		public function evening_reading(){
 			$this->view->render('stocks/evening_reading',false);
 		}
+		/**
+		*
+		*renders orders template for stocks -> orders
+		*/
+		public function view_orders(){
+			$this->view->render('stocks/view_orders',false);	
+		}
+		/**
+		*
+		*loads orders data to template rendered 
+		*/
+		public function loadOrders(){
+			require 'models/Stocks_model.php';
+			$model = new Stocks_model();
+			$type = $_GET['type'];
+			echo json_encode($model->loadOrders($type));
+		}
+		/**
+		*removes order entries 
+		*/
+		public function removeOrder(){
+			require 'models/Stocks_model.php';
+			$model = new Stocks_model();
+			$id = $_POST['ID'];
+			if($model->removeOrder($id)){
+				echo "Success";
+			}
+			else{
+				echo "Failed";
+			}
+		}
+		/**
+		*Edits order entries
+		*/
+		public function editOrder(){
+			$id = $_POST['Id'];
+			$reading = $_POST['reading'];
+			$qnty = $_POST['qnty'];
+			$order = $_POST['order'];
+			require 'models/Stocks_model.php';
+			$model = new Stocks_model();
+			$model->editOrder($id,$reading,$qnty,$order);
+			echo "Success";
+		}
 		/*
 		* calculating stocks values
 		* @return reading in litres after calculation
@@ -123,7 +167,28 @@
 			$model->insertMrngOrder($readingPetrol,$qntyPetrol,$orderpetrol,$readingSPetrol,$qntySPetrol,$orderspetrol,$readingDiesel,$qntyDiesel,$orderdiesel,$readingSDiesel,$qntySDiesel,$ordersdiesel);
 			echo "DONE";
 		}
+		/*
+		* Insert evening order entries
+		*/
+		public function insertEveningOrder(){
 
+			require 'models/Stocks_model.php';
+
+			$readingPetrol = $_POST['petrol'];
+			$readingSPetrol = $_POST['spetrol'];
+			$readingDiesel = $_POST['diesel'];
+			$readingSDiesel = $_POST['sdiesel'];
+
+			$qntyPetrol = $_POST['qntyPetrol'];
+			$qntySPetrol = $_POST['qntySPetrol'];
+			$qntyDiesel = $_POST['qntyDiesel'];
+			$qntySDiesel = $_POST['qntySDiesel'];
+
+			$model = new Stocks_model();
+			if($model->insertEveningStock($readingPetrol,$qntyPetrol,$readingSPetrol,$qntySPetrol,$readingDiesel,$qntyDiesel,$readingSDiesel,$qntySDiesel)){
+				echo "DONE";				
+			}
+		}
 
 
 		/* 
@@ -132,7 +197,13 @@
 		//returns the stockgraph 
 		public function stockgraph(){
 			$this->view->render('stocks/stockgraph',false);
-		} 
+		}
+		/*
+		* renders tanks template
+		*/
+		public function tank_stocks(){
+			$this->view->render('stocks/tanks',false);
+		}
 		//pumpreadings index page
 		public function pump_readings(){
 			$this->view->render('stocks/pump/index',false);
@@ -159,6 +230,35 @@
 		//editing previous pump readings
 		public function previousEntries(){
 			$this->view->render('stocks/pump/previousEntries',false);	
+		}
+		public function editPumpReading(){
+			$id = $_POST['Id'];
+			$reading = $_POST['reading'];
+			$date = $_POST['date'];
+			$date = date("Y-m-d", strtotime($date));
+			require 'models/Stocks_model.php';
+			$model = new Stocks_model();
+			$model->editPumpReading($id,$reading,$date);
+		}
+		//loadPreviousentries of pump readings
+		public function loadPumpReadings(){
+			require 'models/Stocks_model.php';
+
+			$model = new Stocks_model();
+			$id = $_GET['pumpno'];			
+			echo json_encode($model->loadPumpReadings($id));
+		}
+		//removes pump readings 
+		public function removePumpReading(){
+			require 'models/Stocks_model.php';
+			$id = $_POST['ID'];
+			$model = new Stocks_model();
+			if($model->removePumpReading($id)){
+				echo "Success";
+			}
+			else{
+				echo "Failed";
+			}
 		}
 		//returns statuses of pumps
 		public function statuses(){
@@ -330,9 +430,11 @@
 			$name = $_POST['name'];
 			$email = $_POST['email'];
 			$contact = $_POST['contact'];
-
-			echo $id . $name . $email . $contact;
-
+			require 'models/Stocks_model.php';
+			$model = new Stocks_model();
+			if($model->editSupplier($id,$name,$email,$contact)){
+				echo "Success";
+			}
 		}
 		public function loadLubricantEditData(){
 			$va = "he";

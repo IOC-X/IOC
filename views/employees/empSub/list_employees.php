@@ -1,5 +1,4 @@
-<script src="/IOC/views/employees/js/sweetalert.min.js"></script> 
-<link rel="stylesheet" type="text/css" href="/IOC/views/employees/js/sweetalert.css">
+
 <style>
     #circle
     {

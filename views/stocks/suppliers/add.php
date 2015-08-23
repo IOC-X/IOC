@@ -4,7 +4,7 @@
         <div class="form-group">
         <label for="sup-name" class="col-lg-2 control-label">Supplier name</label>
         <div class="col-lg-7">
-            <input type="text" class="form-control" id="sup-name" placeholder="supplier name" name="sup-name">
+            <input type="text" class="form-control floating-label" id="sup-name" placeholder="supplier name" name="sup-name">
         </div>
         </div>
           
@@ -34,13 +34,13 @@
           <div class="form-group">
             <label for="sup-email" class="col-lg-2 control-label">Email</label>
             <div class="col-lg-7">
-                <input type="email" class="form-control" id="sup-email" placeholder="email" name="sup-email">
+                <input type="email" class="form-control floating-label" id="sup-email" placeholder="email" name="sup-email">
             </div>
           </div>
             <div class="form-group">
             <label for="sup-contact" class="col-lg-2 control-label">Contact no</label>
             <div class="col-lg-7">
-                <input type="text" class="form-control" id="sup-contact" placeholder="contact no" name="sup-contact">
+                <input type="text" class="form-control floating-label" id="sup-contact" placeholder="contact no" name="sup-contact">
             </div>    
             </div>
             
@@ -77,19 +77,19 @@
         //   console.log('inside');
         // }
         if(name == "" || email == "" || contact == ""){
-            swal("Bump !", "Please fill every field");
+            swal("Oops !", "Please fill every field");
             return false;
         }
         if(name.length>=30){
-            swal("Bump !", "Name filed should be less than 30 characters")  
+            swal("Oops !", "Name filed should be less than 30 characters")  
             return false;
         }
         if(!validateContact($('#sup-contact').val())){
-            swal("Duhh !", "Please enter 10 digits for contact number");
+            swal("Oops !", "Please enter 10 digits for contact number");
             return false;    
         }
         if(!validateEmail($('#sup-email').val())){
-            swal("Bruhh !", "Not a valid email");
+            swal("Oops !", "Not a valid email");
             return false;    
         }
         else{
@@ -101,19 +101,28 @@
                 data : form.serialize(),
                 success: function(data){
                   console.log(data);
-                  swal("Supplier added successfully!", "click okay to continue", "success")
+                  swal("Supplier added successfully!", "click okay to continue", "success");
+                  $('#subloader2').load('/IOC/stocks/edit_suppliers',function(){
+                    $('#subloader2').hide();
+                    $('#subloader2').fadeIn('fast');
+                  });
                 }
             });
         }
     });
+    $('#sup-name').focusout(function(){
+        if(($(this).val()) == ""){
+            swal("Oops !", "Please fill name field");    
+        }
+    });
     $('#sup-contact').focusout(function(){
         if(!validateContact($(this).val())){
-            swal("Duhh !", "Please enter 10 digits");    
+            swal("Oops !", "Please enter 10 digits");    
         }
     });
     $('#sup-email').focusout(function(){
         if(!validateEmail($(this).val())){
-            swal("Bruhh !", "Not a valid email");    
+            swal("Oops !", "Not a valid email");    
         }
     });
     function validateEmail(email){

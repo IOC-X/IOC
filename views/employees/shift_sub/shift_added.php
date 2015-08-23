@@ -10,25 +10,27 @@
         <div class="form-group">
             <label for="shiftname" class="col-lg-2 control-label">Shift Name</label>
             <div class="col-lg-7">
-                <input type="text" class="form-control" id="shiftname" placeholder="Shift Name.." name="shiftname">
+                <input type="text" class="form-control" id="shiftname" placeholder="Shift Name.." name="shiftname"
+                       pattern="[a-zA-Z- 0-9]{1,20}" title="Use only letters,numbers and '-' " required="">
             </div>
         </div>
         <div class="form-group">
             <label for="shiftduration" class="col-lg-2 control-label">Shift Duration</label>
             <div class="col-lg-7">
-                <input type="text" class="form-control" id="shiftduration" placeholder="eg: 7 hours" name="shiftduration">
+                <input type="text" class="form-control" id="shiftduration" placeholder="eg: 7.00 " name="shiftduration"
+                       pattern="[0-9.]{1,10}" title="Use only numbers " required="">
             </div>
         </div> 
         <div class="form-group">
             <label for="shiftrate" class="col-lg-2 control-label">Shift Rate</label>
             <div class="col-lg-7">
-                <input type="text" class="form-control" placeholder="Rs: " id="shiftrate"  name="shiftrate" pattern="[0-9]{2,4}" title="Eg : 0 to 1000">
+                <input type="text" class="form-control" placeholder="Rs: " id="shiftrate"  name="shiftrate" pattern="[0-9]{2,4}" title="Eg : 0 to 1000" required="">
             </div>
         </div> 
         <div class="form-group">
-            <label for="shiftcolor" class="col-lg-2 control-label">Shift Rate</label>
+            <label for="shiftcolor" class="col-lg-2 control-label">Shift Colour</label>
             <div class="col-lg-7">
-                <select id="shiftcolor"  class="form-control" name="shiftcolor" onchange="loadcolor()">
+                <select id="shiftcolor"  class="form-control" name="shiftcolor" onchange="loadcolor()" required="">
                     <option></option>
 
                 </select>
