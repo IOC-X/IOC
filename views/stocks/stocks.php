@@ -1,8 +1,8 @@
 <div class="btn-group btn-group-justified">
-    <a href="javascript:void(0)" class="btn btn-primary" id="morning_reading">Morning readings</a>
-    <a href="javascript:void(0)" class="btn btn-primary" id="evening_reading">Evening readings</a>
-    <a href="javascript:void(0)" class="btn btn-primary" id="view_orders">Orders</a>
-    <a href="javascript:void(0)" class="btn btn-primary" id="tank_stocks">Tank stocks</a>
+    <a href="javascript:void(0)" class="btn btn-primary" id="morning_reading"><i class="mdi-action-dashboard"></i>Morning readings</a>
+    <a href="javascript:void(0)" class="btn btn-primary" id="evening_reading"><i class="mdi-action-dns"></i>Evening readings</a>
+    <a href="javascript:void(0)" class="btn btn-primary" id="view_orders"><i class="mdi-action-list"></i>Orders</a>
+    <a href="javascript:void(0)" class="btn btn-primary" id="tank_stocks"><i class="mdi-action-view-headline"></i>Tank stocks</a>
 </div>
     <script>
         $('#morning_reading').click(function(){

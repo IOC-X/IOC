@@ -10,6 +10,51 @@
     </div>
 </section>
 </div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                 <h4 class="modal-title" id="myModalLabel"><legend>Add Pump</legend></h4>
+
+            </div>
+            
+        <div class="modal-body">
+    
+    <fieldset>
+    <form class="form-horizontal" id="addPump" action="stocks/addPump" method="post">
+        <div class="form-group">
+        <label for="name" class="col-lg-3 control-label">Pump no</label>
+        <div class="col-lg-7">
+            <input type="number" class="form-control" id="pump-no">   
+        </div>
+        </div>
+        <div class="form-group">
+        <label for="name" class="col-lg-3 control-label">Fuel type</label>
+        <div class="col-lg-7">
+            <select type="text" class="form-control" id="fueltype" name="fueltype">
+                <option value="Petrol">Petrol</option>
+                <option value="SuperPetrol">Super Petrol</option>
+                <option value="Diesel">Diesel</option>
+                <option value="SuperDiesel">Super Diesel</option>
+            </select>
+        </div>
+        </div>
+        </div>
+        </fieldset>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" id="add_pmp" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+        
+    </form>
+        </div>
+        </fieldset>
+</div>
+
+
 <ul id="menu" class="mfb-component--br mfb-zoomin" data-mfb-toggle="hover">
       <li class="mfb-component__wrap">
         <a href="#" data-mfb-label="A long long label" class="mfb-component__button--main">
@@ -24,7 +69,7 @@
           </li>
 
           <li>
-            <a href="#" data-mfb-label="Add" class="mfb-component__button--child">
+            <a href="#" data-mfb-label="Add" class="mfb-component__button--child" id="addPMP">
               <i class="mfb-component__child-icon ion-calendar"></i>
             </a>
           </li>
@@ -35,6 +80,20 @@
 <script>
 
     $(document).ready(function(){
+
+        $("#addPMP").click(function(e){
+            e.preventDefault();
+            $("#myModal").modal('show');
+        });
+
+        $("#add_pmp").click(function(){
+            var fuel = $("#fueltype").val();
+            var pumpnumber = $("#pump-no").val();
+            $.get('stocks/addPump',{ no : pumpnumber , fuelType : fuel },function(data){
+                console.log(data);
+            });
+        });
+
         console.log('Sending');
         $.getJSON('stocks/pumpStatuses',function(data){
             console.log(data.length);

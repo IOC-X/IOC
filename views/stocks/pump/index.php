@@ -1,6 +1,6 @@
 <div class="btn-group btn-group-justified" id="pump-tabs">
-    <a href="javascript:void(0)" class="btn btn-primary" id="daily_readings">Daily readings</a>
-    <a href="javascript:void(0)" class="btn btn-primary" id="statuses">Pump statuses</a>
+    <a href="javascript:void(0)" class="btn btn-primary" id="daily_readings"><i class="mdi-action-turned-in"></i>Daily readings</a>
+    <a href="javascript:void(0)" class="btn btn-primary" id="statuses"><i class="mdi-action-settings-power"></i>Pump statuses</a>
 </div>
 
     <script>
