@@ -34,7 +34,25 @@ class Revenue_model extends Model{
         		':lubricantinc' => $inc
         ));
     }
+
+    public function selectAllLubIncome() {
+        //$date = date("Y-m-d");  where date like'$date' 
+        $sql = $this->db->prepare("SELECT * FROM lubricant_income");
+        $sql->execute();
+        while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+            $lu_income[] = $obj;
+        }
+        return $lu_income;
+    }
     
+     public function deleteLubincome($id) {
+
+        $sql = $this->db->prepare("DELETE FROM lubricant_income WHERE prdIncomeID=$id");
+        $sql->execute();
+    }
+    public function editLubincome($prdType, $quantity, $supplier, $sellingqty, $price, $date1, $lubricantincome, $prdIncomeID) {
+        $sql = $this->db->prepare("UPDATE lubricant_income SET prdType = ?, quantity = ?, supplier = ?, sellingqty = ?, price = ?, date1 = ?, lubricantincome = ?, WHERE prdIncomeID = ? LIMIT 1");
+        $result = $sql->execute(array($prdType, $quantity, $supplier, $sellingqty, $price, $date1, $lubricantincome, $prdIncomeID));
 
     
 }
