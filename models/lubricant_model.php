@@ -17,6 +17,27 @@ class lubricant_model extends Model {
         }
         return $lu_packages;
     }
+   
+
+    public function editPackage($name, $description, $price, $time, $id) {
+        $sql = $this->db->prepare("UPDATE lu_packages SET name = ?, description = ?, price = ?, duration = ? WHERE id = ? LIMIT 1");
+        $result = $sql->execute(array($name, $description, $price, $time, $id));
+    }
+
+    public function deletePackage($id) {
+
+        $sql = $this->db->prepare("DELETE FROM lu_packages WHERE id=$id");
+        $sql->execute();
+    }
+
+    public function createPackage($name, $description, $time, $price) {
+        try {
+            $sql = $this->db->prepare("INSERT INTO lu_packages(name, description, duration, price) VALUES(?, ?, ?, ?)");
+            $result = $sql->execute(array($name, $description, $time, $price));
+        } catch (Exception $e) {
+            
+        }
+    }
 //CUSTOMER DATA RETREIVING STARTS HERE
     public function selectAllcustomers() {
 
