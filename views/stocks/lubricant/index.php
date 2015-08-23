@@ -1,7 +1,7 @@
 <div class="btn-group btn-group-justified">
     <!--<a href="javascript:void(0)" class="btn btn-primary" id="search_lube">Search</a> -->
-	<a href="javascript:void(0)" class="btn btn-primary" id="add_lube">Add Products</a>
-    <a href="javascript:void(0)" class="btn btn-primary" id="edit_lube">Edit entries</a>
+	<a href="javascript:void(0)" class="btn btn-primary" id="add_lube"><i class="mdi-action-shopping-cart"></i>Add Products</a>
+    <a href="javascript:void(0)" class="btn btn-primary" id="edit_lube"><i class="mdi-action-view-array"></i>Edit entries</a>
 </div>
 	<script>
         $('#search_lube').click(function(){
