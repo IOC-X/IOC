@@ -11,7 +11,13 @@
 			// 	$this->view->render('header/header',false);		
 			// 	$this->view->render('stocks/index',false);				
 			// }
-			$this->view->render('stocks/index',false);				
+			Session::init();
+			if(isset($_SESSION['loggedIn'])){
+				$this->view->render('stocks/index',false);								
+			}
+			else{
+				header('location:'.URL . 'login');
+			}
 		}
 		public function stocks(){
 			//require('models/Stocks_model.php');
@@ -264,6 +270,12 @@
 		public function statuses(){
 			$this->view->render('stocks/pump/statuses',false);	
 		}
+		//return no of pumps 
+		public function loadNoOfPumps(){
+			require 'models/Stocks_model.php';
+			$model = new Stocks_model();
+			echo json_encode($model->loadNoOfPumps());
+		}
 		//Lubricant store
 		public function lubricant(){
 			$this->view->render('stocks/lubricant/index',false);
@@ -434,6 +446,20 @@
 			$model = new Stocks_model();
 			if($model->editSupplier($id,$name,$email,$contact)){
 				echo "Success";
+			}
+		}
+		public function emailSupplier(){
+			$to = $_POST['email'];
+			$subject = $_POST['subject'];
+			$txt = $_POST['message'];
+			$txt = wordwrap($txt,70);
+			$headers = "From: IOC@gmail.com" . "\r\n" .
+			"CC: IOC@gmail.com";
+			if(mail($to,$subject,$txt,$headers)){
+				echo "Success";
+			}
+			else{
+				echo "Failed";
 			}
 		}
 		public function loadLubricantEditData(){

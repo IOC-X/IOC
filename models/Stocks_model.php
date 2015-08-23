@@ -137,6 +137,11 @@
 			));
 			return true;
 		}
+		public function loadNoOfPumps(){
+			$st = $this->db->prepare("SELECT COUNT(PumpNo) FROM pumpstatus");
+			$st->execute();
+			return $st->fetchAll();
+		}
 		public function addLubricant($prdName,$prdPrice,$prdQnty,$supplier){
 			$st = $this->db->prepare("INSERT INTO Lubricants (Name,Price,Quantity,Supplier) VALUES (:name,:price,:qnty,:supplier)");
 			$st->execute(array(

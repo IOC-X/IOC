@@ -41,8 +41,8 @@
 </div>
 
 <legend>Last 7 days</legend>
-<ul class="breadcrumb">
-    <li><a href="javascript:void(0)" id="1" class="pumpBread">Pump 1</a></li>
+<ul class="breadcrumb" id="noofpumps">
+    <!-- <li><a href="javascript:void(0)" id="1" class="pumpBread">Pump 1</a></li>
     <li><a href="javascript:void(0)" id="2" class="pumpBread">Pump 2</a></li>
     <li><a href="javascript:void(0)" id="3" class="pumpBread">Pump 3</a></li>
     <li><a href="javascript:void(0)" id="4" class="pumpBread">Pump 4</a></li>
@@ -50,7 +50,7 @@
     <li><a href="javascript:void(0)" id="6" class="pumpBread">Pump 6</a></li>
     <li><a href="javascript:void(0)" id="7" class="pumpBread">Pump 7</a></li>
     <li><a href="javascript:void(0)" id="8" class="pumpBread">Pump 8</a></li>
-    <li><a href="javascript:void(0)" id="9" class="pumpBread">Pump 9</a></li>
+    <li><a href="javascript:void(0)" id="9" class="pumpBread">Pump 9</a></li> -->
 </ul>
 <table class="table table-striped table-hover ">
     <thead>
@@ -63,10 +63,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            
-        </tr>
-
+      
     </tbody>
 </table>
 
@@ -74,8 +71,19 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
+        $("#noofpumps").empty();
+        $.getJSON('stocks/loadNoOfPumps',function(data){
+            //console.log(data[0]);
+            var len = data[0];
+            len = len[0];
+            for(a=1;a<=len;a++){
+                $("#noofpumps").append('<li><a href="javascript:void(0)" id="' + a + '" class="pumpBread">Pump ' + a + '</a></li>');
+            }
+        });
+        console.log('OUT of loop');
 
-        $('.pumpBread').click(function(){
+        $('.breadcrumb').on('click','.pumpBread',function(){
+            console.log('Clicked');
             $("tbody").empty();
             var id = $(this).attr('id');
             FooType = id;
@@ -83,7 +91,7 @@
             today = today.toISOString().substring(0, 10);
             //console.log(today);
             $("#pmp-date").attr("max",today);
-
+            //console.log('sssss');
             $.getJSON('stocks/loadPumpReadings',{ pumpno : id },function(data){
                 console.log(data);
 
@@ -100,9 +108,9 @@
                 $("tbody").hide().fadeIn();
                
                 $('.remove').click(function(e){
-                    var id = $(this).attr('href');
                     e.preventDefault();
-                    
+                    var id = $(this).attr('href');
+                
                     
                     swal({   title: "Are you sure?",   
                         text: "You will not be able to recover this entry",   
@@ -180,6 +188,7 @@
     function refresh(pmpID){
         $('#record_loader').empty();
         $('#record_loader').load('/IOC/stocks/previousEntries').hide().fadeIn('slow');
+        $("#noofpumps").empty();
         $.getJSON('stocks/loadPumpReadings',{ pumpno : pmpID },function(data){
                 console.log(data);
 

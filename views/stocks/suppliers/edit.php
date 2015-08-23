@@ -16,6 +16,7 @@
             <th>Product</th>
             <th>Contact</th>
             <th>Email</th>
+            <th></th>
         </tr>
     </thead>
     <tbody id="fbody">
@@ -91,6 +92,50 @@
 </div>
 
 
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                 <h4 class="modal-title" id="myModalLabel"><legend>Send email</legend></h4>
+
+            </div>
+            
+            <div class="modal-body">
+   
+    <form class="form-horizontal" id="edit_supplier_form" action="stocks/emailSupplier" method="post">
+    <fieldset>
+        <div class="form-group">
+        <label for="sup-name" class="col-lg-2 control-label">To</label>
+        <div class="col-lg-7">
+            <input type="text" class="form-control" id="to" placeholder="to" name="to" disabled="">
+        </div>
+        </div>
+          <div class="form-group">
+            <label for="sup-email" class="col-lg-2 control-label">Subject</label>
+            <div class="col-lg-7">
+                <input type="email" class="form-control" id="subject" placeholder="subject" name="subject">
+            </div>
+          </div>
+            <div class="form-group">
+            <label for="sup-contact" class="col-lg-2 control-label">Message</label>
+            <div class="col-lg-7">
+                <input type="textarea" class="form-control" id="message" placeholder="message" name="message">
+            </div>    
+            </div>
+            
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" id="email_sup" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+        </fieldset>
+        </form>
+    </div>
+</div>
+
 
 <script type="text/javascript">
     $(document).ready(function(){
@@ -103,7 +148,8 @@
                 $("." + x + "").append('<td id="' + data[x].Id + "-name" + '">' + data[x].name + '</td>');
                 $("." + x + "").append('<td id="' + data[x].Id + "-product" + '">' + data[x].product + '</td>');
                 $("." + x + "").append('<td id="' + data[x].Id + "-contact" + '">' + data[x].contact + '</td>');
-                $("." + x + "").append('<td id="' + data[x].Id + "-email" + '"><a href="">' + data[x].email + '</a></td>');
+                $("." + x + "").append('<td id="' + data[x].Id + "-email" + '">' + data[x].email + '</td>');
+                $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].Id + '" class="sendEmail"><i class="mdi-content-mail"></i></a></div></td>');
                 $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].Id + '" class="edit"><i class="mdi-content-create"></i></a></div></td>');
                 $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].Id + '" class="remove"><i class="mdi-content-remove-circle"></i></a></div></td>');
                 $("." + x + "").append('</tr>');
@@ -168,6 +214,31 @@
                 },250);
                 
             });
+            $(".sendEmail").click(function(e){
+                e.preventDefault();
+                $("#myModal2").modal('show');
+                var id = $(this).attr('href');
+                setTimeout(function(){
+                    var to = $('#'+ id +'-email').text();
+                    $("#to").val(to);
+                },250);
+            });
+
+            $("#email_sup").click(function(){
+                var to = $("#to").val();
+                var subject = $("#subject").val();
+                var message = $("#message").val();
+                $.post('stocks/emailSupplier', { email : to , subject : subject , message : message }, function(data){
+                    console.log(data);
+                    alert('Sent !');
+                    $('#subloader2').empty();
+                    $('#subloader2').load('/IOC/stocks/edit_suppliers',function(){
+                        $('#subloader2').hide();
+                        $('#subloader2').fadeIn('slow');
+                    });
+                });
+            }); 
+  
             $('#edit_sub').click(function(){
                 var sup_ID = window.editID;
                 var sup_name = $('#sup-name').val();
@@ -208,9 +279,10 @@
                     });
                 });
             });
+                  
         });
+
         
-    
     });
     $("#searchInput").keyup(function () {
         //split the current value of searchInput
