@@ -18,7 +18,50 @@ class Lube_service extends Controller{
         
         include '/views/lubricantService/packages/lu_packages.php';
     }
-     
+     public function create_package() {
+        $name = '';
+        $description = '';
+        $time = '';
+        $price = '';
+        include '/views/lubricantService/packages/create_package.php';
+    }
+
+    public function EditPackageEntries() {
+        $model = new lubricant_model();
+        $packages = $model->selectAllpackages();
+        include '/views/lubricantService/packages/EditPackageEntries.php';
+    }
+
+    public function createPackage() {
+        $model = new lubricant_model();
+
+
+        $name = isset($_POST['name']) ? trim($_POST['name']) : null;
+        $description = isset($_POST['description']) ? trim($_POST['description']) : null;
+        $time = isset($_POST['time']) ? trim($_POST['time']) : null;
+        $price = isset($_POST['price']) ? trim($_POST['price']) : null;
+        {
+            $packages = $model->createPackage($name, $description, $time, $price);
+        }
+    }
+
+    public function editPackage() {
+        $model = new lubricant_model();
+        $id = $_POST['id'];
+       
+        $name = isset($_POST['name']) ? trim($_POST['name']) : null;
+        $description = isset($_POST['description']) ? trim($_POST['description']) : null;
+        $time = isset($_POST['time']) ? trim($_POST['time']) : null;
+        $price = isset($_POST['price']) ? trim($_POST['price']) : null; {
+            $packages = $model->editPackage($name, $description, $price, $time, $id);
+        }
+    }
+
+    public function delete_package() {
+        $id = $_POST['ID'];
+        $model = new lubricant_model();
+        $package = $model->deletePackage($id);
+    }
       public function lu_pac_gold()
      {
         

@@ -1,6 +1,6 @@
     
 <h1 class="text-left text-success">Silver Package</h1>
-   <div class="col-lg-8" style="background-color:#4FFFFF;">
+   <div class="col-lg-8 panel panel-default">
 <li><h4> <div class="checkbox">
                                                 <label>
                                                     <input type="checkbox" checked="true" disabled="true">
@@ -38,7 +38,7 @@
         
    
     <div class="col-lg-4" >
-        <div class="panel" style="background-color:#4FFFFF;">
+        <div class="panel panel-danger">
           <p style="text-align: right" class="right">TOTAL PRICE     5000/= </p>
           <p style="text-align: right" class="right">DISCOUNT       20% </p>
           <p style="text-align: right" class="right">SERVICE TIME WITHIN 30-40 min</p>

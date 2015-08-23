@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 22, 2015 at 06:38 PM
+-- Generation Time: Aug 23, 2015 at 09:53 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `car_transactions` (
   `status` varchar(50) NOT NULL DEFAULT 'Not Returned',
   `returnedDate` varchar(15) NOT NULL DEFAULT 'Not Returned',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
 -- Dumping data for table `car_transactions`
@@ -49,11 +49,12 @@ INSERT INTO `car_transactions` (`id`, `cname`, `contact`, `email`, `package`, `v
 (6, 'fgd', '0771363825', 'isuru.dilhan@yahoo.com', 'Ultimate Value Car Wash', 'fdgf', 4500, '2015-07-31', 'Returned', '2015-08-22'),
 (8, 'zxczxc', '0711363825', 'isuru.dilhan@yahoo.com', 'Ultimate Value Car Wash', 'xzczxczxc', 4500, '2015-08-01', 'Returned', '2015-08-01'),
 (9, 'zxczxc', '0771363825', 'isuru.dilhan@yahoo.com', 'Ultimate Value Car Wash', 'cxvxcv', 4500, '2015-08-01', 'Returned', '2015-08-22'),
-(10, 'isu', '0789164423', 'isuru.dilhan@yahoo.com', 'Ultimate Value Car Wash', 'you', 4500, '2015-08-16', 'Not Returned', 'None'),
-(11, 'fg', '0789164423', 'isuru.dilhan@yahoo.com', 'Ultimate Value Car Wash', 'fgg', 4500, '2015-08-16', 'Not Returned', 'None'),
+(10, 'isu', '0779164423', 'isuru.dilhan@yahoo.com', 'Ultimate Value Car Wash', 'you', 4500, '2015-08-16', 'Returned', '2015-08-22'),
+(11, 'fg', '0779164423', 'isuru.dilhan@yahoo.com', 'Ultimate Value Car Wash', 'fgg', 4500, '2015-08-16', 'Returned', '2015-08-22'),
 (12, 'dfgdf', '0789164423', 'isuru.dilhan@yahoo.com', 'Ultimate Value Car Wash', 'ghfhfg', 4500, '2015-08-20', 'Not Returned', 'None'),
 (13, 'rajika', '0789164423', 'inbox.rajika@gmail.com', 'Ultimate Value Car Wash', '6768', 4500, '2015-08-20', 'Not Returned', 'None'),
-(14, 'rajika', '0778355666', 'inbox.rajika@gmail.com', 'Ultimate Value Car Wash', 'ioipo', 4500, '2015-08-20', 'Returned', '2015-08-22');
+(14, 'rajika', '0778355666', 'inbox.rajika@gmail.com', 'Ultimate Value Car Wash', 'ioipo', 4500, '2015-08-20', 'Returned', '2015-08-22'),
+(15, 'isuru', '0771363825', 'isuru.dilhan@yahoo.com', 'Ultimate Value Car Wash', '788j', 4500, '2015-08-22', 'Returned', '2015-08-22');
 
 -- --------------------------------------------------------
 
@@ -124,23 +125,24 @@ CREATE TABLE IF NOT EXISTS `lu_packages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `price` int(11) NOT NULL,
+  `description` varchar(200) NOT NULL,
+  `duration` varchar(5) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `lu_packages`
 --
 
-INSERT INTO `lu_packages` (`id`, `name`, `price`) VALUES
-(1, ' QUICK LUBRICATION - GOLD', 8000),
-(2, ' UNDERCARRIAGE DEGREASING - GOLD', 8000),
-(3, 'VACUUM FLOOR / SEATS & TRUNK- GOLD', 8000),
-(4, 'WINDSCREEN & GLASS CLEANING- GOLD', 8000),
-(5, 'QUICK LUBRICATION - SILVER', 5000),
-(6, 'UNDERCARRIAGE DEGREASING - SILVER', 5000),
-(7, 'VISUAL SAFETY CHECK - SILVER', 5000),
-(9, ' TYRE & DASH DRESSING- GOLD', 8000),
-(10, ' EXTERIOR WAXING - GOLD', 8000);
+INSERT INTO `lu_packages` (`id`, `name`, `price`, `description`, `duration`) VALUES
+(1, 'QUICK LUBRICATION - GOLD', 8000, 'A total lubricating service in only 30 minutes. It covers every essential aspect of a professional car service at a most economical price. Top up to optimal capacity or completely change it using high', '30'),
+(2, 'UNDERCARRIAGE DEGREASING - GOLD', 8000, 'Completely degrease the undercarriage of the automobile, removing accumulated oil and grit using the application of pressure washes with advanced pressure sensors.', '20'),
+(3, 'VACUUM FLOOR / SEATS & TRUNK- GOLD', 8000, 'Vacuum the cabin interior, seats and trunk to ensure removal of dust and particle accumulation', '20'),
+(4, 'WINDSCREEN & GLASS CLEANING- GOLD', 8000, 'Glass treatment improves wet weather driving visibility. The treatment uses a non-streaking formula, ammonia free and safe for tinted windows. This is ideal for high humidity conditions.', '30'),
+(5, 'QUICK LUBRICATION - SILVER', 5000, 'Restore the true colour and natural gloss to the dashboard and leaves tyres looking new.', '30'),
+(6, 'UNDERCARRIAGE DEGREASING - SILVER', 5000, 'A total lubricating service in only 30 minutes. It covers every essential aspect of a professional car service at a most economical price. Top up to optimal capacity or completely change it using high', '30'),
+(7, 'VISUAL SAFETY CHECK - SILVER', 5000, '', ''),
+(10, ' EXTERIOR WAXING - GOLD', 8000, '', '');
 
 -- --------------------------------------------------------
 
@@ -244,7 +246,7 @@ CREATE TABLE IF NOT EXISTS `packages` (
   `time` varchar(11) NOT NULL,
   `price` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `packages`
@@ -252,7 +254,7 @@ CREATE TABLE IF NOT EXISTS `packages` (
 
 INSERT INTO `packages` (`id`, `name`, `description`, `time`, `price`) VALUES
 (1, 'Platinum Value Car Wash', 'Ultimate value car wash with mat shampoo - Limit 4', '48', 3000),
-(2, 'Ultimate Value Car Wash', 'Full service wash, clear coat shine, cleat coat protectant, underbody wash, tire shine, rim cleaning wheel bright, triple foam polish wax, rust inhibitor and interior fragrance spray.', '48', 4500),
+(2, 'Ultimate Value Car Wash', 'Full service wash, clear coat shine, cleat coat protectant, underbody wash, tire shine, rim cleaning wheel bright, triple foam polish wax, rust inhibitor and interior fragrance spray.', '48', 5500),
 (4, 'Hand Wash', 'smooth washing\nhee', '2', 10000);
 
 -- --------------------------------------------------------
@@ -373,7 +375,7 @@ CREATE TABLE IF NOT EXISTS `regular_transactions` (
   `status` varchar(50) NOT NULL DEFAULT 'Not Returned',
   `returnedDate` varchar(15) NOT NULL DEFAULT 'Not Returned',
   PRIMARY KEY (`id`,`cust_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=49 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=50 ;
 
 --
 -- Dumping data for table `regular_transactions`
@@ -404,7 +406,8 @@ INSERT INTO `regular_transactions` (`id`, `cust_id`, `package`, `vehicleNo`, `am
 (43, 'rc-1090', 'Ultimate Value Car Wash', 'ghdfgdd', 3600, '2015-08-16', 'Returned', '2015-08-22'),
 (46, 'rc-1018', 'Ultimate Value Car Wash', 'dfsf', 3600, '2015-08-19', 'Returned', '2015-08-22'),
 (47, 'rc-892', 'Ultimate Value Car Wash', 'dfdsf', 3600, '2015-08-19', 'Returned', '2015-08-22'),
-(48, 'rc-1018', 'Ultimate Value Car Wash', 'zxa', 3600, '2015-08-22', 'Returned', '2015-08-22');
+(48, 'rc-1018', 'Ultimate Value Car Wash', 'zxa', 3600, '2015-08-22', 'Returned', '2015-08-22'),
+(49, 'rc-1090', 'Hand Wash', 'yui', 8000, '2015-08-22', 'Returned', '2015-08-22');
 
 -- --------------------------------------------------------
 
@@ -450,4 +453,3 @@ INSERT INTO `users` (`username`, `password`) VALUES
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
