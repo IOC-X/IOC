@@ -172,8 +172,8 @@ $this->view->render('employees/shift_sub/shift_list',false);
 //        }
         $model = new Employees_model();
         $getemp1 = $model->list_employee();
-        include '/views/employees/attendance/historyOfAttendance.php';
-        // $this->view->render('employees/attendance/historyOfAttendance', false);
+        //include '/views/employees/attendance/historyOfAttendance.php';
+        $this->view->render('employees/attendance/historyOfAttendance', false);
     }
 
     public function current_attendance() {

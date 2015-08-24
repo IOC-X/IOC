@@ -276,6 +276,14 @@
 			$model = new Stocks_model();
 			echo json_encode($model->loadNoOfPumps());
 		}
+		//add pumps
+		public function addPump(){
+			require 'models/Stocks_model.php';
+			$model = new Stocks_model();
+			$no = $_GET['no'];
+			$fuelType = $_GET['fuelType'];
+			$model->addPump($no,$fuelType);
+		}
 		//Lubricant store
 		public function lubricant(){
 			$this->view->render('stocks/lubricant/index',false);

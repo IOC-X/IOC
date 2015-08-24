@@ -142,6 +142,15 @@
 			$st->execute();
 			return $st->fetchAll();
 		}
+		public function addPump($no,$fuelType){
+			$st = $this->db->prepare("INSERT INTO pumpstatus VALUES (:no,:status,:fuel)");
+			$st->execute(array(
+				':no' => $no,
+				':status' => $status,
+				':fuel' => $fuel
+			));
+			return true;
+		}
 		public function addLubricant($prdName,$prdPrice,$prdQnty,$supplier){
 			$st = $this->db->prepare("INSERT INTO Lubricants (Name,Price,Quantity,Supplier) VALUES (:name,:price,:qnty,:supplier)");
 			$st->execute(array(
