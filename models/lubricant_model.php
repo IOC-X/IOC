@@ -1,11 +1,13 @@
 <?php
 
-include_once '\libs\Database.php';
 
 class lubricant_model extends Model {
 
     function __construct() {
         parent::__construct();
+    }
+    public function addlubinc($name, $qty, $supplier, $price, $sqty, $inc, $date){
+        $st = $this->db->prepare("INSERT INTO ")
     }
 //PACKAGE DATA RETRIVING    
     public function selectAllpackages() {
