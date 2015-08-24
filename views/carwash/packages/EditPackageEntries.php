@@ -67,14 +67,15 @@
                         <input type="number" name="price" id="price" class="form-control" required>
                     </div>  
 
-                    <button type="submit" class="btn btn-primary btn-lg" name="form-submitted" id="form-submitted">
+<!--                    <button type="submit" class="btn btn-primary btn-lg" name="form-submitted" id="form-submitted">
                         <span class="mdi-content-create" aria-hidden="true"></span> Edit
-                    </button>
+                    </button>-->
 
                 </div>
             </form>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger btn-circle" data-dismiss="modal"><i class="fa fa-times"></i>x</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" name="form-submitted" id="form-submitted" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>

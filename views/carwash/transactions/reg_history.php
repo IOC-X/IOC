@@ -86,14 +86,13 @@
                         <input type="date" name="date" id="date" class="form-control form_datetime" required>
                     </div> 
 
-                    <button type="submit" class="btn btn-primary btn-lg" name="form-submitted" id="form-submitted">
-                        <span class="mdi-content-create" aria-hidden="true"></span> Edit
-                    </button>
+                    
 
                 </div>
             </form>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger btn-circle" data-dismiss="modal"><i class="fa fa-times"></i>x</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" name="form-submitted" id="form-submitted" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
@@ -128,6 +127,8 @@
             var numbers = /^[0-9]+$/;
             var validNic = /\d{9}[vV]$/;
             var validDate = new Date();
+            var validVehicleNo1 = /^[A-Z]{2}-\d{4}$/;
+            var validVehicleNo2 = /^[A-Z]{3}-\d{4}$/;
 
 
 
@@ -148,7 +149,7 @@
                 swal("Oops...", "Insertion Failed Some Fields are Blank....!!", "error");
             }
 
-            else if (vehicleNo.match(numbers)) {
+            else if (!(vehicleNo.match(validVehicleNo1)) && !(vehicleNo.match(validVehicleNo2))) {
                 swal("Oops...", "Vehicle Number is invalid....!!", "error");
             }
 

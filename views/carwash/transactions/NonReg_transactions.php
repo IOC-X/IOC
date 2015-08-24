@@ -5,21 +5,21 @@
         
             <label class="control-label col-lg-4">Customer Name</label>
             <div class="controls col-lg-6">
-                <input type="text"  class="form-control btn" name="name" id="name" placeholder="Customer Name">
+                <input type="text"  class="form-control floating-label" name="name" id="name" placeholder="Customer Name">
             </div>
         
     </div>
     <div class="control-group panel panel-info">
             <label class="control-label col-lg-4">Contact</label>
              <div class="controls col-lg-6">
-                <input type="number"  class="form-control btn" name="contact" id="contact" placeholder="Phone Number">
+                <input type="number"  class="form-control floating-label" name="contact" id="contact" placeholder="Phone Number">
              </div>
         
     </div>
             <div class="control-group panel panel-info">
             <label class="control-label col-lg-4">Email</label>
                 <div class="controls col-lg-6">
-                <input type="email"  class="form-control btn" name="email" id="email" placeholder="Customer Email">
+                <input type="email"  class="form-control floating-label" name="email" id="email" placeholder="Customer Email">
                 </div>
             </div>
         <div class="control-group panel panel-info">
@@ -35,19 +35,19 @@
         <div class="control-group panel panel-info">
             <label class="control-label col-lg-4">Vehicle Number</label>
             <div class="controls col-lg-6">
-                <input type="text"  class="form-control btn" name="Vno" id="Vno" placeholder="">
+                <input type="text"  class="form-control floating-label" name="Vno" id="Vno" placeholder="">
             </div>
         </div>
         <div class="control-group panel panel-info">
             <label class="control-label col-lg-4">Amount</label>
             <div class="controls col-lg-6">
-                <input type="text"  class="form-control btn" name="amount" id="amount" readonly="readonly" value="">
+                <input type="text"  class="form-control floating-label" name="amount" id="amount" readonly="readonly" value="">
             </div>
         </div>  
         <div class="control-group panel panel-info">
             <label class="control-label col-lg-4">Order Date</label>
             <div class="controls col-lg-6">
-                <input type="text" class="form-control btn" name="date" id="date"  readonly="readonly" value="<?php echo date("Y-m-d"); ?>">
+                <input type="text" class="form-control floating-label" name="date" id="date"  readonly="readonly" value="<?php echo date("Y-m-d"); ?>">
             </div>
         </div>
         
@@ -85,10 +85,32 @@ var vehicleNo = $("#Vno").val();
 var amount = $("#amount").val();
 var date = $("#date").val();
 
+//EXPRESSIONS
+            var validVehicleNo1 = /^[A-Z]{2}-\d{4}$/;
+            var validVehicleNo2 = /^[A-Z]{3}-\d{4}$/;
+            var phone = /^\d{10}$/;
+            var validEmail = /\S+@\S+\.\S+/;
 //validation
-        if(vehicleNo ==''){
-            alert("Transaction Failed. Please Enter Vehicle Number");   	
-        }
+        if (cname == '' || contact == '' || email == '' || package == '' || vehicleNo == '' || date == '') {
+
+                swal("Oops...", "Insertion Failed Some Fields are Blank....!!", "error");
+                return false;
+            }
+            else if (!(contact.match(phone))) {
+                swal("Oops...", "Invalid Contact Number....!!", "error");
+            }
+            else if (!(email.match(validEmail))) {
+                swal("Oops...", "Invalid Email....!!", "error");
+            }
+            else if(amount==''){
+                swal("Oops.. Something went wrong..","Transaction Failed. Please select the package again..!","error");
+                return false;
+            }
+        
+         else if (!(vehicleNo.match(validVehicleNo1)) && !(vehicleNo.match(validVehicleNo2))) {
+                swal("Oops...", "Vehicle Number is invalid....!!", "error");
+                return false;
+            }
         
         else{
             

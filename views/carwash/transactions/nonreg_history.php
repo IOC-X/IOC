@@ -94,14 +94,13 @@
                         <input type="date" name="date" id="date" class="form-control form_datetime" required>
                     </div> 
 
-                    <button type="submit" class="btn btn-primary btn-lg" name="form-submitted" id="form-submitted">
-                        <span class="mdi-content-create" aria-hidden="true"></span> Edit
-                    </button>
+                    
 
                 </div>
             </form>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger btn-circle" data-dismiss="modal"><i class="fa fa-times"></i>x</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" name="form-submitted" id="form-submitted" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
@@ -141,6 +140,8 @@
             var validDate = new Date();
             var phone = /^\d{10}$/;
             var validEmail = /\S+@\S+\.\S+/;
+            var validVehicleNo1 = /^[A-Z]{2}-\d{4}$/;
+            var validVehicleNo2 = /^[A-Z]{3}-\d{4}$/;
 
 
 //date validation
@@ -158,19 +159,24 @@
             if (id == '' || cname == '' || package == '' || contact == '' || email == '' || vehicleNo == '' || amount == '' || date == '') {
 
                 swal("Oops...", "Insertion Failed Some Fields are Blank....!!", "error");
+                return false;
             }
             else if (!(contact.match(phone))) {
                 swal("Oops...", "Invalid Contact Number....!!", "error");
+                return false;
             }
             else if (!(email.match(validEmail))) {
                 swal("Oops...", "Invalid Email....!!", "error");
+                return false;
             }
-            else if (vehicleNo.match(numbers)) {
+            else if (!(vehicleNo.match(validVehicleNo1)) && !(vehicleNo.match(validVehicleNo2))) {
                 swal("Oops...", "Vehicle Number is invalid....!!", "error");
+                return false;
             }
 
             else if (e_date > today) {
                 swal("Oops...", "Selected date is a future date....!!", "error");
+                return false;
             }
             else {
 // Returns successful data submission message when the entered information is stored in database.
