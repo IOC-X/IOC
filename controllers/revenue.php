@@ -1,5 +1,5 @@
 <?php
-require 'models/Revenue_model.php';
+//require 'models/Revenue_model.php';
 /**
 	* revenue module
 	* controller for revenue model
@@ -122,6 +122,7 @@ require 'models/Revenue_model.php';
 
 
 		 public function editLubinc() {
+		 	require 'models/Revenue_model.php';
         $model = new Revenue_model();
         $id = $_POST['id'];
 
@@ -140,6 +141,7 @@ require 'models/Revenue_model.php';
     }
 
     public function delete_lubinc() {
+    	require 'models/Revenue_model.php';
         $id = $_POST['idd'];
         $model = new Revenue_model();
         $transactions = $model->deleteLubincome($id);
@@ -148,7 +150,7 @@ require 'models/Revenue_model.php';
     
     
         public function lub_list() {
-           
+           require 'models/Revenue_model.php';
         $model = new Revenue_model();
         echo json_encode($model->select_lube());
 
@@ -165,6 +167,7 @@ require 'models/Revenue_model.php';
 
 
     public function pay_details() {
+    	require 'models/Revenue_model.php';
         $empid = $_POST['empid'];
         $empname = $_POST['empname'];
         $empnic = $_POST['nic'];
@@ -180,12 +183,14 @@ require 'models/Revenue_model.php';
 
     public function pay_list()
     {
+    	require 'models/Revenue_model.php';
     	$model=new Revenue_model();
     	echo json_encode($model->select_pay());
     }
 
      public function editPayment() {
         //$model = new Revenue_model();
+        require 'models/Revenue_model.php';
         $id = $_POST['id'];
 
         // $customer = $model->selectCustomerById($cust_id);
