@@ -1,4 +1,31 @@
-<form class="form-horizontal">
+<script src="/IOC/views/employees/js/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/IOC/views/employees/js/sweetalert.css">
+<div class="btn-group btn-group-justified">
+    <a href="javascript:void(0)" class="btn btn-primary" id="add"><i class="mdi-av-my-library-books"></i> Add New Client</a>
+    <a href="javascript:void(0)" class="btn btn-primary" id="list"><i class="mdi-content-sort"></i> Add New Transaction</a>
+
+</div>
+
+<script>
+
+
+    $('#list').click(function () {
+        $('#subloader2').load('/IOC/clients/addclientin', function () {
+            $('#subloader2').hide();
+            $('#subloader2').fadeIn('fast');
+        });
+    });
+    $('#add').click(function () {
+        $('#subloader2').load('/IOC/employees/current_attendance', function () {
+            $('#subloader2').hide();
+            $('#subloader2').fadeIn('fast');
+        });
+    });
+
+</script>
+
+
+<!--<form class="form-horizontal">
     <fieldset>
         <legend>Search</legend>
         <div class="form-group">
@@ -7,7 +34,18 @@
             </div>
         </div>
     </fieldset>
-</form>
+</form>-->
+<form class="form-horizontal">
+         <div class="bs-component">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <legend class="panel-title">Search</legend>
+                </div>
+                <div class="panel-body">
+                    <div class="col-lg-15">
+                <input type="text" class="form-control" id="search_lb" placeholder="Enter supplier name">
+            </div>
+                </div></div></div></form>
 
 
 <table class="table table-striped table-hover ">
@@ -23,7 +61,7 @@
 
     <thead>
         <tr>
-             <th></th>
+            <th></th>
             <th>Client ID</th>
             <th>Client Name</th>
             <th>Address</th>
@@ -74,6 +112,8 @@
 
 
 <script type="text/javascript">
+  
+
     $(document).ready(function () {
       
         $.getJSON('clients/getclientdata', function (data) {
