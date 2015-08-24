@@ -1,7 +1,7 @@
 
     <legend>Active pumpers</legend>
         <div class="form-group">
-        <label for="prd-name" class="col-lg-2 control-label">Pumper name comes here dynamically</label>
+        <label for="prd-name" class="col-lg-2 control-label" id="pmp-name"></label>
         <div class="col-lg-3">
             <input type="text" class="form-control" id="prd-name" placeholder="amount" name="">
         </div>
@@ -92,3 +92,18 @@
                 </tbody>-->
             </table>
         </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $.getJSON('revenue/loadActivePumpers',function(data){
+            console.log(data);
+ //            var len = data.length;
+ //            for(a=0;a<len;a++){
+ // //               console.log(data[a].Name);
+                
+ //            }
+        });
+
+
+    });
+</script>

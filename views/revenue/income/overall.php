@@ -13,14 +13,14 @@
 
 	
 
-	 <table class="table table-striped table-hover ">
+	<table class="table table-striped table-hover ">
     <thead>
         <tr>
             <th>Fuel Income</th>
             <th>Lubricants Income</th>
             <th>Regular Car Wash Income</th>
             <th>Non Regular Car wash Income</th>
-            <th>Time(Date)</th>
+            <th>Date</th>
             <th></th>
             <th></th>
         </tr>
@@ -38,3 +38,17 @@
 
 
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $.getJSON('revenue/loadOverall',function(data){
+            console.log(data[0]);
+            var len = data.length;
+ //            for(a=0;a<len;a++){
+ // //               console.log(data[a].Name);
+                
+ //            }
+        });
+    });
+
+</script>
