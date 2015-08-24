@@ -75,13 +75,18 @@
             var originalAmount = $("#original_amount").val();
             var amount = $("#amount").val();
             var date = $("#date").val();
-
+//REGIT EXPRESSION
+            var validVehicleNo1 = /^[A-Z]{2}-\d{4}$/;
+            var validVehicleNo2 = /^[A-Z]{3}-\d{4}$/;
 //validation
             if (vehicleNo == '') {
                 swal("Oops.. Something went wrong..","Transaction Failed. Please Enter Vehicle Number..!","error");
                 return false;
             }
-            
+             else if (!(vehicleNo.match(validVehicleNo1)) && !(vehicleNo.match(validVehicleNo2))) {
+                swal("Oops...", "Vehicle Number is invalid....!!", "error");
+                return false;
+            }
             else if(amount==''|| originalAmount==''){
                 swal("Oops.. Something went wrong..","Transaction Failed. Please select the package again..!","error");
                 return false;
