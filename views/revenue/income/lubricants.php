@@ -81,7 +81,7 @@
                     </div>
 
                     <div class="col-lg-4">
-                        <input type="text" class="form-control" name="time" id="time" readonly="readonly" value="<?php echo date("Y-m-d"); ?>">
+                        <input type="text" class="form-control" name="time" id="time" placeholder="" >
                     </div>
 
                 </div>
@@ -110,7 +110,7 @@
     
     
     <div class="form-actions col-lg-12">
-        <div class="col-lg-0 col-lg-1"><a href="javascript:void(0)" class="btn btn-primary btn-raised" id="lubricant_inc_history"><i class="mdi-social-poll"></i> History</a></div>
+        <div class="col-lg-50 col-lg-1"><a href="javascript:void(0)" class="btn btn-primary btn-raised" id="lubricant_inc_history"><i class="mdi-social-poll"></i> History</a></div>
 
     </div>   
     <!-- end of filling application-->

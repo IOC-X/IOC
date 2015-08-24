@@ -1,21 +1,22 @@
-<div class="col-lg-12" id="lubricant_inc_history">
+<div class="col-lg-12" id="pay_show">
     <!-- DISPLAYING LATEST LUBRICANT INCOME-->
     <div>
-        <h3 class="text-center success"><strong>Lubricant Income</strong></h3>
+        <h3 class="text-center success"><strong>Payment History</strong></h3>
 
     </div>
     <table class="table table-striped table-bordered table-hover">
 
         <thead>
             <tr class="success">
-                <th>Name</th>
-                <th>Quantity</th>
-                <th>Supplier</th>
-                <th>Selling quantity</th>
-                <th>Price</th>
+                <th>Employee Code</th>
+                <th>Employee Name</th>
+                <th>NIC</th>
                 <th>Date</th>
-                <th>Income</th>
-
+                <th>Shift Type</th>
+                <th>Gross Salary</th>
+                <th>EPF</th>
+                <th>Net Salary</th>
+                <th>Paid</th>
             </tr>
         </thead>
         <tbody>
@@ -29,9 +30,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title text-justify">Edit Lubricant Income Details</h4>
+                <h4 class="modal-title text-justify">Edit Payment Details</h4>
             </div>
-            <form role="form" action="" name="frmLIncome" method="post">
+            <form role="form" action="" name="frmPayment" method="post">
                 <div class="col-lg-12">
 
                     <div class="form-group">
@@ -39,45 +40,61 @@
                         <input name="id" id="id" class="form-control" required readonly="">
                     </div>
                     <div class="form-group">
-                        <label>Product Name</label>
-                        <select class="btn form-control" id="prdType" name="prdType">
-                            <?php foreach ($type as $prodtype) : ?>
-                                <option value="<?php echo ($prodtype->prdType); ?>"><?php echo ($prodtype->prdType); ?></option>
-                            <?php endforeach; ?>
-                        </select>
-<!--                            <input name="prdType" id="prdType" class="form-control" required readonly="">-->
+                        <label>Employee Code</label>
+                       <!-- <select class="btn form-control" id="empcode" name="empcode">
+                            <?php //foreach ($type as $prodtype) : ?>
+                                <option value="<?php //echo ($prodtype->prdType); ?>"><?php //echo ($prodtype->prdType); ?></option>
+                            <?php //endforeach; ?>
+                        </select> -->
+
+                       <input name="empcode" id="empcode" class="form-control" required>
+
                     </div>
 
                     <div class="form-group">
-                        <label>Quantity</label>
+                        <label>Employee Name</label>
 
-                        <input name="quantity" id="quantity" class="form-control" required>
+                        <input name="empname" id="empname" class="form-control" required>
                     </div>
 
                     <div class="form-group">
-                        <label>Supplier</label>
-                        <input name="supplier" id="supplier" class="form-control" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Selling Quantity</label>
-                        <input name="sqty" id="sqty" class="form-control" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Price</label>
-                        <input name="price" id="price" class="form-control" required>
+                        <label>NIC</label>
+                        <input name="nic" id="nic" class="form-control" required>
                     </div>
 
                     <div class="form-group">
                         <label>Date</label>
-                        <input type="date" name="date" id="date" class="form-control form_datetime" required>
+                        <input name="date" id="date" class="form-control form_datetime" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Shift Type</label>
+                        <input name="shtype" id="shtype" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Gross Salary</label>
+                        <input type="text" name="gsal" id="gsal" class="form-control" required>
                     </div> 
 
                     <div class="form-group">
-                        <label>Lubricant Income</label>
-                        <input name="lubincome" id="lubincome" class="form-control" required>
+                        <label>EPF</label>
+                        <input name="epf" id="epf" class="form-control" required>
                     </div>
+
+
+                    <div class="form-group">
+                        <label>Net Salary</label>
+                        <input type="text" name="nsal" id="nsal" class="form-control" required>
+                    </div> 
+
+
+                    <div class="form-group">
+                        <label>Paid</label>
+                        <input name="paid" id="paid" class="form-control" required>
+                    </div> 
+
+
 
                     <button type="submit" class="btn btn-primary btn-lg" name="form-submitted" id="form-submitted">
                         <span class="mdi-content-create" aria-hidden="true"></span> Edit
@@ -95,23 +112,26 @@
 <script type="text/javascript">
    $(document).ready(function () {
        
-        $.getJSON('revenue/lub_list', function (data) {
-           alert("dsa");
+        $.getJSON('revenue/pay_list', function (data) {
+           //alert("dsa");
             var len = data.length;
 
             for (x = 0; x < len; x++) {
                
-                $("tbody").append('<tr class="' + x + '" id="' + data[x].prdIncomeID + '">');
-                $("." + x + "").append('<td id="' + data[x].prdIncomeID + "-prdType" + '">' + data[x].prdType + '</td>');              
-                $("." + x + "").append('<td id="' + data[x].prdIncomeID + "-quantity" + '">' + data[x].quantity + '</td>'); 
-                $("." + x + "").append('<td id="' + data[x].prdIncomeID + "-supplier" + '">' + data[x].supplier + '</td>');                
-                $("." + x + "").append('<td id="' + data[x].prdIncomeID + "-sellingqty" + '">' + data[x].sellingqty + '</td>');
-                $("." + x + "").append('<td id="' + data[x].prdIncomeID + "-price" + '">' + data[x].price + '</td>');
-                $("." + x + "").append('<td id="' + data[x].prdIncomeID + "-date1" + '">' + data[x].date1 + '</td>');
-                $("." + x + "").append('<td id="' + data[x].prdIncomeID + "-lubricantincome" + '">' + "Rs : " +data[x].lubricantincome  + '</td>');
-                $("." + x + "").append('<td class="hide" id="' + data[x].prdIncomeID + "-pod" + '">' + x + '</td>');
-                $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].prdIncomeID + '" class="edit"><i class="mdi-content-create"></i></a></div></td>');
-                $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].prdIncomeID + '" class="remove"><i class="mdi-content-remove-circle"></i></a></div></td>');
+                $("tbody").append('<tr class="' + x + '" id="' + data[x].payID + '">');
+                $("." + x + "").append('<td id="' + data[x].payID + "-empID" + '">' + data[x].empID + '</td>');              
+                $("." + x + "").append('<td id="' + data[x].payID + "-empName" + '">' + data[x].empName + '</td>'); 
+                $("." + x + "").append('<td id="' + data[x].payID + "-NIC" + '">' + data[x].NIC + '</td>');                
+                $("." + x + "").append('<td id="' + data[x].payID + "-date" + '">' + data[x].date + '</td>');
+                $("." + x + "").append('<td id="' + data[x].payID + "-shifttype" + '">' + data[x].shifttype + '</td>');
+                $("." + x + "").append('<td id="' + data[x].payID + "-grosssal" + '">'+ "Rs : " + data[x].grosssal + '</td>');
+                $("." + x + "").append('<td id="' + data[x].payID + "-epf" + '">'  +data[x].epf  + '</td>');
+                $("." + x + "").append('<td id="' + data[x].payID + "-netsal" + '">'  +data[x].netsal  + '</td>');
+                $("." + x + "").append('<td id="' + data[x].payID + "-paid" + '">'  +data[x].paid  + '</td>');
+
+                $("." + x + "").append('<td class="hide" id="' + data[x].payID + "-pod" + '">' + x + '</td>');
+                $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].payID + '" class="edit"><i class="mdi-content-create"></i></a></div></td>');
+                $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].payID + '" class="remove"><i class="mdi-content-remove-circle"></i></a></div></td>');
                 $("." + x + "").append('</tr>');
             }
             
@@ -119,7 +139,7 @@
                 var id = $(this).attr('href');
 
                 swal({title: "Are you sure?",
-                    text: "You will not be able to recover this Shift!",
+                    text: "You will not be able to recover this Payment!",
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#DD6B55",
@@ -133,12 +153,12 @@
                                             if (isConfirm) {
                         $.ajax({
                             type: 'post',
-                            url: 'revenue/delete_lubinc',
-                            data: {idd: id},
+                            url: 'revenue/delete_payment',
+                            data: {id2: id},
                             success: function (data) {
-                                swal("Deleted!", "Your imaginary file has been deleted!", "success");
+                                swal("Deleted!", "Your payment information has been deleted!", "success");
                                 $('#subloader2').empty();
-                                $('#subloader2').load('/IOC/revenue/lubricant_inc_history').hide().fadeIn('slow');
+                                $('#subloader2').load('/IOC/revenue/pay_show').hide().fadeIn('slow');
                                
                             }
                         });
@@ -148,86 +168,104 @@
                         
 
                      else {
-                        swal("Cancelled", "Your Payment data is safe :)", "error");
+                        swal("Cancelled", "Your Pyment data is safe..", "error");
                     }
                 });
 
 
                 return false;
             });
-            
 
-
-
-            $('.edit').click(function (e) {
+             $('.edit').click(function(e){
+                e.preventDefault();
                 var id = $(this).attr('href');
                 window.editID = id;
-
                 $('#modalT').modal('show');
-                setTimeout(function () {
-                    var n1 = $('#'+ id +'-prdType').text();
-                    var n2 = $('#'+ id +'-quantity').text();
-                    var n3 = $('#'+ id +'-supplier').text();
-                    var n4 = $('#'+ id +'-sellingqty').text();
-                    var n5 = $('#'+ id +'-price').text();
-                    var n6 = $('#'+ id +'-date1').text();
-                    var n7 = $('#'+ id +'-lubricantincome').text();
+                setTimeout(function(){
+                    //$('#supplier').empty();
+                    var name = $()
+                    //$('#prd-name').val('Test');
+                    var name = $('#'+ id +'-empID').text();
+                    var k1 = $('#'+ id +'-empName').text();
+                    var k2 = $('#'+ id +'-NIC').text();
+                    var k3 = $('#'+ id +'-date').text();
+                    var k4 = $('#'+ id +'-shifttype').text();
+                    var k5 = $('#'+ id +'-grosssal').text();
+                    var k6 = $('#'+ id +'-epf').text();
+                    var k7 = $('#'+ id +'-netsal').text();
+                    var k8 = $('#'+ id +'-paid').text();
+
+                    //$.getJSON('revenue/pay_list',function(data){
+                        //var len = data.length;
+                        
+                        //for(a=0;a<len;a++){
+                           // $('#supplier').append($('<option>', {value:data[a].name, text:data[a].name}));                
+                        //}
+
+                     //});
 
 
-                     $('#prdType').val(n1);
-                    $('#quantity').val(n2);
-                    $('#supplier').val(n3);
-                    $('#sqty').val(n4);
-                    $('#price').val(n5);
-                    $('#date').val(n6);
-                    $('#lubincome').val(n7);
-
-
-
-                }, 250);
-                e.preventDefault();
-            });
-            
-            });
-
-
-            $('#form-submitted').click(function(){
+                    //console.log(name + price + quantity + supplier);
+                    $('#empcode').val(name);
+                    $('#empname').val(k1);
+                    $('#nic').val(k2);
+                    $('#date').val(k3);
+                    $('#shtype').val(k4);
+                    $('#gsal').val(k5);
+                    $('#epf').val(k6);
+                    $('#nsal').val(k7);
+                    $('#paid').val(k8);
+                },250);
                 
-                var m1 = window.editID;
-                var m2 = $('#prdType').val();
-                var m3 = $('#quantity').val();
-                var m4 = $('#supplier').val();
-                var m5 = $('#sqty').val();
-                var m6 = $('#price').val();
-                var m7 = $('#date').val();
-                var m8 = $('#lubincome').val();
-               
-              /*  if(prd_name == ""){
-                    swal("Oops !", "Please fill name field");
-                    return false;
-                }
-                if(isNaN(prd_price) || prd_price == ""){
-                    swal("Oops !", "Name should be a number !");
-                    return false;
-                }
-                if(isNaN(prd_qnty) || prd_qnty == ""){
-                    swal("Oops !", "Quantity should be a number !");
-                    return false;
-                }
-                if(prd_supplier == ""){
-                    swal("Oops !", "Please select a supplier");
-                    return false;
-                }*/
+            });
 
-                $.post('revenue/editLubinc',{ prdType : m2 , quantity : m3 , supplier : m4 , sqty : m5 , price : m6 , date : m7 , lubincome : m8 },function(data){
+        //});
+
+
+        $('#edit_sub').click(function(){
+                
+                var p_ID = window.editID;
+                var pp1 = $('#empcode').val();
+                var pp2= $('#empname').val();
+                var pp3 = $('#nic').val();
+                var pp4 = $('#date').val();
+                var pp5 = $('#shtype').val();
+                var pp6 = $('#gsal').val();
+                var pp7 = $('#epf').val();
+                var pp8 = $('#nsal').val();
+                var pp9 = $('#paid').val();
+                
+                // if(prd_name == ""){
+                //     swal("Oops !", "Please fill name field");
+                //     return false;
+                // }
+                // if(isNaN(prd_price) || prd_price == ""){
+                //     swal("Oops !", "Name should be a number !");
+                //     return false;
+                // }
+                // if(isNaN(prd_qnty) || prd_qnty == ""){
+                //     swal("Oops !", "Quantity should be a number !");
+                //     return false;
+                // }
+                // if(prd_supplier == ""){
+                //     swal("Oops !", "Please select a supplier");
+                //     return false;
+                // }
+
+                $.post('revenue/editPayment',{ p1 : pp1 , p2 : pp2 , p3 : pp3 , p4 : pp4, p5 : pp5 , p6 : pp6 , p7 : pp7 , p8 : pp8 , p9 : pp9 , id : p_ID },function(data){
                     console.log(data);
                     $('#modalT').hide();
                     refresh();
                 });
             });
-
+            
+            
+            
+            
             });
 
+
+            });
 
 
 
