@@ -1,6 +1,6 @@
 <div>
     <div class="col-md-12">
-        <form class="form-horizontal" method="POST" action="clients/insertClients" enctype="multipart/form-data" id="form_insertClients" >
+        <form id="forminsertClients" class="form-horizontal" method="POST" action="clients/insertClients" enctype="multipart/form-data" >
             <fieldset>
                 <legend><ul><b>New Client Details</b></ul></legend>
 
@@ -38,14 +38,14 @@
                 <div class="form-group">
                     <label for="client_nic" class="col-lg-2 control-label">NIC Number</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" name="client_nic" placeholder="Eg: 921821298V" id="NIC" >
+                        <input type="text" class="form-control" name="client_nic" placeholder="Eg: 921821298V" id="NIC" pattern="[0-9]{9}[V]$" title="" required="" title="Example 921821298V">
                     </div>
                 </div> 
 
                 <div class="form-group">
                     <label for="client_phone" class="col-lg-2 control-label">Mobile Number</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" name="client_phone" placeholder="Eg: 0778394947" id="Phone" >
+                        <input type="text" class="form-control" name="client_phone" placeholder="Eg: 0778394947" id="Phone" pattern="[0-9-]{11}" title="" required="" title="Example 071-9898987">
                     </div>
                 </div>
 
@@ -61,9 +61,17 @@
                 <div class="form-group">
                     <label for="client_purchase_amount" class="col-lg-2 control-label">Purchase Amount</label>
                     <div class="col-lg-2">
-                        <input type="text" class="form-control" name="client_purchase_amount" placeholder="" id="Amount" >
+                        <input type="text" class="form-control" name="client_purchase_amount" placeholder="Rs. " id="Amount" pattern="[0-9]{1,}" title="" required="" title="Example Rs.2000" >
                     </div>
                 </div>
+                
+                <div class="form-group">
+                    <label for="inputFile" class="col-lg-2 control-label">Image</label>
+                    <div class="col-lg-10" id="wrapper">
+                        <input type="text" readonly="" class="form-control floating-label" placeholder="Browse...">
+                        <input type="file" id="inputFile" name="inputFile">
+                        <input type="hidden" id="client_image" name="client_image">
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -73,15 +81,21 @@
                       
                     </div>
                 </div>
+                
+                  
 
             </fieldset>
         </form>
+       </div>
+
     </div>
     
+
 <script type="text/javascript">
-     $('insertClients').submit(function (e) {
+     $('#forminsertClients').submit(function (e) {
         e.preventDefault();
-        var form = $('#insertClients');
+        alert("LOL");
+        var form = $('#forminsertClients');
         $.ajax({
             type: form.attr('method'),
             url: form.attr('action'),
@@ -92,105 +106,15 @@
                 $('#subloader').load('/IOC/clients/listclients').hide().fadeIn('slow');
             }
         });
+        
+         $("#wrapper").on("change", "#inputFile", function () {
+        //Do something
+        var username = $("#inputFile").val();
+
+        var fields = username.split("fakepath\\");
+        var name = fields[1];
+        document.getElementById("client_image").value = name;
     });
-    
-//      $('#insertClients').submit(function()){  
-//                console.log('Add Client');
-//            $("#form-submitted").click(function(){
-//            //assigning values
-//            var autocode=$().val("autocode");
-//            var fname = $("Fname").val();
-//            var lname = $("Lname").val();
-//            var address = $("#address").val();
-//            var nic = $("#NIC").val();
-//            var phone = $("#Phone").val();
-//            var purchasedate = $("#purchasedate").val();
-//            var amount = $("#Amount").val();
-//        });
-//    });
-//    
-    
-    
-//
-//    $("#wrapper").on("change", "#inputFile", function () {
-//        //Do something
-//        var username = $("#inputFile").val();
-//
-//        var fields = username.split("fakepath\\");
-//        var name = fields[1];
-//        document.getElementById("sam").value = name;
-//    });
-    
-//    $("#typeinemp").on("change", "#idDetails", function () {
-//        //Do something
-//        var e = document.getElementById("idDetails");
-//    var strUser = e.options[e.selectedIndex].text;
-//       document.getElementById("emptype").value = strUser;
-//    
-//    });
+    });
 
-// 
-//    $('#insertClients').submit(function(e){
-//        alert('lefkldfk');
-//        
-//        console.log('asdads');
-//        e.preventDefault();
-//       
-//        var form = $('#insertClients');
-//        $.ajax({
-//            type: form.attr('method'),
-//            url: form.attr('action'),
-//            data: form.serialize(),
-//            success: function (data) {
-//                console.log(data);
-//                $('#subloader').empty();
-//                $('#subloader').load('/IOC/clients/listclients').hide().fadeIn('slow');
-//            }
-//        });
-//    });
-   //code generator   
-  //  var mg = "";
-
-//    $("#idDetails").change(function () {
-//        var idDetails1 = document.getElementById("idDetails").value;
-//        if (idDetails1 == "pumpstaff")
-//        {
-//            mg = "PM";
-//            $("#changer").hide();
-//
-//            document.getElementById("changevaluename").value = "nullnull";
-//            document.getElementById("changevaluepassword").value = "nullNull123";
-//        } else
-//        {
-//            mg = "MG";
-//
-//            document.getElementById("changevaluename").value = "";
-//            document.getElementById("changevaluepassword").value = "";
-//            $("#changer").show();
-//
-//        }
-//        var d = new Date();
-//        var x = d.getYear() + d.getMonth();
-//        var y = d.getDate() - d.getHours() - d.getMinutes() - d.getSeconds() + d.getMilliseconds();
-//
-//        var shift = mg + "-" + (x + y);
-//        document.getElementById('autocode').value = shift;
-//    });
-
-//    
-//            $('#insertClients').submit(function()){  
-//                console.log('Add Client');
-//            $("#form-submitted").click(function(){
-//            //assigning values
-//            var fname = $("Fname").val();
-//            var lname = $("Lname").val();
-//            var address = $("#address").val();
-//            var nic = $("#NIC").val();
-//            var phone = $("#Phone").val();
-//            var purchasedate = $("#purchasedate").val();
-//            var amount = $("#Amount").val();
-//        });
-//    });
-    
-    //
 </script>

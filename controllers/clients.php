@@ -35,9 +35,15 @@ require_once('models/clients_model.php');
                      echo json_encode($model->list_clients());
                 }
                 
+               public function addclientin() {
+               include 'views/clients/add_client.php';
                
+               
+               }
+   
                 
                 public function insertClients(){
+                    
                         $autocode=$_POST['client_code'];
                         $fname=$_POST['client_fname'];
                         $lname=$_POST['client_lname'];
@@ -48,11 +54,44 @@ require_once('models/clients_model.php');
                         $amount=$_POST['client_purchase_amount'];
                     
 //                       echo $code,"-",$fname,"-",$lname,"-",$address,"-",$nic,"-",$phone,"-",$purchase_date,"-",$amount;
-                       require_once('models/clients_model.php');
-                       $sendtomodel=new clients_model();
-                       $sendtomodel->addclient($autocode,$fname,$lname,$address,$nic,$phone,$purchasedate,$amount);
+                    require_once('models/clients_model.php');
+                    $sendtomodel=new clients_model();
+                    $sendtomodel->addclient($autocode,$fname,$lname,$address,$nic,$phone,$purchasedate,$amount);
                 }
                 
+                public function updateclients() {
+
+                        $autocode=$_POST['client_code'];
+                        $fname=$_POST['client_fname'];
+                        $lname=$_POST['client_lname'];
+                        $address=$_POST['client_address'];
+                       
+                        $phone=$_POST['client_phone'];
+                        
+                   
+        
+                            $sendtomodel=new clients_model();
+                            $sendtomodel->update_clients($autocode,$fname,$lname,$address,$phone);
+    }
+                
+                public function insertTranactions(){
+                        $client_id=$_POST['client_id'];
+                        $client_name=$_POST['client_name'];
+                        $client_vechicle=$_POST['client_pump_vechicle'];
+                        $client_pump_by=$_POST['client_pump_by'];
+                        $pump_date=$_POST['pump_date'];
+                        $fuel_type=$_POST['fuel_type'];
+                        $pump_number=$_POST['client_pump_no'];
+                        $pump_liters=$_POST['client_pump_liters'];
+                        $pump_value=$_POST['client_pump_value'];
+                        
+                        require_once('models/client_model.php');
+                        $sendtomodel=new clients_model();
+                        $sendtomodel->addtransactions($client_id,$client_name,$client_vechicle,$client_pumper,$pump_date,$fuel_type,$pump_number,$pump_liters,$pump_liters,$pump_value);
+               
+                }
+
+
                 public function searchClients(){
                     require ('models/clients_model.php');
                     $id=$_GET['autocode'];
@@ -62,12 +101,12 @@ require_once('models/clients_model.php');
                     
                 }
                 public function deleteClients(){
-                      require ('models/clients_model.php');
-                      $id=$_GET['client_code'];
-//                    $id = $_POST['idclient'];
-//                    print_r($_GET['idclient']);
-//                    echo $id;
-                    
+                        
+                        $id=$_POST['idclients'];
+                        $model =new clients_model();
+                        $delete = $model->deleteClients($id);
+                      
+                 
                 }
 	}
 ?>
