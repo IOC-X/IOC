@@ -30,6 +30,13 @@
 				$password = $_POST['password'];	
 				require 'models/Login_model.php';
 				$model = new Login_model();
+				$empCode = $model->getEmployeeCode($username);
+				$employeeCode = $empCode[0];
+				Session::init();
+				$_SESSION['loggedIn'] = $employeeCode;
+				echo $username;
+				echo $password;
+				echo $_SESSION['loggedIn'];
 				$model->login($username,$password);
 			}
 		}
