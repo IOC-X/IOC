@@ -60,6 +60,50 @@ class Revenue_model extends Model {
         ));
         return true;
     }
+    public function insertlubricantExp($prd,$price,$qty,$supplier,$bqnty,$total){
+        $st = $this->db->prepare("INSERT INTO lubricant_expense (product,price,supplier,quantity,bquantity,total,date) VALUES (:product,:price,:supplier,:quantity,:bquantity,:total,:date)");
+        $st->execute(array(
+            ':product' => $prd,
+            ':price' => $price,
+            ':quantity' => $qty,
+            ':supplier' => $supplier,
+            ':bquantity' => $bqnty,
+            ':total' => $total,
+            ':date' => Date('y-m-d')
+        ));
+        return true;    
+    }
+    public function insertOtherExpenses($description,$expense){
+        $st = $this->db->prepare("INSERT INTO other_expenses (description,expense,date) VALUES (:description,:expense,:date)");
+        $st->execute(array(
+            ':date' => Date('y-m-d'),
+            ':expense' => $expense,
+            ':description' => $description
+        ));
+        return true;
+    }
+    public function loadEmpData(){
+        $st = $this->db->prepare("SELECT * from employee_list");
+        $st->execute();
+        return $st->fetchAll();
+    }
+    public function loadEmpDataSpec($empCode){
+        $st = $this->db->prepare("SELECT * from employee_list WHERE employeeCode=:empCode");
+        $st->execute(array(
+            ':empCode' => $empCode
+        ));
+        return $st->fetchAll();    
+    }
+    public function getShiftDetails($empcode,$year,$month,$date){
+        $st = $this->db->prepare("SELECT * from attendance WHERE empCode=:empCode AND atyear=:atyear AND atmonth=:atmonth AND atdate=:atdate");
+        $st->execute(array(
+            ':empCode' => $empcode,
+            ':atyear' => $year,
+            ':atmonth' => $month,
+            ':atdate' => $date
+        ));
+        return $st->fetchAll();    
+    }
     // public function addlubinc($name, $qty, $supplier, $price, $sqty, $inc, $date) {
 
     //     // echo "Name". $name." ";

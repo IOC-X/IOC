@@ -88,6 +88,64 @@
 				echo "Success";
 			}
 		}
+		public function lubricants_exp(){
+			$this->view->render('revenue/expenses/lubricantsxp',false);
+		}
+		public function insertlubricantExp(){
+			$prd = $_POST['prd'];
+			$price = $_POST['price'];
+			$qty = $_POST['qty'];
+			$supplier = $_POST['supplier'];
+			$bqnty = $_POST['bqnty'];
+			$total = $_POST['total'];
+
+		
+			require 'models/Revenue_model.php';
+			$model = new Revenue_model();
+			if($model->insertlubricantExp($prd,$price,$qty,$supplier,$bqnty,$total)){
+				echo "Success";
+			}
+		}
+		public function other_exp(){
+			$this->view->render('revenue/expenses/otherxp',false);
+		}
+		public function insertOtherExpenses(){
+			
+			$description = $_POST['description'];
+			$expense = $_POST['expense'];
+			require 'models/Revenue_model.php';
+
+			$model = new Revenue_model();
+			if($model->insertOtherExpenses($description,$expense)){
+				echo "Success";
+			}
+		}
+		public function addpay() {
+        	$this->view->render('revenue/payment/pay_added', false);
+    	}
+    	public function loadEmpData(){
+    		require 'models/Revenue_model.php';
+			$model = new Revenue_model();
+
+			echo json_encode($model->loadEmpData());
+    	}
+    	public function loadEmpDataSpec(){
+    		$empCode = $_GET['empCode'];
+    		require 'models/Revenue_model.php';
+			$model = new Revenue_model();
+			echo json_encode($model->loadEmpDataSpec($empCode));
+    	}
+    	public function getShiftDetails(){
+    		require 'models/Revenue_model.php';
+			$model = new Revenue_model();
+
+			$empCode = $_GET['empCode'];
+			$year = $_GET['year'];
+			$month = $_GET['month'];
+			$date = $_GET['date'];
+//			echo json_encode($empCode);
+			echo json_encode($model->getShiftDetails($empCode,$year,$month,$date));
+    	}
 		// public function lubricant_inc_history()
 		// {
 		// 	$this->view->render('revenue/income/lubricant_inc_history',false);
@@ -114,9 +172,7 @@
 		// *	
 		// **/
 
-		//  public function addpay() {
-  //       	$this->view->render('revenue/payment/pay_added', false);
-  //   	}
+		
 
   //   	 public function showpay() {
             

@@ -1,17 +1,19 @@
 <form class="form-horizontal" method="post" action="revenue/pay_details" id="clicksub">
     <fieldset>
-        <legend>Add Payment</legend>
+        <legend>Employee Payment</legend>
         <div class="form-group">
             <label for="empid" class="col-lg-2 control-label">Employee Code</label>
             <div class="col-lg-7">
-                <input type="text" class="form-control" id="empid" placeholder="" name="empid" >
+                <select id="empid" name="empid" class="form-control">
+                    <option></option>
+                </select>
             </div>
         </div>
         <div class="form-group">
             <label for="empname" class="col-lg-2 control-label">Employee Name</label>
             <div class="col-lg-7">
                 <input type="text" class="form-control" id="empname" placeholder="" name="empname"
-                       pattern="[a-zA-Z]{1,20}" title="Use only letters " required="">
+                    >
             </div>
         </div>
         <div class="form-group">
@@ -24,46 +26,15 @@
         <div class="form-group">
             <label for="date" class="col-lg-2 control-label">Date</label>
             <div class="col-lg-7">
-                <input type="text" class="form-control" placeholder="" id="date"  name="date" readonly="readonly" value="<?php echo date("Y-m-d"); ?>">
+                <input type="date" class="form-control" placeholder="" id="date">
             </div>
         </div> 
+        
         <div class="form-group">
-            <label for="shifttype" class="col-lg-2 control-label">Shift Type</label>
+            <label for="salary" class="col-lg-2 control-label">Salary</label>
             <div class="col-lg-7">
                 
-                <input type="text" class="form-control" id="shifttype" name="shifttype" placeholder="">
-            </div>
-        </div> 
-
-        <div class="form-group">
-            <label for="grosssal" class="col-lg-2 control-label">Gross Salary</label>
-            <div class="col-lg-7">
-                
-                <input type="text" class="form-control" id="grosssal" name="grosssal" placeholder="">
-            </div>
-        </div> 
-
-        <div class="form-group">
-            <label for="epf" class="col-lg-2 control-label">EPF(12%)</label>
-            <div class="col-lg-7">
-                
-                <input type="text" class="form-control" id="epf" name="epf" placeholder="">
-            </div>
-        </div> 
-
-        <div class="form-group">
-            <label for="netsal" class="col-lg-2 control-label">Net Salary</label>
-            <div class="col-lg-7">
-                
-                <input type="text" class="form-control" id="netsal" name="netsal" placeholder="">
-            </div>
-        </div> 
-
-        <div class="form-group">
-            <label for="paid" class="col-lg-2 control-label">Paid</label>
-            <div class="col-lg-7">
-                
-                <input type="text" class="form-control" id="paid" name="paid" placeholder="">
+                <input type="text" class="form-control" id="salary" name="salary" placeholder="">
             </div>
         </div> 
 
@@ -77,20 +48,39 @@
 
 
 <script>
-    $('#clicksub').submit(function (e) {
-    //alert("fdfsdf");
-        e.preventDefault();
-        var form = $('#clicksub');
-        $.ajax({
-            type: form.attr('method'),
-            url: form.attr('action'),
-            data: form.serialize(),
-            success: function (data) {
-                console.log(data);
-                $('#subloader2').empty();
-                $('#subloader2').load('/IOC/revenue/payment').hide().fadeIn('slow');
+    $(document).ready(function(){
+        console.log("sending")
+        $.getJSON('revenue/loadEmpData',function(data){
+            var len = data.length;
+            for(a=0;a<len;a++){
+                $('#empid').append("<option value='"+ data[a].employeeCode +"'>" + data[a].employeeCode + "</option>")
             }
         });
-    });
+        $('#empid').change(function(){
+            empID = $(this).val();
+            $.getJSON('revenue/loadEmpDataSpec',{ empCode : empID },function(data){
+                console.log(data);
+                $("#empname").val(data[0].firstName + " " + data[0].lastName);
+                $("#nic").val(data[0].nicNumber);
+            });
+        });
+        $("#date").focusout(function(){
+            fulldate = $(this).val();
+            year = fulldate.substr(0,4);
+            month = fulldate.substr(4,4);
+            date = fulldate.substr(8,9);
+            realMonth = month.substr(1,2);
+        
+            $.getJSON('revenue/getShiftDetails',{ empCode : empID , year : year , month : realMonth , date : date },function(data){
+                console.log(data[0].startTime);
+                startTime = data[0].startTime;
+                endTime = data[0].endTime;       
+                duration = Number(endTime - startTime);
 
-    </script>
+                salary = 1500;
+                $("#salary").val(salary);
+            });
+        });
+
+    });
+</script>
