@@ -28,7 +28,7 @@
                         </select>
                     </td>
                     <td>
-                        <input type="text"  class="form-control btn" name="Vno" id="Vno" placeholder="">
+                        <input type="text"  class="form-control" style="margin-top: 10px" name="Vno" id="Vno" placeholder="" title="Eg : AA-1234 or AAA-1234"/>
                     </td>
                     <td>
                         <input type="text"  class="form-control btn" name="original_amount" id="original_amount" readonly="readonly" value="">

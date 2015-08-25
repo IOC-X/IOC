@@ -10,20 +10,20 @@
         
     </div>
     <div class="control-group panel panel-info">
-            <label class="control-label col-lg-4">Contact</label>
+        <label class="control-label col-lg-4" style="margin-top: 10px">Contact</label>
              <div class="controls col-lg-6">
-                <input type="number"  class="form-control floating-label" name="contact" id="contact" placeholder="Phone Number">
+                <input type="number"  class="form-control floating-label" name="contact" id="contact" placeholder="Phone Number" style="margin-top: 10px">
              </div>
         
     </div>
             <div class="control-group panel panel-info">
-            <label class="control-label col-lg-4">Email</label>
+            <label class="control-label col-lg-4" style="margin-top: 10px">Email</label>
                 <div class="controls col-lg-6">
-                <input type="email"  class="form-control floating-label" name="email" id="email" placeholder="Customer Email">
+                <input type="email"  class="form-control floating-label" name="email" id="email" placeholder="Customer Email" style="margin-top: 10px">
                 </div>
             </div>
         <div class="control-group panel panel-info">
-             <label class="control-label col-lg-4">Package</label>
+             <label class="control-label col-lg-4" style="margin-top: 10px">Package</label>
              <div class="controls col-lg-6">
                 <select class="btn active" id="select1" onchange="getPackageAmount()" name="select2">
                     <?php  foreach ($packages as $package) : ?>	
@@ -33,21 +33,21 @@
              </div>
         </div>
         <div class="control-group panel panel-info">
-            <label class="control-label col-lg-4">Vehicle Number</label>
+            <label class="control-label col-lg-4" style="margin-top: 10px">Vehicle Number</label>
             <div class="controls col-lg-6">
-                <input type="text"  class="form-control floating-label" name="Vno" id="Vno" placeholder="">
+                <input type="text"  class="form-control floating-label" name="Vno" id="Vno" placeholder="" style="margin-top: 10px" title="Eg : AA-1234 or AAA-1234"/>
             </div>
         </div>
         <div class="control-group panel panel-info">
-            <label class="control-label col-lg-4">Amount</label>
+            <label class="control-label col-lg-4" style="margin-top: 10px">Amount</label>
             <div class="controls col-lg-6">
-                <input type="text"  class="form-control floating-label" name="amount" id="amount" readonly="readonly" value="">
+                <input type="text"  class="form-control floating-label" name="amount" id="amount" readonly="readonly" value="" style="margin-top: 10px">
             </div>
         </div>  
         <div class="control-group panel panel-info">
-            <label class="control-label col-lg-4">Order Date</label>
+            <label class="control-label col-lg-4" style="margin-top: 10px">Order Date</label>
             <div class="controls col-lg-6">
-                <input type="text" class="form-control floating-label" name="date" id="date"  readonly="readonly" value="<?php echo date("Y-m-d"); ?>">
+                <input type="text" class="form-control floating-label" name="date" id="date"  readonly="readonly" style="margin-top: 10px" value="<?php echo date("Y-m-d"); ?>">
             </div>
         </div>
         
