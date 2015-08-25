@@ -1,3 +1,12 @@
+<?php 
+    Session::init();
+    if(isset($_SESSION['loggedIn'])){
+        
+    }
+    else{
+        header('location:'.URL . 'login');
+    }
+?>
 <!DOCTYPE html>
 <html>
 <head>
