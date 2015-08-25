@@ -163,6 +163,10 @@
                     swal("Oops !", "Please fill name field");
                     return false;
                 }
+                if(prd_name.length>=30){
+                    swal("Oops !", "Name field should be less than 30 characters");
+                    return false;
+                }
                 if(isNaN(prd_price) || prd_price == ""){
                     swal("Oops !", "Name should be a number !");
                     return false;

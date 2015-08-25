@@ -399,6 +399,18 @@
 		* renders adding page
 		* @returns the status of processing | static page |
 		*/
+		public function checkSupplier(){
+			$name = $_POST['name'];
+			require 'models/Stocks_model.php';
+			$model = new Stocks_model();
+			echo json_encode($model->checkSupplier($name));
+		}
+		public function checkLubricantProduct(){
+			$name = $_POST['name'];
+			require 'models/Stocks_model.php';
+			$model = new Stocks_model();
+			echo json_encode($model->checkLubricantProduct($name));	
+		}
 		public function addSupplier(){
 			$name = $_POST['sup-name'];
 			$email = $_POST['sup-email'];
@@ -410,27 +422,29 @@
 			
 			if($fuel == "on"){
 				$fuel = "fuel";
-				if($model->addSupplier($name,$fuel,$email,$contact)){
-					return true;
-				}
-				else{
-					return false;
-				}	
+			// 	if($model->addSupplier($name,$fuel,$email,$contact)){
+			// //		return true;
+			// 	}
+			// 	else{
+			// //		return false;
+			// 	}	
+				$model->addSupplier($name,$fuel,$email,$contact);
 			}
 			else if($lubricant == "on"){
 				$lubricant = "lubricant";
-				if($model->addSupplier($name,$lubricant,$email,$contact)){
-					return true;
-				}
-				else{
-					return false;
-				}
+				$model->addSupplier($name,$lubricant,$email,$contact);
+				// if($model->addSupplier($name,$lubricant,$email,$contact)){
+				// 	return true;
+				// }
+				// else{
+				// 	return false;
+				// }
 			}
-			else if($fuel == "on" && $lubricant == "on"){
+			else {
 				$fuel = "fuel";
 				$lubricant = "lubricant";
 				$model->addSupplier($name,$fuel,$email,$contact);
-				//$model->addSupplier($name,$lubricant,$email,$contact));
+				$model->addSupplier($name,$lubricant,$email,$contact);
 			}
 			
 		}

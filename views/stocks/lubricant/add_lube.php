@@ -10,7 +10,7 @@
         <div class="form-group">
         <label for="price" class="col-lg-2 control-label">Price</label>
         <div class="col-lg-7">
-            <input type="number" class="form-control floating-label" id="prd-price" placeholder="price (Rs)" name="prd-price">
+            <input type="text" class="form-control floating-label" id="prd-price" placeholder="price (Rs)" name="prd-price">
         </div>
     	</div>
         <div class="form-group">
@@ -92,6 +92,26 @@
         });
         console.log('Done !');
 
+        $('#prd-name').focusout(function(){
+            if($(this).val()<=0){
+                swal("Oops !", "Name can't be empty !")  
+                return false;
+            }
+            var name = $(this).val();
+            if(/[A-Z]/.test(name[0])){
+                name = $(this).val();
+                console.log('Sendinna');
+                $.post('stocks/checkLubricantProduct',{ name : name },function(data){
+                    console.log(data.length);
+                    if(data){
+                        console.log('its here');
+                    }
+                });
+            }
+            else{
+                swal("Oops !", "First letter should be capital");    
+            }
+        });
         $('#prd-price').focusout(function(){
             if($(this).val()<=0){
                 swal("Oops !", "Invalid price !")  
