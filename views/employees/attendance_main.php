@@ -216,7 +216,7 @@
 
             $('#forempcode').text("Employee Code = " + data[ee].employeeCode);
             $('#foremptype').text("Employee Type = " + data[ee].emptype);
-            $("#circle").attr("src", "/IOC/views/employees/propic/" + data[ee].userFile);
+            $("#circle").attr("src", "/IOC/views/employees/propic/" +"IOC"+ data[ee].userFile);
             document.getElementById("gotemp").value = data[ee].employeeCode;
         });
     }

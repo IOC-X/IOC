@@ -162,8 +162,8 @@
                         <!-- image upload -->
                         <div class="form-group">
                             <label for="inputFile" class="col-lg-2 control-label">File</label>
-                            <div class="col-lg-10">
-                                <input readonly="" class="form-control floating-label" placeholder="" type="text" id="upic">
+                            <div class="col-lg-10" id="wrapper">
+                        <input readonly="" class="form-control floating-label" placeholder="" type="text" id="upic">
                         <input type="file" id="inputFile" name="inputFile">
                         <input type="hidden" id="sam" name="sam">
                             </div>
@@ -193,6 +193,16 @@
 
 
 <script type="text/javascript">
+    
+        $("#wrapper").on("change", "#inputFile", function () {
+
+        var username = $("#inputFile").val();
+
+        var fields = username.split("fakepath\\");
+        var name = fields[1];
+        document.getElementById("sam").value = name;
+    });
+    
     $(document).ready(function () {
         $.getJSON('employees/list_employees', function (data) {
 
@@ -271,7 +281,8 @@
             });
 
         });
-        $('#updateemp_form').submit(function () {
+        $('#updateemp_form').submit(function (e) {
+       
          e.preventDefault();
         var form = $('#updateemp_form');
         $.ajax({
@@ -279,6 +290,7 @@
             url: form.attr('action'),
             data: form.serialize(),
             success: function (data) {
+                $('#myModal').hide();
            $('#subloader2').empty();
            $('#subloader2').load('/IOC/employees/loadlistemp').hide().fadeIn('slow');
             }

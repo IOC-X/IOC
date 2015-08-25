@@ -498,8 +498,8 @@ CREATE TABLE IF NOT EXISTS `Suppliers` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL,
   `product` varchar(10) NOT NULL,
-  `contact` int(11) NOT NULL,
-  `email` varchar(20) NOT NULL,
+  `contact` varchar(10) NOT NULL,
+  `email` varchar(50) NOT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=49 ;
 
@@ -923,6 +923,7 @@ INSERT INTO `Orders` (`Id`, `FuelType`, `Reading`, `Quantity`, `Orderamnt`, `Dat
 (334, 'SDiesel', 5.5, 419, 19800, '2015-08-23');
 
 -- --------------------------------------------------------
+
 
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

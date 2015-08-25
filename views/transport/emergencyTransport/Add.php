@@ -140,6 +140,8 @@
         </div>
         </fieldset>
 </div>
+
+//FLOATING ADD BUTTON
 <ul id="menu" class="mfb-component--br mfb-zoomin" data-mfb-toggle="hover">
       <li class="mfb-component__wrap">
         <a href="#" class="mfb-component__button--main">

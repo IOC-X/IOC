@@ -47,9 +47,9 @@
             for (x = 0; x < len; x++) {
 
                 $("tbody").append('<tr class="' + x + '" id="' + data[x].employeeCode + '">');
-                $("." + x + "").append('<td>' + '<img class="circle" src="/IOC/views/employees/propic/'+data[x].userFile+'" id="image">' + '</td>');
+                $("." + x + "").append('<td>' + '<img class="circle" src="/IOC/views/employees/propic/'+"IOC"+data[x].userFile+'" id="image">' + '</td>');
                 $("." + x + "").append('<td style="text-align:left;">'+'<br\>' +"Employee Code - <b>"+data[x].emptype+"</b><br\>"+"Employee Name - "+data[x].firstName + " " + data[x].lastName+"<br\>Phone Number - "+data[x].mobilePhone+ '</td>');
-                $("." + x + "").append('<td>' + '<img class="circle" src="/IOC/views/employees/propic/'+data[x+1].userFile+'" id="image">' + '</td>');
+                $("." + x + "").append('<td>' + '<img class="circle" src="/IOC/views/employees/propic/'+"IOC"+data[x+1].userFile+'" id="image">' + '</td>');
                 $("." + x + "").append('<td style="text-align:left;">'+'<br\>' +"Employee Code - <b>"+data[x+1].emptype+"</b><br\>"+"Employee Name - "+data[x+1].firstName + " " + data[x+1].lastName+"<br\>Phone Number - "+data[x+1].mobilePhone+ '</td>');
                 $("." + x + "").append('</tr>');
                 x=x+1;
