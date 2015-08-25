@@ -41,7 +41,7 @@
                 success: function (data) {
                 console.log(data);
                 
-                swal("Supplier added successfully!", "click okay to continue", "success");
+                swal("Database backup is successful!", "click okay to continue", "success");
 
                 $('#subloader2').empty();
                 $('#subloader2').load('/IOC/assets/database_backup').hide().fadeIn('slow');
