@@ -80,6 +80,10 @@
             swal("Oops !", "Please fill every field");
             return false;
         }
+        if(!($('#lubricant-checkbox').is(":checked")) && !($('#fuel-checkbox').is(":checked"))){
+            swal("Oops !", "Choose at least one product")  
+            return false;
+        }
         if(name.length>=30){
             swal("Oops !", "Name filed should be less than 30 characters")  
             return false;
@@ -114,10 +118,33 @@
         if(($(this).val()) == ""){
             swal("Oops !", "Please fill name field");    
         }
+        var name = $(this).val();
+        if(/[A-Z]/.test(name[0])){
+            name = $(this).val();
+            console.log('Sendinna');
+            $.post('stocks/checkSupplier',{ name : name },function(data){
+                console.log(data.length);
+                if(data){
+                    console.log('its here');
+                }
+            });
+        }
+        else{
+            swal("Oops !", "First letter should be capital");    
+        }
     });
     $('#sup-contact').focusout(function(){
         if(!validateContact($(this).val())){
             swal("Oops !", "Please enter 10 digits");    
+        }
+        var reg = /^[0-9]{1,10}$/;
+        var checking = reg.test($(this).val());
+
+        if(checking){
+
+        }
+        else{
+            swal("Oops !", "Invalid contact number");
         }
     });
     $('#sup-email').focusout(function(){

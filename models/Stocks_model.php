@@ -193,6 +193,20 @@
 			));
 			return true;
 		}
+		public function checkSupplier($name){
+			$st = $this->db->prepare("SELECT * FROM Suppliers WHERE name=:name");
+			$st->execute(array(
+				':name' => $name
+			));
+			return $st->fetchAll();	
+		}
+		public function checkLubricantProduct($name){
+			$st = $this->db->prepare("SELECT * FROM Lubricants WHERE name=:name");
+			$st->execute(array(
+				':name' => $name
+			));
+			return $st->fetchAll();	
+		}
 		public function addSupplier($name,$product,$email,$contact){
 			$st = $this->db->prepare("INSERT INTO Suppliers (name,product,contact,email) VALUES (:name,:product,:contact,:email)");
 			if($st->execute(array(

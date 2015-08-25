@@ -26,6 +26,7 @@
 	      $('#daily_readings_form').submit(function(e){
 	        e.preventDefault();
 	        var form = $('#daily_readings_form');
+
 	        $.ajax({
 	          type : form.attr('method'),
 	          url : form.attr('action'),
@@ -35,6 +36,10 @@
                 if(data == "Success"){
                     swal("Readings added successfully!", "click okay to continue", "success");
                     $('.form-control').val("");
+                }
+                if(data == "ZeroAsap"){
+                    swal("Fill all !", "click okay to continue", "success");
+                    $('.form-control').val("");    
                 }
 	          }
 	        });
@@ -57,7 +62,7 @@
                         $('#first-col').append('<div class="form-group"> \
                         <label for="1" class="col-lg-3 control-label">Pump ' + data[a].PumpNo + '</label> \
                         <div class="col-lg-5"> \
-                            <input type="number" name="' + data[a].PumpNo + '" class="form-control" id="' + data[a].PumpNo + '" placeholder="pump ' + data[a].PumpNo + '"> \
+                            <input type="number" name="' + data[a].PumpNo + '" class="form-control" id="' + data[a].PumpNo + '" placeholder="pump ' + data[a].PumpNo + '" min="0"> \
                         </div> \
                         </div>');
                     }
@@ -65,13 +70,14 @@
                         $('#second-col').append('<div class="form-group"> \
                         <label for="1" class="col-lg-3 control-label">Pump ' + data[a].PumpNo + '</label> \
                         <div class="col-lg-5"> \
-                            <input type="number" name="' + data[a].PumpNo + '" class="form-control" id="' + data[a].PumpNo + '" placeholder="pump ' + data[a].PumpNo + '"> \
+                            <input type="number" name="' + data[a].PumpNo + '" class="form-control" id="' + data[a].PumpNo + '" placeholder="pump ' + data[a].PumpNo + '" min="0"> \
                         </div> \
                         </div>');
-                    }
-                    
+                    } 
                 }
             });
+        
+
         });
 
 		</script>
