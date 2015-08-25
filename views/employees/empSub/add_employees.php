@@ -2,7 +2,7 @@
 
     <!--start of filling application -->
     <div class="col-md-12">
-        <form class="form-horizontal" method="POST" action="employees/insertEmployees" enctype="multipart/form-data" id="insertEmployees" >
+        <form class="form-horizontal" method="POST" action="employees/insertEmployees" enctype="multipart/form-data" id="insertEmployees" onsubmit="return submitForm();">
             <fieldset>
                 <legend>New Employee Details</legend> <!--font style-->
 
@@ -130,20 +130,23 @@
                     </div>
                 </div>
                 <!-- image upload -->
+                
+                
                 <div class="form-group">
-                    <label for="inputFile" class="col-lg-2 control-label">File</label>
+                    <label for="file" class="col-lg-2 control-label">File</label>
                     <div class="col-lg-10" id="wrapper">
                         <input type="text" readonly="" class="form-control floating-label" placeholder="Browse...">
-                        <input type="file" id="inputFile" name="inputFile">
-                        <input type="hidden" id="sam" name="sam">
+                       <input type="file" name="file" id="file">
+                       <input type="hidden" id="sam" name="sam">
                     </div>
                 </div>
-
+           
 
 
                 <!-- end -->
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">
+                         
                         <input type="reset" class="btn btn-default">
                         <input type="submit" class="btn btn-primary"  >
                     </div>
@@ -156,12 +159,10 @@
 
 
 </div>
-<script>
+<script  type="text/javascript">
+    $("#wrapper").on("change", "#file", function () {
 
-    $("#wrapper").on("change", "#inputFile", function () {
-        //Do something
-        var username = $("#inputFile").val();
-
+        var username = $("#file").val();
         var fields = username.split("fakepath\\");
         var name = fields[1];
         document.getElementById("sam").value = name;
@@ -178,6 +179,7 @@
 
     $('#insertEmployees').submit(function (e) {
         e.preventDefault();
+        
         var form = $('#insertEmployees');
         $.ajax({
             type: form.attr('method'),
@@ -221,3 +223,26 @@
     });
 
 </script>
+
+    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+    <script type="text/javascript">
+               function submitForm() {
+            console.log("submit event");
+            var fd = new FormData(document.getElementById("insertEmployees"));
+            fd.append("label", "IOC");
+            $.ajax({
+              url: "/IOC/views/employees/upload.php",
+              type: "POST",
+              data: fd,
+              enctype: 'multipart/form-data',
+              processData: false,  // tell jQuery not to process the data
+              contentType: false   // tell jQuery not to set contentType
+            }).done(function( data ) {
+                console.log("PHP Output:");
+                console.log( data );
+            });
+            return false;
+        }
+</script>
+    
+    
