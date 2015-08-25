@@ -41,6 +41,8 @@ $this->view->render('employees/empSub/list_employees',false);
     }
 
     public function insertEmployees() {
+      //  include 'views/employees/empSub/upload.php';
+      //  echo $_FILES["fileToUpload"]["name"];
      $code = $_POST['managercode'];
         $fname = $_POST['fnameManager'];
         $lname = $_POST['lnameManager'];
@@ -90,7 +92,7 @@ $this->view->render('employees/empSub/list_employees',false);
         
         $user = $_POST['username'];
         $password = $_POST['userpassword'];
-        $image=$_POST['inputFile'];
+        $image=$_POST['sam'];
         
            $sendtomodel=new Employees_model();
            $sendtomodel->update_employees($code,$fname,$lname,$address,$nic,$mpnumber,$bday,$hireday,$user,$password,$image);
@@ -172,8 +174,8 @@ $this->view->render('employees/shift_sub/shift_list',false);
 //        }
         $model = new Employees_model();
         $getemp1 = $model->list_employee();
-        //include '/views/employees/attendance/historyOfAttendance.php';
-        $this->view->render('employees/attendance/historyOfAttendance', false);
+        include '/views/employees/attendance/historyOfAttendance.php';
+        // $this->view->render('employees/attendance/historyOfAttendance', false);
     }
 
     public function current_attendance() {

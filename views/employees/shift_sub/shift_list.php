@@ -1,6 +1,4 @@
-
-
-    <table class="table table-striped table-hover ">
+<table class="table table-striped table-hover ">
         <col style="width:15%">
         <col style="width:15%">
         <col style="width:20%">
@@ -19,6 +17,9 @@
         </thead>
         <tbody></tbody>
     </table>
+
+
+<!-- start of model -->
 
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -63,7 +64,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="submit" id ="upshift" class="btn btn-primary">Save changes</button>
 
                     </div>
                 </form>
@@ -73,7 +74,7 @@
     </div>
 
 
-
+<!-- end of model -->
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -146,22 +147,47 @@
                 e.preventDefault();
             });
 
+        });  //employees/shift_list end of data extracting 
+        
+        
+            $('#updateemp_form').submit(function(e){
+               e.preventDefault();
+               var shiftid =$('#shiftid').val();
+               var shiftname = $('#shiftname').val();
+               var shiftduration = $('#shiftduration').val();
+               var shiftrate = $('#shiftrate').val();
+ 
+ 
+ 
+                    swal({title: "Are you sure?",
+                    text: "",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes, Update it!",
+                    cancelButtonText: "No, cancel it!",
+                    closeOnConfirm: false,
+                    closeOnCancel: false},
+                    function (isConfirm) {
+
+                    if (isConfirm) {
+                swal("Updated!", "Your Shift has been Updates!", "success");
+                $.post('employees/shift_update',{ shiftid : shiftid , shiftname : shiftname , shiftduration : shiftduration , shiftrate : shiftrate},function(data){
+                 console.log(data);
+                $('#myModal').hide();
+                $('#subloader2').empty();
+                $('#subloader2').load('/IOC/employees/shiftload',function(){
+                $('#subloader2').hide();
+                $('#subloader2').fadeIn('slow');  
+                });
+                });
+            
+            } else {
+                        swal("Cancelled", "Your Shift is safe :)", "error");
+                    }
+                });
+            
         });
-//        $('#updateemp_form').submit(function () {
-//         e.preventDefault();
-//        var form = $('#updateemp_form');
-//        $.ajax({
-//            type: form.attr('method'),
-//            url: form.attr('action'),
-//            data: form.serialize(),
-//            success: function (data) {
-//           $('#subloader2').empty();
-//           $('#subloader2').load('/IOC/employees/loadlistemp').hide().fadeIn('slow');
-//            }
-//        });
-//                                
-//                                
-//        });
     });
 
 </script>
