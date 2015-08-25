@@ -2,7 +2,7 @@
 <div class="profile-card-wrap">
 	<input id="check" type="checkbox" class="check"><label for="check" class="toggle"> + </label>
 	<div class="content" data-text="Tiffany hwang">
-		<div class="title">@tiffany hwang</div>
+		<div class="title" id="username">@</div>
 		<p>I'm a web designer from France who love Polymer-project, HTML/CSS and dogs. <br/> <br/> Teaching is what I like, Learning is what I love.</p>
 	</div>
 	<div class="link-info">
@@ -19,3 +19,15 @@
 	</div>
 </div>
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$.getJSON('profile/loadProfileCode',function(data){
+			console.log(data);
+			//firstname = data[0].firstName;
+			//lastname = data[0].lastName;
+		});
+//		$("#username").append(firstname + lastname);
+	});
+
+</script>
