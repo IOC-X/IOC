@@ -1,5 +1,5 @@
 <?php
-include_once '/models/lubricant_model.php';
+include_once 'models/lubricant_model.php';
 
 class Lube_service extends Controller{
        
@@ -16,20 +16,20 @@ class Lube_service extends Controller{
         //PACKAGE DATA RETREIVING
      public function packages() {
         
-        include '/views/lubricantService/packages/lu_packages.php';
+        include 'views/lubricantService/packages/lu_packages.php';
     }
      public function create_package() {
         $name = '';
         $description = '';
         $time = '';
         $price = '';
-        include '/views/lubricantService/packages/create_package.php';
+        include 'views/lubricantService/packages/create_package.php';
     }
 
     public function EditPackageEntries() {
         $model = new lubricant_model();
         $packages = $model->selectAllpackages();
-        include '/views/lubricantService/packages/EditPackageEntries.php';
+        include 'views/lubricantService/packages/EditPackageEntries.php';
     }
 
     public function createPackage() {
@@ -84,7 +84,7 @@ class Lube_service extends Controller{
       public function lu_customers() {
         $model = new lubricant_model();
         //$customers = $model->selectAllcustomers();
-        include '/views/lubricantService/lu_customers.php';
+        include 'views/lubricantService/lu_customers.php';
         
     }
     
@@ -109,13 +109,13 @@ class Lube_service extends Controller{
         $contact = '';
         $email = '';
 
-        include '/views/lubricantService/regular_customers/add_customer.php';
+        include 'views/lubricantService/regular_customers/add_customer.php';
     }
 
     public function EditCustomerEntries() {
         $model = new lubricant_model();
         $customers = $model->selectAllcustomers();
-        include '/views/lubricantService/regular_customers/EditCustomerEntries.php';
+        include 'views/lubricantService/regular_customers/EditCustomerEntries.php';
     }
      public function editCustomer() {
         $model = new lubricant_model();
@@ -137,14 +137,14 @@ class Lube_service extends Controller{
     
     //TRANSACTION DATA RETREIVE 
     public function lu_transactions(){
-        include '/views/lubricantService/lu_transactions.php';
+        include 'views/lubricantService/lu_transactions.php';
     }
     public function Reg_Lu_transactions() {
         $model = new lubricant_model();
         $customers = $model->selectAllcustomers();
         $lu_packages = $model->selectAllpackages();
 
-        include '/views/lubricantService/transactions/Reg_transactions.php';
+        include 'views/lubricantService/transactions/Reg_transactions.php';
     }
 
     public function addLuTransaction() {
@@ -185,14 +185,14 @@ class Lube_service extends Controller{
         $customers = $model->selectAllcustomers();
         $packages = $model->selectAllpackages();
         $regularTransactions = $model->selectAllRegulartransactions();
-        include '/views/lubricantService/transactions/reg_history.php';
+        include 'views/lubricantService/transactions/reg_history.php';
     }
 
     public function NonReg_Lu_transactions() {
         $model = new lubricant_model();
         $packages = $model->selectAllpackages();
 
-        include '/views/lubricantService/transactions/NonReg_transactions.php';
+        include 'views/lubricantService/transactions/NonReg_transactions.php';
     }
 
     public function addNonRegLuTransaction() {
@@ -237,11 +237,11 @@ class Lube_service extends Controller{
     public function nonreg_Luhistory() {
         $model = new lubricant_model();
         $Transactions = $model->selectAllNonRegLutransactions();
-        include '/views/lubricantService/transactions/nonreg_history.php';
+        include 'views/lubricantService/transactions/nonreg_history.php';
     }
     
     //REPORT
     public function report(){
-        include '/views/lubricantService/report.php';
+        include 'views/lubricantService/report.php';
     }
 }
