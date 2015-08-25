@@ -1,6 +1,6 @@
 <?php
 
-include_once '/models/Carwash_model.php';
+require_once 'models/Carwash_model.php';
 
 class Carwash extends Controller {
 
@@ -20,7 +20,7 @@ class Carwash extends Controller {
     public function packages() {
         $model = new Carwash_model();
         $packages = $model->selectAllpackages();
-        include '/views/carwash/packages.php';
+        include 'views/carwash/packages.php';
     }
 
     public function create_package() {
@@ -28,13 +28,13 @@ class Carwash extends Controller {
         $description = '';
         $time = '';
         $price = '';
-        include '/views/carwash/packages/create_package.php';
+        include 'views/carwash/packages/create_package.php';
     }
 
     public function EditPackageEntries() {
         $model = new Carwash_model();
         $packages = $model->selectAllpackages();
-        include '/views/carwash/packages/EditPackageEntries.php';
+        include 'views/carwash/packages/EditPackageEntries.php';
     }
 
     public function createPackage() {
@@ -74,7 +74,7 @@ class Carwash extends Controller {
     public function regular_customers() {
         $model = new Carwash_model();
         $customers = $model->selectAllcustomers();
-        include '/views/carwash/regular_customers.php';
+        include 'views/carwash/regular_customers.php';
     }
 
     public function add_customer() {
@@ -84,13 +84,13 @@ class Carwash extends Controller {
         $address = '';
         $contact = '';
         $email = '';
-        include '/views/carwash/regular_customers/add_customer.php';
+        include 'views/carwash/regular_customers/add_customer.php';
     }
 
     public function EditCustomerEntries() {
         $model = new Carwash_model();
         $customers = $model->selectAllcustomers();
-        include '/views/carwash/regular_customers/EditCustomerEntries.php';
+        include 'views/carwash/regular_customers/EditCustomerEntries.php';
     }
 
     public function addCustomer() {
@@ -137,7 +137,7 @@ class Carwash extends Controller {
         $model = new Carwash_model();
         $customers = $model->selectAllcustomers();
         $packages = $model->selectAllpackages();
-        include '/views/carwash/transactions/Reg_transactions.php';
+        include 'views/carwash/transactions/Reg_transactions.php';
     }
 
     public function addTransaction() {
@@ -175,14 +175,14 @@ class Carwash extends Controller {
         $customers = $model->selectAllcustomers();
         $packages = $model->selectAllpackages();
         $regularTransactions = $model->selectAllRegulartransactions();
-        include '/views/carwash/transactions/reg_history.php';
+        include 'views/carwash/transactions/reg_history.php';
     }
 
     //NON-REGULAR TRANSACTIONS
     public function NonReg_transactions() {
         $model = new Carwash_model();
         $packages = $model->selectAllpackages();
-        include '/views/carwash/transactions/NonReg_transactions.php';
+        include 'views/carwash/transactions/NonReg_transactions.php';
     }
 
     public function addCarTransaction() {
@@ -276,19 +276,19 @@ class Carwash extends Controller {
     public function CustomerReport() {
         $model = new Carwash_model();
         $stats = $model->CustomerStatistics();
-        include '/views/carwash/report/CustomerReport.php';
+        include 'views/carwash/report/CustomerReport.php';
     }
 
     public function packageReport() {
         $model = new Carwash_model();
         $stats = $model->packageUsage();
-        include '/views/carwash/report/packageReport.php';
+        include 'views/carwash/report/packageReport.php';
     }
 
     public function alertReport() {
         $model = new Carwash_model();
         $stats = $model->alertUsage();
-        include '/views/carwash/report/alertReport.php';
+        include 'views/carwash/report/alertReport.php';
     }
 
 }
