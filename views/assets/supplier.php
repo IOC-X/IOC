@@ -1,7 +1,7 @@
 <div class="btn-group btn-group-justified">
     <a href="javascript:void(0)" class="btn btn-primary" id="add_supplier">Add Supplier</a>
     <a href="javascript:void(0)" class="btn btn-primary" id="view_supplier">View Supplier</a>
-    <a href="javascript:void(0)" class="btn btn-primary" id="view_equipments">Update</a>
+    <a href="javascript:void(0)" class="btn btn-primary" id="inform_supplier">Inform Supplier</a>
 </div>
     <script>
         $('#add_supplier').click(function(){
@@ -16,7 +16,14 @@
                 $('#subloader2').fadeIn('fast');
             });
         });
-        $('#cancel_reading').click(function(){
+  $('#inform_supplier').click(function(){
+            $('#subloader2').load('/IOC/assets/inform_supplier',function(){
+                $('#subloader2').hide();
+                $('#subloader2').fadeIn('fast');
+            });
+        });
+
+    $('#cancel_reading').click(function(){
             $('#subloader2').hide();
         });  
     </script>
