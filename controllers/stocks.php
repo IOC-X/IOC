@@ -486,14 +486,11 @@
 			$subject = $_POST['subject'];
 			$txt = $_POST['message'];
 			$txt = wordwrap($txt,70);
-			$headers = "From: IOC@gmail.com" . "\r\n" .
-			"CC: IOC@gmail.com";
-			if(mail($to,$subject,$txt,$headers)){
-				echo "Success";
-			}
-			else{
-				echo "Failed";
-			}
+			
+            require 'models/Stocks_model.php';
+            $model = new Stocks_model();
+            $mailalert = $model->SendMail($to, $txt);
+			
 		}
 		public function loadLubricantEditData(){
 			$va = "he";
@@ -541,5 +538,7 @@
 			$status = $_GET['status'];
 			$model->updatePumpStatus($id,$status);
 		}
+        
+        
 	}
 ?>

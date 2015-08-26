@@ -223,7 +223,7 @@ class Carwash_model extends Model {
         $mail->Port = 465;                                    // TCP port to connect to
 
         $mail->From = 'carwash@gmail.com';
-        $mail->FromName = 'IOC Carwash';
+        $mail->FromName = 'IOC';
         $mail->addAddress($email, $user);     // Add a recipient
 //$mail->addAddress('ellen@example.com');               // Name is optional
         $mail->addReplyTo('ioc.negambo@gmail.com', 'IOC');
@@ -232,7 +232,7 @@ class Carwash_model extends Model {
 //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
 //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
         $mail->isHTML(true);                                  // Set email format to HTML
-        $mail->Subject = 'IOC Carwash';
+        $mail->Subject = 'IOC Maravila';
         $mail->Body = 'Dear Customer your Carwash service is done. You can collect your vehicle at our service station. Thank You for using our service.';
         $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
