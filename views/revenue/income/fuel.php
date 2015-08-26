@@ -30,7 +30,7 @@
         <div class="form-group">
         <label for="select-date" class="col-lg-1 control-label">Select time(date)</label>
         <div class="col-lg-3">
-            <input type="text" class="form-control" id="select-date" placeholder="" name="">
+            <input type="date" class="form-control" id="select-date" placeholder="" name="">
         </div>
         </div> 
 
@@ -94,6 +94,22 @@
         </div>
 
 <script type="text/javascript">
+    var amount = $("#prd-name").val();
+    var fuel = $("#fuel").val();
+    
+//    //VALIDATIONS
+//        if ( amount== '') {
+//
+//                swal("Oops...", "Insertion Failed. Please fill the amount....!!", "error");
+//                return false;
+//            }
+////        else if ( fuel== '') {
+////
+////                swal("Oops...", "Insertion Failed. Please Select the fuel type....!!", "error");
+////                return false;
+////            }
+////            else 
+//    
     $(document).ready(function(){
         $.getJSON('revenue/loadActivePumpers',function(data){
             console.log(data);

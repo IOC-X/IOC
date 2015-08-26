@@ -103,7 +103,7 @@ class Assets_model extends Model{
         $mail->Port = 465;                                    // TCP port to connect to
 
         $mail->From = 'carwash@gmail.com';
-        $mail->FromName = 'IOC Assets Management Department';
+        $mail->FromName = 'IOC';
        $mail->addAddress($email, $user);   // Add a recipient
 //$mail->addAddress('ellen@example.com');               // Name is optional
         $mail->addReplyTo('ioc.negambo@gmail.com', 'IOC');

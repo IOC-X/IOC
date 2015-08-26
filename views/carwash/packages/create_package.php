@@ -11,7 +11,7 @@
                 <label class="control-label col-lg-4">Name</label>
                 <div class="controls col-lg-6">
                     <input type="text" class="form-control floating-label" name="name" id="name" placeholder=" Package Name" value="<?php echo ($name); ?>">
-                    <span class="help-inline"></span>
+                    
                 </div>
             </div>
 
