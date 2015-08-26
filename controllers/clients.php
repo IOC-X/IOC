@@ -52,13 +52,13 @@ require_once('models/clients_model.php');
                         $phone=$_POST['client_phone'];
                         $purchasedate=$_POST['client_purchase_date'];
                         $amount=$_POST['client_purchase_amount'];
-                    
+                        $profile=$_POST['client_image'];
 //                       echo $code,"-",$fname,"-",$lname,"-",$address,"-",$nic,"-",$phone,"-",$purchase_date,"-",$amount;
                     require_once('models/clients_model.php');
                     $sendtomodel=new clients_model();
-                    $sendtomodel->addclient($autocode,$fname,$lname,$address,$nic,$phone,$purchasedate,$amount);
+                    $sendtomodel->addclient($autocode,$fname,$lname,$address,$nic,$phone,$purchasedate,$amount,$profile);
                 }
-                
+                      
                 public function updateclients() {
 
                         $autocode=$_POST['client_code'];
@@ -66,7 +66,7 @@ require_once('models/clients_model.php');
                         $lname=$_POST['client_lname'];
                         $address=$_POST['client_address'];
                        
-                        $phone=$_POST['client_phone'];
+                        $phone=$_POST['client_pnumber'];
                         
                    
         
@@ -74,20 +74,29 @@ require_once('models/clients_model.php');
                             $sendtomodel->update_clients($autocode,$fname,$lname,$address,$phone);
     }
                 
-                public function insertTranactions(){
-                        $client_id=$_POST['client_id'];
+           public function insertTranactions(){
+                       $client_no=$_POST['client_id'];
                         $client_name=$_POST['client_name'];
                         $client_vechicle=$_POST['client_pump_vechicle'];
-                        $client_pump_by=$_POST['client_pump_by'];
+                        $client_pumper=$_POST['client_pump_by'];
                         $pump_date=$_POST['pump_date'];
-                        $fuel_type=$_POST['fuel_type'];
+                        $fuel_type=$_POST['fuelType'];
                         $pump_number=$_POST['client_pump_no'];
                         $pump_liters=$_POST['client_pump_liters'];
                         $pump_value=$_POST['client_pump_value'];
                         
-                        require_once('models/client_model.php');
-                        $sendtomodel=new clients_model();
-                        $sendtomodel->addtransactions($client_id,$client_name,$client_vechicle,$client_pumper,$pump_date,$fuel_type,$pump_number,$pump_liters,$pump_liters,$pump_value);
+                       // echo $client_no." ";
+                        echo $client_name." ";
+                        echo $client_vechicle." ";
+                        echo $client_pumper." ";
+                        echo $pump_date." ";
+                        echo $fuel_type." ";
+                        echo $pump_number." ";
+                        echo $pump_liters." ";
+                        echo $pump_value." ";
+                    //    require_once('models/client_model.php');
+                        $sendtomodel1=new clients_model();
+                        $sendtomodel1->addtransactions($client_no,$client_name,$client_vechicle,$client_pumper,$pump_date,$fuel_type,$pump_number,$pump_liters,$pump_value);
                
                 }
 
@@ -108,5 +117,25 @@ require_once('models/clients_model.php');
                       
                  
                 }
+                
+                public function UpdateNonRegStatus() {
+
+                    $id = $_POST['id'];
+                    $user = $_POST['user'];
+                    $mail = $_POST['email'];
+                    $contact = $_POST['contact'];
+                    $model = new Carwash_model();
+                    $status = $model->updateNonRegStatus($id);
+                    $mailalert = $model->SendMail($mail, $user);
+                    $smsAlert = $model->SendSms($contact);
+    }
+
+    
+                    public function getdatatohis(){
+                     $model=new clients_model();
+                     
+                     echo json_encode($model->historypump());
+                }
+                
 	}
 ?>

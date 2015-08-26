@@ -6,8 +6,6 @@
         <div class="panel-body">
             <a href="javascript:void(0)" class="btn btn-flat btn-primary" id="listclients">
                 <i class="mdi-action-perm-media"></i>Client Details</a>
-            <a href="javascript:void(0)" class="btn btn-flat btn-primary" id="addclient">
-                <i class="mdi-maps-local-cafe"></i>Add Clients</a>
             <a href="javascript:void(0)" class="btn btn-flat btn-primary" id="client_management">
                 <i class="mdi-action-assessment"></i>Client Management</a>
                  <a href="javascript:void(0)" class="btn btn-flat btn-primary" id="client_transactions">
@@ -24,12 +22,6 @@
 
 <script type="text/javascript">
     $('#listclients').click(function (e2) {
-        e2.preventDefault();
-        var id = $(this).attr('id');
-        $('#subloader').load('/IOC/clients/' + id, function () {
-        });
-    });
-    $('#addclient').click(function (e2) {
         e2.preventDefault();
         var id = $(this).attr('id');
         $('#subloader').load('/IOC/clients/' + id, function () {
