@@ -1,3 +1,5 @@
+
+
 <div class="btn-group btn-group-justified">
     <a href="javascript:void(0)" class="btn btn-primary" id="addclient1"><i class="mdi-av-my-library-books"></i> Add New Client</a>
    
@@ -24,7 +26,9 @@
 
 <div id="subloader2">
 
-
+  
+   
+    <h3 class="text-success"><strong>Client Management Portal</strong></h3>
 
 <table class="table table-striped table-hover">
     <col style="width:15%">
@@ -35,7 +39,7 @@
     <col style="width:25%">
     <col style="width:20%">
     <thead>
-         <tr>
+        <tr>
              <th></th>
             <th>Client ID</th>
             <th>Client Name</th>
@@ -60,7 +64,7 @@
                 <h4 class="modal-title" id="myModalLabel"><legend>Edit Client</legend></h4>
 
             </div>
-            <form class="form-horizontal" id="updateemp_form" action="clients/add_clients.php" method="post">
+            <form class="form-horizontal" id="updateemp_form" action="clients/updateclients" method="post" onsubmit="return submitForm();">
                 <div class="modal-body">
 
                     <fieldset>
@@ -76,25 +80,25 @@
                         <div class="form-group">
                             <label for="client_fname" class="col-lg-2 control-label">Client First name</label>
                             <div class="col-lg-7">
-                                <input type="text" class="form-control" id="client_fname" placeholder="" name="client_fname" >
+                                <input type="text" class="form-control" id="client_fname" placeholder="" name="client_fname" pattern="[A-Z]{1}[a-z]{2,}" >
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="client_lname" class="col-lg-2 control-label">Client Last name</label>
                             <div class="col-lg-7">
-                                <input type="text" class="form-control" id="client_lname" placeholder="" name="client_lname" >
+                                <input type="text" class="form-control" id="client_lname" placeholder="" name="client_lname" pattern="[A-Z]{1}[a-z]{2,}"  >
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="client_address" class="col-lg-2 control-label">Address</label>
                             <div class="col-lg-7">
-                                <input type="text" class="form-control" id="client_address" placeholder="" name="client_address" >
+                                <input type="text" class="form-control" id="client_address" placeholder="" name="client_address" pattern="[A-Za-za-9]{1,}" >
                             </div>
                         </div> 
                         <div class="form-group">
                             <label for="client_pnumber" class="col-lg-2 control-label">Phone Number</label>
                             <div class="col-lg-7">
-                                <input type="text" class="form-control" id="client_pnumber"  name="client_pnumber" >
+                                <input type="text" class="form-control" id="client_pnumber"  name="client_pnumber" pattern="[0-9]{1,3}[0-9]{4,10}" >
                             </div>
                         </div>
                         
@@ -136,7 +140,7 @@
             for (x = 0; x < len; x++) {
 
                 $("tbody").append('<tr class="' + x + '" id="' + data[x].client_id + '">');
-                $("." + x + "").append('<td>' + '<img class="circle" src="/IOC/views/employees/propic/'+data[x].userFile+'" id="image">' + '</td>');  
+                $("." + x + "").append('<td>' + '<img class="circle" src="/IOC/views/clients/propic/'+"IOC"+data[x].profile+'" id="image">' + '</td>');  
                 $("." + x + "").append('<td id="' + data[x].client_id + "-cid" + '">' + data[x].client_id + '</td>');
                 $("." + x + "").append('<td id="' + data[x].client_id+ "-cname" + '">' + data[x].client_fname +"  "+ data[x].client_lname + '</td>');
                 $("." + x + "").append('<td id="' + data[x].client_id+ "-caddress" + '">' + data[x].client_address + '</td>');
@@ -187,6 +191,7 @@
             });
 
            $('.edit').click(function (e) {
+               e.preventDefault();
                 var id = $(this).attr('href');
 
                 $('#myModal').modal('show');
@@ -200,24 +205,25 @@
 
                    
                 }, 250);
-                e.preventDefault();
+                
             });
        });
-//        $('#updateemp_form').submit(function () {
-//         e.preventDefault();
-//       var form = $('#updateemp_form');
-//        $.ajax({
-//            type: form.attr('method'),
-//            url: form.attr('action'),
-//            data: form.serialize(),
-//            success: function (data) {
-//           $('#subloader2').empty();
-//           $('#subloader2').load('/IOC/clients/listclients').hide().fadeIn('slow');
-//            }
-//        });
-//                                
-//                                
-//        });
+        $('#updateemp_form').submit(function (e) {
+         e.preventDefault();
+       var form = $('#updateemp_form');
+        $.ajax({
+            type: form.attr('method'),
+            url: form.attr('action'),
+            data: form.serialize(),
+            success: function (data) {
+                $('#myModal').hide();
+           $('#subloader').empty();
+           $('#subloader').load('/IOC/clients/client_management').hide().fadeIn('slow');
+            }
+        });
+                                
+                                
+        });
     });
 
 </script>
@@ -238,3 +244,24 @@
   box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);  
 }
 </style>
+
+    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+               function submitForm() {
+            console.log("submit event");
+            var fd = new FormData(document.getElementById("updateemp_form"));
+            fd.append("label", "IOC");
+            $.ajax({
+              url: "/IOC/views/clients/upload.php",
+              type: "POST",
+              data: fd,
+              enctype: 'multipart/form-data',
+              processData: false,  // tell jQuery not to process the data
+              contentType: false   // tell jQuery not to set contentType
+            }).done(function( data ) {
+                console.log("PHP Output:");
+                console.log( data );
+            });
+            return false;
+        }
+</script>
