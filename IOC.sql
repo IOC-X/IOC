@@ -161,19 +161,27 @@ INSERT INTO `car_transactions` (`id`, `cname`, `contact`, `email`, `package`, `v
 -- Table structure for table `client_transactions`
 --
 
-CREATE TABLE `client_transactions` (
-  `clientid` varchar(50) NOT NULL,
-  `clientfirstname` varchar(50) NOT NULL,
-  `clientlastname` varchar(50) NOT NULL,
-  `updateddate` varchar(100) NOT NULL,
-  `fullamount` varchar(50) NOT NULL
+CREATE TABLE IF NOT EXISTS `client_transactions` (
+  `client_name` varchar(50) DEFAULT NULL,
+  `client_pump_vechicle` varchar(50) DEFAULT NULL,
+  `client_pumper` varchar(50) DEFAULT NULL,
+  `pump_date` varchar(50) DEFAULT NULL,
+  `client_pump_no` varchar(100) DEFAULT NULL,
+  `client_pump_liters` varchar(100) DEFAULT NULL,
+  `pump_value` varchar(100) DEFAULT NULL,
+  `trcusid` varchar(200) DEFAULT NULL,
+  `trtype` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `client_transactions`
 --
 
-;
+INSERT INTO `client_transactions` (`client_name`, `client_pump_vechicle`, `client_pumper`, `pump_date`, `client_pump_no`, `client_pump_liters`, `pump_value`, `trcusid`, `trtype`) VALUES
+('Nimal', 'JA-8767', 'Wimal', '2015-08-27', 'Pump 2', '8', '4500', 'C002', 'Diesel');
+
+-- --------------------------------------------------------
+
 
 -- ------------------------------------------------------------
 
@@ -181,7 +189,7 @@ CREATE TABLE `client_transactions` (
 -- Table structure for table `clients`
 --
 
-CREATE TABLE `clients` (
+CREATE TABLE IF NOT EXISTS `clients` (
   `client_id` varchar(50) NOT NULL DEFAULT '',
   `client_fname` varchar(100) DEFAULT NULL,
   `client_lname` varchar(100) DEFAULT NULL,
@@ -189,20 +197,20 @@ CREATE TABLE `clients` (
   `client_nic` varchar(50) DEFAULT NULL,
   `client_phone` varchar(100) DEFAULT NULL,
   `client_purchase_date` varchar(50) DEFAULT NULL,
-  `client_purchase_amount` varchar(100) DEFAULT NULL
+  `client_purchase_amount` varchar(100) DEFAULT NULL,
+  `profile` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `clients`
 --
 
-INSERT INTO `clients` (`client_id`, `client_fname`, `client_lname`, `client_address`, `client_nic`, `client_phone`, `client_purchase_date`, `client_purchase_amount`) VALUES
-('0', 'J.R', 'Jayawardane', 'Colombo', '221821298V', '011-8965250', '2015-06-01', '80000'),
-('1', 'Mahinda ', 'Rajapakshe', 'Hambanthota', '481821298V', '071-2398802', '2015-07-01', '50,000'),
-('2', 'Ranil ', 'Wickramasinghe', 'Colombo', '456321258V', '077-9898987', '2015-07-01', '100000'),
-('3', 'Kamal', 'Rathnayake', 'Gampaha', '566321978V', '078-9698987', '2015-08-12', '4444');
+INSERT INTO `clients` (`client_id`, `client_fname`, `client_lname`, `client_address`, `client_nic`, `client_phone`, `client_purchase_date`, `client_purchase_amount`, `profile`) VALUES
+('C001', 'Sahan', 'Perera', 'Malabe', '821541214V', '0715394520', '2015-08-30', '5000', 'albrecht.png'),
+('C002', 'Nimal', 'Fernando', 'Panadura', '548541201V', '0715394521', '2015-08-31', '5000', 'diego-inigo-large.jpg'),
+('C003', 'Kasun', 'Rathnayake', 'Gampaha', '987654321V', '0714526987', '2015-08-30', '5000', 'charles-leisure-large.jpg');
 
--- ------------------------------------------------------------
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `emergencytransport`
@@ -853,3 +861,179 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`username`, `password`) VALUES
 ('rajika', '123');
+
+CREATE TABLE IF NOT EXISTS `fuel_expense` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `expfueltype` varchar(10) NOT NULL,
+  `capacity` varchar(100) NOT NULL,
+  `date` date NOT NULL,
+  `fuelpayment` varchar(100) NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+--
+-- Dumping data for table `fuel_expense`
+--
+
+INSERT INTO `fuel_expense` (`Id`, `expfueltype`, `capacity`, `date`, `fuelpayment`) VALUES
+(1, 'Petrol', '19800', '2015-08-24', '3434'),
+(3, 'Diesel', '6600', '2015-08-24', '5000'),
+(4, 'SPetrol', '19800', '2015-08-25', '75800'),
+(5, 'SPetrol', '19800', '2015-08-25', '4500'),
+(9, 'Petrol', '19800', '2015-08-25', '1600'),
+(10, 'SPetrol', '19800', '2015-08-26', '1750');
+
+-- --------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `fuel_income` (
+  `incomeID` int(4) NOT NULL AUTO_INCREMENT,
+  `empID` varchar(50) NOT NULL,
+  `empName` varchar(50) NOT NULL,
+  `fueltype` varchar(10) NOT NULL,
+  `amount` float NOT NULL,
+  `date` date NOT NULL,
+  `fuelincome` float NOT NULL,
+  PRIMARY KEY (`incomeID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+--
+-- Table structure for table `lubricant_expense`
+--
+
+CREATE TABLE IF NOT EXISTS `lubricant_expense` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `product` varchar(30) NOT NULL,
+  `price` float NOT NULL,
+  `supplier` varchar(50) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `bquantity` int(11) NOT NULL,
+  `total` int(11) NOT NULL,
+  `date` date NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `lubricant_expense`
+--
+
+INSERT INTO `lubricant_expense` (`Id`, `product`, `price`, `supplier`, `quantity`, `bquantity`, `total`, `date`) VALUES
+(1, 'T2', 780, 'T2 dude', 4, 5, 3900, '2015-08-25'),
+(2, 'T2', 780, 'T2 dude', 4, 5, 3900, '2015-08-25'),
+(3, 'Greese', 1, 'T2 dude', 5, 4, 4, '2015-08-25'),
+(4, 'T2', 780, 'T2 dude', 4, 6, 4680, '2015-08-25'),
+(5, 'Just test 2', 11, 'T2 dude', 3, 7, 77, '2015-08-25'),
+(6, 'T2', 780, 'T2 dude', 4, 5, 3900, '2015-08-25'),
+(7, 'T2', 780, 'T2 dude', 4, 4, 3120, '2015-08-25');
+
+-- --------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `lubricant_income` (
+  `prdIncomeID` int(11) NOT NULL AUTO_INCREMENT,
+  `prdType` varchar(30) DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `supplier` varchar(30) DEFAULT NULL,
+  `sellingqty` float DEFAULT NULL,
+  `price` float DEFAULT NULL,
+  `date1` date DEFAULT NULL,
+  `lubricantincome` float DEFAULT NULL,
+  PRIMARY KEY (`prdIncomeID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `other_expenses`
+--
+
+CREATE TABLE IF NOT EXISTS `other_expenses` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `description` varchar(255) NOT NULL,
+  `expense` float NOT NULL,
+  `date` date NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `other_expenses`
+--
+
+INSERT INTO `other_expenses` (`Id`, `description`, `expense`, `date`) VALUES
+(1, 'test', 23, '2015-08-25'),
+(2, 'Paint', 458, '2015-08-25'),
+(3, 'Just a test', 7820, '2015-08-25'),
+(4, 'Just a test', 7820, '2015-08-25');
+
+-- --------------------------------------------------------
+--
+-- Table structure for table `overallexpense`
+--
+
+CREATE TABLE IF NOT EXISTS `overallexpense` (
+  `ovrlexpID` int(11) NOT NULL AUTO_INCREMENT,
+  `date` date NOT NULL,
+  `fuel_exp` float NOT NULL,
+  `lub_exp` float NOT NULL,
+  `other_exp` float NOT NULL,
+  PRIMARY KEY (`ovrlexpID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `overallincome`
+--
+
+CREATE TABLE IF NOT EXISTS `overallincome` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` date NOT NULL,
+  `fuelincome` float NOT NULL,
+  `lubricantincome` float NOT NULL,
+  `regularCw` float NOT NULL,
+  `nonregularCw` float NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+--
+-- Table structure for table `payment`
+--
+
+CREATE TABLE IF NOT EXISTS `payment` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `empID` varchar(50) NOT NULL,
+  `empName` varchar(50) NOT NULL,
+  `date` date NOT NULL,
+  `paid` varchar(10) NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `payment`
+--
+
+INSERT INTO `payment` (`Id`, `empID`, `empName`, `date`, `paid`) VALUES
+(1, 'MG-795', 'damman man', '2015-08-25', '1500'),
+(4, 'MG-795', 'damman man', '2015-08-25', '1500');
+
+-- --------------------------------------------------------
+--
+-- Table structure for table `tanks`
+--
+
+CREATE TABLE IF NOT EXISTS `tanks` (
+  `Id` int(11) NOT NULL,
+  `Petrol` float NOT NULL,
+  `SPetrol` float NOT NULL,
+  `Diesel` float NOT NULL,
+  `SDiesel` float NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tanks`
+--
+
+INSERT INTO `tanks` (`Id`, `Petrol`, `SPetrol`, `Diesel`, `SDiesel`) VALUES
+(1, 19872, 14346, 20617, 13661);
+
+-- --------------------------------------------------------
