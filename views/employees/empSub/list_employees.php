@@ -45,7 +45,7 @@
                 <h4 class="modal-title" id="myModalLabel"><legend>Edit Employee</legend></h4>
 
             </div>
-   <form class="form-horizontal" id="updateemp_form" action="employees/updateEmployees" method="post">
+   <form class="form-horizontal" id="updateemp_form" action="employees/updateEmployees" method="post" onsubmit="return submitForm();">
             <div class="modal-body">
              
                     <fieldset>
@@ -300,4 +300,26 @@
         });
     });
 
+</script>
+
+
+    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+    <script type="text/javascript">
+               function submitForm() {
+            console.log("submit event");
+            var fd = new FormData(document.getElementById("updateemp_form"));
+            fd.append("label", "IOC");
+            $.ajax({
+              url: "/IOC/views/employees/upload.php",
+              type: "POST",
+              data: fd,
+              enctype: 'multipart/form-data',
+              processData: false,  // tell jQuery not to process the data
+              contentType: false   // tell jQuery not to set contentType
+            }).done(function( data ) {
+                console.log("PHP Output:");
+                console.log( data );
+            });
+            return false;
+        }
 </script>

@@ -92,13 +92,13 @@
                 <div class="form-group">
                     <label for="emptype" class="col-lg-2 control-label" >Types of Employment</label>
                     <div class="col-lg-10" id="typeinemp">
-                        <select class="form-control" id="idDetails" name="idDetails" required="" >
+                        <select class="form-control" id="idDetails" name="idDetails" required>
 
                             <option selected disabled>Choose here</option>
                             <option value="admin" >Admin</option>
                             <option value="manager" >Manager</option>
                             <option value="pumpstaff">Pump Staff</option>
-
+                            <option value="pumpstaff">Service Staff</option>
                         </select>
                          <input type="hidden" id="emptype" name="emptype">
                     </div>
@@ -107,25 +107,28 @@
 
 
                 <div id="changer">
-
-
-
-                    <!--user name password-->
-
-                    <div class="form-group">
-
+<!-- name -->
+                <div class="form-group">
                         <label for="username" class="col-lg-2 control-label">User Name</label>
-                        <div class="col-lg-4">
+                        <div class="col-lg-10">
                             <input type="text" class="form-control" name="username" id="changevaluename" placeholder="" required=""
                                    pattern="[a-zA-Z]{8,}" title="User Name must contain 8 or more Letters:"/>
                         </div>
+                </div>                    
 
 
+                    <!-- password-->
+
+                    <div class="form-group">
 
                         <label for="userpassword" class="col-lg-2 control-label">Password</label>
                         <div class="col-lg-4">
                             <input type="password" class="form-control" name="userpassword" id="changevaluepassword" placeholder="" required=""
                                   pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,}" title="Password must contain 6 or more characters including 1 number 1 capital letter 1 lower letter"/>
+                        </div>
+                        <label for="cpassword" class="col-lg-2 control-label">Confirm Password</label>
+                        <div class="col-lg-4">
+                            <input type="password" class="form-control" name="cpassword" id="cpassword" placeholder="" required="" />
                         </div>
                     </div>
                 </div>
@@ -178,6 +181,20 @@
 
 
     $('#insertEmployees').submit(function (e) {
+        var pic = document.getElementById("sam").value; 
+        if(pic == "")
+        {
+            document.getElementById("sam").value = "default.png";
+            
+        }
+        
+        
+        var pass = document.getElementById("changevaluepassword").value; 
+        var cpass= document.getElementById("cpassword").value; 
+        
+        
+        if(pass == cpass )
+        {
         e.preventDefault();
         
         var form = $('#insertEmployees');
@@ -191,6 +208,15 @@
                 $('#subloader2').load('/IOC/employees/loadlistemp').hide().fadeIn('slow');
             }
         });
+        
+        }
+        else{
+            document.getElementById("changevaluepassword").focus();
+            document.getElementById("cpassword").value = "";
+            document.getElementById("changevaluepassword").value = "";
+            swal("Password and Confirm Password not Match !!!")
+
+        }
     });
 
     //code generator
@@ -198,19 +224,21 @@
 
     $("#idDetails").change(function () {
         var idDetails1 = document.getElementById("idDetails").value;
-        if (idDetails1 == "pumpstaff")
+        if (idDetails1 === "pumpstaff")
         {
             mg = "PM";
             $("#changer").hide();
 
             document.getElementById("changevaluename").value = "nullnull";
             document.getElementById("changevaluepassword").value = "nullNull123";
+            document.getElementById("cpassword").value = "nullNull123";
         } else
         {
             mg = "MG";
 
             document.getElementById("changevaluename").value = "";
             document.getElementById("changevaluepassword").value = "";
+            document.getElementById("cpassword").value = "";
             $("#changer").show();
 
         }
