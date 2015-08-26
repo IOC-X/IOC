@@ -80,7 +80,12 @@
 <script>
 
     $(document).ready(function(){
-
+        $("#lubricant_inc_history").click(function(){
+            $('#subloader2').load('/IOC/revenue/historyOther',function(){
+                $('#subloader2').hide();
+                $('#subloader2').fadeIn('fast');
+            });
+        });
     	$("#otherexpenseForm").submit(function(e){
     		e.preventDefault();
 	    	var form = $("#otherexpenseForm");

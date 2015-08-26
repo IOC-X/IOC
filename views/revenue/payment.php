@@ -1,6 +1,6 @@
 <div class="btn-group btn-group-justified">
     <a href="javascript:void(0)" class="btn btn-primary" id="addpayment">Add Payment</a>
-    <a href="javascript:void(0)" class="btn btn-primary" id="paymentlist">Show Payment</a>
+    <a href="javascript:void(0)" class="btn btn-primary" id="paymentlist">Payment History</a>
 </div>
             
 

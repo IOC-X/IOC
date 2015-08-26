@@ -2,7 +2,7 @@
     <a href="javascript:void(0)" class="btn btn-primary" id="fuel_exp">Fuel</a>
     <a href="javascript:void(0)" class="btn btn-primary" id="lubricants_exp">Lubricants</a>
     <a href="javascript:void(0)" class="btn btn-primary" id="other_exp">Other Expenses</a>
-    <a href="javascript:void(0)" class="btn btn-primary" id="overall_exp">Overall</a>
+    <!--<a href="javascript:void(0)" class="btn btn-primary" id="overall_exp">Overall</a> -->
 </div>
     <script>
         $('#fuel_exp').click(function(){
