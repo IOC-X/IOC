@@ -16,6 +16,18 @@
 
 </style>
 
+<form class="form-horizontal">
+    <fieldset>
+        <legend>Search Employee</legend>
+        <div class="form-group">
+            <div class="col-lg-5">
+                <input type="text" class="form-control" id="searchInput" placeholder="filter">
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+
 <table class="table table-striped table-hover ">
     <col style="width:10%">
     <col style="width:15%">
@@ -33,7 +45,7 @@
             <th>Delete Employee</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="dbody">
     </tbody>
 </table>
 
@@ -300,6 +312,31 @@
         });
     });
 
+	    $("#searchInput").keyup(function () {
+        //split the current value of searchInput
+        var data = this.value.split(" ");
+        //create a jquery object of the rows
+        var jo = $("#dbody").find("tr");
+        if (this.value == "") {
+            jo.show();
+            return;
+        }
+        //hide all the rows
+        jo.hide();
+
+        //Recusively filter the jquery object to get results.
+        jo.filter(function () {
+            var $t = $(this);
+            for (var d = 0; d < data.length; ++d) {
+                if ($t.is(":contains('" + data[d] + "')")) {
+                    return true;
+                }
+            }
+            return false;
+        })
+        //show the rows that match.
+        .show();
+    });
 </script>
 
 

@@ -107,7 +107,7 @@
 
 
                     <div class="row-picture">
-                        <img  src="/IOC/views/employees/propic/z.png" id="circle">
+                        <img  src="/IOC/views/employees/propic/IOCdefault.png" id="circle">
 
                     </div>
                     <br>

@@ -167,7 +167,6 @@
                     swal("Oops !", "Name field should be less than 30 characters");
                     return false;
                 }
-
                 if(isNaN(prd_price) || prd_price == ""){
                     swal("Oops !", "Name should be a number !");
                     return false;
@@ -179,16 +178,6 @@
                 if(prd_supplier == ""){
                     swal("Oops !", "Please select a supplier");
                     return false;
-                }
-                validateName(prd_name);
-                function validateName(name){ 
-                    if(/[A-Z]/.test(name[0])){
-                    
-                    }
-                    else{
-                        swal("Oops !", "First letter should be capital");    
-                        return false;
-                    }
                 }
                 $.post('stocks/editLube',{ name : prd_name , price : prd_price , qnty : prd_qnty , supplier : prd_supplier , id : prd_ID },function(data){
                     console.log(data);
