@@ -11,13 +11,13 @@
 			// 	$this->view->render('header/header',false);		
 			// 	$this->view->render('stocks/index',false);				
 			// }
-			Session::init();
-			if(isset($_SESSION['loggedIn'])){
+//			Session::init();
+//			if(isset($_SESSION['loggedIn'])){
 				$this->view->render('stocks/index',false);					
-			}
-			else{
-				header('location:'.URL . 'login');
-			}
+//			}
+//			else{
+//				header('location:'.URL . 'login');
+//			}
 		}
 		public function stocks(){
 			//require('models/Stocks_model.php');
