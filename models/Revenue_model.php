@@ -104,6 +104,88 @@ class Revenue_model extends Model {
         ));
         return $st->fetchAll();    
     }
+    public function pay_details($empid,$empname,$nic,$salary){
+        $st = $this->db->prepare("INSERT INTO payment (empID,empName,date,paid) VALUES (:empID,:empName,:date,:paid)");
+        $st->execute(array(
+            ':date' => Date('y-m-d'),
+            ':empID' => $empid,
+            ':empName' => $empname,
+            ':paid' => $salary
+        ));
+        return true;
+    }
+    public function pay_list() {
+        $results = $this->db->prepare("SELECT * FROM payment");
+        $results->execute();
+        return $results->fetchAll();
+    }
+    public function deletepayment($id){
+        $sql=$this->db->prepare("DELETE FROM payment WHERE Id=$id");
+        $sql->execute();
+    }
+    public function loadFuelExpenses(){
+        $st = $this->db->prepare("SELECT * from fuel_expense");
+        $st->execute();
+        return $st->fetchAll();
+    }
+    public function removeFuelHis($id){
+        $sql=$this->db->prepare("DELETE FROM fuel_expense WHERE Id=$id");
+        $sql->execute();
+    }
+    public function editFuelHistory($id,$fuel,$capacity,$date,$payment){
+        $st = $this->db->prepare("UPDATE fuel_expense SET expfueltype=:fuel,capacity=:capacity,date=:date,fuelpayment=:payment WHERE Id=:id");
+        $st->execute(array(
+            ':id' => $id,
+            ':fuel' => $fuel,
+            ':capacity' => $capacity,
+            ':date' => $date,
+            ':payment' => $payment
+        ));
+        return true;
+    }
+    public function loadLubricantExpenses(){
+        $st = $this->db->prepare("SELECT * from lubricant_expense");
+        $st->execute();
+        return $st->fetchAll();
+    }
+    public function removeLubricantHis($id){
+        $sql=$this->db->prepare("DELETE FROM lubricant_expense WHERE Id=$id");
+        $sql->execute();
+        return true;
+    }
+    public function editLubricantHistory($id,$product,$price,$date,$qty,$bqty,$total,$supplier){
+        $st = $this->db->prepare("UPDATE lubricant_expense SET product=:product,price=:price,supplier=:supplier,quantity=:quantity,bquantity=:bquantity,total=:total,date=:date WHERE Id=:id");
+        $st->execute(array(
+            ':id' => $id,
+            ':product' => $product,
+            ':price' => $price,
+            ':supplier' => $supplier,
+            ':quantity' => $qty,
+            ':bquantity' => $bqty,
+            ':total' => $total,
+            ':date(format)' => $supplier
+        ));
+        return true;
+    }
+    public function loadOtherExpenses(){
+        $st = $this->db->prepare("SELECT * from other_expenses");
+        $st->execute();
+        return $st->fetchAll();
+    }
+    public function removeOtherExp($id){
+        $sql=$this->db->prepare("DELETE FROM other_expenses WHERE Id=$id");
+        $sql->execute();
+        return true;
+    }
+    public function editOtherHistory($id,$description,$payment){
+        $st = $this->db->prepare("UPDATE other_expenses SET description=:description,expense=:expense WHERE Id=:id");
+        $st->execute(array(
+            ':id' => $id,
+            ':description' => $description,
+            ':expense' => $payment
+        ));
+        return true;
+    }
     // public function addlubinc($name, $qty, $supplier, $price, $sqty, $inc, $date) {
 
     //     // echo "Name". $name." ";

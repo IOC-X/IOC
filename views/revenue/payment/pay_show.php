@@ -10,13 +10,8 @@
             <tr class="success">
                 <th>Employee Code</th>
                 <th>Employee Name</th>
-                <th>NIC</th>
                 <th>Date</th>
-                <th>Shift Type</th>
-                <th>Gross Salary</th>
-                <th>EPF</th>
-                <th>Net Salary</th>
-                <th>Paid</th>
+                <th>Amount</th>
             </tr>
         </thead>
         <tbody>
@@ -118,20 +113,15 @@
 
             for (x = 0; x < len; x++) {
                
-                $("tbody").append('<tr class="' + x + '" id="' + data[x].payID + '">');
-                $("." + x + "").append('<td id="' + data[x].payID + "-empID" + '">' + data[x].empID + '</td>');              
-                $("." + x + "").append('<td id="' + data[x].payID + "-empName" + '">' + data[x].empName + '</td>'); 
-                $("." + x + "").append('<td id="' + data[x].payID + "-NIC" + '">' + data[x].NIC + '</td>');                
-                $("." + x + "").append('<td id="' + data[x].payID + "-date" + '">' + data[x].date + '</td>');
-                $("." + x + "").append('<td id="' + data[x].payID + "-shifttype" + '">' + data[x].shifttype + '</td>');
-                $("." + x + "").append('<td id="' + data[x].payID + "-grosssal" + '">'+ "Rs : " + data[x].grosssal + '</td>');
-                $("." + x + "").append('<td id="' + data[x].payID + "-epf" + '">'  +data[x].epf  + '</td>');
-                $("." + x + "").append('<td id="' + data[x].payID + "-netsal" + '">'  +data[x].netsal  + '</td>');
-                $("." + x + "").append('<td id="' + data[x].payID + "-paid" + '">'  +data[x].paid  + '</td>');
+                $("tbody").append('<tr class="' + x + '" id="' + data[x].Id + '">');
+                $("." + x + "").append('<td id="' + data[x].Id + "-empID" + '">' + data[x].empID + '</td>');              
+                $("." + x + "").append('<td id="' + data[x].Id + "-empName" + '">' + data[x].empName + '</td>'); 
+                $("." + x + "").append('<td id="' + data[x].Id + "-date" + '">' + data[x].date + '</td>');
+                $("." + x + "").append('<td id="' + data[x].Id + "-paid" + '">'  +data[x].paid  + '</td>');
 
-                $("." + x + "").append('<td class="hide" id="' + data[x].payID + "-pod" + '">' + x + '</td>');
-                $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].payID + '" class="edit"><i class="mdi-content-create"></i></a></div></td>');
-                $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].payID + '" class="remove"><i class="mdi-content-remove-circle"></i></a></div></td>');
+                $("." + x + "").append('<td class="hide" id="' + data[x].Id + "-pod" + '">' + x + '</td>');
+                $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].Id + '" class="edit"><i class="mdi-content-create"></i></a></div></td>');
+                $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].Id + '" class="remove"><i class="mdi-content-remove-circle"></i></a></div></td>');
                 $("." + x + "").append('</tr>');
             }
             
@@ -150,15 +140,15 @@
                 function (isConfirm) {
 
                         
-                                            if (isConfirm) {
+                    if (isConfirm) {
                         $.ajax({
                             type: 'post',
                             url: 'revenue/delete_payment',
-                            data: {id2: id},
+                            data: {id : id},
                             success: function (data) {
                                 swal("Deleted!", "Your payment information has been deleted!", "success");
                                 $('#subloader2').empty();
-                                $('#subloader2').load('/IOC/revenue/pay_show').hide().fadeIn('slow');
+                                $('#subloader2').load('/IOC/revenue/showpay').hide().fadeIn('slow');
                                
                             }
                         });

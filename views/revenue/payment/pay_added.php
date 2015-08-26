@@ -82,5 +82,27 @@
             });
         });
 
+        $("#clicksub").submit(function(e){
+            e.preventDefault();
+            var form = $("#clicksub");
+            $.ajax({
+              type : form.attr('method'),
+              url : form.attr('action'),
+              data : form.serialize(),
+              success: function(data){
+                console.log(data);
+                if(data == "Success"){
+                    swal("Success !", "Order entries successfully added !", "success");
+                    $('#subloader2').load('/IOC/revenue/showpay', function () {
+                        $('#subloader2').hide();
+                        $('#subloader2').fadeIn('fast');
+                    });
+                }
+                $('#calculate').attr('disabled','disabled');                    
+              }
+            });
+        });
+
+
     });
 </script>

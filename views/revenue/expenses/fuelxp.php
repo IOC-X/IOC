@@ -37,10 +37,22 @@
         </div>	
     </fieldset>
 </form>
+    <div class="form-actions col-lg-12">
+        <div class="col-lg-50 col-lg-1"><a href="javascript:void(0)" class="btn btn-primary btn-raised" id="lubricant_inc_history"><i class="mdi-social-poll"></i> History</a></div>
 
+    </div>  
 
 <script>
     $(document).ready(function(){
+
+        $("#lubricant_inc_history").click(function(){
+            $('#subloader2').load('/IOC/revenue/historyFuel',function(){
+                $('#subloader2').hide();
+                $('#subloader2').fadeIn('fast');
+            });
+        });
+
+
         $("#fuel").change(function(){
             type = $(this).val();
             console.log(type);
@@ -72,7 +84,6 @@
                             window.location.hash = "/revenue/expenses";
                         });
                     }
-                    $('#calculate').attr('disabled','disabled');                    
                   }
             });
         });
