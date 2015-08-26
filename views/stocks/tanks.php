@@ -4,8 +4,8 @@
 
 
 </script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.js"></script>
+<script type="text/javascript" src="<?php echo BOWER ?>canvas.js"></script>
+<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.js"></script> -->
 <script type="text/javascript">
     $(document).ready(function(){
         $.getJSON('stocks/getTankStocks',function(data){
@@ -15,6 +15,11 @@
             diesel = Number(data[0].Diesel);
             sdiesel = Number(data[0].SDiesel);
 
+            Ppetrol = (Math.round((petrol/24194)*100)).toString();
+            Pspetrol = (Math.round((spetrol/16134)*100)).toString();
+            Pdiesel = (Math.round((diesel/24194)*100)).toString();
+            Psdiesel = (Math.round((sdiesel/16134)*100)).toString();
+            console.log(petrol + Ppetrol);
         });
     });
 
@@ -53,10 +58,10 @@
                 color: "#62C9C3",
                 type: "bar",
                 dataPoints: [
-                    { y: spetrol, label: "33%", indexLabel: "Super Petrol" },
-                    { y: sdiesel, label: "36%", indexLabel: "Super Diesel" },
-                    { y: diesel, label: "21%", indexLabel: "Diesel" },
-                    { y: petrol, label: "25%", indexLabel: "Petrol" }
+                    { y: spetrol, label: Pspetrol+"%", indexLabel: "Super Petrol" },
+                    { y: sdiesel, label: Psdiesel+"%", indexLabel: "Super Diesel" },
+                    { y: diesel, label: Pdiesel+"%", indexLabel: "Diesel" },
+                    { y: petrol, label: Ppetrol+"%", indexLabel: "Petrol" }
                 ]
             }
             ]

@@ -105,13 +105,13 @@
         e.preventDefault();
     });
     $(document).ready(function(){
-        for(a=0.5;a<=122;a=a+0.5){
+        for(a=0.5;a<=243.5;a=a+0.5){
             $('#petrol').append("<option value='"+ a +"'>" + a + "</option>")            
         }
         for(a=0.5;a<=212;a=a+0.5){
             $('#spetrol').append("<option value='"+ a +"'>" + a + "</option>")            
         }
-        for(a=0.5;a<=122;a=a+0.5){
+        for(a=0.5;a<=243.5;a=a+0.5){
             $('#diesel').append("<option value='"+ a +"'>" + a + "</option>")            
         }
         for(a=0.5;a<=212;a=a+0.5){

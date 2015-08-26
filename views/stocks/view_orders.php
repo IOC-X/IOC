@@ -144,7 +144,7 @@
                 });
 
                 $('.edit').click(function(e){
-
+                    e.preventDefault();
                     if(FooType == "Petrol");{
                         for(a=0.5;a<=122;a=a+0.5){
                             $('#pmp-reading').append("<option value='"+ a +"'>" + a + "</option>")            
