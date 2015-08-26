@@ -146,6 +146,118 @@
 //			echo json_encode($empCode);
 			echo json_encode($model->getShiftDetails($empCode,$year,$month,$date));
     	}
+    	public function pay_details(){
+    		$empid = $_POST['empid'];
+    		$empname = $_POST['empname'];
+    		$nic = $_POST['nic'];
+
+    		$salary = $_POST['salary'];
+
+    		require 'models/Revenue_model.php';
+			$model = new Revenue_model();
+			if($model->pay_details($empid,$empname,$nic,$salary)){
+				echo "Success";
+			}
+    	}
+    	public function showpay() {
+			$this->view->render('revenue/payment/pay_show',false);	
+		}
+		public function pay_list(){
+	    	require 'models/Revenue_model.php';
+	    	$model=new Revenue_model();
+	    	echo json_encode($model->pay_list());
+	    }
+	    public function delete_payment(){
+	    	require 'models/Revenue_model.php';
+	    	$id=$_POST['id'];
+	    	$model=new Revenue_model();
+	    	$transactions=$model->deletepayment($id);
+	    }
+	    public function historyFuel(){
+		    $this->view->render('revenue/expenses/historyFuel',false);		
+	    }
+	    public function loadFuelExpenses(){
+	    	require 'models/Revenue_model.php';
+	    	$model= new Revenue_model();
+	    	echo json_encode($model->loadFuelExpenses());
+	    }
+	    public function removeFuelHis(){
+	    	require 'models/Revenue_model.php';
+	    	$model= new Revenue_model();
+	    	$id = $_POST['ID'];
+	    	$model->removeFuelHis($id);
+	    }
+	    public function editFuelHistory(){
+	    	require 'models/Revenue_model.php';
+	    	$model= new Revenue_model();
+	    	$id = $_POST['Id'];
+	    	$fuel = $_POST['fuel'];
+	    	$capacity = $_POST['capacity'];
+	    	$date = $_POST['date'];
+	    	$payment = $_POST['payment'];
+
+	    	if($model->editFuelHistory($id,$fuel,$capacity,$date,$payment)){
+	    		echo "Success";
+	    	}
+	    }
+	    public function historyLubricants(){
+	    	$this->view->render('revenue/expenses/historyLubricant',false);	
+	    }
+	    public function loadLubricantExpenses(){
+	    	require 'models/Revenue_model.php';
+	    	$model= new Revenue_model();
+	    	echo json_encode($model->loadLubricantExpenses());
+	    }
+	    public function removeLubricantHis(){
+	    	require 'models/Revenue_model.php';
+	    	$model= new Revenue_model();
+	    	$id = $_POST['ID'];
+	    	if($model->removeLubricantHis($id)){
+	    		echo "Success";
+	    	}
+	    }
+	    public function editLubricantHistory(){
+	    	require 'models/Revenue_model.php';
+	    	$model= new Revenue_model();
+
+	    	$id = $_POST['Id'];
+	    	$product = $_POST['product'];
+	    	$price = $_POST['price'];
+	    	$date = $_POST['date'];
+	    	$qty = $_POST['qty'];
+	    	$bqty = $_POST['bquantity'];
+	    	$total = $_POST['total'];
+	    	$supplier = $_POST['supplier'];
+	    	$model->editLubricantHistory($id,$product,$price,$date,$qty,$bqty,$total,$supplier);
+	    }
+	    public function historyOther(){
+	    	$this->view->render('revenue/expenses/historyOther',false);	
+	    }
+	    public function loadOtherExpenses(){
+	    	require 'models/Revenue_model.php';
+	    	$model= new Revenue_model();
+	    	echo json_encode($model->loadOtherExpenses());
+	    }
+	    public function removeOtherExp(){
+	    	require 'models/Revenue_model.php';
+	    	$model= new Revenue_model();
+	    	$id = $_POST['ID'];
+	    	if($model->removeOtherExp($id)){
+	    		echo "Success";
+	    	}
+
+	    }
+	    public function editOtherHistory(){
+	    	require 'models/Revenue_model.php';
+	    	$model= new Revenue_model();
+	    	$id = $_POST['Id'];
+	    	$description = $_POST['description'];
+	    	$payment = $_POST['payment'];
+
+	    	if($model->editOtherHistory($id,$description,$payment)){
+	    		echo "Success";
+	    	}
+	    }
 		// public function lubricant_inc_history()
 		// {
 		// 	$this->view->render('revenue/income/lubricant_inc_history',false);

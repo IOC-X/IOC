@@ -33,14 +33,14 @@
 	          data : form.serialize(),
 	          success: function(data){
 	            console.log(data);
-                if(data == "Success"){
+                //if(data == "Success"){
                     swal("Readings added successfully!", "click okay to continue", "success");
                     $('.form-control').val("");
-                }
-                if(data == "ZeroAsap"){
+                //}
+                //if(data == "ZeroAsap"){
                     swal("Fill all !", "click okay to continue", "success");
-                    $('.form-control').val("");    
-                }
+                //    $('.form-control').val("");    
+                //}
 	          }
 	        });
 	      });
