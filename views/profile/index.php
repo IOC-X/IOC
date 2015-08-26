@@ -2,7 +2,7 @@
 <div class="profile-card-wrap">
 	<input id="check" type="checkbox" class="check"><label for="check" class="toggle"> + </label>
 	<div class="content" data-text="Tiffany hwang">
-		<p></p>
+		<p><?php Session::init(); echo $_SESSION['loggedIn']?></p>
 	</div>
 	<div class="link-info">
 		<div class="social">
@@ -23,10 +23,10 @@
 	$(document).ready(function(){
 		$.getJSON('profile/loadProfileCode',function(data){
 			console.log(data);
-			firstname = data[0].firstName;
-			lastname = data[0].lastName;
+			//firstname = data[0].firstName;
+			//lastname = data[0].lastName;
 		});
-		$("#username").append(firstname + lastname);
+		//$("#username").append(firstname + lastname);
 	});
 
 </script>

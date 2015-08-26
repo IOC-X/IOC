@@ -13,7 +13,7 @@
 			if(count($data) ==1){
 				Session::init();
 				$_SESSION['loggedIn'] = $username;
-				header('location:' . URL);
+				header('location:' . URL );
 			}
 			else{
 				header('location:' . URL . 'login');
@@ -24,7 +24,7 @@
 			$st->execute(array(
 				':empCode' => $employeeCode
 			));
-			return ($st->fetchAll());
+			return $st->fetchAll();
 		}
 		public function signup(){
 			$st = $this->db->prepare("");
