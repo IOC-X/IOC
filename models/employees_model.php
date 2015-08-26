@@ -146,6 +146,12 @@ class Employees_model extends Model {
         return $results->fetchAll();
     }
     
+        public function select_pump() {
+        $results = $this->db->prepare("SELECT * FROM pumpstatus WHERE Status = 'Online' ");
+        $results->execute();
+        return $results->fetchAll();
+    }
+
 }
 
 ?>
