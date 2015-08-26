@@ -239,6 +239,12 @@ $this->view->render('employees/shift_sub/shift_list',false);
         $addfin->markfinish($empcode,$yearyear,$monthmonth,$datedate,$timetime);
     }
 
+        public function pump_list() {
+        $model = new Employees_model();
+        echo json_encode($model->select_pump());
+
+    }
+    
 }
 
 ?>

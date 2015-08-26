@@ -195,13 +195,13 @@
             }
         });
         //pump list
-        $.getJSON('employees/shift_list', function (data) {
+        $.getJSON('employees/pump_list', function (data) {
 
             var len = data.length;
 
             for (x = 0; x < len; x++) {
                 $('#pumpemp').append(
-                        $('<option class="shiftcode" id="' + x + '"></option>').val(x).html(data[x].shiftName));
+                        $('<option class="pumpcode" id="' + x + '"></option>').val(x).html(data[x].PumpNo));
 
             }
         });
