@@ -37,6 +37,16 @@
 				':date' => Date('y-m-d')
 			));
 		}
+		public function updateTank($qntyPetrol,$qntySPetrol,$qntyDiesel,$qntySDiesel){
+			$st = $this->db->prepare("UPDATE tanks SET Petrol=:petrol,SPetrol=:spetrol,Diesel=:diesel,SDiesel=:sdiesel WHERE Id=1");
+			$st->execute(array(
+				':petrol' => $qntyPetrol,
+				':spetrol' => $qntySPetrol,
+				':diesel' => $qntyDiesel,
+				':sdiesel' => $qntySDiesel
+			));
+			return true;
+		}
 		public function insertEveningStock($readingPetrol,$qntyPetrol,$readingSPetrol,$qntySPetrol,$readingDiesel,$qntyDiesel,$readingSDiesel,$qntySDiesel){
 			$st = $this->db->prepare("INSERT INTO eveningstocks (FuelType,Reading,Quantity,Date) VALUES (:type,:reading,:qnty,:date)");
 			$st->execute(array(
@@ -67,6 +77,11 @@
 				':date' => Date('y-m-d')
 			));
 			return true;
+		}
+		public function getTankStocks(){
+			$st = $this->db->prepare("SELECT * FROM tanks");
+			$st->execute();
+			return $st->fetchAll();
 		}
 		public function loadOrders($type){
 			$st = $this->db->prepare("SELECT * FROM Orders WHERE FuelType=:fueltype LIMIT 7 ");
