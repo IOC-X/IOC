@@ -1,8 +1,24 @@
   <div id="chartContainer" style="height: 300px; width: 100%;">
   </div>
+<script type="text/javascript">
+
+
+</script>
+
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.js"></script>
 <script type="text/javascript">
-  
+    $(document).ready(function(){
+        $.getJSON('stocks/getTankStocks',function(data){
+            console.log(data[0]);
+            petrol = Number(data[0].Petrol);
+            spetrol = Number(data[0].SPetrol);
+            diesel = Number(data[0].Diesel);
+            sdiesel = Number(data[0].SDiesel);
+
+        });
+    });
+
+
     var chart = new CanvasJS.Chart("chartContainer", {
             title: {
                 text: "Available stocks",
@@ -37,10 +53,10 @@
                 color: "#62C9C3",
                 type: "bar",
                 dataPoints: [
-                    { y: 33, label: "33%", indexLabel: "Super Petrol" },
-                    { y: 36, label: "36%", indexLabel: "Super Diesel" },
-                    { y: 21, label: "21%", indexLabel: "Diesel" },
-                    { y: 25, label: "25%", indexLabel: "Petrol" }
+                    { y: spetrol, label: "33%", indexLabel: "Super Petrol" },
+                    { y: sdiesel, label: "36%", indexLabel: "Super Diesel" },
+                    { y: diesel, label: "21%", indexLabel: "Diesel" },
+                    { y: petrol, label: "25%", indexLabel: "Petrol" }
                 ]
             }
             ]

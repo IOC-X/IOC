@@ -13,7 +13,7 @@
 			// }
 			Session::init();
 			if(isset($_SESSION['loggedIn'])){
-				$this->view->render('stocks/index',false);								
+				$this->view->render('stocks/index',false);					
 			}
 			else{
 				header('location:'.URL . 'login');
@@ -36,6 +36,11 @@
 		}
 		public function evening_reading(){
 			$this->view->render('stocks/evening_reading',false);
+		}
+		public function getTankStocks(){
+			require 'models/Stocks_model.php';
+			$model = new Stocks_model();
+			echo json_encode($model->getTankStocks());
 		}
 		/**
 		*
@@ -171,6 +176,9 @@
 
 			$model = new Stocks_model();
 			$model->insertMrngOrder($readingPetrol,$qntyPetrol,$orderpetrol,$readingSPetrol,$qntySPetrol,$orderspetrol,$readingDiesel,$qntyDiesel,$orderdiesel,$readingSDiesel,$qntySDiesel,$ordersdiesel);
+			
+			$model->updateTank($qntyPetrol,$qntySPetrol,$qntyDiesel,$qntySDiesel);
+
 			echo "DONE";
 		}
 		/*
@@ -191,9 +199,12 @@
 			$qntySDiesel = $_POST['qntySDiesel'];
 
 			$model = new Stocks_model();
-			if($model->insertEveningStock($readingPetrol,$qntyPetrol,$readingSPetrol,$qntySPetrol,$readingDiesel,$qntyDiesel,$readingSDiesel,$qntySDiesel)){
-				echo "DONE";				
-			}
+			$model->insertEveningStock($readingPetrol,$qntyPetrol,$readingSPetrol,$qntySPetrol,$readingDiesel,$qntyDiesel,$readingSDiesel,$qntySDiesel);
+
+			$model->updateTank($qntyPetrol,$qntySPetrol,$qntyDiesel,$qntySDiesel);
+				
+			echo "DONE";				
+			
 		}
 
 

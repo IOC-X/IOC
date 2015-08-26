@@ -251,14 +251,32 @@
                     swal("Oops !", "Please fill name field");
                     return false;
                 }
+                if(sup_name.length>=30){
+                    swal("Oops !", "Name filed should be less than 30 characters")  
+                    return false;
+                }
                 if(sup_email == ""){
                     swal("Oops !", "Please fill email field");
                     return false;
+                }
+                
+                if(!validateEmail(sup_email)){
+                    swal("Oops !", "Invalid email");
+                    return false;   
                 }
                 if(!validateContact(sup_contact) || sup_contact == ""){
                     swal("Oops !", "Invalid contact number !");
                     return false;
                 }
+                // function validateName(name){
+                //     var name = $(this).val();
+                //     if(/[A-Z]/.test(name[0])){
+                    
+                //     }
+                //     else{
+                //         swal("Oops !", "First letter should be capital");    
+                //     }
+                // }
                 function validateContact(contact){
                     if(!contact.match(/^\d{10}$/)){
                         //console.log('Nope !');
@@ -267,6 +285,14 @@
                     else{
                         //console.log('Match ');
                         return true;
+                    }
+                }
+                function validateEmail(email){
+                    if(!email.match(/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i)){
+                        return false;
+                    }
+                    else{
+                        return true;            
                     }
                 }
                 //console.log(sup_ID+sup_name+sup_email+sup_contact);
