@@ -1,5 +1,4 @@
 /bower_components/Chart.js
 /Gruntfile.js
 /nbproject
-libs/Database.php
 ioc.sql
