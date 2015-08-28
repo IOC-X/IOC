@@ -268,27 +268,61 @@ class Carwash extends Controller {
     }
 
     //REPORT GENARATION STARTS HERE
+        
     public function report() {
 
         $this->view->render('carwash/report', false);
     }
-
+        //Animated reports
+     public function dynamic() { 
+         $this->view->render('carwash/report/dynamic/dynamicReport', false);
+        
+    }
     public function CustomerReport() {
         $model = new Carwash_model();
         $stats = $model->CustomerStatistics();
-        include 'views/carwash/report/CustomerReport.php';
+        include 'views/carwash/report/dynamic/CustomerReport.php';
     }
 
     public function packageReport() {
         $model = new Carwash_model();
         $stats = $model->packageUsage();
-        include 'views/carwash/report/packageReport.php';
+        include 'views/carwash/report/dynamic/packageReport.php';
     }
 
     public function alertReport() {
         $model = new Carwash_model();
         $stats = $model->alertUsage();
-        include 'views/carwash/report/alertReport.php';
+        include 'views/carwash/report/dynamic/alertReport.php';
+    }
+        //PDF reports
+    public function pdf(){
+        include 'views/carwash/report/pdf/pdfReports.php';
+    }
+    public function NonRegpdfReport(){
+        $model = new Carwash_model();
+        $Transactions = $model->NonRegHistory();
+        include 'views/carwash/report/pdf/NonRegHistory.php';
+    }
+    public function NonRegpdfReportDisplay(){
+        include 'views/carwash/report/pdf/NonRegHistoryDisplay.php';
+    }
+    public function RegpdfReport(){
+        $model = new Carwash_model();
+        $Transactions = $model->RegHistory();
+        include 'views/carwash/report/pdf/RegHistory.php';
+    }
+    public function RegpdfReportDisplay(){
+        include 'views/carwash/report/pdf/RegHistoryDisplay.php';
+    }
+    
+    public function CustomerpdfReport(){
+        $model = new Carwash_model();
+        $Customers = $model->Customers();
+        include 'views/carwash/report/pdf/customers.php';
+    }
+    public function CustomerpdfReportDisplay(){
+        include 'views/carwash/report/pdf/customersDisplay.php';
     }
 
 }

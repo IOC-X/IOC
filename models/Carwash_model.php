@@ -152,6 +152,7 @@ class Carwash_model extends Model {
     }
 
     //REPORT DATA RETRIEVING STARTS HERE
+        //Animated Reports
     public function CustomerStatistics() {
         $sql1 = $this->db->prepare("set @sum=0;");
         $sql1->execute();
@@ -183,6 +184,38 @@ class Carwash_model extends Model {
         }
         return $stats;
     }
+    
+        //PDF REPORTS
+    function NonRegHistory() {
+            $transactions = '';
+            $sql = $this->db->prepare("SELECT cname,contact,vehicleNo,amount,date,returnedDate FROM car_transactions");
+            $sql->execute();
+
+            while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+                $transactions[] = $obj;
+            }
+            return $transactions;
+        }
+        function RegHistory() {
+            $transactions = '';
+            $sql = $this->db->prepare("select cust_id,vehicleNo,amount,date,returnedDate FROM regular_transactions");
+            $sql->execute();
+
+            while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+                $transactions[] = $obj;
+            }
+            return $transactions;
+        }
+        function Customers() {
+            $customers = '';
+            $sql = $this->db->prepare("select cust_id,name,nic,address,contact,date FROM regular_customers");
+            $sql->execute();
+
+            while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+                $customers[] = $obj;
+            }
+            return $customers;
+        }
 
     //ALERTS
     //REGULAR TRANSACTIONS DATA RETRIEVING FOR ALERTS

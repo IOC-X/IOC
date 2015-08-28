@@ -35,7 +35,7 @@
         <div class="control-group panel panel-info">
             <label class="control-label col-lg-4" style="margin-top: 10px">Vehicle Number</label>
             <div class="controls col-lg-6">
-                <input type="text"  class="form-control floating-label" name="Vno" id="Vno" placeholder="" style="margin-top: 10px" title="Eg : AA-1234 or AAA-1234"/>
+                <input type="text"  class="form-control floating-label" name="Vno" id="Vno" placeholder="Eg : AA-1234 or AAA-1234" style="margin-top: 10px" title="Eg : AA-1234 or AAA-1234"/>
             </div>
         </div>
         <div class="control-group panel panel-info">
@@ -52,7 +52,7 @@
         </div>
         
     
-                    <div class="form-actions col-lg-12">
+                    <div class="form-actions col-lg-12" st>
                         <div class="col-lg-0 col-lg-1"><a href="javascript:void(0)" class="btn btn-primary btn-raised" id="nonreg_history"><i class="mdi-action-restore"></i> History</a></div>
                         <div class="col-lg-0 col-lg-offset-9"><button type="submit" class="btn btn-primary btn-raised" id="form-submitted" name="form-submitted" ><i class="mdi-content-save"></i> Add Transaction</button></div>
                     </div>
