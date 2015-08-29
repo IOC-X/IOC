@@ -268,17 +268,15 @@
                     swal("Oops !", "Invalid contact number !");
                     return false;
                 }
-                validateName(sup_name);
-                function validateName(name){
+                // function validateName(name){
+                //     var name = $(this).val();
+                //     if(/[A-Z]/.test(name[0])){
                     
-                    if(/[A-Z]/.test(name[0])){
-                    
-                    }
-                    else{
-                        swal("Oops !", "First letter should be capital");    
-                        return false;
-                    }
-                }
+                //     }
+                //     else{
+                //         swal("Oops !", "First letter should be capital");    
+                //     }
+                // }
                 function validateContact(contact){
                     if(!contact.match(/^\d{10}$/)){
                         //console.log('Nope !');

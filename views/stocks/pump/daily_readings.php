@@ -33,22 +33,11 @@
 	          data : form.serialize(),
 	          success: function(data){
 	            console.log(data);
-<<<<<<< HEAD
-                //if(data == "Success"){
-                    swal("Readings added successfully!", "click okay to continue", "success");
-                    $('.form-control').val("");
-                //}
-                //if(data == "ZeroAsap"){
-                    swal("Fill all !", "click okay to continue", "success");
-                //    $('.form-control').val("");    
-                //}
-=======
                
                     swal("Readings added successfully!", "click okay to continue", "success");
                     $('.form-control').val("");
                 
                 
->>>>>>> 9255236be5cd45869a014973b5785e893203c4a0
 	          }
 	        });
 	      });

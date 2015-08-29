@@ -41,7 +41,7 @@
                 <div class="form-group">
                     <label for="address" class="col-lg-2 control-label">Address</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" name="address" placeholder=""  >
+                        <input type="text" class="form-control" name="address" placeholder=""  required>
                     </div>
                 </div> 
 
