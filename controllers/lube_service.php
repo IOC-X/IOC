@@ -247,29 +247,29 @@ class Lube_service extends Controller{
     
     //pdf
     
-    public function NonRegpdfReport(){
+    public function NonRegpdf(){
         $model = new lubricant_model();
         $Transactions = $model->NonRegHistory();
         include 'views/lubricantService/pdf/NonRegHistory.php';
     }
-    public function NonRegpdfReportDisplay(){
+    public function NonRegpdfDisplay(){
         include 'views/lubricantService/pdf/NonRegHistoryDisplay.php';
     }
-    public function RegpdfReport(){
+    public function Regpdf(){
         $model = new lubricant_model();
         $Transactions = $model->RegHistory();
         include 'views/lubricantService/pdf/RegHistory.php';
     }
-    public function RegpdfReportDisplay(){
+    public function RegpdfDisplay(){
         include 'views/lubricantService/pdf/RegHistoryDisplay.php';
     }
     
-    public function CustomerpdfReport(){
+    public function Customerpdf(){
         $model = new lubricant_model();
         $Customers = $model->Customers();
         include 'views/lubricantService/pdf/customers.php';
     }
-    public function CustomerpdfReportDisplay(){
+    public function CustomerpdfDisplay(){
         include 'views/lubricantService/pdf/customersDisplay.php';
     }
 }

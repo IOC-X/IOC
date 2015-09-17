@@ -11,7 +11,7 @@
     $('#Customers').click(function(e2){
         e2.preventDefault();
         var id = $(this).attr('id');
-        $('#subloader2').load('/IOC/lube_service/CustomerpdfReportDisplay', function () {
+        $('#subloader2').load('/IOC/lube_service/CustomerpdfDisplay', function () {
             $('#subloader2').hide();
             $('#subloader2').fadeIn('fast');
         });
@@ -20,7 +20,7 @@
     $('#RegpdfReport').click(function(e2){
         e2.preventDefault();
         var id = $(this).attr('id');
-        $('#subloader2').load('/IOC/lube_service/RegpdfReportDisplay', function () {
+        $('#subloader2').load('/IOC/lube_service/RegpdfDisplay', function () {
             $('#subloader2').hide();
             $('#subloader2').fadeIn('fast');
         });
@@ -29,7 +29,7 @@
     $('#NonRegpdfReport').click(function(e2){
         e2.preventDefault();
         var id = $(this).attr('id');
-        $('#subloader2').load('/IOC/lube_service/NonRegpdfReportDisplay', function () {
+        $('#subloader2').load('/IOC/lube_service/NonRegpdfDisplay', function () {
             $('#subloader2').hide();
             $('#subloader2').fadeIn('fast');
         });
