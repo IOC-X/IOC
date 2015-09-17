@@ -65,7 +65,7 @@
             e.preventDefault();
             $("#history1").show();
         });
-         
+
         console.log('adding transactions');
         $("#form-submitted").click(function () {
 //assigning values
@@ -76,27 +76,36 @@
             var amount = $("#amount").val();
             var date = $("#date").val();
 
+
+            var validVehicleNo1 = /^[A-Z]{2}-\d{4}$/;
+            var validVehicleNo2 = /^[A-Z]{3}-\d{4}$/;
+            var validVehicleNo3 = /^[0-9]{2}-\d{4}$/;
 //validation
             if (vehicleNo == '') {
-                swal("Oops.. Something went wrong..","Transaction Failed. Please Enter Vehicle Number..!","error");
+                swal("Oops.. Something went wrong..", "Transaction Failed. Please Enter Vehicle Number..!", "error");
                 return false;
             }
-            
-            else if(amount==''|| originalAmount==''){
-                swal("Oops.. Something went wrong..","Transaction Failed. Please select the package again..!","error");
+
+            else if (!(vehicleNo.match(validVehicleNo1)) && !(vehicleNo.match(validVehicleNo2)) && !(vehicleNo.match(validVehicleNo3))) {
+                swal("Oops...", "Vehicle Number is invalid....!!", "error");
                 return false;
-            } 
+            }
+
+            else if (amount == '' || originalAmount == '') {
+                swal("Oops.. Something went wrong..", "Transaction Failed. Please select the package again..!", "error");
+                return false;
+            }
 
             else {
-                
+
                 // Returns successful data submission message when the entered information is stored in database.
                 $.post("lube_service/addLuTransaction", {cust_id: id, package: package, vehicleNo: vehicleNo, amount: amount, date: date},
                 function (data) {
                     //alert(data);
                     swal("Good job!", "Successfully added the New Transaction!", "success");
-                    
-                        $('#subloader2').empty();
-                        $('#subloader2').load('/IOC/carwash/reg_history',function(){
+
+                    $('#subloader2').empty();
+                    $('#subloader2').load('/IOC/carwash/reg_history', function () {
                         $('#subloader2').hide();
                         $('#subloader2').fadeIn('fast');
                     });

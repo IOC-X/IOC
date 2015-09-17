@@ -244,4 +244,32 @@ class Lube_service extends Controller{
     public function report(){
         include 'views/lubricantService/report.php';
     }
+    
+    //pdf
+    
+    public function NonRegpdfReport(){
+        $model = new lubricant_model();
+        $Transactions = $model->NonRegHistory();
+        include 'views/lubricantService/pdf/NonRegHistory.php';
+    }
+    public function NonRegpdfReportDisplay(){
+        include 'views/lubricantService/pdf/NonRegHistoryDisplay.php';
+    }
+    public function RegpdfReport(){
+        $model = new lubricant_model();
+        $Transactions = $model->RegHistory();
+        include 'views/lubricantService/pdf/RegHistory.php';
+    }
+    public function RegpdfReportDisplay(){
+        include 'views/lubricantService/pdf/RegHistoryDisplay.php';
+    }
+    
+    public function CustomerpdfReport(){
+        $model = new lubricant_model();
+        $Customers = $model->Customers();
+        include 'views/lubricantService/pdf/customers.php';
+    }
+    public function CustomerpdfReportDisplay(){
+        include 'views/lubricantService/pdf/customersDisplay.php';
+    }
 }

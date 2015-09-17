@@ -32,7 +32,7 @@ class lubricant_model extends Model {
 
     public function createPackage($name, $description, $time, $price) {
         try {
-            $sql = $this->db->prepare("INSERT INTO lu_packages(name, description, duration, price) VALUES(?, ?, ?, ?)");
+            $sql = $this->db->prepare("INSERT INTO lu_packages(name, description, duration, price) VALUES(? , ?, ?, ?)");
             $result = $sql->execute(array($name, $description, $time, $price));
         } catch (Exception $e) {
             
@@ -132,5 +132,37 @@ class lubricant_model extends Model {
 
         return $Transactions;
     }
+    
+    //pdf
+    function NonRegHistory() {
+            $transactions = '';
+            $sql = $this->db->prepare("SELECT cname,contact,vehicleNo,amount,date FROM nonreglu_transactions");
+            $sql->execute();
+
+            while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+                $transactions[] = $obj;
+            }
+            return $transactions;
+        }
+        function RegHistory() {
+            $transactions = '';
+            $sql = $this->db->prepare("select cust_id,vehicleNo,amount,date FROM regular_lutransactions");
+            $sql->execute();
+
+            while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+                $transactions[] = $obj;
+            }
+            return $transactions;
+        }
+        function Customers() {
+            $customers = '';
+            $sql = $this->db->prepare("select id,name,address,contact,email,date FROM lu_customers");
+            $sql->execute();
+
+            while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+                $customers[] = $obj;
+            }
+            return $customers;
+        }
     
 }

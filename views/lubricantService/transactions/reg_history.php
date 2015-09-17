@@ -2,9 +2,9 @@
     <!-- DISPLAYING LATEST TRANSACTIONS-->
     <div>
         <h3 class="text-center success"><strong>Earlier Regular Customer Transactions</strong></h3>
-
+<div class="col-lg-3"><input type="text" class="form-control" id="search" placeholder="Type to search"></div>
     </div>
-    <table class="table table-striped table-bordered table-hover">
+    <table class="table table-striped table-bordered table-hover" id="tblData">
 
         <thead>
             <tr class="success">
@@ -26,7 +26,7 @@
                     <td><?php echo ($transaction->vehicleNo); ?></td>
                     <td><?php echo "Rs." . ($transaction->amount); ?></td>
                     <td><?php echo ($transaction->date); ?></td>
-     
+
                     <td>
                         <a id="edit_trans" onclick="EditTrans('<?php echo ($transaction->id); ?>', '<?php echo ($transaction->cust_id); ?>', '<?php echo ($transaction->package); ?>', '<?php echo ($transaction->vehicleNo); ?>', '<?php echo ($transaction->amount); ?>', '<?php echo ($transaction->date); ?>')"> <i class="mdi-content-create"></i> </a>
                     </td>
@@ -99,6 +99,39 @@
 </div>
 
 <script type="text/javascript">
+    $(document).ready(function ()
+    {
+        $('#search').keyup(function ()
+        {
+            searchTable($(this).val());
+        });
+    });
+
+    function searchTable(inputVal)
+    {
+        var table = $('#tblData');
+        table.find('tr').each(function (index, row)
+        {
+            var allCells = $(row).find('td');
+            if (allCells.length > 0)
+            {
+                var found = false;
+                allCells.each(function (index, td)
+                {
+                    var regExp = new RegExp(inputVal, 'i');
+                    if (regExp.test($(td).text()))
+                    {
+                        found = true;
+                        return false;
+                    }
+                });
+                if (found == true)
+                    $(row).show();
+                else
+                    $(row).hide();
+            }
+        });
+    }
 
     function EditTrans(id, cust_id, package, vehicleNo, amount, date) {
 
@@ -116,7 +149,7 @@
         $("#form-submitted").click(function (e) {
 //assiging values    
             e.preventDefault();
-            var id = $("#id").val(); 
+            var id = $("#id").val();
             var cust_id = $("#cust_id").val();
             var package = $("#package").val();
             var vehicleNo = $("#vehicleNo").val();
@@ -127,7 +160,7 @@
             var numbers = /^[0-9]+$/;
             var validNic = /\d{9}[vV]$/;
             var validDate = new Date();
-            
+
 
 
 //date validation
@@ -150,13 +183,13 @@
             else if (vehicleNo.match(numbers)) {
                 swal("Oops...", "Vehicle Number is invalid....!!", "error");
             }
-            
+
             else if (e_date > today) {
                 swal("Oops...", "Selected date is a future date....!!", "error");
             }
             else {
 // Returns successful data submission message when the entered information is stored in database.
-                $.post("lube_service/editLuTransaction", {id: id,cust_id: cust_id, package:package, vehicleNo: vehicleNo, amount: amount, date: date},
+                $.post("lube_service/editLuTransaction", {id: id, cust_id: cust_id, package: package, vehicleNo: vehicleNo, amount: amount, date: date},
                 function (data) {
                     swal("Good job!", "Successfully Updated the Regular Transaction Details!", "success");
                     // $('#form')[0].reset(); //To reset form fields
@@ -188,15 +221,15 @@
         function (isConfirm) {
             if (isConfirm) {
                 swal("Deleted!", "Your Transaction details has been deleted.", "success");
-                
-                $.post('lube_service/delete_Lu_transaction', { id : id }, function(data){
-                                console.log(data);                                
-                            });
-                        $('#subloader2').empty();
-                        $('#subloader2').load('/IOC/lube_service/reg_Lu_history', function () {
-                        $('#subloader2').hide();
-                        $('#subloader2').fadeIn('fast');
-                    });
+
+                $.post('lube_service/delete_Lu_transaction', {id: id}, function (data) {
+                    console.log(data);
+                });
+                $('#subloader2').empty();
+                $('#subloader2').load('/IOC/lube_service/reg_Lu_history', function () {
+                    $('#subloader2').hide();
+                    $('#subloader2').fadeIn('fast');
+                });
             } else {
                 swal("Cancelled", "Your Customer details is safe :)", "error");
             }
