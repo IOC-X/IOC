@@ -78,12 +78,13 @@
 //REGIT EXPRESSION
             var validVehicleNo1 = /^[A-Z]{2}-\d{4}$/;
             var validVehicleNo2 = /^[A-Z]{3}-\d{4}$/;
+            var validVehicleNo3 = /^[0-9]{2}-\d{4}$/;
 //validation
             if (vehicleNo == '') {
                 swal("Oops.. Something went wrong..","Transaction Failed. Please Enter Vehicle Number..!","error");
                 return false;
             }
-             else if (!(vehicleNo.match(validVehicleNo1)) && !(vehicleNo.match(validVehicleNo2))) {
+             else if (!(vehicleNo.match(validVehicleNo1)) && !(vehicleNo.match(validVehicleNo2))&& !(vehicleNo.match(validVehicleNo3))) {
                 swal("Oops...", "Vehicle Number is invalid....!!", "error");
                 return false;
             }
