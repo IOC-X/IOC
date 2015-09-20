@@ -12,7 +12,7 @@
 		        <i class="mdi-notification-drive-eta" style="margin-right:10px"></i>Lubricant Store</a>
 		        <a href="stocks/suppliers" class="btn btn-flat btn-primary" id="suppliers">
 		        <i class="mdi-maps-directions-bike" style="margin-right:10px"></i>Suppliers</a>
-		        <a href="stocks/history" class="btn btn-flat btn-primary" id="history">
+		        <a href="stocks/report" class="btn btn-flat btn-primary" id="report">
 		        <i class="mdi-maps-layers" style="margin-right:10px"></i>Report</a>
 		    </div>
 		    <script type="text/javascript">
@@ -70,7 +70,7 @@
                 	window.location.hash = "/stocks/" + id;
                 });
 	        });
-	       	$('#history').click(function(e2){
+	       	$('#report').click(function(e2){
 	        	e2.preventDefault();
 	        	var id = $(this).attr('id');
 

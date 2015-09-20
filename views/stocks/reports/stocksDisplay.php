@@ -1,0 +1,1 @@
+<iframe src="stocks/retrieveStocksReport" width="920" height="400" style="border: none"></iframe>

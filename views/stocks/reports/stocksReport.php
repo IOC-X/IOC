@@ -1,6 +1,5 @@
 
 <?php
-
 require('libs/fpdf/fpdf.php');
 $pdf = new FPDF();
 
@@ -10,12 +9,12 @@ $pdf->SetFont('Arial', 'B', 8);
 
 
 
-$heading = array("Customer ID", "Name", "NIC", "Address","Contact","RegisteredDate");
+$heading = array("Fuel Type", "Reading", "Quantity", "Order Amount","Date");
 
 foreach ($heading as $column_heading) {
     $pdf->Cell(30, 20, $column_heading, 1);
 }
-foreach ($model as $row) {
+foreach ($modelStocks as $row) {
     $pdf->SetFont('Arial', '', 8);
     $pdf->Ln();
     foreach ($row as $column)

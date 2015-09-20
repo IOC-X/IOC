@@ -84,7 +84,7 @@
 			return $st->fetchAll();
 		}
 		public function loadOrders($type){
-			$st = $this->db->prepare("SELECT * FROM Orders WHERE FuelType=:fueltype LIMIT 7 ");
+			$st = $this->db->prepare("SELECT * FROM Orders WHERE FuelType=:fueltype ORDER BY Id DESC");
 			$st->execute(array(
 				':fueltype' => $type
 			));
@@ -267,7 +267,18 @@
 				':id' => $id
 			));
 		}
+        public function retrieveStockReport($kl){
+        	$stocks = '';
         
+            $sql = $this->db->prepare("SELECT FuelType,Reading,Quantity,Orderamnt,Date FROM Orders WHERE Date LIKE '" . $kl . "%'");
+            $sql->execute();
+
+            while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+                $stocks[] = $obj;
+            }
+            return $stocks;
+        }
+
         public function SendMail($email, $message) {
         require_once '/libs/email/PHPMailer/PHPMailerAutoload.php';
 
