@@ -42,6 +42,8 @@
         var month = $('#mySelect').val();
         var year = $('#mySelect2').val();
 		
+        var yy = year + "-0" + month;
+        window.yy = yy;
         $("#pdfloader").load('stocks/displayStocksReport',{ month : month , year : year },function(data){
             console.log(data);
         });

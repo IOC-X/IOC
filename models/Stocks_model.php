@@ -269,9 +269,10 @@
 		}
         public function retrieveStockReport($kl){
         	$stocks = '';
-        
-            $sql = $this->db->prepare("SELECT FuelType,Reading,Quantity,Orderamnt,Date FROM Orders WHERE Date LIKE '" . $kl . "%'");
-            $sql->execute();
+            $sql = $this->db->prepare("SELECT FuelType,Reading,Quantity,Orderamnt,Date FROM Orders WHERE Date LIKE :kl");
+            $sql->execute(array(
+            	':kl' => $kl
+            ));
 
             while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
                 $stocks[] = $obj;

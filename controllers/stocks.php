@@ -544,20 +544,18 @@
         //stock report 
         public function stockreport(){
         	include 'views/stocks/reports/stockreport.php';
+        }        
+        public function displayStocksReport(){
+
+        	$this->view->render('stocks/reports/stocksDisplay',false);
         }
         public function retrieveStocksReport(){
         	require 'models/Stocks_model.php';
-			$model = new Stocks_model(static::$kl);
-			$modelStocks = $model->retrieveStockReport();
-        	include 'views/stocks/reports/stocksReport.php';
-        }
-        static $kl;
-        public function displayStocksReport(){
-       		$month = $_POST['month']; 	
-       		$year = $_POST['year'];
-        	static::$kl = $year . "-0" . $month;
-        	//echo static::$kl;
-        	$this->view->render('stocks/reports/stocksDisplay',false);
+			$model = new Stocks_model();
+			$yy = $_GET['yy'] . "%";
+			$modelStocks = $model->retrieveStockReport($yy);
+        	
+   			include 'views/stocks/reports/stocksReport.php';
         }
 	}
 ?>
