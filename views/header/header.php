@@ -59,7 +59,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/IOC/" id="brand">IOC<sup>v0.9.1</sup></a>
+        <a class="navbar-brand" href="/IOC/" id="brand">IOC<sup>v0.9.5</sup></a>
     </div>
     <div class="navbar-collapse collapse navbar-responsive-collapse">
         <ul class="nav navbar-nav">
