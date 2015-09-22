@@ -571,5 +571,19 @@
         	
    			include 'views/stocks/reports/pumpReport.php';
         }
+        //lubricant report
+        public function lubricantreport(){
+        	include 'views/stocks/reports/lubricantreport.php';	
+        }
+        public function displayLubricantReport(){
+        	$this->view->render('stocks/reports/pumpsDisplay',false);
+        }
+        public function retrieveLubricantReport(){
+        	require 'models/Stocks_model.php';
+			$model = new Stocks_model();
+			$modelStocks = $model->retrieveLubricantReport();
+        	
+   			include 'views/stocks/reports/lubricantReport.php';
+        }
 	}
 ?>

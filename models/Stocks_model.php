@@ -291,6 +291,16 @@
             }
             return $pump;
         }
+        public function retrieveLubricantReport(){
+        	$lubricant = '';
+            $sql = $this->db->prepare("SELECT Name,Price,Quantity,Supplier FROM Lubricants");
+            $sql->execute();
+
+            while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+                $lubricant[] = $obj;
+            }
+            return $lubricant;
+        }
         public function SendMail($email, $message) {
         require_once '/libs/email/PHPMailer/PHPMailerAutoload.php';
 
