@@ -186,9 +186,9 @@ class Carwash_model extends Model {
     }
     
         //PDF REPORTS
-    function NonRegHistory() {
+    function NonRegHistory($string) {
             $transactions = '';
-            $sql = $this->db->prepare("SELECT cname,contact,vehicleNo,amount,date,returnedDate FROM car_transactions");
+            $sql = $this->db->prepare("SELECT cname,contact,vehicleNo,amount,date,returnedDate FROM car_transactions where date like '$string'");
             $sql->execute();
 
             while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
@@ -196,9 +196,9 @@ class Carwash_model extends Model {
             }
             return $transactions;
         }
-        function RegHistory() {
+        function RegHistory($string) {
             $transactions = '';
-            $sql = $this->db->prepare("select cust_id,vehicleNo,amount,date,returnedDate FROM regular_transactions");
+            $sql = $this->db->prepare("select cust_id,vehicleNo,amount,date,returnedDate FROM regular_transactions where date like '$string'");
             $sql->execute();
 
             while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
