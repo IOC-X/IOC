@@ -279,7 +279,18 @@
             }
             return $stocks;
         }
+        public function retrievePumpReport($kl){
+        	$pump = '';
+            $sql = $this->db->prepare("SELECT Date,Reading,PumpNo FROM pumpreadings WHERE Date LIKE :kl");
+            $sql->execute(array(
+            	':kl' => $kl
+            ));
 
+            while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+                $pump[] = $obj;
+            }
+            return $pump;
+        }
         public function SendMail($email, $message) {
         require_once '/libs/email/PHPMailer/PHPMailerAutoload.php';
 

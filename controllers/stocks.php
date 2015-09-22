@@ -546,7 +546,6 @@
         	include 'views/stocks/reports/stockreport.php';
         }        
         public function displayStocksReport(){
-
         	$this->view->render('stocks/reports/stocksDisplay',false);
         }
         public function retrieveStocksReport(){
@@ -556,6 +555,21 @@
 			$modelStocks = $model->retrieveStockReport($yy);
         	
    			include 'views/stocks/reports/stocksReport.php';
+        }
+        //pump report 
+        public function pumpreport(){
+        	include 'views/stocks/reports/pumpreport.php';
+        }
+        public function displayPumpReport(){
+        	$this->view->render('stocks/reports/pumpsDisplay',false);
+        }
+        public function retrievePumpReport(){
+        	require 'models/Stocks_model.php';
+			$model = new Stocks_model();
+			$yy = $_GET['yy'] . "%";
+			$modelStocks = $model->retrievePumpReport($yy);
+        	
+   			include 'views/stocks/reports/pumpReport.php';
         }
 	}
 ?>
