@@ -14,12 +14,7 @@
         $('#pumpreport').click(function(){
             $('#subloader2').load('/IOC/stocks/pumpreport',function(){
                 $('#subloader2').hide();
-                $('#loader').fadeOut('slow');
-                $('#pump-tabs').fadeOut('slow');
-                setTimeout(function(){
-                    $('#subloader2').fadeIn('slow');
-                },500);
-                
+                $('#subloader2').fadeIn('fast');
             });
         });
         $('#lubricantreport').click(function(){
