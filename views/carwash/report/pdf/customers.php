@@ -15,7 +15,7 @@ $heading = array("Customer ID", "Name", "NIC", "Address","Contact","RegisteredDa
 foreach ($heading as $column_heading) {
     $pdf->Cell(30, 20, $column_heading, 1);
 }
-foreach ($model as $row) {
+foreach ($Customers as $row) {
     $pdf->SetFont('Arial', '', 8);
     $pdf->Ln();
     foreach ($row as $column)

@@ -300,20 +300,34 @@ class Carwash extends Controller {
         include 'views/carwash/report/pdf/pdfReports.php';
     }
     public function NonRegpdfReport(){
+       // $month = $_POST['month'];
+       // $year = $_POST['year'];
+        
+       // $string=$year."-".$month."%";
+        $xx = $_GET['xx'] . "%";
+        
         $model = new Carwash_model();
-        $Transactions = $model->NonRegHistory();
+        $Transactions = $model->NonRegHistory($xx);
+        
         include 'views/carwash/report/pdf/NonRegHistory.php';
     }
     public function NonRegpdfReportDisplay(){
         include 'views/carwash/report/pdf/NonRegHistoryDisplay.php';
     }
+    public function NonRegIframe(){
+        include 'views/carwash/report/pdf/NonRegIframe.php';
+    }
     public function RegpdfReport(){
+        $xx = $_GET['xx'] . "%";        
         $model = new Carwash_model();
-        $Transactions = $model->RegHistory();
+        $Transactions = $model->RegHistory($xx);
         include 'views/carwash/report/pdf/RegHistory.php';
     }
     public function RegpdfReportDisplay(){
         include 'views/carwash/report/pdf/RegHistoryDisplay.php';
+    }
+     public function RegIframe(){
+        include 'views/carwash/report/pdf/RegIframe.php';
     }
     
     public function CustomerpdfReport(){
