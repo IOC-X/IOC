@@ -229,13 +229,18 @@
                 var subject = $("#subject").val();
                 var message = $("#message").val();
                 $.post('stocks/emailSupplier', { email : to , subject : subject , message : message }, function(data){
-                    console.log(data);
-                    alert('Sent !');
-                    $('#subloader2').empty();
-                    $('#subloader2').load('/IOC/stocks/edit_suppliers',function(){
-                        $('#subloader2').hide();
-                        $('#subloader2').fadeIn('slow');
-                    });
+                    if(!data){
+                        swal("Something went wrong try again !", "click okay to continue", "success");
+                    }
+                    else{
+                        console.log(data);
+                        swal("Email sent !", "click okay to continue", "success");
+                        $('#subloader2').empty();
+                        $('#subloader2').load('/IOC/stocks/edit_suppliers',function(){
+                            $('#subloader2').hide();
+                            $('#subloader2').fadeIn('slow');
+                        });
+                    }
                 });
             }); 
   

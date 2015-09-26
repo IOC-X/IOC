@@ -96,6 +96,10 @@
             swal("Oops !", "Not a valid email");
             return false;    
         }
+        if(!(/[A-Z]/.test(name[0]))){
+            swal("Oops !", "First letter should be capital");
+            return false;
+        }
         else{
             console.log('succ');
             var form = $('#add_supplier_form');
