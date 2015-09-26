@@ -186,5 +186,38 @@
 
 			$model->editBranch($id,$name,$description,$address);
 		}
+		//reports start here
+		public function report1(){
+        	$this->view->render('transport/reports/index',false);
+        }
+        public function emgreport(){
+        	include 'views/transport/reports/emgreport.php';
+        }        
+        public function displayEmgReport(){
+        	$this->view->render('transport/reports/emgDisplay',false);
+        }
+        public function retrieveEmgReport(){
+        	require 'models/Transport_model.php';
+			$model = new Transport_model();
+			$yy = $_GET['yy'] . "%";
+			$modelStocks = $model->retrieveEmgReport($yy);
+        	
+   			include 'views/transport/reports/emgReportX.php';
+        }
+        //lubricant report
+        public function lubricantreport(){
+        	include 'views/transport/reports/lubricantreport.php';	
+        }
+        public function displayLubricantReport(){
+        	$this->view->render('transport/reports/pumpsDisplay',false);
+        }
+        public function retrieveLubricantReport(){
+        	require 'models/Transport_model.php';
+			$model = new Transport_model();
+			$modelStocks = $model->retrieveLubricantReport();
+        	
+   			include 'views/transport/reports/lubricantReportX.php';
+        }
+        
 	}
   ?>

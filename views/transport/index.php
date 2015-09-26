@@ -10,7 +10,7 @@
 				<i class="mdi-image-blur-on" style="margin-right:10px"></i> Lubricant transport</a>
 				<a href="transport/branches" class="btn btn-flat btn-primary" id="branches">
 				<i class="mdi-image-filter-none" style="margin-right:10px"></i> Branches</a>
-				<a href="transport/report" class="btn btn-flat btn-primary" id="report">
+				<a href="transport/report1" class="btn btn-flat btn-primary" id="report1">
 				<i class="mdi-image-style" style="margin-right:10px"></i> Report</a>
 			</div>
 		</div>
@@ -63,12 +63,12 @@
             });
         });
 
-        $('#report').click(function(e2){
+        $('#report1').click(function(e2){
     	e2.preventDefault();
     	var id = $(this).attr('id');
 
         $('#subloader').load('/IOC/transport/' + id,function(){
-                //console.log('report !');
+                //console.log('report1 !');
 					$('#subloader').hide();
             	$('#subloader').fadeIn('fast');
             	window.location.hash = "";

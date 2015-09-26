@@ -128,4 +128,26 @@
             ));
             return true;
         }
+        public function retrieveEmgReport($kl){
+            $stocks = '';
+            $sql = $this->db->prepare("SELECT * FROM emergencytransport WHERE date LIKE :kl");
+            $sql->execute(array(
+                ':kl' => $kl
+            ));
+
+            while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+                $stocks[] = $obj;
+            }
+            return $stocks;
+        }
+        public function retrieveLubricantReport(){
+            $stocks = '';
+            $sql = $this->db->prepare("SELECT * FROM lubricanttransport");
+            $sql->execute();
+
+            while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+                $stocks[] = $obj;
+            }
+            return $stocks;
+        }
     }
