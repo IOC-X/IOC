@@ -38,12 +38,13 @@
 			));
 		}
 		public function updateTank($qntyPetrol,$qntySPetrol,$qntyDiesel,$qntySDiesel){
-			$st = $this->db->prepare("UPDATE tanks SET Petrol=:petrol,SPetrol=:spetrol,Diesel=:diesel,SDiesel=:sdiesel WHERE Id=1");
+			$st = $this->db->prepare("UPDATE tanks SET Petrol=:petrol,SPetrol=:spetrol,Diesel=:diesel,SDiesel=:sdiesel,Date=:datee WHERE Id=1");
 			$st->execute(array(
 				':petrol' => $qntyPetrol,
 				':spetrol' => $qntySPetrol,
 				':diesel' => $qntyDiesel,
-				':sdiesel' => $qntySDiesel
+				':sdiesel' => $qntySDiesel,
+				':datee' => date('Y-m-d')
 			));
 			return true;
 		}
@@ -79,8 +80,10 @@
 			return true;
 		}
 		public function getTankStocks(){
-			$st = $this->db->prepare("SELECT * FROM tanks");
-			$st->execute();
+			$st = $this->db->prepare("SELECT * FROM tanks WHERE Date=:datee");
+			$st->execute(array(
+				':datee' => Date('Y-m-d')
+			));
 			return $st->fetchAll();
 		}
 		public function loadOrders($type){
