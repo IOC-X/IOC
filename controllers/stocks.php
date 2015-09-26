@@ -585,5 +585,42 @@
         	
    			include 'views/stocks/reports/lubricantReport.php';
         }
+        //suppliers report
+        public function supplierreport(){
+        	include 'views/stocks/reports/supplierreport.php';	
+        }
+        public function displaySupplierReport(){
+        	$this->view->render('stocks/reports/supplierDisplay',false);
+        }
+        public function retrieveSupplierReport(){
+        	require 'models/Stocks_model.php';
+			$model = new Stocks_model();
+			$modelStocks = $model->retrieveSupplierReport();
+        	
+   			include 'views/stocks/reports/supplierReport.php';
+        }
+        //renders graph tab
+        public function graphs(){
+        	//echo "done";
+        	$this->view->render('stocks/reports/graphs/index',false);
+        }
+        //stockgraph
+        public function stockGraphs(){
+        	$this->view->render('stocks/reports/graphs/stock',false);
+        }
+        public function getStockGraphComparison(){
+        	require 'models/Stocks_model.php';
+			$model = new Stocks_model();
+		 	echo json_encode($model->getStockGraphComparison());
+        }
+        //pump graph
+        public function pumpGraph(){
+        	$this->view->render('stocks/reports/graphs/pump',false);
+        }
+        public function calcPumpReadingForMonth(){
+        	require 'models/Stocks_model.php';
+			$model = new Stocks_model();
+		 	echo json_encode($model->calcPumpReadingForMonth());
+        }
 	}
 ?>

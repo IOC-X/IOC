@@ -301,6 +301,34 @@
             }
             return $lubricant;
         }
+        public function retrieveSupplierReport(){
+        	$supplier = '';
+            $sql = $this->db->prepare("SELECT name,product,contact FROM Suppliers");
+            $sql->execute();
+
+            while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+                $supplier[] = $obj;
+            }
+            return $supplier;
+        }
+        public function getStockGraphComparison(){
+        	$st = $this->db->prepare("SELECT * FROM Orders WHERE Date=:datee");
+			$st->execute(array(
+				':datee' => date('Y-m-d')
+			));
+			return $st->fetchAll();
+        }
+        public function calcPumpReadingForMonth(){
+        	$avgReading = '';
+        	
+			$st = $this->db->prepare("SELECT PumpNo AS No, SUM(Reading) AS Total, Date FROM pumpreadings WHERE Date LIKE :kk GROUP BY PumpNo ");
+        	$st->execute(array(
+        		':kk' => date("Y") . "%"
+        	));
+			$avgReading = $st->fetchAll();
+        	
+        	return $avgReading;
+        }
         public function SendMail($email, $message) {
         require_once '/libs/email/PHPMailer/PHPMailerAutoload.php';
 
