@@ -23,12 +23,12 @@
 			//require('models/Stocks_model.php');
 			//$model = new Stocks_model();
 			//$data = $model->getMorningStocks();
-			if($_SERVER['HTTP_X_REQUESTED_WITH'] == "XMLHttpRequest"){
+			//if($_SERVER['HTTP_X_REQUESTED_WITH'] == "XMLHttpRequest"){
 				$this->view->render('stocks/stocks',false);			
-			}
-			else{
-				$this->view->render('stocks/stocks',true);
-			}
+			//}
+			//else{
+			//	$this->view->render('stocks/stocks',true);
+			//}
 
 		}
 		public function morning_reading(){
