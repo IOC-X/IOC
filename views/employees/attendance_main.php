@@ -234,8 +234,8 @@
 //pump list
     function loadpump() {
         var ss = document.getElementById("pumpemp").value;
-        $.getJSON('employees/shift_list', function (data) {
-            document.getElementById("pumpidd").value = data[ss].shiftId;
+        $.getJSON('employees/pump_list', function (data) {
+            document.getElementById("pumpidd").value = data[ss].PumpNo;
         });
 
     }

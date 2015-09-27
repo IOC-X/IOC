@@ -15,7 +15,8 @@
 
             <a href="javascript:void(0)" class="btn btn-flat btn-primary" id="shiftMain">
                 <i class="mdi-notification-event-note"></i>  Shift Management</a>
-
+            <a href="stocks/report" class="btn btn-flat btn-primary" id="report_emp">
+                <i class="mdi-maps-layers"></i>Report</a>
         </div>
 
 
@@ -39,6 +40,12 @@
                 $('#subloader').load('/IOC/employees/' + id, function () {
                 });
             });
+            $('#report_emp').click(function (e2) {
+                e2.preventDefault();
+                var id = $(this).attr('id');
+                $('#subloader').load('/IOC/employees/' + id, function () {
+                });
+            });            
         </script>
 
     </div>

@@ -151,7 +151,41 @@ class Employees_model extends Model {
         $results->execute();
         return $results->fetchAll();
     }
+    //report
+    public function attenReports($year,$month){
+      //  echo $year;
+        //echo $month;
+        	$atten = '';
+            $sql = $this->db->prepare("SELECT empCode,shiftCode,atyear,atmonth,atdate,startTime,endTime,pumps FROM attendance WHERE atyear =? AND atmonth =?");
+        $sql->bindValue(1, $year);
+        $sql->bindValue(2, $month);
+ $sql->execute();
+            while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+                $atten[] = $obj;
+            }
+            return $atten;
+        }
 
+        
+    public function empReports(){
+        	$emp = '';
+            $sql = $this->db->prepare("SELECT employeeCode,emptype,firstName,lastName,address,nicNumber,mobilePhone,birthDate,hireDate FROM employee_list");
+            $sql->execute();
+            while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+                $emp[] = $obj;
+            }
+            return $emp;
+        }
+        
+    public function shiftReports(){
+        	$shift = '';
+            $sql = $this->db->prepare("SELECT shiftId,shiftName,shiftDuration,shiftRate FROM shiftdb");
+            $sql->execute();
+            while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+                $shift[] = $obj;
+            }
+            return $shift;
+        }        
 }
 
 ?>
