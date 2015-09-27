@@ -46,7 +46,7 @@ INSERT INTO `asupplier` (`Fname`, `Lname`, `Company`, `Address`, `Email`, `PNumb
 --
 
 CREATE TABLE `attendance` (
-  `atid` int(11) NOT NULL,
+  `atid` int(11) NOT NULL AUTO_INCREMENT,
   `empCode` varchar(50) DEFAULT NULL,
   `shiftCode` varchar(50) DEFAULT NULL,
   `shiftprice` varchar(100) DEFAULT NULL,
@@ -58,7 +58,7 @@ CREATE TABLE `attendance` (
   `endTime` varchar(50) DEFAULT NULL,
   `pumps` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`atid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=485 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `attendance`
