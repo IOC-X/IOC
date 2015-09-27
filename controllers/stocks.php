@@ -554,7 +554,7 @@
 			$yy = $_GET['yy'] . "%";
 			$modelStocks = $model->retrieveStockReport($yy);
         	
-   			include 'views/stocks/reports/stocksReport.php';
+   			include 'views/stocks/reports/stocksReportSpec.php';
         }
         //pump report 
         public function pumpreport(){
@@ -569,7 +569,7 @@
 			$yy = $_GET['yy'] . "%";
 			$modelStocks = $model->retrievePumpReport($yy);
         	
-   			include 'views/stocks/reports/pumpReport.php';
+   			include 'views/stocks/reports/pumpReportSpec.php';
         }
         //lubricant report
         public function lubricantreport(){
@@ -583,7 +583,7 @@
 			$model = new Stocks_model();
 			$modelStocks = $model->retrieveLubricantReport();
         	
-   			include 'views/stocks/reports/lubricantReport.php';
+   			include 'views/stocks/reports/lubricantReportSpec.php';
         }
         //suppliers report
         public function supplierreport(){
@@ -597,7 +597,7 @@
 			$model = new Stocks_model();
 			$modelStocks = $model->retrieveSupplierReport();
         	
-   			include 'views/stocks/reports/supplierReport.php';
+   			include 'views/stocks/reports/supplierReportSpec.php';
         }
         //renders graph tab
         public function graphs(){
