@@ -576,7 +576,7 @@
         	include 'views/stocks/reports/lubricantreport.php';	
         }
         public function displayLubricantReport(){
-        	$this->view->render('stocks/reports/pumpsDisplay',false);
+        	include 'views/stocks/reports/pumpsDisplay';
         }
         public function retrieveLubricantReport(){
         	require 'models/Stocks_model.php';
