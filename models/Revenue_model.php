@@ -186,6 +186,77 @@ class Revenue_model extends Model {
         ));
         return true;
     }
+    //pdf generations
+     public function fuelExpense() {
+
+        $sql = $this->db->prepare("select sum(fuelpayment) as FuelExpense from fuel_expense");
+        $sql->execute();
+        while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+            $stats[] = $obj;
+        }
+        return $stats;
+    }
+    
+     public function fuelExpenseDetails() {
+
+        $sql = $this->db->prepare("select expfueltype,capacity,date ,fuelpayment from fuel_expense");
+        $sql->execute();
+        while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+            $stats[] = $obj;
+        }
+        return $stats;
+    }
+    
+     public function lubricantExpense() {
+
+        $sql = $this->db->prepare("select sum(total) as FuelExpense from lubricant_expense");
+        $sql->execute();
+        while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+            $stats[] = $obj;
+        }
+        return $stats;
+    }
+    
+     public function lubricantExpenseDetails() {
+
+        $sql = $this->db->prepare("select product,price,supplier,quantity,bquantity,date,total from lubricant_expense");
+        $sql->execute();
+        while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+            $stats[] = $obj;
+        }
+        return $stats;
+    }
+    
+     public function otherExpense() {
+
+        $sql = $this->db->prepare("select sum(expense) as FuelExpense from other_expenses");
+        $sql->execute();
+        while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+            $stats[] = $obj;
+        }
+        return $stats;
+    }
+    
+     public function otherExpenseDetails() {
+
+        $sql = $this->db->prepare("select description,date,expense from other_expenses");
+        $sql->execute();
+        while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+            $stats[] = $obj;
+        }
+        return $stats;
+    }
+    
+    public function totalExpense() {
+
+        $sql = $this->db->prepare("select sum(total) from (select sum(fuelpayment) as total from fuel_expense union select sum(total) as total from lubricant_expense union select sum(expense) as total from other_expenses )t");
+        $sql->execute();
+        while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+            $stats[] = $obj;
+        }
+        return $stats;
+    }
+    
     // public function addlubinc($name, $qty, $supplier, $price, $sqty, $inc, $date) {
 
     //     // echo "Name". $name." ";
