@@ -37,7 +37,7 @@
 			$st->execute(array(
 				':username' => $username
 			));
-			return ($st->fetch());
+			return ($st->fetchAll());
 		}
 	}
 ?>

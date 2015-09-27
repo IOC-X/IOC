@@ -4,15 +4,21 @@
 			parent::__construct();
 		}
 		public function index(){
+			//$data = self::loadProfileCode();
+			//print_r($data);
 			$this->view->render('profile/index',false);
 		}
 		public function loadProfileCode(){
 			Session::init();
-			$employeeCode = $_SESSION['loggedIn'];
+			$employeeName = $_SESSION['loggedIn'];
 			require 'models/Login_model.php';
 			$model = new Login_model();
-			//echo $model->loadProfileDetails($employeeCode);
-			echo json_encode($model->loadProfileDetails($employeeCode));
+			$data = $model->getEmployeeCode($employeeName);
+			//print_r($data);
+			$empCode = $data[0][0];
+			$data = $model->loadProfileDetails($empCode);
+			return $data;
+			//echo json_encode($model->loadProfileDetails($employeeCode));
 //			echo json_encode($employeeCode);
 		}
 	}
