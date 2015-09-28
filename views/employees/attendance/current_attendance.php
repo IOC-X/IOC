@@ -54,11 +54,13 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        
+         var currentTime = new Date();
         //employee list 
         $.getJSON('employees/list_employees', function (data) {
 //attendance list
             $.getJSON('employees/attendance_list', function (dataatt) {
-                var currentTime = new Date();
+               
 
                 var len = data.length;
                 var len2 = dataatt.length;
@@ -77,7 +79,7 @@
                         {
                             if(dataatt[y].endTime == null){
                             $('#loadwork').append(
-                                    $('<li id="' + x + '"></li>').val(x).html(data[x].firstName + " " + data[x].lastName+" "+'<p align="right">'+" - "+data[x].emptype+'</p>'+ '<p align="right"><a href="' + data[x].employeeCode + '"  class="finishh" >Mark As Finish</a></p>'));
+                                    $('<li id="' + x + '"></li>').val(x).html(data[x].firstName + " " + data[x].lastName+" "+'<p align="right">'+" - "+data[x].emptype+'</p>'+ '<p align="right"><input type="number" min="0" palceholder="Pump Reading" required id="value'+x+'" class="pumpReading"></p><p align="right"> <a href="' + data[x].employeeCode + '"  id="'+x+'" class="finishh" >Mark As Finish</a></p>'));
                             break;
                             }
                             else{
@@ -139,7 +141,99 @@
 
 
                 $('.finishh').click(function (e) {
-                    var id = $(this).attr('href');
+                 
+               var id = $(this).attr('href');     
+               var p = $(this).attr('id');
+               //alert(pumpValue);
+             
+                        var pumpValue = document.getElementById("value"+p).value;
+                       // alert(pumpValue);
+                         if(pumpValue == 0){
+                               e.preventDefault();
+                         swal("Pump Reading Cannot be Empty")
+                    }
+                       else{
+                           
+                   //search pump type 
+
+                   $.getJSON('employees/attendance_list', function (dataatt) {
+                          var len2 = dataatt.length;
+
+                       for(var f=0;f<len2;f++){
+                           
+                        
+                        if (id == dataatt[f].empCode )
+                        {
+                           
+                           
+                           if(dataatt[f].atyear == currentTime.getFullYear())
+                           {
+                               var a=currentTime.getMonth() + 1;
+                               if(a<10)
+                               {
+                                   a="0"+a;
+                               }
+                               
+                               
+                               if(dataatt[f].atmonth == a)
+                               {
+                                   if(dataatt[f].atdate == currentTime.getDate())
+                                   {
+                                      //  alert(dataatt[f].atid);
+                                 //    dataatt[f].pumps; 
+                                   
+                             $.getJSON('employees/pump_list', function (data) {
+                            var len = data.length;
+                          
+                            for (x = 0; x < len; x++) {
+                                 // alert(dataatt[f].pumps);
+                              if(dataatt[f].pumps == data[x].PumpNo)
+                                {
+                                 var  abc = data[x].Fuel;
+
+                        $.getJSON('employees/gettank', function (dat) { 
+                            
+                         var spetrol,petrol,diesel,sdiesel;
+                         
+                                if(abc == "SuperPetrol")
+                                {
+                                    spetrol=parseInt(dat[0].SPetrol)-parseInt(pumpValue);
+//                                    alert(dat[0].SPetrol);
+//spetrol=dat[0].SPetrol;
+petrol=dat[0].Petrol;
+diesel=dat[0].Diesel;
+sdiesel=dat[0].SDiesel;
+                                }
+                                else if(abc == "Petrol")
+                                {
+                                    petrol=parseInt(dat[0].Petrol)-parseInt(pumpValue);
+  //                                  alert(dat[0].Petrol); 
+  spetrol=dat[0].SPetrol;
+//petrol=dat[0].Petrol;
+diesel=dat[0].Diesel;
+sdiesel=dat[0].SDiesel;
+                                }
+                                else if(abc == "Diesel")
+                                {
+                                    diesel=parseInt(dat[0].Diesel)-parseInt(pumpValue);
+    //                                 alert(dat[0].Diesel);
+    spetrol=dat[0].SPetrol;
+petrol=dat[0].Petrol;
+//diesel=dat[0].Diesel;
+sdiesel=dat[0].SDiesel;
+                                }
+                                else if(abc == "SuperDiesel")
+                                {
+                                    sdiesel=parseInt(dat[0].SDiesel)-parseInt(pumpValue);
+      //                               alert(dat[0].SDiesel);
+      spetrol=dat[0].SPetrol;
+petrol=dat[0].Petrol;
+diesel=dat[0].Diesel;
+//sdiesel=dat[0].SDiesel;
+                                }
+
+  //  alert(tu);
+                      
                     var currentTime = new Date();
                     var dateeofthe=currentTime.getMinutes();
                     if(dateeofthe<10)
@@ -170,7 +264,7 @@
                                 
                                 type: 'post',
                                 url: 'employees/addfinish',
-                                data: {idac: id,idyear:yearr,idmonth:monthh,iddate:datee,idtime:tim},
+                                data: {idac: id,idyear:yearr,idmonth:monthh,iddate:datee,idtime:tim,spetrol:spetrol,petrol:petrol,diesel:diesel,sdiesel:sdiesel},
                                 success: function (data) {
                                    
                                     swal("Done!", "Employee Has Been Set Finish!", "success");
@@ -184,16 +278,46 @@
                             swal("Cancelled", "Your Employee is safe :)", "error");
                         }
                     });
+  
+  
+  
+  //
+                        });
+   
+                                  break;
+                                }
+                                
+                                //alert();
+                            }
+                            });                                   
+                                    break;
+                                    }
+                               }
+                           }
+                          
+                        }                       
+                    }
+                     });
+                     
+           
+
+           
+                  
+                   //end pump type
+
 
 
                     return false;
+                           
+                       }
+                 
                 });
 
             });
 
         });
 
-
+       
 
     });
 
