@@ -198,5 +198,46 @@ class Assets extends Controller
                     
             
         }
-           
+
+        // report
+
+                public function report()
+        {
+            $this->view->render('assets/report/reportIndex',false);
+        }
+        
+        
+                            public function supplierReport(){
+        	  include '/views/assets/report/supreport.php';
+        }
+        
+                public function displayAssetsReport(){
+        	$this->view->render('assets/report/supplierReport',false);
+        }
+        
+        
+        public function retrieveShiftReport() {
+require 'models/Assets_model.php';
+    $yy = $_GET['yy'];
+        $model = new Assets_model();
+        $modelStocks = $model->assetsReports($yy);
+        include 'views/assets/report/supplierMakeReport.php';
+    }   
+        
+        
+   //report 
+                    public function equipReport(){
+        	$this->view->render('assets/report/eqReport',false);
+        }
+        public function retrieveEqReport() {
+require 'models/Assets_model.php';
+        $model = new Assets_model();
+        $modelStocks = $model->equipReports();
+        include 'views/assets/report/eqMakeReport.php';
+    }  
+    
+    
+    
+    
+    
 }        ?>
