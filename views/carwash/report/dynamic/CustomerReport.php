@@ -11,8 +11,8 @@
                 animationEnabled: true,
                 axisX: {
                     title: "Time Period",
-                    valueFormatString: "MMM YYYY",
-                    interval: 3,
+                    valueFormatString: "DD MMM YYYY",
+                    interval: 2,
                     intervalType: "month"
 
                 },

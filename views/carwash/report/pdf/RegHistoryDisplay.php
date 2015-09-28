@@ -1,5 +1,5 @@
 <div class="col-lg-12 text-center">
-    <h3 class="text-center success"><strong>Earlier Regular Customer Transactions</strong></h3>
+    <h3 class="text-left success"><strong>Earlier Regular Customer Transactions</strong></h3>
 </div>
 
  <div class="col-md-3">
