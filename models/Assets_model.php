@@ -240,6 +240,32 @@ class Assets_model extends Model{
         $sql->execute();
     }
           
+    
+    //report assests
+    
+        public function assetsReports($yy){
+        	$assets = '';
+            $sql = $this->db->prepare("SELECT Company,Address,Email,PNumber,Type FROM asupplier where Type = ?");
+            $sql->bindValue(1, $yy);
+            $sql->execute();
+            while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+                $assets[] = $obj;
+            }
+            return $assets;
+        }   
+        
+     //report equipment
+    
+        
+            public function equipReports(){
+        	$eq = '';
+            $sql = $this->db->prepare("SELECT procode,momake,category,mdate,name FROM equipments");
+            $sql->execute();
+            while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+                $eq[] = $obj;
+            }
+            return $eq;
+        } 
         }
       
 ?>
