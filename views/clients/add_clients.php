@@ -7,7 +7,8 @@
                 <div class="form-group">
                     <label for="client_code" class="col-lg-2 control-label">Client Code</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" name="client_code" id="autocode" placeholder="C100" pattern="[C]{1}[0-9]{2,4}">
+                        <input type="text" class="form-control" id="client_code" placeholder="autogenerate" name="client_code" readonly>
+                       
                     </div>
                 </div>
 
@@ -90,8 +91,22 @@
 
     </div>
     
+<script>
+
+    
+   </script>
 
 <script type="text/javascript">
+    
+    
+        var d = new Date();
+    var x = d.getYear() + d.getMonth();
+    var y = d.getDate() - d.getHours() - d.getMinutes() - d.getSeconds() + d.getMilliseconds();
+    var shift = "C-" + (x + y);
+    document.getElementById('client_code').value = shift;
+    
+    
+    
              $("#wrapper").on("change", "#file", function () {
         //Do something
         var username = $("#file").val();
