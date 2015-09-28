@@ -115,7 +115,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
            
-           
+
            
                        var d = new Date();
             var cuyear = d.getFullYear();
@@ -180,7 +180,7 @@
                 for (var x = 0; x < len; x++) {
                     
                     $("tbody").append('<tr class="' + x + '" id="' + data[x].employeeCode + '">');
-                    $("." + x + "").append('<td id="' + "coder"+x + '"    class="tooltip-left" data-tooltip="'+ data[x].firstName + " " + data[x].lastName +'"></td>');
+                    $("." + x + "").append('<td id="' + "coder"+x + '"  onclick=myFunction("'+data[x].employeeCode+'")  class="tooltip-left" data-tooltip="'+ data[x].firstName + " " + data[x].lastName +'"></td>');
                     $("." + x + "").append('<td id="' + "x1"+x + '"></td>');
                     $("." + x + "").append('<td id="' + "x2"+x + '"></td>');
                     $("." + x + "").append('<td id="' + "x3"+x + '"></td>');
@@ -451,9 +451,9 @@
                 var len2 = dataatt.length;
 
                 for (var x = 0; x < len; x++) {
-                    
+                    //damsam
                     $("tbody").append('<tr class="' + x + '" id="' + data[x].employeeCode + '">');
-                    $("." + x + "").append('<td id="' + "coder"+x + '"    class="tooltip-left" data-tooltip="'+ data[x].firstName + " " + data[x].lastName +'"></td>');
+                    $("." + x + "").append('<td id="' + "coder"+x + '"   onclick=myFunction("'+data[x].employeeCode+'") class="tooltip-left" data-tooltip="'+ data[x].firstName + " " + data[x].lastName +'"></td>');
                     $("." + x + "").append('<td id="' + "x1"+x + '"></td>');
                     $("." + x + "").append('<td id="' + "x2"+x + '"></td>');
                     $("." + x + "").append('<td id="' + "x3"+x + '"></td>');
@@ -491,6 +491,7 @@
                         //assing empcode to table 1st colum
                         if (y == "0")
                         {
+                            
                             $("#coder"+x).append(data[x].employeeCode);
                         }
 
@@ -719,7 +720,7 @@
                 for (var x = 0; x < len; x++) {
                     
                     $("tbody").append('<tr class="' + x + '" id="' + data[x].employeeCode + '">');
-                    $("." + x + "").append('<td id="' + "coder"+x + '"    class="tooltip-left" data-tooltip="'+ data[x].firstName + " " + data[x].lastName +'"></td>');
+                    $("." + x + "").append('<td id="' + "coder"+x + '"  onclick=myFunction("'+data[x].employeeCode+'")  class="tooltip-left" data-tooltip="'+ data[x].firstName + " " + data[x].lastName +'"></td>');
                     $("." + x + "").append('<td id="' + "x1"+x + '"></td>');
                     $("." + x + "").append('<td id="' + "x2"+x + '"></td>');
                     $("." + x + "").append('<td id="' + "x3"+x + '"></td>');
@@ -974,7 +975,7 @@
                 for (var x = 0; x < len; x++) {
                     
                     $("tbody").append('<tr class="' + x + '" id="' + data[x].employeeCode + '">');
-                    $("." + x + "").append('<td id="' + "coder"+x + '"    class="tooltip-left" data-tooltip="'+ data[x].firstName + " " + data[x].lastName +'"></td>');
+                    $("." + x + "").append('<td id="' + "coder"+x + '"  onclick=myFunction("'+data[x].employeeCode+'")  class="tooltip-left" data-tooltip="'+ data[x].firstName + " " + data[x].lastName +'"></td>');
                     $("." + x + "").append('<td id="' + "x1"+x + '"></td>');
                     $("." + x + "").append('<td id="' + "x2"+x + '"></td>');
                     $("." + x + "").append('<td id="' + "x3"+x + '"></td>');
@@ -1261,7 +1262,7 @@
                 for (var x = 0; x < len; x++) {
                     
                     $("tbody").append('<tr class="' + x + '" id="' + data[x].employeeCode + '">');
-                    $("." + x + "").append('<td id="' + "coder"+x + '"    class="tooltip-left" data-tooltip="'+ data[x].firstName + " " + data[x].lastName +'"></td>');
+                    $("." + x + "").append('<td id="' + "coder"+x + '"  onclick=myFunction("'+data[x].employeeCode+'")  class="tooltip-left" data-tooltip="'+ data[x].firstName + " " + data[x].lastName +'"></td>');
                     $("." + x + "").append('<td id="' + "x1"+x + '"></td>');
                     $("." + x + "").append('<td id="' + "x2"+x + '"></td>');
                     $("." + x + "").append('<td id="' + "x3"+x + '"></td>');
@@ -1537,7 +1538,7 @@
                 for (var x = 0; x < len; x++) {
                     
                     $("tbody").append('<tr class="' + x + '" id="' + data[x].employeeCode + '">');
-                    $("." + x + "").append('<td id="' + "coder"+x + '"    class="tooltip-left" data-tooltip="'+ data[x].firstName + " " + data[x].lastName +'"></td>');
+                    $("." + x + "").append('<td id="' + "coder"+x + '"  onclick=myFunction("'+data[x].employeeCode+'")  class="tooltip-left" data-tooltip="'+ data[x].firstName + " " + data[x].lastName +'"></td>');
                     $("." + x + "").append('<td id="' + "x1"+x + '"></td>');
                     $("." + x + "").append('<td id="' + "x2"+x + '"></td>');
                     $("." + x + "").append('<td id="' + "x3"+x + '"></td>');
@@ -1806,7 +1807,7 @@
                 for (var x = 0; x < len; x++) {
                     
                     $("tbody").append('<tr class="' + x + '" id="' + data[x].employeeCode + '">');
-                    $("." + x + "").append('<td id="' + "coder"+x + '"    class="tooltip-left" data-tooltip="'+ data[x].firstName + " " + data[x].lastName +'"></td>');
+                    $("." + x + "").append('<td id="' + "coder"+x + '"  onclick=myFunction("'+data[x].employeeCode+'")  class="tooltip-left" data-tooltip="'+ data[x].firstName + " " + data[x].lastName +'"></td>');
                     $("." + x + "").append('<td id="' + "x1"+x + '"></td>');
                     $("." + x + "").append('<td id="' + "x2"+x + '"></td>');
                     $("." + x + "").append('<td id="' + "x3"+x + '"></td>');
@@ -2064,7 +2065,7 @@
                 for (var x = 0; x < len; x++) {
                     
                     $("tbody").append('<tr class="' + x + '" id="' + data[x].employeeCode + '">');
-                    $("." + x + "").append('<td id="' + "coder"+x + '"    class="tooltip-left" data-tooltip="'+ data[x].firstName + " " + data[x].lastName +'"></td>');
+                    $("." + x + "").append('<td id="' + "coder"+x + '"  onclick=myFunction("'+data[x].employeeCode+'")  class="tooltip-left" data-tooltip="'+ data[x].firstName + " " + data[x].lastName +'"></td>');
                     $("." + x + "").append('<td id="' + "x1"+x + '"></td>');
                     $("." + x + "").append('<td id="' + "x2"+x + '"></td>');
                     $("." + x + "").append('<td id="' + "x3"+x + '"></td>');
@@ -2275,4 +2276,167 @@
 
             }
 });
+
+
+
     </script>
+
+    
+    
+    <!-- start of model -->
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  
+
+                </div>
+
+                
+          <div id="chartContainer" style="height: 300px; width: 100%;"></div>      
+                
+
+            </div>
+        </div>
+    </div>
+
+
+<!-- end of model -->
+
+<script type="text/javascript">
+function myFunction(a) {
+        var empcode=a;
+       
+       var e1 = document.getElementById("idyear");
+        var ddyear = e1.options[e1.selectedIndex].text;
+      //  var ddyear = document.getElementById("idyear").value;
+        var ddmonth = document.getElementById("idmonth").value; 
+//alert(ddyear+" "+ddmonth);
+    if(ddyear == "" || ddmonth == ""){
+        
+            var d = new Date();
+            var cuyear = d.getFullYear();
+            var cumonth = d.getMonth() + 1;
+            if (cumonth < 10) {
+                cumonth = "0" + cumonth;
+            }
+            
+        }else{
+            
+            cuyear=ddyear;
+            cumonth=ddmonth;
+        }
+//alert(cuyear+" "+cumonth);            
+          var present=parseInt("0");
+          var abcens=parseInt("0");
+          
+         
+                             $.getJSON('employees/attendance_list', function (data) {
+                   var len = data.length;
+           
+                   for(var x=0;x<len;x++)
+                   {
+                     
+                       if(data[x].atyear == cuyear )
+                       {
+                                   
+                           if(data[x].atmonth == cumonth ){
+                             
+                               if(data[x].empCode == empcode)
+                               {
+                                   
+                                    if(data[x].colour == "#ff0000")
+                                    {
+                                        abcens=parseInt(abcens)+1;
+                                    }
+                                    else
+                                    {
+                                        present=parseInt(present)+1;
+                                    }
+                                    
+                                   
+                                   
+                               }
+                               
+                           }
+                           
+                           
+                       }
+                   }
+    
+    
+    });
+   var name;
+    $.getJSON('employees/list_employees', function (data1) { 
+        for(var y=0;y<data1.length;y++)
+        {
+            
+            if(data1[y].employeeCode==empcode)
+            {
+               name= data1[y].firstName + " " + data1[y].lastName;
+                
+            }
+        }
+    });
+   
+   
+          
+                $('#myModal').modal('show');
+                setTimeout(function () {
+              //    alert(abcens+" - "+present);
+//lolman
+                   
+var chart = new CanvasJS.Chart("chartContainer",
+	{
+		title:{
+			text: "Employee "+name+" Attendance For "+cuyear+"-"+cumonth
+		},
+		exportFileName: "Pie Chart",
+		exportEnabled: true,
+                animationEnabled: true,
+		legend:{
+			verticalAlign: "bottom",
+			horizontalAlign: "center"
+		},
+		data: [
+		{       
+			type: "pie",
+			showInLegend: true,
+			toolTipContent: "{legendText}: <strong>{y}%</strong>",
+			indexLabel: "{label} {y}%",
+			dataPoints: [
+				{  y: present, legendText: "Present", exploded: true, label: "Present" },
+				{  y: abcens, legendText: "Absence", label: "Absence" },
+
+			]
+	}
+	]
+	});
+	chart.render();
+                   
+                   
+                   
+                   
+                   
+                }, 250);
+                e.preventDefault();
+   
+  
+  
+  
+}
+</script>
+
+
+<!--
+
+
+	
+
+
+
+
+-->
+<script type="text/javascript" src="/IOC/views/employees/attendance/canvasjs.min.js"></script>

@@ -141,7 +141,12 @@
                 $('.finishh').click(function (e) {
                     var id = $(this).attr('href');
                     var currentTime = new Date();
-                    var tim=currentTime.getHours()+":"+currentTime.getMinutes();
+                    var dateeofthe=currentTime.getMinutes();
+                    if(dateeofthe<10)
+                    {
+                        dateeofthe="0"+dateeofthe;
+                    }
+                    var tim=currentTime.getHours()+":"+dateeofthe;
                     var yearr=currentTime.getFullYear();
                     var monthh=currentTime.getMonth()+1;
                     if(monthh<10)

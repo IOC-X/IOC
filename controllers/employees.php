@@ -26,7 +26,14 @@ class employees extends Controller {
 
         $this->view->render('employees/employee_main', false);
     }
-		
+    
+    public function report_emp() {
+
+        $this->view->render('employees/report/report', false);
+    }		
+    
+  
+    
     public function list_employees() {
 
         $model = new Employees_model();
@@ -244,7 +251,49 @@ $this->view->render('employees/shift_sub/shift_list',false);
         echo json_encode($model->select_pump());
 
     }
+    //report
+            public function attenreport(){
+        	  include '/views/employees/report/attenReport.php';
+        } 
+                public function displayAttenReport(){
+        	$this->view->render('employees/report/attendanceDisplay',false);
+        }
+        public function retrieveAttenReport(){
+        	
+			$model = new Employees_model();
+			$yy = $_GET['yy'];
+
+    $str = $yy;
+    $parts = explode("-", $str);
+    $year = $parts[0];
+    $month = $parts[1];
+
     
+			$modelStocks = $model->attenReports($year,$month);
+                        include 'views/employees/report/attenMakeReport.php';
+        }
+        
+//emp report
+                public function empreport(){
+        	$this->view->render('employees/report/empReport',false);
+        }
+        public function retrieveEmpReport() {
+
+        $model = new Employees_model();
+        $modelStocks = $model->empReports();
+        include 'views/employees/report/empMakeReport.php';
+    }
+
+//shift report
+                public function shiftreport(){
+        	$this->view->render('employees/report/shiftReport',false);
+        }
+        public function retrieveShiftReport() {
+
+        $model = new Employees_model();
+        $modelStocks = $model->shiftReports();
+        include 'views/employees/report/shiftMakeReport.php';
+    }    
 }
 
 ?>
