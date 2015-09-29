@@ -255,13 +255,77 @@ class Revenue_model extends Model {
     
     public function totalExpense() {
 
-        $sql = $this->db->prepare("select sum(total) from (select sum(fuelpayment) as total from fuel_expense union select sum(total) as total from lubricant_expense union select sum(expense) as total from other_expenses )t");
+        $sql = $this->db->prepare("select sum(total) from (select sum(fuelpayment) as total from fuel_expense union select sum(total) as total from lubricant_expense union select sum(expense) as total from other_expenses union select sum(paid) as Tot from payment )t");
         $sql->execute();
         while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
             $stats[] = $obj;
         }
         return $stats;
     }
+
+    //income report
+
+    public function lubricantIncomeDetails(){
+        $sql = $this->db->prepare("select prdType,quantity,supplier,sellingqty,price,date1,lubricantincome from lubricant_income");
+        $sql->execute();
+        while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+            $stats[] = $obj;
+        }
+        return $stats;
+    }
+
+     public function lubricantIncome() {
+
+        $sql = $this->db->prepare("select sum(lubricantincome) as LubricantIncome from lubricant_income");
+        $sql->execute();
+        while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+            $stats[] = $obj;
+        }
+        return $stats;
+    }
+
+    public function totalIncome() {
+
+        $sql = $this->db->prepare("select sum(lubricantincome) as LubricantIncome from lubricant_income");
+        $sql->execute();
+        while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+            $stats[] = $obj;
+        }
+        return $stats;
+    }
+    
+    //payment report
+
+     public function paymentDetails(){
+        $sql = $this->db->prepare("select empID,empName,date,paid from payment");
+        $sql->execute();
+        while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+            $stats[] = $obj;
+        }
+        return $stats;
+    }
+
+      public function paymentSum() {
+
+        $sql = $this->db->prepare("select sum(paid) as TotalPayment from payment");
+        $sql->execute();
+        while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+            $stats[] = $obj;
+        }
+        return $stats;
+    }
+
+    public function totalPayment(){
+        $sql = $this->db->prepare("select sum(paid) as Total from payment");
+        $sql->execute();
+        while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+            $stats[] = $obj;
+        }
+        return $stats;
+    }
+
+
+
     public function insertFuelIncome($pmpName,$amount,$fuelType){
         $st = $this->db->prepare("INSERT INTO fuel_income (empID,fueltype,amount,date) VALUES (:empID,:fuelType,:amount,:date)");
         $st->execute(array(
@@ -327,11 +391,11 @@ class Revenue_model extends Model {
     //     $result = $sql->execute(array($prdType, $quantity, $supplier, $sellingqty, $price, $date1, $lubricantincome, $prdIncomeID));
     // }
     
-    // public function select_lube() {
-    //     $results = $this->db->prepare("SELECT * FROM lubricant_income");
-    //     $results->execute();
-    //     return $results->fetchAll();
-    // }
+    public function select_lube() {
+        $results = $this->db->prepare("SELECT * FROM lubricant_income");
+        $results->execute();
+        return $results->fetchAll();
+     }
 
     // public function add_payment($empid,$empname,$empnic,$empdate,$empshifttype,$empgrosssal,$empepf,$empnetsal,$paid)
     // {

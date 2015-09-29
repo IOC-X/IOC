@@ -113,6 +113,10 @@ class Revenue extends Controller {
         $this->view->render('revenue/expenses/lubricantsxp', false);
     }
 
+    public function lubricant_inc_history(){
+        $this->view->render('revenue/income/lubricant_inc_history',false);
+    }
+
     public function insertlubricantExp() {
         $prd = $_POST['prd'];
         $price = $_POST['price'];
@@ -333,10 +337,49 @@ class Revenue extends Controller {
         //other
         $other_Expenses = $model->otherExpenseDetails();
         $other_sum = $model->otherExpense();
+        //payment
+        $payment = $model->paymentDetails();
+        $payment_sum = $model->paymentSum();
         //grand total
         $grandTotal = $model->totalExpense();
         include 'views/revenue/report/expense.php';
     }
+
+    public function IncomepdfReportDisplay(){
+        include 'views/revenue/report/incomeDisplay.php';
+    }
+
+    public function IncomepdfReport(){
+        require 'models/Revenue_model.php';
+        $model = new Revenue_model();
+        //lubricant
+        $lub_Income = $model->lubricantIncomeDetails();
+        $lub_suminc = $model->lubricantIncome();
+        //grand total
+        $grandTotal = $model->totalIncome();
+        include 'views/revenue/report/income.php';
+    }
+
+ public function PaypdfReportDisplay(){
+        include 'views/revenue/report/paymentDisplay.php';
+    }
+
+    public function PaypdfReport(){
+        require 'models/Revenue_model.php';
+        $model = new Revenue_model();
+        $payment = $model->paymentDetails();
+        $payment_sum = $model->paymentSum();
+        //grand total
+        $grandTotal = $model->totalPayment();
+
+        //$val1= $model->totalIncome();
+        //$val2= $model->totalExpense();
+
+        //$profit=$val1-$val2;
+        include 'views/revenue/report/payment.php';
+    }
+
+
 
     public function payment() {
         $this->view->render('revenue/payment', false);
@@ -440,11 +483,11 @@ class Revenue extends Controller {
     //       $model = new Revenue_model();
     //       $transactions = $model->deleteLubincome($id);
     //   }
-    //       public function lub_list() {
-    //          require 'models/Revenue_model.php';
-    //       $model = new Revenue_model();
-    //       echo json_encode($model->select_lube());
-    //   }
+         public function lub_list() {
+             require 'models/Revenue_model.php';
+           $model = new Revenue_model();
+          echo json_encode($model->select_lube());
+       }
     //   public function delete_payment()
     //   {
     //   	$id=$_POST['id2'];
