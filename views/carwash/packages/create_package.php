@@ -11,7 +11,7 @@
                 <label class="control-label col-lg-4">Name</label>
                 <div class="controls col-lg-6">
                     <input type="text" class="form-control floating-label" name="name" id="name" placeholder=" Package Name" value="<?php echo ($name); ?>">
-                    
+
                 </div>
             </div>
 
@@ -71,6 +71,7 @@
                 swal("Oops...", "Sorry.. Name should be letters!!!", "error");
 
             }
+
             else if ((description.match(numbers))) {
                 swal("Oops...", "Sorry.. Description should be letters!!!", "error");
             }
@@ -86,24 +87,52 @@
             else if (price < 1000) {
                 swal("Oops...", "Check the price again....!! Minimum is Rs.1000/=", "error");
             }
-            else {
-                // Returns successful data submission message when the entered information is stored in database.
-                $.post("carwash/createPackage", {name: name, description: description, time: time, price: price},
-                function (data) {
-                    swal("Good job!", "Successfully added the New Package!", "success");
-                    $('#form2')[0].reset(); //To reset form fields
+            else { //check for package name whether already exists
+                var name = $('#name').val();
+                if ((name[0])) {
+                    name = $('#name').val();
+                    $.post('carwash/checkPackage', {name: name}, function (data) {
+                        if (data.length < 1000) {
+                            swal("Oops !", "Package name already exists! Please try another name for the package!");
+                            return false;
+                        }
 
-                    $('#subloader').empty();
-                    $('#subloader').load('/IOC/carwash/packages', function () {
-                        $('#subloader').hide();
-                        $('#subloader').fadeIn('fast');
+                        else {
+                            $.post("carwash/createPackage", {name: name, description: description, time: time, price: price},
+                            function (data) {
+                                swal("Good job!", "Successfully added the New Package!", "success");
+                                $('#form2')[0].reset(); //To reset form fields
+
+                                $('#subloader').empty();
+                                $('#subloader').load('/IOC/carwash/packages', function () {
+                                    $('#subloader').hide();
+                                    $('#subloader').fadeIn('fast');
+                                });
+                            });
+                        }
                     });
-                });
+                }
+                // Returns successful data submission message when the entered information is stored in database.
                 console.log('data sent');
-
             }
         });
     });
 
+    $('#name').focusout(function () {
+        if (($(this).val()) == "") {
+            swal("Oops !", "Please fill name field");
+        }
+        var name = $(this).val();
+        if ((name[0])) {
+            name = $(this).val();
+            $.post('carwash/checkPackage', {name: name}, function (data) {
+                if (data.length < 1000) {
+                    swal("Oops !", "Package name already exists!");
+                    return false;
+                }
+            });
+        }
+
+    });
 
 </script>

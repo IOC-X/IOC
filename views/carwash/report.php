@@ -1,6 +1,6 @@
 	<div class="btn-group btn-group-justified">
     <a href="carwash/pdfReport" class="btn btn-primary" id="pdfReport"><i class="mdi-action-assignment"></i> PDF Reports</a>
-    <a href="carwash/dynamicReport" class="btn btn-primary" id="dynamic"><i class="mdi-action-trending-up"></i> Dynamic Reports</a> 
+    <a href="carwash/dynamicReport" class="btn btn-primary" id="dynamic"><i class="mdi-action-trending-up"></i> Graph-Hub</a> 
     </div>
 		    <script type="text/javascript">
                 $('#pdfReport').click(function(e2){

@@ -1,4 +1,5 @@
 <?php
+
 include_once '\libs\Database.php';
 
 class Carwash_model extends Model {
@@ -48,6 +49,16 @@ class Carwash_model extends Model {
         }
     }
 
+    public function checkPackage($name) {
+        $sql = $this->db->prepare("SELECT * FROM packages WHERE name like '$name'");
+        $sql->execute();
+
+        while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+            $packages[] = $obj;
+        }
+        return $packages;
+    }
+
     //PACKAGE DATA RETREIVING ENDS HERE
     //CUSTOMER DATA RETREIVING STARTS HERE
     public function selectAllcustomers() {
@@ -68,6 +79,26 @@ class Carwash_model extends Model {
         $sql->execute();
         $result = $sql->fetch(PDO::FETCH_OBJ);
         return $result;
+    }
+
+    public function checkCustomer($email) {
+        $sql = $this->db->prepare("SELECT * FROM regular_customers WHERE email like '$email'");
+        $sql->execute();
+
+        while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+            $customers[] = $obj;
+        }
+        return $customers;
+    }
+
+    public function checkCustomerNic($nic) {
+        $sql = $this->db->prepare("SELECT * FROM regular_customers WHERE nic like '$nic'");
+        $sql->execute();
+
+        while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+            $customers[] = $obj;
+        }
+        return $customers;
     }
 
     public function addCustomer($cust_id, $name, $nic, $address, $contact, $email, $date) {
@@ -152,7 +183,7 @@ class Carwash_model extends Model {
     }
 
     //REPORT DATA RETRIEVING STARTS HERE
-        //Animated Reports
+    //Animated Reports
     public function CustomerStatistics() {
         $sql1 = $this->db->prepare("set @sum=0;");
         $sql1->execute();
@@ -184,38 +215,40 @@ class Carwash_model extends Model {
         }
         return $stats;
     }
-    
-        //PDF REPORTS
+
+    //PDF REPORTS
     function NonRegHistory($string) {
-            $transactions = '';
-            $sql = $this->db->prepare("SELECT cname,contact,vehicleNo,amount,date,returnedDate FROM car_transactions where date like '$string'");
-            $sql->execute();
+        $transactions = '';
+        $sql = $this->db->prepare("SELECT cname,contact,vehicleNo,amount,date,returnedDate FROM car_transactions where date like '$string'");
+        $sql->execute();
 
-            while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
-                $transactions[] = $obj;
-            }
-            return $transactions;
+        while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+            $transactions[] = $obj;
         }
-        function RegHistory($string) {
-            $transactions = '';
-            $sql = $this->db->prepare("select cust_id,vehicleNo,amount,date,returnedDate FROM regular_transactions where date like '$string'");
-            $sql->execute();
+        return $transactions;
+    }
 
-            while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
-                $transactions[] = $obj;
-            }
-            return $transactions;
-        }
-        function Customers() {
-            $customers = '';
-            $sql = $this->db->prepare("select cust_id,name,nic,address,contact,date FROM regular_customers");
-            $sql->execute();
+    function RegHistory($string) {
+        $transactions = '';
+        $sql = $this->db->prepare("select cust_id,vehicleNo,amount,date,returnedDate FROM regular_transactions where date like '$string'");
+        $sql->execute();
 
-            while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
-                $customers[] = $obj;
-            }
-            return $customers;
+        while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+            $transactions[] = $obj;
         }
+        return $transactions;
+    }
+
+    function Customers() {
+        $customers = '';
+        $sql = $this->db->prepare("select cust_id,name,nic,address,contact,date FROM regular_customers");
+        $sql->execute();
+
+        while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+            $customers[] = $obj;
+        }
+        return $customers;
+    }
 
     //ALERTS
     //REGULAR TRANSACTIONS DATA RETRIEVING FOR ALERTS
@@ -315,4 +348,5 @@ class Carwash_model extends Model {
     }
 
 }
+
 ?>

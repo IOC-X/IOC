@@ -2,7 +2,7 @@
 <div class="col-lg-12">
     <div class="col-lg-3"><input type="text" class="form-control" id="search" placeholder="Type to search"></div>
     <div class="col-lg-12"><h1 class="text-center text-success">Regular Customers</h1></div>
-    <table class="table table-striped table-bordered" id="tblData">
+    <table class="table table-striped" id="tblData">
 
         <thead>
             <tr>

@@ -5,7 +5,7 @@
 <div class="col-lg-12 text-center">
     <h3 class="text-center success"><strong>Earlier NON-Regular Customer Transactions</strong></h3>
 </div>
-<table class="table table-striped table-bordered table-hover" id="tblData">
+<table class="table table-striped table-hover" id="tblData">
 
     <thead>
         <tr class="success">

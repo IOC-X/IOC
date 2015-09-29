@@ -50,6 +50,12 @@ class Carwash extends Controller {
         }
     }
 
+    public function checkPackage() {
+        $name = $_POST['name'];
+        $model = new Carwash_model();
+        echo json_encode($model->checkPackage($name));
+    }
+
     public function editPackage() {
         $model = new Carwash_model();
         $id = $_POST['id'];
@@ -91,6 +97,18 @@ class Carwash extends Controller {
         $model = new Carwash_model();
         $customers = $model->selectAllcustomers();
         include 'views/carwash/regular_customers/EditCustomerEntries.php';
+    }
+
+    public function checkCustomer() {
+        $email = $_POST['email'];
+        $model = new Carwash_model();
+        echo json_encode($model->checkCustomer($email));
+    }
+
+    public function checkCustomerNic() {
+        $nic = $_POST['nic'];
+        $model = new Carwash_model();
+        echo json_encode($model->checkCustomerNic($nic));
     }
 
     public function addCustomer() {
@@ -268,16 +286,17 @@ class Carwash extends Controller {
     }
 
     //REPORT GENARATION STARTS HERE
-        
+
     public function report() {
 
         $this->view->render('carwash/report', false);
     }
-        //Animated reports
-     public function dynamic() { 
-         $this->view->render('carwash/report/dynamic/dynamicReport', false);
-        
+
+    //Animated reports
+    public function dynamic() {
+        $this->view->render('carwash/report/dynamic/dynamicReport', false);
     }
+
     public function CustomerReport() {
         $model = new Carwash_model();
         $stats = $model->CustomerStatistics();
@@ -295,47 +314,54 @@ class Carwash extends Controller {
         $stats = $model->alertUsage();
         include 'views/carwash/report/dynamic/alertReport.php';
     }
-        //PDF reports
-    public function pdf(){
+
+    //PDF reports
+    public function pdf() {
         include 'views/carwash/report/pdf/pdfReports.php';
     }
-    public function NonRegpdfReport(){
-       // $month = $_POST['month'];
-       // $year = $_POST['year'];
-        
-       // $string=$year."-".$month."%";
+
+    public function NonRegpdfReport() {
+        // $month = $_POST['month'];
+        // $year = $_POST['year'];
+        // $string=$year."-".$month."%";
         $xx = $_GET['xx'] . "%";
-        
+
         $model = new Carwash_model();
         $Transactions = $model->NonRegHistory($xx);
-        
+
         include 'views/carwash/report/pdf/NonRegHistory.php';
     }
-    public function NonRegpdfReportDisplay(){
+
+    public function NonRegpdfReportDisplay() {
         include 'views/carwash/report/pdf/NonRegHistoryDisplay.php';
     }
-    public function NonRegIframe(){
+
+    public function NonRegIframe() {
         include 'views/carwash/report/pdf/NonRegIframe.php';
     }
-    public function RegpdfReport(){
-        $xx = $_GET['xx'] . "%";        
+
+    public function RegpdfReport() {
+        $xx = $_GET['xx'] . "%";
         $model = new Carwash_model();
         $Transactions = $model->RegHistory($xx);
         include 'views/carwash/report/pdf/RegHistory.php';
     }
-    public function RegpdfReportDisplay(){
+
+    public function RegpdfReportDisplay() {
         include 'views/carwash/report/pdf/RegHistoryDisplay.php';
     }
-     public function RegIframe(){
+
+    public function RegIframe() {
         include 'views/carwash/report/pdf/RegIframe.php';
     }
-    
-    public function CustomerpdfReport(){
+
+    public function CustomerpdfReport() {
         $model = new Carwash_model();
         $Customers = $model->Customers();
         include 'views/carwash/report/pdf/customers.php';
     }
-    public function CustomerpdfReportDisplay(){
+
+    public function CustomerpdfReportDisplay() {
         include 'views/carwash/report/pdf/customersDisplay.php';
     }
 

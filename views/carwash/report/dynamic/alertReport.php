@@ -12,7 +12,7 @@
                 axisX: {
                     title: "Time Period",
                     valueFormatString: "DD MMM YYYY",
-                    interval: 3,
+                    interval: 1,
                     intervalType: "month"
 
                 },
