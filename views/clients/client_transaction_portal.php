@@ -5,19 +5,26 @@
         <div class="form-group">
             <label for="To" class="col-lg-2 control-label">Sender Name</label>
             <div class="col-lg-4">
-                <input type="text" class="form-control" id="user" name="user" placeholder="Sender Name" pattern="[A-Z]{1}[a-z]{2,}">
+                <input type="text" class="form-control" id="user" name="user" placeholder="Sender Name">
             </div>
         </div>
          <div class="form-group">
             <label for="To" class="col-lg-2 control-label">Client Email</label>
-            <div class="col-lg-6">
-                <input type="text" class="form-control" id="email" name="email" placeholder="Client Email">
+            <div class="col-lg-4">
+                <select id="email"  class="form-control" name="email" id="fuelType" placeholder="Client Email" >
+                    <option  </option>
+                <option>kavi.oshan8@gmail.com</option>
+                <option>saman.gamage@gmail.com</option>
+                <option>ruwan.felo@gmail.com</option>
+                <option>jeewan@gmail.com</option>
+                </select>
+            </div>
             </div>
         </div>
           <div class="form-group">
             <label for="subject" class="col-lg-2 control-label">Subject</label>
             <div class="col-lg-4">
-                <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject Area" pattern="[A-Z]{1}[a-z]{2,}">
+                <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject Area">
             </div>
         </div>
            <div class="form-group">

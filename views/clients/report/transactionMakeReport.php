@@ -11,9 +11,9 @@ if (!$modelStocks) {
 	    return 0;
 }
 else{
-	//$pdf->Image('views/img/ioc.png', 95, 1, 20);
+	$pdf->Image('views/img/ioc.png', 95, 1, 20);
 	$pdf->MultiCell(20, 20, "");
-	$pdf->Text(75, 28, 'Transaction report');
+	$pdf->Text(75, 28, 'Client Transaction Reports');
 
 	//table data
 	$pdf->SetFont('Arial', 'B', 8);
