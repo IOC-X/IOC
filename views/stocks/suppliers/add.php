@@ -65,6 +65,7 @@
     //    $('#qnty-div').fadeOut('slow');
     //   }
     // });
+    var prdStat = false;
     $('#add_supplier_form').submit(function(e){
         e.preventDefault();
         var name = $('#sup-name').val();
@@ -100,6 +101,9 @@
             swal("Oops !", "First letter should be capital");
             return false;
         }
+        if(prdStat == true){
+            swal("Oops !", "Supplier already exists !");
+        }
         else{
             console.log('succ');
             var form = $('#add_supplier_form');
@@ -131,6 +135,10 @@
                 if(data){
                     if(data != 0){
                         swal("Oops !", "Supplier already exists !")      
+                        prdStat = true;
+                    }
+                    else{
+                        prdStat = false;
                     }
                     console.log(data);
                     console.log('its here');

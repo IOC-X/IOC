@@ -35,6 +35,7 @@
     </fieldset>
 </form>
 <script>
+    var prdStat = false;
     $('#add_lube_form').submit(function(e){
         e.preventDefault();
         var name = $('#prd-name').val();
@@ -60,6 +61,10 @@
         }
         if(!(/[A-Z]/.test(name[0]))){
             swal("Oops !", "First letter should be capital");
+            return false;
+        }
+        if(prdStat == true){
+            swal("Oops !", "Product already exists !");
             return false;
         }
         else{
@@ -109,7 +114,11 @@
                     //console.log(data.length);
                     if(data){
                         if(data != 0){
-                            swal("Oops !", "Product already exists !")      
+                            swal("Oops !", "Product already exists !");
+                            prdStat = true;
+                        }
+                        else{
+                            prdStat = false;
                         }
                         console.log(data);
                         console.log('its here');
