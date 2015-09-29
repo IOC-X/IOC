@@ -27,6 +27,16 @@
 	        e.preventDefault();
 	        var form = $('#daily_readings_form');
 
+            var input;
+            $("form#daily_readings_form :input[type=number]").each(function(){
+                input = $(this).val();
+                if(input == 0){
+                    console.log('inside');
+                    swal("Readings can't be zero ,please check again !");
+                    throw new Error("Something went badly wrong!");
+                }
+            });
+
 	        $.ajax({
 	          type : form.attr('method'),
 	          url : form.attr('action'),
@@ -74,7 +84,7 @@
                 }
             });
         
-
+          
         });
 
 		</script>
