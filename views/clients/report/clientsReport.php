@@ -15,7 +15,7 @@ $pdf->Text(5, 5, ' Date: ' . $date);
 
 $pdf->Image('views/img/ioc.png',95,1,20);
 $pdf->MultiCell(20, 20,"");
-$pdf->SetFont('Arial', 'B', 18);
+$pdf->SetFont('Arial', 'B', 19);
 $pdf->Text(75,28,'Client Details Report');
 
 

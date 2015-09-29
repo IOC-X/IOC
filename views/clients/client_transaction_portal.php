@@ -3,7 +3,7 @@
     <fieldset>
         <legend>Client Update Portal</legend>
         <div class="form-group">
-            <label for="To" class="col-lg-2 control-label">Sender Name</label>
+            <label for="To" class="col-lg-2 control-label">Sender</label>
             <div class="col-lg-4">
                 <input type="text" class="form-control" id="user" name="user" placeholder="Sender Name">
             </div>
