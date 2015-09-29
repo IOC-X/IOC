@@ -104,10 +104,14 @@
             var name = $(this).val();
             if(/[A-Z]/.test(name[0])){
                 name = $(this).val();
-                console.log('Sendinna');
+//                console.log('Sendinna');
                 $.post('stocks/checkLubricantProduct',{ name : name },function(data){
-                    console.log(data.length);
+                    //console.log(data.length);
                     if(data){
+                        if(data != 0){
+                            swal("Oops !", "Product already exists !")      
+                        }
+                        console.log(data);
                         console.log('its here');
                     }
                 });

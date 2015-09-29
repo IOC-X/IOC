@@ -127,8 +127,12 @@
             name = $(this).val();
             console.log('Sendinna');
             $.post('stocks/checkSupplier',{ name : name },function(data){
-                console.log(data.length);
+                //console.log("DATA AA" + data);
                 if(data){
+                    if(data != 0){
+                        swal("Oops !", "Supplier already exists !")      
+                    }
+                    console.log(data);
                     console.log('its here');
                 }
             });

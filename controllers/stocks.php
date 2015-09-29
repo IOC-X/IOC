@@ -420,7 +420,7 @@
 			$name = $_POST['name'];
 			require 'models/Stocks_model.php';
 			$model = new Stocks_model();
-			echo json_encode($model->checkLubricantProduct($name));	
+			echo json_encode($model->checkLubricantProduct($name));
 		}
 		public function addSupplier(){
 			$name = $_POST['sup-name'];

@@ -216,14 +216,18 @@
 			$st->execute(array(
 				':name' => $name
 			));
-			return $st->fetchAll();	
+			$st->fetch();
+			$rows = $st->rowCount();
+			return $rows;	
 		}
 		public function checkLubricantProduct($name){
 			$st = $this->db->prepare("SELECT * FROM Lubricants WHERE name=:name");
 			$st->execute(array(
 				':name' => $name
 			));
-			return $st->fetchAll();	
+			$st->fetch();
+			$rows = $st->rowCount();
+			return $rows;
 		}
 		public function addSupplier($name,$product,$email,$contact){
 			$st = $this->db->prepare("INSERT INTO Suppliers (name,product,contact,email) VALUES (:name,:product,:contact,:email)");
