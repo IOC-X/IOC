@@ -1,7 +1,7 @@
 <div id="profile-card-custom">
 <div class="profile-card-wrap">
 	<input id="check" type="checkbox" class="check"><label for="check" class="toggle"> + </label>
-	<div class="content" data-text="IOC profile">
+	<div class="content" data-text="">
 		<p><?php Session::init(); //echo $_SESSION['loggedIn']?></p>
 
 		<?php
