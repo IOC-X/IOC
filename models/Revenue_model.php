@@ -27,15 +27,21 @@ class Revenue_model extends Model {
             ':quantity' => $qnty,
             ':sellingqty' => $sqty,
             ':price' => $price,
+            ':supplier' => $supplier,
             ':date' => Date('y-m-d'),
             ':lubricantincome' => $total
         ));
+        return true;
     }
     public function loadActivePumpers(){
-        $date = Date('y-m-d');
+        $date = Date('Y-m-d');
         $month = substr($date, 5,-3);
+        //$matmonthonth = "09";
+        //$month = (integer)$month;
         $day = substr($date, 8,8);
-        $st = $this->db->prepare("SELECT * FROM attendance where atmonth=:atmonth AND atdate=:atdate");
+        //$day = "29";
+        //$day = (integer)$day;
+        $st = $this->db->prepare("SELECT * FROM attendance where atmonth=09 AND atdate=29");
         $st->execute(array(
             ':atmonth' => $month,
             ':atdate' => $day
@@ -256,7 +262,26 @@ class Revenue_model extends Model {
         }
         return $stats;
     }
-    
+    public function insertFuelIncome($pmpName,$amount,$fuelType){
+        $st = $this->db->prepare("INSERT INTO fuel_income (empID,fueltype,amount,date) VALUES (:empID,:fuelType,:amount,:date)");
+        $st->execute(array(
+            ':date' => Date('y-m-d'),
+            ':empID' => $pmpName,
+            ':fuelType' => $fuelType,
+            ':amount' => $amount
+        ));
+        return true;
+    }
+    public function editPayment($id,$empName,$date,$paid){
+        $st = $this->db->prepare("UPDATE payment SET empName=:empName,date=:date,paid=:paid WHERE Id=:id");
+        $st->execute(array(
+            ':id' => $id,
+            ':empName' => $empName,
+            ':date' => $date,
+            ':paid' => $paid
+        ));
+        return true;
+    }
     // public function addlubinc($name, $qty, $supplier, $price, $sqty, $inc, $date) {
 
     //     // echo "Name". $name." ";

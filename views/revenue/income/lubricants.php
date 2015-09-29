@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="col-lg-4">
-                        <input type="text" class="form-control" name="qty" id="qty" placeholder="" 
+                        <input type="text" class="form-control" name="qty" id="qnty" placeholder="" 
                                title="Use only numbers for Quantity" disabled="" />
                     </div>
 
@@ -157,7 +157,7 @@
                 supplier = data[0].Supplier;
                 // console.log(price);
                 $("#price").val(price);
-                $("#qty").val(qnty);
+                $("#qnty").val(qnty);
                 $("#supplier").val(supplier);
                 $("#sqnty").empty();
                 for(b=1;b<=qnty;b++){
@@ -177,11 +177,11 @@
 
         $('#inert').click(function(e){
             e.preventDefault();
-            var name = $("#prd-name").text();
+            var name = $("#products option:selected").text();
             var price = $("#price").val();
             var qnty = $("#qnty").val();
             var supplier = $("#supplier").val();
-            var sqnty = $("#sqnty").val();
+            var sqnty = $("#sqnty option:selected").text();
             var total = $("#total").val();
 
             $.post('revenue/insertlubricantinc',{ name : name , price : price , quantity : qnty , supplier : supplier , sqnty : sqnty , total : total },function(data){

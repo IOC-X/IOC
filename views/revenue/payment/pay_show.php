@@ -30,10 +30,7 @@
             <form role="form" action="" name="frmPayment" method="post">
                 <div class="col-lg-12">
 
-                    <div class="form-group">
-                        <label>ID</label>
-                        <input name="id" id="id" class="form-control" required readonly="">
-                    </div>
+    
                     <div class="form-group">
                         <label>Employee Code</label>
                        <!-- <select class="btn form-control" id="empcode" name="empcode">
@@ -52,36 +49,12 @@
                         <input name="empname" id="empname" class="form-control" required>
                     </div>
 
-                    <div class="form-group">
-                        <label>NIC</label>
-                        <input name="nic" id="nic" class="form-control" required>
-                    </div>
+                    
 
                     <div class="form-group">
                         <label>Date</label>
                         <input name="date" id="date" class="form-control form_datetime" required>
                     </div>
-
-                    <div class="form-group">
-                        <label>Shift Type</label>
-                        <input name="shtype" id="shtype" class="form-control" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Gross Salary</label>
-                        <input type="text" name="gsal" id="gsal" class="form-control" required>
-                    </div> 
-
-                    <div class="form-group">
-                        <label>EPF</label>
-                        <input name="epf" id="epf" class="form-control" required>
-                    </div>
-
-
-                    <div class="form-group">
-                        <label>Net Salary</label>
-                        <input type="text" name="nsal" id="nsal" class="form-control" required>
-                    </div> 
 
 
                     <div class="form-group">
@@ -91,14 +64,14 @@
 
 
 
-                    <button type="submit" class="btn btn-primary btn-lg" name="form-submitted" id="form-submitted">
-                        <span class="mdi-content-create" aria-hidden="true"></span> Edit
-                    </button>
+                    <input type="button" value="Save Changes" class="btn btn-primary btn-lg" id="edit_sub" name="form-submitted">
+                    
+                    
 
                 </div>
             </form>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger btn-circle" data-dismiss="modal"><i class="fa fa-times"></i>x</button>
+      
             </div>
         </div>
     </div>
@@ -206,56 +179,47 @@
                     $('#nsal').val(k7);
                     $('#paid').val(k8);
                 },250);
-                
             });
 
         //});
 
 
-        $('#edit_sub').click(function(){
-                
-                var p_ID = window.editID;
-                var pp1 = $('#empcode').val();
-                var pp2= $('#empname').val();
-                var pp3 = $('#nic').val();
-                var pp4 = $('#date').val();
-                var pp5 = $('#shtype').val();
-                var pp6 = $('#gsal').val();
-                var pp7 = $('#epf').val();
-                var pp8 = $('#nsal').val();
-                var pp9 = $('#paid').val();
-                
-                // if(prd_name == ""){
-                //     swal("Oops !", "Please fill name field");
-                //     return false;
-                // }
-                // if(isNaN(prd_price) || prd_price == ""){
-                //     swal("Oops !", "Name should be a number !");
-                //     return false;
-                // }
-                // if(isNaN(prd_qnty) || prd_qnty == ""){
-                //     swal("Oops !", "Quantity should be a number !");
-                //     return false;
-                // }
-                // if(prd_supplier == ""){
-                //     swal("Oops !", "Please select a supplier");
-                //     return false;
-                // }
-
-                $.post('revenue/editPayment',{ p1 : pp1 , p2 : pp2 , p3 : pp3 , p4 : pp4, p5 : pp5 , p6 : pp6 , p7 : pp7 , p8 : pp8 , p9 : pp9 , id : p_ID },function(data){
-                    console.log(data);
-                    $('#modalT').hide();
-                    refresh();
-                });
+        $('#edit_sub').click(function(){                
+            var p_ID = window.editID;
+            var empCode = $('#empcode').val();
+            var empName = $('#empname').val();
+            var date = $('#date').val();
+            var paid = $('#paid').val();
+            
+            // if(prd_name == ""){
+            //     swal("Oops !", "Please fill name field");
+            //     return false;
+            // }
+            // if(isNaN(prd_price) || prd_price == ""){
+            //     swal("Oops !", "Name should be a number !");
+            //     return false;
+            // }
+            // if(isNaN(prd_qnty) || prd_qnty == ""){
+            //     swal("Oops !", "Quantity should be a number !");
+            //     return false;
+            // }
+            // if(prd_supplier == ""){
+            //     swal("Oops !", "Please select a supplier");
+            //     return false;
+            // }
+            console.log(p_ID);
+            $.post('revenue/editPayment',{ id : p_ID , empCode : empCode , empName : empName , date : date , paid : paid },function(data){
+                console.log(data);
+                $('#modalT').hide();
+                //refresh();
             });
+        });
+        
+        
             
             
-            
-            
-            });
-
-
-            });
+    });
+});
 
 
 

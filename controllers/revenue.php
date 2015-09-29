@@ -40,17 +40,24 @@ class Revenue extends Controller {
     public function insertlubricantinc() {
         $name = $_POST['name'];
         $price = $_POST['price'];
-        $qnty = $_POST['qnty'];
+        $qnty = $_POST['quantity'];
         $supplier = $_POST['supplier'];
-        $sqty = $_POST['sqty'];
+        $sqty = $_POST['sqnty'];
         $total = $_POST['total'];
-        echo "haha" + $price;
-        echo $name;
-        // require 'models/Revenue_model.php';
-        // $model = new Revenue_model();
-        // if($model->insertlubricantinc($name,$price,$qnty,$supplier,$sqty,$total)){
-        // 	echo "Success";
-        // }
+        // echo "haha" + $price;
+        // echo $name;
+        
+        // echo $name;
+        // echo $price;
+        // echo $qnty;
+        // echo $supplier;
+        // echo $sqty;
+        // echo $total;
+        require 'models/Revenue_model.php';
+        $model = new Revenue_model();
+        if($model->insertlubricantinc($name,$price,$qnty,$supplier,$sqty,$total)){
+        	echo "Success";
+        }
     }
 
     public function overall() {
@@ -334,7 +341,28 @@ class Revenue extends Controller {
     public function payment() {
         $this->view->render('revenue/payment', false);
     }
+    public function insertFuelIncome(){
+        $pmpName = $_POST['pmpName'];
+        $amount = $_POST['amount'];
+        $fuelType = $_POST['fuelType'];
+        // echo $pmpName;
+        // echo $amount;
+        require 'models/Revenue_model.php';
+        $model = new Revenue_model();
+        $model->insertFuelIncome($pmpName,$amount,$fuelType);
+    }
+    public function editPayment(){
+        $id = $_POST['id'];
+        $empCode = $_POST['empCode'];
+        $empName = $_POST['empName'];
+        $date = $_POST['date'];
+        $paid = $_POST['paid'];
 
+        echo $empCode;
+        require 'models/Revenue_model.php';
+        $model = new Revenue_model();
+        $model->editPayment($id,$empName,$date,$paid);
+    }
     // /**
     // *	renders fuel tab in income section
     // *	

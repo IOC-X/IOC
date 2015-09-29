@@ -1,7 +1,7 @@
 <div class="btn-group btn-group-justified">
     <a href="javascript:void(0)" class="btn btn-primary" id="fuel">Fuel</a>
 	<a href="javascript:void(0)" class="btn btn-primary" id="lubricants">Lubricants</a>
-    <a href="javascript:void(0)" class="btn btn-primary" id="overall">Overall</a>
+    <!-- <a href="javascript:void(0)" class="btn btn-primary" id="overall">Overall</a> -->
 </div>
 	<script>
         $('#fuel').click(function(){
