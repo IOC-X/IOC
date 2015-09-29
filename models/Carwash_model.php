@@ -309,13 +309,13 @@ class Carwash_model extends Model {
             echo 'Message has been sent';
         }
     }
-
+//NexmoMessage('0fd288d7', '4ba994ca');
     public function SendSms($contact) {
         include ( "/libs/sms/src/NexmoMessage.php" );
         $newCon = substr($contact, 1);
 
         // Step 1: Declare new NexmoMessage.
-        $nexmo_sms = new NexmoMessage('0fd288d7', '4ba994ca');
+        $nexmo_sms = new NexmoMessage('e3a975e2', 'ffdd4630');
 
         // Step 2: Use sendText( $to, $from, $message ) method to send a message. 
         $info = $nexmo_sms->sendText('+94' . $newCon, 'IOC', 'Dear Customer your Carwash service is done. You can collect your vehicle at our service station. Thank You for using our service.');
