@@ -55,7 +55,7 @@
 </div>
 
 
-<ul id="menu" class="mfb-component--br mfb-zoomin" data-mfb-toggle="hover">
+<!-- <ul id="menu" class="mfb-component--br mfb-zoomin" data-mfb-toggle="hover">
       <li class="mfb-component__wrap">
         <a href="#" data-mfb-label="A long long label" class="mfb-component__button--main">
           <i class="mfb-component__main-icon--resting ion-plus-round"></i>
@@ -75,7 +75,7 @@
           </li>
         </ul>
       </li>
-    </ul>
+    </ul> -->
     <script type="text/javascript" src="<?php echo BOWER ?>mustache/mustache.js"></script>
 <script>
 
