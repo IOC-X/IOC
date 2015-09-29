@@ -10,6 +10,7 @@
                 <i class="mdi-action-assessment"></i>Client Management</a>
                  <a href="javascript:void(0)" class="btn btn-flat btn-primary" id="client_transactions">
                 <i class="mdi-maps-local-cafe"></i>Client Transactions</a>
+
             <a href="javascript:void(0)" class="btn btn-flat btn-primary" id="clientreport">
                 <i class="mdi-maps-local-cafe"></i>Report</a>
            
@@ -41,10 +42,11 @@
         });
     });
     
+
     $('#clientreport').click(function (e2) {
         e2.preventDefault();
         var id = $(this).attr('id');
-        $('#subloader').load('/IOC/clients/' + id, function () {
+        $('#subloader').load('/IOC/clients/reportt', function () {
         });
     });
     
