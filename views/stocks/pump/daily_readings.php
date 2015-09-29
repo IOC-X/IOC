@@ -32,7 +32,7 @@
                 input = $(this).val();
                 if(input == 0){
                     console.log('inside');
-                    swal("Readings can't be zero ,please check again !");
+                    swal("Readings can't be empty ,please check again !");
                     throw new Error("Something went badly wrong!");
                 }
             });
