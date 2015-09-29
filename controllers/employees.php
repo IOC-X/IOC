@@ -241,9 +241,15 @@ $this->view->render('employees/shift_sub/shift_list',false);
         $datedate=$_POST['iddate'];
         $timetime=$_POST['idtime'];
         
+        //fule
+     //   spetrol,petrol,diesel,sdiesel
+        $spetrol = $_POST['spetrol'];
+        $petrol=$_POST['petrol'];
+        $diesel=$_POST['diesel'];
+        $sdiesel=$_POST['sdiesel'];       
 
         $addfin= new Employees_model();
-        $addfin->markfinish($empcode,$yearyear,$monthmonth,$datedate,$timetime);
+        $addfin->markfinish($empcode,$yearyear,$monthmonth,$datedate,$timetime,$spetrol,$petrol,$diesel,$sdiesel);
     }
 
         public function pump_list() {
@@ -294,6 +300,14 @@ $this->view->render('employees/shift_sub/shift_list',false);
         $modelStocks = $model->shiftReports();
         include 'views/employees/report/shiftMakeReport.php';
     }    
+    
+        public function gettank() {
+
+        $model = new Employees_model();
+       echo json_encode($model->tanksvalues());
+        
+
+    }
 }
 
 ?>

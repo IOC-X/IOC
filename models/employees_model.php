@@ -119,7 +119,7 @@ class Employees_model extends Model {
     
     }
 	
-    public function markfinish($empcode,$yearyear,$monthmonth,$datedate,$timetime) {
+    public function markfinish($empcode,$yearyear,$monthmonth,$datedate,$timetime,$spetrol,$petrol,$diesel,$sdiesel) {
 
                 echo "got";
         echo $empcode;
@@ -136,6 +136,18 @@ class Employees_model extends Model {
         $sql->bindValue(4, $monthmonth);
         $sql->bindValue(5, $datedate);
         $sql->execute();
+        
+        
+       // $spetrol,$petrol,$diesel,$sdiesel
+        $sqll = $this->db->prepare("UPDATE tanks SET Petrol=? ,SPetrol=?, Diesel=?,SDiesel=?  WHERE Id =1");
+        $sqll->bindValue(1, $petrol);
+        $sqll->bindValue(2, $spetrol);
+        $sqll->bindValue(3, $diesel);
+        $sqll->bindValue(4, $sdiesel);        
+        $sqll->execute();        
+        
+        
+        
     }	
     
            
@@ -185,7 +197,15 @@ class Employees_model extends Model {
                 $shift[] = $obj;
             }
             return $shift;
-        }        
+        }   
+        
+        
+        //update pump
+            public function tanksvalues() {
+        $results = $this->db->prepare("SELECT * FROM tanks");
+        $results->execute();
+        return $results->fetchAll();
+    }
 }
 
 ?>
