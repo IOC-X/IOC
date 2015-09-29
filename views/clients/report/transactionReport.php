@@ -13,11 +13,11 @@
                 <option></option>
                 </select>
 </div>
-
+<div>
 <div class="col-lg-3">
 <input type="button" value="Generate report" class="btn btn-primary" id="sub">
 </div>
-
+</div>
 
 
 <p id="pdfloader"></p>
