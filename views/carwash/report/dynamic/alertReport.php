@@ -29,7 +29,7 @@
                                     <?php foreach ($stats as $stat) : ?>
                                 
                                  {x: new Date(<?php $date = date_create($stat->date);
-                                    echo date_format($date, 'Y,m,d'); ?>), 
+                                    echo date_format($date, 'Y,m-1,d'); ?>), 
                                   y: <?php echo ($stat->count); ?>},
                                     
                                     <?php endforeach; ?>

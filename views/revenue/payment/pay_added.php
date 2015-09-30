@@ -12,7 +12,7 @@
         <div class="form-group">
             <label for="empname" class="col-lg-2 control-label">Employee Name</label>
             <div class="col-lg-7">
-                <input type="text" class="form-control" id="empname" placeholder="" name="empname"
+                <input type="text" class="form-control" id="empname" placeholder="" name="empname" disabled=""
                     >
             </div>
         </div>
@@ -20,7 +20,7 @@
             <label for="nic" class="col-lg-2 control-label">NIC</label>
             <div class="col-lg-7">
                 <input type="text" class="form-control" id="nic" placeholder="" name="nic"
-                       pattern="[0-9V]{1,10}" title="Use only numbers " required="">
+                    disabled="" title="Use only numbers " required="">
             </div>
         </div> 
         <div class="form-group">
