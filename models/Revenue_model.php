@@ -265,6 +265,24 @@ class Revenue_model extends Model {
 
     //income report
 
+    public function fuelincomeDetails(){
+        $sql = $this->db->prepare("select empID,fueltype,date ,amount from fuel_income");
+        $sql->execute();
+        while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+            $stats[] = $obj;
+        }
+        return $stats;
+    }
+
+    public function fuelincomeSum(){
+        $sql = $this->db->prepare("select sum(amount) as Total from fuel_income");
+        $sql->execute();
+        while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
+            $stats[] = $obj;
+        }
+        return $stats;
+    }
+
     public function lubricantIncomeDetails(){
         $sql = $this->db->prepare("select prdType,quantity,supplier,sellingqty,price,date1,lubricantincome from lubricant_income");
         $sql->execute();
@@ -286,7 +304,7 @@ class Revenue_model extends Model {
 
     public function totalIncome() {
 
-        $sql = $this->db->prepare("select sum(lubricantincome) as LubricantIncome from lubricant_income");
+        $sql = $this->db->prepare("select sum(total) from (select sum(amount) as Total from fuel_income union select sum(lubricantincome) as total from lubricant_income )t");
         $sql->execute();
         while ($obj = $sql->fetch(PDO::FETCH_OBJ)) {
             $stats[] = $obj;

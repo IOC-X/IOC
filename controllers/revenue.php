@@ -352,6 +352,9 @@ class Revenue extends Controller {
     public function IncomepdfReport(){
         require 'models/Revenue_model.php';
         $model = new Revenue_model();
+        //fuel
+        $fincome = $model->fuelincomeDetails();
+        $fincomesum = $model->fuelincomeSum();
         //lubricant
         $lub_Income = $model->lubricantIncomeDetails();
         $lub_suminc = $model->lubricantIncome();

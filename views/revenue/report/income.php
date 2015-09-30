@@ -23,23 +23,23 @@ $pdf->Text(80, 28, 'Income Report');
 $pdf->SetFont('Arial', 'B', 8);
 $pdf->Text(5, 5, ' Date: ' . $date);
 //fuel
-/*$pdf->MultiCell(10, 10, "");
-$pdf->Text(20, 35, iconv("UTF-8", "ISO-8859-1", ">>> Fuel Expenses"));
+$pdf->MultiCell(10, 10, "");
+$pdf->Text(20, 35, iconv("UTF-8", "ISO-8859-1", ">>> Fuel Income"));
 $pdf->SetMargins(40, 0);
-$heading = array("Fuel Type", "Capacity", "Date", "Expense(Rs.)");
+$heading = array("Employee Code", "Fuel Type", "Date", "Income(Rs.)");
 $pdf->Cell(30, 20, "", 0, 0, 'C');
 
 foreach ($heading as $column_heading) {
     $pdf->Cell(30, 20, $column_heading, 1, 0, 'C');
 }
-foreach ($Expenses as $row) {
+foreach ($fincome as $row) {
     $pdf->SetFont('Arial', '', 8);
     $pdf->Ln();
     foreach ($row as $column)
         $pdf->Cell(30, 10, $column, 1, 0, 'C');
 }
 
-foreach ($sum as $row) {
+foreach ($fincomesum as $row) {
     $pdf->SetFont('Arial', '', 8);
     $pdf->Ln();
     foreach ($row as $column)
@@ -47,12 +47,12 @@ foreach ($sum as $row) {
         $pdf->Cell(90, 20, "Total", 1, 0, 'C');
         $pdf->Cell(30, 20, $column, 1, 0, 'C');
 }
-$pdf->Ln();*/
+$pdf->Ln();
 
 //lubricant
 $pdf->SetFont('Arial', 'B', 8);
 $pdf->MultiCell(10, 10, "");
-$pdf->Text(20, 35, iconv("UTF-8", "ISO-8859-1", ">>> Lubricant Income"));
+$pdf->Text(20, 115, iconv("UTF-8", "ISO-8859-1", ">>> Lubricant Income"));
 
 $heading = array("Product", "Price", "Supplier","Quantity","SQuantity","Date","Income(Rs.)");
 
@@ -77,7 +77,7 @@ foreach ($lub_suminc as $row) {
         $pdf->Cell(25, 20, $column, 1, 0, 'C');
 }
 
-//$pdf->Ln();
+$pdf->Ln();
 
 /*//otherExpenses
 $pdf->SetFont('Arial', 'B', 8);
