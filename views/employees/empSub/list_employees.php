@@ -173,10 +173,10 @@
 
                         <!-- image upload -->
                         <div class="form-group">
-                            <label for="inputFile" class="col-lg-2 control-label">File</label>
+                            <label for="file" class="col-lg-2 control-label">File</label>
                             <div class="col-lg-10" id="wrapper">
                         <input readonly="" class="form-control floating-label" placeholder="" type="text" id="upic">
-                        <input type="file" id="inputFile" name="inputFile">
+                        <input type="file" id="file" name="file">
                         <input type="hidden" id="sam" name="sam">
                             </div>
                         </div>
@@ -206,9 +206,9 @@
 
 <script type="text/javascript">
     
-        $("#wrapper").on("change", "#inputFile", function () {
+        $("#wrapper").on("change", "#file", function () {
 
-        var username = $("#inputFile").val();
+        var username = $("#file").val();
 
         var fields = username.split("fakepath\\");
         var name = fields[1];
@@ -343,6 +343,7 @@
     <script src="//code.jquery.com/jquery-1.9.1.js"></script>
     <script type="text/javascript">
                function submitForm() {
+               
             console.log("submit event");
             var fd = new FormData(document.getElementById("updateemp_form"));
             fd.append("label", "IOC");

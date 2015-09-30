@@ -96,7 +96,7 @@
    $(document).ready(function () {
        
         $.getJSON('revenue/lub_list', function (data) {
-           alert("dsa");
+           //alert("dsa");
             var len = data.length;
 
             for (x = 0; x < len; x++) {
@@ -136,7 +136,7 @@
                             url: 'revenue/delete_lubinc',
                             data: {idd: id},
                             success: function (data) {
-                                swal("Deleted!", "Your imaginary file has been deleted!", "success");
+                                swal("Deleted!", "Your record has been deleted!", "success");
                                 $('#subloader2').empty();
                                 $('#subloader2').load('/IOC/revenue/lubricant_inc_history').hide().fadeIn('slow');
                                
@@ -148,7 +148,7 @@
                         
 
                      else {
-                        swal("Cancelled", "Your Payment data is safe :)", "error");
+                        swal("Cancelled", "Your data is safe :)", "error");
                     }
                 });
 

@@ -135,6 +135,15 @@
 
     $(document).ready(function(){
         //console.log('DD');
+
+         $("#lubricant_inc_history").click(function(){
+            $('#subloader2').load('/IOC/revenue/lubricant_inc_history',function(){
+                $('#subloader2').hide();
+                $('#subloader2').fadeIn('fast');
+            });
+        });
+
+
         $.getJSON('revenue/loadLubricantProducts',function(data){
             console.log(data[0]);
             console.log('DD');
