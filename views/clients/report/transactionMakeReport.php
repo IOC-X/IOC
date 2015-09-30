@@ -11,12 +11,12 @@ if (!$modelStocks) {
 	    return 0;
 }
 else{
-<<<<<<< HEAD
+
 	
         $pdf->Image('views/img/ioc.png', 95, 1, 20);
-=======
+
 	$pdf->Image('views/img/ioc.png', 95, 1, 20);
->>>>>>> 915a4b26914eeea88fb8e65a5f32301d75214db5
+
 	$pdf->MultiCell(20, 20, "");
 	$pdf->Text(75, 28, 'Transaction Reports');
 
