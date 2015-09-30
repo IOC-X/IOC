@@ -363,7 +363,7 @@ class Revenue extends Controller {
         include 'views/revenue/report/income.php';
     }
 
- public function PaypdfReportDisplay(){
+    public function PaypdfReportDisplay(){
         include 'views/revenue/report/paymentDisplay.php';
     }
 
@@ -408,6 +408,37 @@ class Revenue extends Controller {
         require 'models/Revenue_model.php';
         $model = new Revenue_model();
         $model->editPayment($id,$empName,$date,$paid);
+    }
+    public function delete_lubinc() {
+         require 'models/Revenue_model.php';
+          $id = $_POST['idd'];
+          $model = new Revenue_model();
+          $transactions = $model->deleteLubincome($id);
+    }
+    public function editLubinc() {
+        $id = $_POST['id'];
+        $prdType = $_POST['prdType'];
+        $quantity = $_POST['quantity'];
+        $supplier = $_POST['supplier'];
+        $sellingqty = $_POST['sqty'];
+        $price = $_POST['price'];
+        $date1 = $_POST['date'];
+        $lubricantincome = $_POST['lubincome'];
+        
+        // echo $id;
+        // echo $prdType;
+        // echo $quantity;
+        // echo $supplier;
+        // echo $sellingqty;
+        // echo $price;
+        // echo $date1;
+        // echo $lubricantincome;
+        require 'models/Revenue_model.php';
+        $model = new Revenue_model();
+
+        if($model->editLubincome($prdType, $quantity, $supplier, $sellingqty, $price, $date1, $lubricantincome, $prdIncomeID)){
+            echo "Success";
+        }
     }
     // /**
     // *	renders fuel tab in income section

@@ -33,18 +33,9 @@
             </div>
             <form role="form" action="" name="frmLIncome" method="post">
                 <div class="col-lg-12">
-
-                    <div class="form-group">
-                        <label>ID</label>
-                        <input name="id" id="id" class="form-control" required readonly="">
-                    </div>
                     <div class="form-group">
                         <label>Product Name</label>
-                        <select class="btn form-control" id="prdType" name="prdType">
-                            <?php foreach ($type as $prodtype) : ?>
-                                <option value="<?php echo ($prodtype->prdType); ?>"><?php echo ($prodtype->prdType); ?></option>
-                            <?php endforeach; ?>
-                        </select>
+                            <input type="text" id="edit-name" class="form-control">
 <!--                            <input name="prdType" id="prdType" class="form-control" required readonly="">-->
                     </div>
 
@@ -79,14 +70,14 @@
                         <input name="lubincome" id="lubincome" class="form-control" required>
                     </div>
 
-                    <button type="submit" class="btn btn-primary btn-lg" name="form-submitted" id="form-submitted">
-                        <span class="mdi-content-create" aria-hidden="true"></span> Edit
-                    </button>
+                    <input type="submit" class="btn btn-primary btn-lg" name="form-submitted" value="Save Changes" id="form-submitted">
+                        
+                    
 
                 </div>
             </form>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger btn-circle" data-dismiss="modal"><i class="fa fa-times"></i>x</button>
+                
             </div>
         </div>
     </div>
@@ -108,7 +99,7 @@
                 $("." + x + "").append('<td id="' + data[x].prdIncomeID + "-sellingqty" + '">' + data[x].sellingqty + '</td>');
                 $("." + x + "").append('<td id="' + data[x].prdIncomeID + "-price" + '">' + data[x].price + '</td>');
                 $("." + x + "").append('<td id="' + data[x].prdIncomeID + "-date1" + '">' + data[x].date1 + '</td>');
-                $("." + x + "").append('<td id="' + data[x].prdIncomeID + "-lubricantincome" + '">' + "Rs : " +data[x].lubricantincome  + '</td>');
+                $("." + x + "").append('<td id="' + data[x].prdIncomeID + "-lubricantincome" + '">' + data[x].lubricantincome  + '</td>');
                 $("." + x + "").append('<td class="hide" id="' + data[x].prdIncomeID + "-pod" + '">' + x + '</td>');
                 $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].prdIncomeID + '" class="edit"><i class="mdi-content-create"></i></a></div></td>');
                 $("." + x + "").append('<td><div class="icon-preview"><a href="' + data[x].prdIncomeID + '" class="remove"><i class="mdi-content-remove-circle"></i></a></div></td>');
@@ -165,6 +156,7 @@
 
                 $('#modalT').modal('show');
                 setTimeout(function () {
+                    
                     var n1 = $('#'+ id +'-prdType').text();
                     var n2 = $('#'+ id +'-quantity').text();
                     var n3 = $('#'+ id +'-supplier').text();
@@ -174,7 +166,7 @@
                     var n7 = $('#'+ id +'-lubricantincome').text();
 
 
-                     $('#prdType').val(n1);
+                    $('#edit-name').val(n1);
                     $('#quantity').val(n2);
                     $('#supplier').val(n3);
                     $('#sqty').val(n4);
@@ -191,10 +183,12 @@
             });
 
 
-            $('#form-submitted').click(function(){
-                
+            $('#form-submitted').click(function(e){
+                e.preventDefault();
+
                 var m1 = window.editID;
-                var m2 = $('#prdType').val();
+                var m2 = $('#edit-name').val();
+                console.log(m2);
                 var m3 = $('#quantity').val();
                 var m4 = $('#supplier').val();
                 var m5 = $('#sqty').val();
@@ -222,7 +216,11 @@
                 $.post('revenue/editLubinc',{ prdType : m2 , quantity : m3 , supplier : m4 , sqty : m5 , price : m6 , date : m7 , lubincome : m8 },function(data){
                     console.log(data);
                     $('#modalT').hide();
-                    refresh();
+                    $('#subloader2').load('/IOC/revenue/lubricant_inc_history',function(){
+                        $('#subloader2').hide();
+                        $('#subloader2').fadeIn('fast');
+                    });
+                
                 });
             });
 

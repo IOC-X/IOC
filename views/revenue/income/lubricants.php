@@ -195,6 +195,10 @@
 
             $.post('revenue/insertlubricantinc',{ name : name , price : price , quantity : qnty , supplier : supplier , sqnty : sqnty , total : total },function(data){
                 console.log(data);
+                $('#subloader2').load('/IOC/revenue/lubricant_inc_history',function(){
+                    $('#subloader2').hide();
+                    $('#subloader2').fadeIn('fast');
+                });
             });
         });
     });

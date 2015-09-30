@@ -25,7 +25,7 @@ else{
 
 
 	$heading = array("Record id", "Fullname", "NIC", "Vehicleno","Contact","Description","Email","Date");
-	$pdf->Cell(25, 20, '', 0, 0, 'C');
+	//$pdf->Cell(25, 20, '', 0, 0, 'C');
 	foreach ($heading as $column_heading) {
 	    $pdf->Cell(25, 20, $column_heading, 1, 0, 'C');
 	}

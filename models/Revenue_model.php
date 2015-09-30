@@ -398,16 +398,28 @@ class Revenue_model extends Model {
     //     return $lu_income;
     // }
 
-    // public function deleteLubincome($id) {
+    public function deleteLubincome($id) {
+        $sql = $this->db->prepare("DELETE FROM lubricant_income WHERE prdIncomeID=:id");
+        $sql->execute(array(
+            ':id' => $id
+        ));
+        return true;
+    }
 
-    //     $sql = $this->db->prepare("DELETE FROM lubricant_income WHERE prdIncomeID=$id");
-    //     $sql->execute();
-    // }
-
-    // public function editLubincome($prdType, $quantity, $supplier, $sellingqty, $price, $date1, $lubricantincome, $prdIncomeID) {
-    //     $sql = $this->db->prepare("UPDATE lubricant_income SET prdType = ?, quantity = ?, supplier = ?, sellingqty = ?, price = ?, date1 = ?, lubricantincome = ?, WHERE prdIncomeID = ? LIMIT 1");
-    //     $result = $sql->execute(array($prdType, $quantity, $supplier, $sellingqty, $price, $date1, $lubricantincome, $prdIncomeID));
-    // }
+    public function editLubincome($prdType, $quantity, $supplier, $sellingqty, $price, $date1, $lubricantincome, $prdIncomeID){
+        $sql = $this->db->prepare("UPDATE lubricant_income SET prdType=:prdType, quantity=:qnty, supplier=:supplier, sellingqty=:sellingqty, price=:price, date1=:date1, lubricantincome=:lubeincome WHERE prdIncomeID=:prdIncome");
+        $sql->execute(array(
+            ':prdType' => $prdType,
+            ':qnty' => $quantity,
+            ':supplier' => $supplier,
+            ':sellingqty' => $sellingqty,
+            ':price' => $price,
+            ':date1' => $date1,
+            ':lubeincome' => $lubricantincome,
+            ':prdIncome' => $prdIncomeID
+        ));    
+        return true;
+    }
     
     public function select_lube() {
         $results = $this->db->prepare("SELECT * FROM lubricant_income");

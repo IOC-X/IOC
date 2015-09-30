@@ -1,7 +1,7 @@
 -- PHP MySQL Dump
 --
 -- Host: localhost
--- Generated: Tue, 29 Sep 2015 20:01:51 +0200
+-- Generated: Wed, 30 Sep 2015 13:35:49 +0200
 -- PHP Version: 5.5.12
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
@@ -34,7 +34,7 @@ CREATE TABLE `asupplier` (
 --
 
 INSERT INTO `asupplier` (`Fname`, `Lname`, `Company`, `Address`, `Email`, `PNumber`, `NIC`, `Type`, `id`) VALUES
-('Sarasi', 'Aththanayake', 'ABC', '28,Samam Pedesa , Ratnapura', 'lahiruwitharama09@gmail.com', '+94719816220', '930400998V', 'Grease Pump', '1'),
+('Sarasi', 'Aththanayake', 'ABCD', '28,Samam Pedesa , Ratnapura', 'isuru.dilhan@yahoo.com', '+94719816220', '930400998V', 'Grease Pump', '1'),
 ('Nirmal', 'Chanaka', 'Ultra', '01,School Rd , Colombo', 'inbox.rajika@gmail.com', '+94769815670', '940405998V', 'Hydraulic Hoists', '2'),
 ('Lahiru', 'Witharama', 'Nexmo', '89,Rathmal Uyana , Gampaha', 'isuru.dilhan@yahoo.com', '+94729926220', '920600978V', 'Oil Drainer', '3'),
 ('Sam', 'Vitharana', 'Apex', '08,Jayanthi place , Rathmalana', 'samTk@gmail.com', '+94759205284', '917650999V', 'Grease Pump', '14');
@@ -58,36 +58,35 @@ CREATE TABLE `attendance` (
   `endTime` varchar(50) DEFAULT NULL,
   `pumps` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`atid`)
-) ENGINE=InnoDB AUTO_INCREMENT=489 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=495 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `attendance`
 --
 
 INSERT INTO `attendance` (`atid`, `empCode`, `shiftCode`, `shiftprice`, `atyear`, `atmonth`, `atdate`, `startTime`, `colour`, `endTime`, `pumps`) VALUES
-('0', 'MG-790', '', '', '2015', '09', '20', '', '#ff0000', '', ''),
-('10', 'MG-790', 'SH-268', '95', '2015', '09', '22', '01:00', 'orange', '', 'SH-268'),
-('13', 'MG-790', '', '', '2015', '09', '26', '', '#ff0000', '', ''),
-('14', 'MG-790', '', '', '2015', '09', '25', '', '#ff0000', '', ''),
+('0', 'MG-790', '', '', '2014', '08', '20', '', '#ff0000', '', ''),
+('13', 'MG-790', '', '', '2015', '08', '26', '', '#ff0000', '', ''),
+('14', 'MG-790', '', '', '2013', '08', '25', '', '#ff0000', '', ''),
 ('16', 'MG-789', 'SH-147', '750', '2015', '09', '01', '03:00', 'orange', '', 'SH-147'),
 ('458', 'MG-789', 'SH-147', '750', '2015', '09', '03', '02:01', 'orange', '', 'SH-147'),
 ('459', 'MG-789', 'SH-725', '1500', '2015', '09', '04', '14:02', 'blue', '', 'SH-725'),
 ('461', 'MG-790', 'SH-147', '750', '2015', '09', '23', '03:00', 'orange', '', 'SH-147'),
 ('462', 'MG-790', '', '', '2015', '09', '21', '', '#ff0000', '', ''),
-('463', 'MG-789', 'SH-256', '1000', '2015', '09', '02', '01:00', 'green', '', 'SH-147'),
-('464', 'MG-790', '', '', '2015', '09', '24', '', '#ff0000', '', ''),
-('465', 'MG-789', '', '', '2015', '09', '05', '', '#ff0000', '', ''),
-('466', 'MG-789', '', '', '2015', '09', '06', '', '#ff0000', '', ''),
+('463', 'MG-789', 'SH-256', '1000', '2015', '08', '02', '01:00', 'green', '', 'SH-147'),
+('464', 'MG-790', '', '', '2015', '08', '24', '', '#ff0000', '', ''),
+('465', 'MG-789', '', '', '2015', '08', '05', '', '#ff0000', '', ''),
+('466', 'MG-789', '', '', '2015', '08', '06', '', '#ff0000', '', ''),
 ('467', 'MG-789', 'SH-147', '750', '2015', '09', '07', '02:00', 'orange', '', 'SH-147'),
 ('468', 'MG-789', '', '', '2015', '09', '08', '', '#ff0000', '', ''),
 ('469', 'MG-790', '', '', '2015', '09', '03', '', '#ff0000', '', ''),
 ('470', 'MG-790', '', '', '2015', '09', '04', '', '#ff0000', '', ''),
 ('471', 'MG-790', '', '', '2015', '09', '05', '', '#ff0000', '', ''),
 ('472', 'MG-790', 'SH-147', '750', '2015', '09', '13', '01:00', 'orange', '', 'SH-147'),
-('473', 'MG-790', '', '', '2015', '09', '06', '', '#ff0000', '', ''),
-('474', 'MG-790', 'SH-147', '750', '2015', '09', '14', '01:00', 'orange', '', 'SH-193'),
+('473', 'MG-790', '', '', '2015', '08', '06', '', '#ff0000', '', ''),
+('474', 'MG-790', 'SH-147', '750', '2015', '08', '14', '01:00', 'orange', '', 'SH-193'),
 ('475', 'MG-790', 'SH-147', '750', '2015', '09', '15', '01:00', 'orange', '', 'SH-193'),
-('476', 'MG-790', '', '', '2015', '09', '07', '', '#ff0000', '', ''),
+('476', 'MG-790', '', '', '2015', '08', '07', '', '#ff0000', '', ''),
 ('477', 'MG-790', '', '', '2015', '09', '08', '', '#ff0000', '', ''),
 ('478', 'MG-790', 'SH-193', '500', '2015', '09', '16', '01:00', 'yellow', '', 'SH-147'),
 ('479', 'MG-790', '', '', '2015', '09', '10', '', '#ff0000', '', ''),
@@ -98,7 +97,12 @@ INSERT INTO `attendance` (`atid`, `empCode`, `shiftCode`, `shiftprice`, `atyear`
 ('485', 'MG-790', '', '', '2015', '09', '02', '', '#ff0000', '', ''),
 ('486', 'MG-790', '', '', '2015', '09', '01', '', '#ff0000', '', ''),
 ('487', 'MG-789', 'SH-147', '750', '2015', '09', '29', '07:07', 'orange', '21:36', '1'),
-('488', 'PM-237', 'SH-147', '750', '2015', '09', '29', '05:55', 'orange', '21:38', '4');
+('488', 'PM-237', 'SH-147', '750', '2015', '09', '29', '05:55', 'orange', '21:38', '4'),
+('489', 'MG-789', 'SH-147', '750', '2015', '09', '30', '18:59', 'orange', '10:10', '1'),
+('490', 'PM-406', 'SH-147', '750', '2015', '09', '30', '23:13', 'orange', '10:08', '3'),
+('491', 'MG-790', 'SH-147', '750', '2015', '09', '30', '12:31', 'orange', '10:11', '3'),
+('493', 'PM-237', 'SH-193', '2000', '2015', '09', '30', '02:00', 'yellow', '', '4'),
+('494', 'PM-168', '', '', '2015', '09', '30', '', '#ff0000', '', '');
 
 -- ------------------------------------------------------------
 
@@ -112,7 +116,7 @@ CREATE TABLE `branches` (
   `Description` varchar(100) NOT NULL,
   `Address` varchar(100) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `branches`
@@ -120,7 +124,8 @@ CREATE TABLE `branches` (
 
 INSERT INTO `branches` (`Id`, `Name`, `Description`, `Address`) VALUES
 ('1', 'IOC', 'Handels a carwash also.', 'Gampaha'),
-('2', 'IOC', 'Handels lubricants. ', 'Colombo');
+('2', 'IOC', 'Handels lubricants. ', 'Colombo'),
+('3', 'ABC', 'ddfgd', 'malabe');
 
 -- ------------------------------------------------------------
 
@@ -140,7 +145,7 @@ CREATE TABLE `car_transactions` (
   `status` varchar(50) NOT NULL DEFAULT 'Not Returned',
   `returnedDate` varchar(15) NOT NULL DEFAULT 'Not Returned',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `car_transactions`
@@ -153,11 +158,14 @@ INSERT INTO `car_transactions` (`id`, `cname`, `contact`, `email`, `package`, `v
 ('9', 'Sam', '0771363825', 'isuru.dilhan@yahoo.com', 'Ultimate Value Car Wash', 'BAT-5567', '4500', '2015-08-01', 'Returned', '2015-08-01'),
 ('10', 'Lahiru', '0779164423', 'isuru.dilhan@yahoo.com', 'Ultimate Value Car Wash', 'UT-9012', '4500', '2015-08-16', 'Returned', '2015-07-05'),
 ('11', 'Sarasi', '0779164423', 'isuru.dilhan@yahoo.com', 'Ultimate Value Car Wash', 'DA-1234', '4500', '2015-08-16', 'Returned', '2015-08-28'),
-('12', 'Kaveendra', '0789164423', 'isuru.dilhan@yahoo.com', 'Ultimate Value Car Wash', 'LS-0987', '4500', '2015-08-20', 'Not Returned', 'None'),
+('12', 'Kaveendra', '0789164423', 'isuru.dilhan@yahoo.com', 'Ultimate Value Car Wash', 'LS-0987', '4500', '2015-08-20', 'Returned', '2015-09-30'),
 ('13', 'Nirmal', '0789164423', 'inbox.rajika@gmail.com', 'Ultimate Value Car Wash', 'TT-1947', '4500', '2015-08-20', 'Not Returned', 'None'),
 ('14', 'Dumindu', '0778355666', 'inbox.rajika@gmail.com', 'Ultimate Value Car Wash', 'DAA-1045', '4500', '2015-08-20', 'Returned', '2015-07-01'),
 ('15', 'Amal', '0771363825', 'isuru.dilhan@yahoo.com', 'Ultimate Value Car Wash', 'SPD-1134', '4500', '2015-08-22', 'Returned', '2015-08-20'),
-('16', 'isuru', '0711363825', 'isuru.dilhan@yahoo.com', 'Platinum Value Car Wash', 'AA-1234', '3000', '2015-09-29', 'Returned', '2015-09-29');
+('16', 'isuru', '0711363825', 'isuru.dilhan@yahoo.com', 'Platinum Value Car Wash', 'AA-1234', '3000', '2015-09-29', 'Returned', '2015-09-29'),
+('17', 'gfdgdg', '0711363825', 'isuru.dilhan@yahoo.com', 'Platinum Value Car Wash', 'AA-1234', '3000', '2015-09-30', 'Not Returned', 'Not Returned'),
+('18', 'rajika', '0711363825', 'isuru.dilhan@yahoo.com', 'Hand Wash', 'AA-1234', '10000', '2015-09-30', 'Returned', '2015-09-30'),
+('19', 'rajika', '0711363825', 'isuru.dilhan@yahoo.com', 'Hand Wash', 'AA-1212', '10000', '2015-09-30', 'Returned', '2015-09-30');
 
 -- ------------------------------------------------------------
 
@@ -207,7 +215,7 @@ CREATE TABLE `clients` (
 --
 
 INSERT INTO `clients` (`client_id`, `client_fname`, `client_lname`, `client_address`, `client_nic`, `client_phone`, `client_purchase_date`, `client_purchase_amount`, `profile`) VALUES
-('C001', 'Sahan', 'Perera', 'Malabe', '821541214V', '0715394520', '2015-08-30', '5000', 'albrecht.png'),
+('C001', 'Sahan', 'Dilshan', 'Malabe', '821541214V', '0715394520', '2015-08-30', '5000', 'albrecht.png'),
 ('C002', 'Nimal', 'Fernando', 'Panadura', '548541201V', '0715394521', '2015-08-31', '5000', 'diego-inigo-large.jpg'),
 ('C003', 'Kasun', 'Rathnayake', 'Gampaha', '987654321V', '0714526987', '2015-08-30', '5000', 'charles-leisure-large.jpg');
 
@@ -237,7 +245,6 @@ INSERT INTO `emergencytransport` (`Id`, `fullname`, `nic`, `vehicleno`, `contact
 ('11', 'Namal', '920837006V', 'SG-4187', '0717937272', 'Break Down', 'test@gmail.com', '2015-08-19'),
 ('14', 'Jayantha', '874514872V', 'WP-7787', '0717479370', 'Empty Fuel\n', 'tippa@gmail.com', '2015-08-19'),
 ('16', 'Angelo', '789456123V', 'BAT-7872', '0717479198', 'Engine Down', 's@gmail.com', '2015-08-20'),
-('18', 'Samantha', '123456345V', 'ST-7723', '0717479567', 'Empty Fuel', 'raemiyoung@gmail.com', '2015-08-23'),
 ('20', 'Sarasi', '101245789V', 'KM-3434', '0717479234', 'Tyre down', 'inbox.rajika@gmail.com', '2015-08-23');
 
 -- ------------------------------------------------------------
@@ -258,7 +265,8 @@ CREATE TABLE `employee_list` (
   `emptype` varchar(50) DEFAULT NULL,
   `userName` varchar(50) DEFAULT NULL,
   `userPassword` varchar(50) DEFAULT NULL,
-  `userFile` varchar(250) DEFAULT NULL
+  `userFile` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`employeeCode`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -266,10 +274,11 @@ CREATE TABLE `employee_list` (
 --
 
 INSERT INTO `employee_list` (`employeeCode`, `firstName`, `lastName`, `address`, `nicNumber`, `mobilePhone`, `birthDate`, `hireDate`, `emptype`, `userName`, `userPassword`, `userFile`) VALUES
-('MG-789', 'Isuru', 'Dilhan', 'Gampaha', '953605469V', '0722353042', '1995-02-01', '2015-08-12', 'Admin', 'isurudilhan', 'Isurudilhan1', 'download (4).jpg'),
-('MG-790', 'Rajika', 'IMal', 'Kegalle', '917589068v', '0762011103', '1991-09-19', '2015-08-27', 'Manager', 'rajikaimal', 'RajikaImal123/', 'download (5).jpg'),
-('PM-237', 'Sam', 'Karunarathne', 'Colombo', '938660345V', '0717594328', '1993-08-29', '2015-08-19', 'Pump Staff', 'nullnull', 'nullNull123', 'Construction Worker.png'),
-('PM-406', 'Lahiru', 'Witharama', 'Rathnapura', '920837006V', '0725429611', '1992-09-19', '2015-08-02', 'Pump Staff', 'nullnull', 'nullNull123', 'images.jpg');
+('MG-789', 'Isuru', 'Dilhan', 'Gampaha', '953605469V', '0722353042', '1995-02-01', '2015-08-12', 'Admin', 'isurudilhan', 'Isurudilhan1', '1 (7).jpg'),
+('MG-790', 'Rajika', 'IMal', 'Kegalle', '917589068v', '0762011103', '1991-09-19', '2015-08-27', 'Manager', 'rajikaimal', 'RajikaImal123/', '1 (5).jpg'),
+('PM-168', 'kaveendra', 'oshan', 'kollupitiya', '930512400v', '0716010860', '1992-12-02', '2015-01-01', 'Pump Staff', 'nullnull', 'nullNull123', '1 (4).jpg'),
+('PM-237', 'Sam', 'Abeysekara', 'Colombo', '930512400v', '0716010860', '1993-02-20', '2015-08-19', 'Pump Staff', 'nullnull', 'nullNull123', 'sam.jpg'),
+('PM-406', 'Lahiru', 'Witharama', 'Rathnapura', '920837006V', '0725429611', '1992-09-19', '2015-08-02', 'Pump Staff', 'nullnull', 'nullNull123', '1 (1).jpg');
 
 -- ------------------------------------------------------------
 
@@ -357,7 +366,7 @@ CREATE TABLE `fuel_expense` (
   `date` date NOT NULL,
   `fuelpayment` varchar(100) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `fuel_expense`
@@ -368,8 +377,7 @@ INSERT INTO `fuel_expense` (`Id`, `expfueltype`, `capacity`, `date`, `fuelpaymen
 ('3', 'Diesel', '6600', '2015-08-24', '5000'),
 ('4', 'SPetrol', '19800', '2015-08-25', '75800'),
 ('5', 'SPetrol', '19800', '2015-08-25', '4500'),
-('9', 'Petrol', '19800', '2015-08-25', '1600'),
-('10', 'SPetrol', '19800', '2015-08-26', '1750');
+('9', 'Petrol', '19800', '2015-08-25', '1600');
 
 -- ------------------------------------------------------------
 
@@ -386,13 +394,17 @@ CREATE TABLE `fuel_income` (
   `date` date NOT NULL,
   `fuelincome` float NOT NULL,
   PRIMARY KEY (`incomeID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `fuel_income`
 --
 
-;
+INSERT INTO `fuel_income` (`incomeID`, `empID`, `empName`, `fueltype`, `amount`, `date`, `fuelincome`) VALUES
+('1', 'PM-237', '', 'petrol', '50', '2015-09-29', '0'),
+('2', 'PM-237', '', 'diesel', '20', '2015-09-29', '0'),
+('3', 'PM-237', '', 'diesel', '45', '2015-09-30', '0'),
+('4', 'MG-789', '', 'petrol', '20', '2015-09-30', '0');
 
 -- ------------------------------------------------------------
 
@@ -430,7 +442,7 @@ CREATE TABLE `lu_packages` (
   `description` varchar(200) NOT NULL,
   `duration` varchar(5) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `lu_packages`
@@ -443,8 +455,9 @@ INSERT INTO `lu_packages` (`id`, `name`, `price`, `description`, `duration`) VAL
 ('4', 'WINDSCREEN & GLASS CLEANING- GOLD', '8000', 'Glass treatment improves wet weather driving visibility. The treatment uses a non-streaking formula, ammonia free and safe for tinted windows. This is ideal for high humidity conditions.', '30'),
 ('5', 'QUICK LUBRICATION - SILVER', '5000', 'Restore the true colour and natural gloss to the dashboard and leaves tyres looking new.', '30'),
 ('6', 'UNDERCARRIAGE DEGREASING - SILVER', '5000', 'A total lubricating service in only 30 minutes. It covers every essential aspect of a professional car service at a most economical price. Top up to optimal capacity or completely change it using high', '30'),
-('7', 'VISUAL SAFETY CHECK - SILVER', '5000', '', ''),
-('10', ' EXTERIOR WAXING - GOLD', '8000', '', '');
+('7', 'VISUAL SAFETY CHECK - SILVER', '5000', 'test', '7'),
+('10', ' EXTERIOR WAXING - GOLD', '8000', '', ''),
+('11', 'oli change', '1400', 'hixs', '24');
 
 -- ------------------------------------------------------------
 
@@ -493,13 +506,24 @@ CREATE TABLE `lubricant_income` (
   `date1` date DEFAULT NULL,
   `lubricantincome` float DEFAULT NULL,
   PRIMARY KEY (`prdIncomeID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `lubricant_income`
 --
 
-;
+INSERT INTO `lubricant_income` (`prdIncomeID`, `prdType`, `quantity`, `supplier`, `sellingqty`, `price`, `date1`, `lubricantincome`) VALUES
+('1', 'KJ', '5', 'T2 dude', '2', '10000', '2015-09-29', '20000'),
+('2', 'KJ', '5', 'T2 dude', '2', '1000', '2015-09-29', '2000'),
+('3', 'KJ', '5', 'T2 dude', '2', '1000', '2015-09-29', '2000'),
+('4', 'KJ', '5', 'T2 dude', '2', '10000', '2015-09-29', '20000'),
+('5', 'KJ', '5', 'T2 dude', '2', '1000', '2015-09-29', '2000'),
+('6', 'KJ', '5', 'T2 dude', '2', '1000', '2015-09-29', '2000'),
+('7', 'KJ', '5', 'T2 dude', '2', '1000', '2015-09-29', '2000'),
+('8', '', '0', '', '0', '0', '2015-09-29', '0'),
+('9', 'Just test 2', '3', 'T2 dude', '3', '1111', '2015-09-29', '3333'),
+('10', 'test2', '33', 'T2 dude', '2', '333333', '2015-09-29', '666666'),
+('11', '', '0', '', '0', '0', '2015-09-30', '0');
 
 -- ------------------------------------------------------------
 
@@ -592,7 +616,7 @@ CREATE TABLE `orders` (
   `Orderamnt` int(10) NOT NULL,
   `Date` date NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=483 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=491 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `orders`
@@ -814,7 +838,15 @@ INSERT INTO `orders` (`Id`, `FuelType`, `Reading`, `Quantity`, `Orderamnt`, `Dat
 ('479', 'Petrol', '2.5', '248', '19800', '2015-09-29'),
 ('480', 'SPetrol', '1.5', '114', '19800', '2015-09-29'),
 ('481', 'Diesel', '6.5', '646', '6600', '2015-09-29'),
-('482', 'SDiesel', '1.5', '114', '19800', '2015-09-29');
+('482', 'SDiesel', '1.5', '114', '19800', '2015-09-29'),
+('483', 'Petrol', '0.5', '50', '19800', '2015-09-30'),
+('484', 'SPetrol', '0.5', '38', '19800', '2015-09-30'),
+('485', 'Diesel', '6', '596', '6600', '2015-09-30'),
+('486', 'SDiesel', '5', '381', '19800', '2015-09-30'),
+('487', 'Petrol', '243.5', '24194', '19800', '2015-09-30'),
+('488', 'SPetrol', '0', '0', '6600', '2015-09-30'),
+('489', 'Diesel', '0', '0', '6600', '2015-09-30'),
+('490', 'SDiesel', '0', '0', '6600', '2015-09-30');
 
 -- ------------------------------------------------------------
 
@@ -896,7 +928,7 @@ CREATE TABLE `packages` (
   `time` varchar(11) NOT NULL,
   `price` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `packages`
@@ -1097,7 +1129,7 @@ CREATE TABLE `regular_lutransactions` (
   `amount` float NOT NULL,
   `date` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `regular_lutransactions`
@@ -1105,7 +1137,8 @@ CREATE TABLE `regular_lutransactions` (
 
 INSERT INTO `regular_lutransactions` (`id`, `cust_id`, `package`, `vehicleNo`, `amount`, `date`) VALUES
 ('2', 'lc-436', 'UNDERCARRIAGE DEGREASING - GOLD', 'hyyyy', '6400', '2015-08-16'),
-('4', 'lc-436', 'UNDERCARRIAGE DEGREASING - GOLD', 'fd', '6400', '2015-08-17');
+('4', 'lc-436', 'UNDERCARRIAGE DEGREASING - GOLD', 'fd', '6400', '2015-08-17'),
+('5', 'lc-120', 'WINDSCREEN & GLASS CLEANING- GOLD', 'AA-1236', '6400', '2015-09-30');
 
 -- ------------------------------------------------------------
 
@@ -1130,9 +1163,9 @@ CREATE TABLE `regular_transactions` (
 --
 
 INSERT INTO `regular_transactions` (`id`, `cust_id`, `package`, `vehicleNo`, `amount`, `date`, `status`, `returnedDate`) VALUES
-('19', 'rc-892', 'Platinum Value Car Wash', 'TT-1557', '3600', '2015-07-30', 'Not Returned', '2015-08-22'),
+('19', 'rc-892', 'Platinum Value Car Wash', 'TT-1557', '3600', '2015-07-30', 'Returned', '2015-09-30'),
 ('21', 'rc-1122', 'Platinum Value Car Wash', 'TUB-1648', '3600', '2015-08-01', 'Returned', '2015-08-29'),
-('22', 'rc-892', 'Hand Wash', 'AA-8947', '3600', '2015-08-01', 'Not Returned', '2015-08-22'),
+('22', 'rc-892', 'Hand Wash', 'AA-8947', '3600', '2015-08-01', 'Returned', '2015-09-30'),
 ('23', 'rc-1018', 'Hand Wash', 'DAA-1933', '3600', '2015-08-01', 'Returned', '2015-08-20'),
 ('24', 'rc-549', 'Platinum Value Car Wash', 'SPD-5949', '3600', '2015-08-01', 'Returned', '2015-08-20'),
 ('26', 'rc-1018', 'Platinum Value Car Wash', 'ITP-1959', '3600', '2015-08-01', 'Not Returned', '2015-08-22'),
@@ -1149,7 +1182,7 @@ INSERT INTO `regular_transactions` (`id`, `cust_id`, `package`, `vehicleNo`, `am
 ('38', 'rc-1018', 'Platinum Value Car Wash', 'CAT-4449', '3600', '2015-08-02', 'Returned', '2015-08-22'),
 ('39', 'rc-1090', 'Hand Wash', 'BAT-9090', '8000', '2015-08-02', 'Returned', '2015-08-22'),
 ('40', 'rc-1090', 'Hand Wash', 'OT-1447', '8000', '2015-08-05', 'Returned', '2015-08-22'),
-('41', 'rc-1018', 'Platinum Value Car Wash', 'LK-1947', '1600', '2015-08-05', 'Not Returned', '2015-08-22'),
+('41', 'rc-1018', 'Platinum Value Car Wash', 'LK-1947', '1600', '2015-08-05', 'Returned', '2015-09-30'),
 ('42', 'rc-1018', 'Hand Wash', 'LI-5948', '3600', '2015-08-05', 'Returned', '2015-08-22'),
 ('43', 'rc-1090', 'Hand Wash', 'PO-6944', '3600', '2015-08-16', 'Returned', '2015-09-29'),
 ('46', 'rc-1018', 'Ultimate Value Car Wash', 'BIN-2941', '3600', '2015-08-19', 'Returned', '2015-08-22'),
@@ -1177,7 +1210,7 @@ CREATE TABLE `shiftdb` (
 
 INSERT INTO `shiftdb` (`shiftId`, `shiftName`, `shiftDuration`, `shiftRate`, `shiftcolor`) VALUES
 ('SH-147', '7 hour', '7.00', '750', 'orange'),
-('SH-193', '8 hours', '8.00', '500', 'yellow'),
+('SH-193', '24 hour', '24.00', '2000', 'yellow'),
 ('SH-256', '12hour', '12.00', '1000', 'green'),
 ('SH-725', '10 hour', '10.00', '1500', 'blue');
 
@@ -1201,7 +1234,7 @@ CREATE TABLE `suppliers` (
 --
 
 INSERT INTO `suppliers` (`Id`, `name`, `product`, `contact`, `email`) VALUES
-('41', 'Nexmo', 'lubricant', '0717479370', 't2dude@gmail.com'),
+('41', 'Nexmo', 'lubricant', '0717479370', 'isuru.dilhan@yahoo.com'),
 ('45', 'IOT', 'fuel', '0717479370', 'ram@gmail.com'),
 ('46', 'SEP', 'lubricant', '0717778782', 'sup@gmail.com'),
 ('47', 'KTL', 'lubricant', '0717973705', 'wassup@gmail.com'),
@@ -1256,7 +1289,7 @@ CREATE TABLE `tanks` (
 --
 
 INSERT INTO `tanks` (`Id`, `Petrol`, `SPetrol`, `Diesel`, `SDiesel`, `Date`) VALUES
-('1', '19872', '12890', '20617', '13661', '2015-09-29');
+('1', '3000', '4000', '0', '0', '2015-09-30');
 
 -- ------------------------------------------------------------
 
