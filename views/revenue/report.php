@@ -1,6 +1,6 @@
 <div class="btn-group btn-group-justified">
     <a href="" class="btn btn-primary" id="expense"><i class="mdi-maps-beenhere"></i> Expenses</a>
-    <a href="" class="btn btn-primary" id="income"><i class="mdi-action-trending-up"></i>Income</a>  
+    <a href="" class="btn btn-primary" id="incomes"><i class="mdi-action-trending-up"></i>Income</a>  
 </div>
 
 <script type="text/javascript">
@@ -14,10 +14,10 @@
         });
     });
 
-    $('#income').click(function(e2){
-        e2.preventDefault();
+    $('#incomes').click(function(e3){
+        e3.preventDefault();
         var id = $(this).attr('id');
-        $('#subloader2').load('/IOC/carwash/RegpdfReportDisplay', function () {
+        $('#subloader2').load('/IOC/revenue/index', function () {
             $('#subloader2').hide();
             $('#subloader2').fadeIn('fast');
         });
