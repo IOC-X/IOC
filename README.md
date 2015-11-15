@@ -1,6 +1,8 @@
 # IOC v 0.9.5
 Fuel station management [![IOC](https://img.shields.io/badge/IOC-prototype-green.svg)]() 
 
+<img src="http://i.imgur.com/NLUgrak.png?1">
+
 <b>Documentation</b>
 
 Based on model,view,controller strategy (MVC). Entire code is well organized into different parts 
